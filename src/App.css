@@ -1,38 +1,114 @@
-.App {
+/* Auth- Login and Sign up */
+
+*{
+  margin:0;
+  padding:0;
+}
+
+.auth{
+  background-color: white;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.212);
+  padding: 0px !important;
+  transform:translateY(2%)
+}
+
+.falconpic{
+display:flex;
+justify-content: center;
+background-color: #253C7F;
+
+
+
+}
+
+.mainDiv{
+  background-color:#f7f7f7;
+  height: 100vh;
+}
+
+.formPadding{
+  padding: 10px 25px;
+}
+
+.signupTitle{
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* .table{
+  margin: 50px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.tableDiv{
+  position: absolute;
+  bottom: 50px;
+} */
+
+
+/* Chart.js */
+
+/* Links */
+
+a{
+  text-decoration: none;
+}
+
+a:active{
+  text-decoration: none;
+}
+
+.smallMarginTop{
+  margin-top:15px !important;
+}
+
+.studentDash{
+  width: 100vw;
+  margin-left:auto;
+  margin-right: auto;
+}
+
+.progressCircle{
+  margin-top:25px;
+  margin-left:auto;
+  margin-right:auto;
+  width: 150px;
+}
+
+.studentChart{
+
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+@media only screen and (min-width: 600px) {
+ 
+  .studentChart{
+    padding: 25px 0;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
   }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  .progressCircle{
+    width: 200px;
+    margin-top:25px;
+    margin-left:auto;
+    margin-right:auto;
   }
-  to {
-    transform: rotate(360deg);
+  
+  
+  
   }
-}
+  @media only screen and (min-width: 768px) {
+  
+  
+  
+  
+  }
+
+  .MuiTableCell-root{
+    padding: 5px  !important;
+
+  }
+
