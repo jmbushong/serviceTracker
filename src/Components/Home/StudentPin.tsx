@@ -79,8 +79,8 @@ class StudentPin extends React.Component {
       
 
           <Grid container justify="flex-end">
-            <Grid item>
-            <Link className="smallMarginTop" to="/">
+            <Grid item className="smallMarginTop">
+            <Link  to="/">
                 {"Already have an account? Sign in"}
               </Link>
             </Grid>

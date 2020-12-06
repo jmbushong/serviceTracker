@@ -6,10 +6,11 @@
 }
 
 .auth{
-  background-color: white;
-  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.212);
+  background-color: #f7f7f7;
+ 
   padding: 0px !important;
-  transform:translateY(2%)
+  transform:translateY(2%);
+ 
 }
 
 .falconpic{
@@ -24,10 +25,15 @@ background-color: #253C7F;
 .mainDiv{
   background-color:#f7f7f7;
   height: 100vh;
+  
 }
 
 .formPadding{
   padding: 10px 25px;
+  margin-top: 10px;
+
+  
+  
 }
 
 .signupTitle{
@@ -71,6 +77,7 @@ a:active{
   margin-left:auto;
   margin-right:auto;
   width: 150px;
+  margin-bottom: 25px;
 }
 
 .studentChart{
@@ -78,37 +85,75 @@ a:active{
   width: 100%;
   margin-left: auto;
   margin-right: auto;
+
 }
 
 
 @media only screen and (min-width: 600px) {
  
   .studentChart{
-    padding: 25px 0;
-    width: 60%;
+    padding: 0px 0;
+    width: 50%;
     margin-left: auto;
     margin-right: auto;
+
   }
 
   .progressCircle{
     width: 200px;
     margin-top:25px;
-    margin-left:auto;
-    margin-right:auto;
+    
+  
   }
   
-  
+  .studentButtons{
+    background-color:yellow;
+    width: 30%;
+    margin-left:auto;
+    margin-right: auto;
+    
+  }
+  .viewEvents{
+  width: 60vw;
+  margin-left: auto;
+  margin-right:auto;
+  }
+  .auth{
+    background-color: white;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.212);
+    transform:translateY(5%)
+
+   
+  }
+
   
   }
   @media only screen and (min-width: 768px) {
   
-  
-  
+
   
   }
 
   .MuiTableCell-root{
-    padding: 5px  !important;
+    padding: 5px 0px!important;
 
   }
+
+.editIcon{
+  display:flex;
+  justify-content: flex-end;
+  
+
+}
+
+.studentButtons{
+  background-color:yellow;
+  margin-top: 20px;
+}
+
+.toRight{
+  margin-left:auto;
+  width:130px;
+
+}
 

@@ -18,6 +18,9 @@ import StudentPin from './Components/Home/StudentPin';
 import AdminSignup from './Components/Home/AdminSignup';
 import TeacherPin from './Components/Home/TeacherPin'
 import MyDashboard from './Components/StudentView/StudentDashboard/MyDashboard';
+import AddServiceHours from './Components/StudentView/StudentDashboard/AddServiceHours';
+import UpdateServiceHours from './Components/StudentView/StudentDashboard/UpdateServiceHours'
+import ViewEvents from './Components/StudentView/ViewEvents';
 
 
 
@@ -39,7 +42,9 @@ class App extends React.Component {
     <Route exact path="/teacherpin" component={TeacherPin}/>
     <Route exact path="/chart" component={Chart}/>
     <Route exact path="/mydashboard" component={MyDashboard}/>
-    
+    <Route exact path="/addservice" component={AddServiceHours}/>
+    <Route exact path="/editservice" component={UpdateServiceHours}/>
+    <Route exact path="/events" component={ViewEvents}/>
     
 
   </Switch>
