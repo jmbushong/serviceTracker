@@ -125,7 +125,19 @@ a:active{
 
    
   }
+  .admindash_div{
+ 
+    margin-right: auto;
+    margin-left:auto;
+    width: 25vw;
+   
 
+  }
+.classCode{
+  width: 25vw;
+  margin-left:auto;
+  margin-right: auto;
+}
   
   }
   @media only screen and (min-width: 768px) {
@@ -157,3 +169,43 @@ a:active{
 
 }
 
+.admindash{
+ height: 80vh;
+ width: 70vw;
+ margin-left: auto;
+ margin-right:auto; 
+ margin-top:40px;
+}
+
+.admindash_div{
+ 
+  margin-right: auto;
+  margin-left:auto;
+ 
+
+
+
+}
+
+.admindash_icons{
+  font-size: 50px;
+  color: #3CAEA3;
+  margin-right: 15px;
+
+}
+
+.marginBottom{
+  margin-bottom: 50px;
+  
+}
+
+
+
+.classCode h1{
+  transform: translateX(50px);
+  font-size: 300%;
+  letter-spacing: 8px;
+  display:inline;
+  color: #253C7F;
+
+}

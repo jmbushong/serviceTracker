@@ -21,6 +21,8 @@ import MyDashboard from './Components/StudentView/StudentDashboard/MyDashboard';
 import AddServiceHours from './Components/StudentView/StudentDashboard/AddServiceHours';
 import UpdateServiceHours from './Components/StudentView/StudentDashboard/UpdateServiceHours'
 import ViewEvents from './Components/StudentView/ViewEvents';
+import AdminDash from './Components/AdminView/AdminDash';
+import EventSchedule from './Components/AdminView/Events/EventSchedule';
 
 
 
@@ -45,6 +47,8 @@ class App extends React.Component {
     <Route exact path="/addservice" component={AddServiceHours}/>
     <Route exact path="/editservice" component={UpdateServiceHours}/>
     <Route exact path="/events" component={ViewEvents}/>
+    <Route exact path="/admindash" component={AdminDash}/>
+    <Route exact path="/adminevent" component={EventSchedule}/>
     
 
   </Switch>

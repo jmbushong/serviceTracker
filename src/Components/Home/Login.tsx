@@ -7,9 +7,7 @@ import Box from "@material-ui/core/Box";
 import Falcon from "../../Assets/White Falcon.png";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import {
-Link
-} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 function Copyright() {
   return (
@@ -73,9 +71,9 @@ class Login extends React.Component {
             </Grid>
             <Grid item xs={12}></Grid>
           </Grid>
-          <Button type="submit" fullWidth variant="contained" color="primary">
+         <Link to="./admindash"> <Button type="submit" fullWidth variant="contained" color="primary">
             Member Login
-          </Button>
+          </Button></Link>
 
           <Grid container justify="flex-end">
             <Grid item className="smallMarginTop">
