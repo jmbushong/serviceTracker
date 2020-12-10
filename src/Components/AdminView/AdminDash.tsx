@@ -45,13 +45,13 @@ class AdminDash extends React.Component {
               />
               Schedule Event
             </h3></Link>
-            <h3 className="marginBottom">
+            <Link to="/manageaccounts"><h3 className="marginBottom">
               <FontAwesomeIcon
                 className="admindash_icons"
                 icon={faAddressBook}
               />
               Student Accounts
-            </h3>
+            </h3></Link>
             <div className="classCode">
               {" "}
               {/* <h4>Class PIN</h4> */}

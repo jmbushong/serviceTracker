@@ -148,6 +148,11 @@ a:active{
   transform:translateX(-60%)
 
 }
+.studentAccounts{
+  margin-left:auto;
+  margin-right:auto;
+  width: 400px;
+}
   
   }
   @media only screen and (min-width: 768px) {
@@ -240,3 +245,9 @@ hr{
 .visited:visited{
   color:black;
 }
+
+/* .studentAccounts{
+  margin-left:auto;
+  margin-right:auto;
+  width: 400px;
+} */
