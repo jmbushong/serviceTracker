@@ -3,14 +3,14 @@ import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
-import Sitebar from '../../Sitebar/Sitebar';
+import AdminSitebar from "../../Sitebar/AdminSitebar"
 
 
 
 class EventSchedule extends React.Component {
 
     render() { 
-        return (   <div><Sitebar /> <h2 style={{textAlign:"center", marginTop:"50px", marginBottom:"50px"}}>Upcoming Service Opportunities</h2><div className="viewEvents">
+        return (   <div> <AdminSitebar /> <h2 style={{textAlign:"center", marginTop:"50px", marginBottom:"50px"}}>Upcoming Service Opportunities</h2><div className="viewEvents">
         <Accordion square >
           <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
             <Typography>Peer Tutoring</Typography>

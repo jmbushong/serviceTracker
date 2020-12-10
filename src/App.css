@@ -1,9 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
 /* Auth- Login and Sign up */
 
 *{
   margin:0;
   padding:0;
+ 
 }
+
+h2{font-family: 'Righteous', cursive;}
+
 
 .auth{
   background-color: #f7f7f7;
@@ -127,9 +133,11 @@ a:active{
   }
   .admindash_div{
  
-    margin-right: auto;
-    margin-left:auto;
-    width: 25vw;
+  
+    transform:translateX(25%);
+    width: 60vw;
+    
+    
    
 
   }
@@ -137,6 +145,8 @@ a:active{
   width: 25vw;
   margin-left:auto;
   margin-right: auto;
+  transform:translateX(-60%)
+
 }
   
   }
@@ -171,7 +181,7 @@ a:active{
 
 .admindash{
  height: 80vh;
- width: 70vw;
+
  margin-left: auto;
  margin-right:auto; 
  margin-top:40px;
@@ -181,6 +191,7 @@ a:active{
  
   margin-right: auto;
   margin-left:auto;
+  padding-left: 50px;
  
 
 
@@ -190,7 +201,7 @@ a:active{
 .admindash_icons{
   font-size: 50px;
   color: #3CAEA3;
-  margin-right: 15px;
+  margin-right: 35px;
 
 }
 
@@ -201,6 +212,11 @@ a:active{
 
 
 
+.classCode{
+  padding-top: 5px;
+  
+}
+
 .classCode h1{
   transform: translateX(50px);
   font-size: 300%;
@@ -208,4 +224,19 @@ a:active{
   display:inline;
   color: #253C7F;
 
+}
+
+hr{
+  height:10px;
+  background-color: #F6D55C;
+  border:none;
+  width: 180px;
+  margin-bottom: 36px;
+  transform: translateX(25%);
+  margin-top: 10px;
+
+}
+
+.visited:visited{
+  color:black;
 }

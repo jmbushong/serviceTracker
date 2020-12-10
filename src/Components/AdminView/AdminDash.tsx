@@ -8,30 +8,36 @@ import { faAddressBook } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Box from "@material-ui/core/Box";
 import {Link} from "react-router-dom";
+import { CircularProgressbar } from "react-circular-progressbar";
+import AdminSitebar from "../Sitebar/AdminSitebar"
+
+const percentage = 66;
 
 class AdminDash extends React.Component {
   render() {
     return (
-      <div>
-        <Sitebar />
-        <Box className="admindash">
+      <div  >
+        <AdminSitebar />
+        <Box className="admindash" >
           <Box className="admindash_div">
-            <h2 style={{  marginBottom: "35px" }}>
-              Admin Dashboard
+            <h2 style={{letterSpacing: '3px'}} >
+              ADMIN DASHBOARD
             </h2>
-
+            <hr/>
+       
+          <Box className= "admindash_card" >
             <h3 className="marginBottom">
               {" "}
               <FontAwesomeIcon className="admindash_icons" icon={faTrophy} />
               Leaderboard
             </h3>
-
+            </Box>
             <h3 className="marginBottom">
               {" "}
               <FontAwesomeIcon className="admindash_icons" icon={faClock} />
               Manage Hours
             </h3>
-            <Link to="/adminevent"><h3 className="marginBottom">
+            <Link className="visited" to="/adminevent"><h3 className="marginBottom">
               {" "}
               <FontAwesomeIcon
                 className="admindash_icons"
@@ -46,15 +52,17 @@ class AdminDash extends React.Component {
               />
               Student Accounts
             </h3>
-           
-          </Box>
-          <div className="classCode">
+            <div className="classCode">
               {" "}
-              <h4>Class PIN</h4>
-              <h1 >153754</h1>
+              {/* <h4>Class PIN</h4> */}
+              {/* <h1 >153754</h1> */}
               
             </div>
+          </Box>
+     
+       
         </Box>
+      
       </div>
     );
   }
