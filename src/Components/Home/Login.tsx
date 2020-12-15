@@ -19,8 +19,23 @@ function Copyright() {
   );
 }
 
+type AcceptedProps={
+  sessionToken:any, 
+  updateToken:any,
+  email:any,
+  firstName: string,
+  lastName: string, 
+  password: any,
+  setEmail: any,
+  setPassword: any
+}
 
-class Login extends React.Component {
+class Login extends React.Component<AcceptedProps,{}> {
+  constructor(props: AcceptedProps) {
+    super(props);
+    
+  }
+
   render() {
     return (
       <div> 
@@ -55,6 +70,13 @@ class Login extends React.Component {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                onChange={(e) => {
+                  this.props.setEmail(e.target.value)
+                  console.log(this.props.email)
+              
+                }}
+                defaultValue={this.props.email}
+
               />
             </Grid>
             <Grid item xs={12}>
@@ -67,6 +89,12 @@ class Login extends React.Component {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={(e) => {
+                  this.props.setPassword(e.target.value)
+                  console.log(this.props.password)
+              
+                }}
+                defaultValue={this.props.password}
               />
             </Grid>
             <Grid item xs={12}></Grid>
