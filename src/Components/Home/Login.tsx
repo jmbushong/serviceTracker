@@ -27,7 +27,9 @@ type AcceptedProps={
   lastName: string, 
   password: any,
   setEmail: any,
-  setPassword: any
+  setPassword: any,
+  classCode?:any,
+  setClassCode?:any
 }
 
 class Login extends React.Component<AcceptedProps,{}> {

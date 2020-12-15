@@ -12,6 +12,20 @@ import {
 } from "react-router-dom";
 
 
+type AcceptedProps={
+  sessionToken:any, 
+  updateToken:any,
+  email:any,
+  firstName: string,
+  lastName: string, 
+  password: any,
+  setEmail: any,
+  setPassword: any,
+  classCode?:any,
+  setClassCode?:any,
+  setFirstName?: any,
+  setLastName?: any
+}
 
 function Copyright() {
   return (
@@ -25,7 +39,7 @@ function Copyright() {
 
 
 
-class Signup extends React.Component {
+class Signup extends React.Component<AcceptedProps,{}> {
   render() {
     return (
       <div> 

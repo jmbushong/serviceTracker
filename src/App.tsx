@@ -26,8 +26,12 @@ type myState = {
   studentAccount: any;
   teacherAccount: any;
   eventInformation: any;
+  classCode:any;
   setEmail: (e:string) => void; //setEmail is a function that takes a string and returns nothing
   setPassword: (e:any) => void; 
+  setClassCode: (e:any) => void;
+  setFirstName: (e:any) => void; 
+  setLastName: (e:any) => void;  
 };
 
 class App extends React.Component<{}, myState> {
@@ -43,9 +47,12 @@ class App extends React.Component<{}, myState> {
       studentAccount: [],
       teacherAccount: [],
       eventInformation: [],
+      classCode: "",
       setEmail: (email)=>{this.setState({email: email})},
-      setPassword: (pass)=>{this.setState({password: pass})}
-      
+      setPassword: (pass)=>{this.setState({password: pass})},
+      setClassCode: (code)=>{this.setState({classCode: code})},
+      setFirstName: (first)=>{this.setState({firstName: first})},
+      setLastName: (last)=>{this.setState({lastName: last})},
      
     };
     console.log("[App.js] Constructor");
@@ -88,8 +95,13 @@ class App extends React.Component<{}, myState> {
         email={this.state.email}
         setEmail={this.state.setEmail}
         password={this.state.password}
-        sessionToken={this.state.sessionToken}
         setPassword={this.state.setPassword}
+        classCode={this.state.classCode}
+        setClassCode={this.state.setClassCode}
+        sessionToken={this.state.sessionToken}
+      
+        
+
         
       />
     );
@@ -124,6 +136,9 @@ class App extends React.Component<{}, myState> {
                 sessionToken={this.state.sessionToken}
                 setEmail={this.state.setEmail}
                 setPassword={this.state.setPassword}
+                classCode={this.state.classCode}
+                setClassCode={this.state.setClassCode}
+                
               />
             </Route> 
             )}
@@ -141,7 +156,20 @@ class App extends React.Component<{}, myState> {
               <SelectRole />
             </Route>
             <Route exact path="/signup">
-              <Signup />
+              <Signup 
+                   updateToken={this.state.updateToken}
+                   firstName={this.state.firstName}
+                   lastName={this.state.lastName}
+                   email={this.state.email}
+                   password={this.state.password}
+                   sessionToken={this.state.sessionToken}
+                   setEmail={this.state.setEmail}
+                   setPassword={this.state.setPassword}
+                   classCode={this.state.classCode}
+                   setClassCode={this.state.setClassCode}
+                   setFirstName={this.state.setFirstName}
+                   setLastName={this.state.setLastName}
+              />
             </Route>
             <Route exact path="/adminsignup">
               <AdminSignup />
