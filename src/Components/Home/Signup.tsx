@@ -39,7 +39,31 @@ function Copyright() {
 
 
 
+
 class Signup extends React.Component<AcceptedProps,{}> {
+  handleSubmit =(event:any) => {
+    event.preventDefault();
+    fetch(`http://localhost:4000/user/signup`,{
+        method: 'POST', 
+        body: JSON.stringify({
+          studentUser: {
+            firstName: this.props.firstName, 
+            lastName: this.props.lastName, 
+            email: this.props.email,
+            password: this.props.password,
+            classId:12, //go back and make this dynamic
+          }}),
+        headers: new Headers({
+            'Content-Type': 'application/json'
+        })
+    }).then(
+        (response) => response.json()
+  
+    ).then((json)=>{
+        this.props.updateToken(json.sessionToken)
+       
+    })
+  }
   render() {
     return (
       <div> 
@@ -62,7 +86,7 @@ class Signup extends React.Component<AcceptedProps,{}> {
                 NJHS ServiceTracker
               </Typography>
               <br></br>
-              <form noValidate>
+              <form onSubmit={this.handleSubmit} noValidate>
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
                     <TextField
@@ -136,7 +160,7 @@ class Signup extends React.Component<AcceptedProps,{}> {
                   </Grid>
                   <Grid item xs={12}></Grid>
                 </Grid>
-                <Link to="/mydashboard">
+                {/* <Link to="/mydashboard"> */}
                 <Button
                
                   type="submit"
@@ -145,7 +169,8 @@ class Signup extends React.Component<AcceptedProps,{}> {
                   color="primary"
                 >
                   Sign Up
-                </Button> </Link>
+                </Button>
+                 {/* </Link> */}
         
                 <Grid container justify="flex-end">
                 

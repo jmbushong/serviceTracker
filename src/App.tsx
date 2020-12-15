@@ -18,7 +18,6 @@ import ManageAccounts from "./Components/AdminView/ManageAccounts";
 
 type myState = {
   sessionToken: any;
-  updateToken: any;
   email: any;
   firstName: string;
   lastName: string;
@@ -34,12 +33,14 @@ type myState = {
   setLastName: (e:any) => void;  
 };
 
+type myProps={
+  updateToken: any;
+}
 class App extends React.Component<{}, myState> {
-  constructor(props: any) {
+  constructor(props: myProps) {
     super(props);
     this.state = {
       sessionToken: "hello",
-      updateToken: "",
       email: "",
       firstName: "",
       lastName: "",
@@ -58,10 +59,7 @@ class App extends React.Component<{}, myState> {
     console.log("[App.js] Constructor");
   }
 
-  static getDerivedStateFromProps(props: any, state: any) {
-    console.log("[App.js] getDerivedStateFromProps", props);
-    return state;
-  }
+
 
   //Here we are calling the setState() method and updating our value of session token
   collectToken = () => {
@@ -84,28 +82,29 @@ class App extends React.Component<{}, myState> {
     this.setState({ sessionToken: "" });
   };
 
-  protectedViews = () => {
-    return this.state.sessionToken === localStorage.getItem("token") ? (
-      <MyDashboard />
-    ) : (
-      <Login
-        updateToken={this.state.updateToken}
-        firstName={this.state.firstName}
-        lastName={this.state.lastName}
-        email={this.state.email}
-        setEmail={this.state.setEmail}
-        password={this.state.password}
-        setPassword={this.state.setPassword}
-        classCode={this.state.classCode}
-        setClassCode={this.state.setClassCode}
-        sessionToken={this.state.sessionToken}
+  // protectedViews = () => {
+  //   return this.state.sessionToken === localStorage.getItem("token") ? (
+  //     <MyDashboard />
+  //   ) : (
+      
+  //     <Login
+  //       updateToken={this.state.updateToken}
+  //       firstName={this.state.firstName}
+  //       lastName={this.state.lastName}
+  //       email={this.state.email}
+  //       setEmail={this.state.setEmail}
+  //       password={this.state.password}
+  //       setPassword={this.state.setPassword}
+  //       classCode={this.state.classCode}
+  //       setClassCode={this.state.setClassCode}
+  //       sessionToken={this.state.sessionToken}
       
         
 
         
-      />
-    );
-  };
+  //     />
+  //   );
+  // };
 
   componentDidMount() {
     console.log("[App.js] component did mount");
@@ -128,7 +127,7 @@ class App extends React.Component<{}, myState> {
             ) : (
               <Route exact path="/">
               <Login
-                updateToken={this.state.updateToken}
+                updateToken={this.updateToken}
                 firstName={this.state.firstName}
                 lastName={this.state.lastName}
                 email={this.state.email}
@@ -157,7 +156,7 @@ class App extends React.Component<{}, myState> {
             </Route>
             <Route exact path="/signup">
               <Signup 
-                   updateToken={this.state.updateToken}
+                   updateToken={this.updateToken}
                    firstName={this.state.firstName}
                    lastName={this.state.lastName}
                    email={this.state.email}
@@ -169,6 +168,7 @@ class App extends React.Component<{}, myState> {
                    setClassCode={this.state.setClassCode}
                    setFirstName={this.state.setFirstName}
                    setLastName={this.state.setLastName}
+                   
               />
             </Route>
             <Route exact path="/adminsignup">
