@@ -74,6 +74,12 @@ class Signup extends React.Component<AcceptedProps,{}> {
                       id="firstName"
                       label="First Name"
                       autoFocus
+                      onChange={(e) => {
+                        this.props.setFirstName(e.target.value)
+                        console.log(this.props.firstName)
+                    
+                      }}
+                      defaultValue={this.props.firstName}
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
@@ -85,6 +91,12 @@ class Signup extends React.Component<AcceptedProps,{}> {
                       label="Last Name"
                       name="lastName"
                       autoComplete="lname"
+                      onChange={(e) => {
+                        this.props.setLastName(e.target.value)
+                        console.log(this.props.lastName)
+                    
+                      }}
+                      defaultValue={this.props.lastName}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -96,6 +108,12 @@ class Signup extends React.Component<AcceptedProps,{}> {
                       label="Email Address"
                       name="email"
                       autoComplete="email"
+                      onChange={(e) => {
+                        this.props.setEmail(e.target.value)
+                        console.log(this.props.email)
+                    
+                      }}
+                      defaultValue={this.props.email}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -108,6 +126,12 @@ class Signup extends React.Component<AcceptedProps,{}> {
                       type="password"
                       id="password"
                       autoComplete="current-password"
+                      onChange={(e) => {
+                        this.props.setPassword(e.target.value)
+                        console.log(this.props.password)
+                    
+                      }}
+                      defaultValue={this.props.password}
                     />
                   </Grid>
                   <Grid item xs={12}></Grid>
