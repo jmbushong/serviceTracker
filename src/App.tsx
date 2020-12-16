@@ -15,6 +15,7 @@ import ViewEvents from "./Components/StudentView/ViewEvents";
 import AdminDash from "./Components/AdminView/AdminDash";
 import EventSchedule from "./Components/AdminView/Events/EventSchedule";
 import ManageAccounts from "./Components/AdminView/ManageAccounts";
+import Sitebar from "./Components/Sitebar/Sitebar";
 
 type myState = {
   sessionToken: any;
@@ -26,6 +27,7 @@ type myState = {
   teacherAccount: any;
   eventInformation: any;
   classCode:any;
+  backArrowToggle: any;
   setEmail: (e:string) => void; //setEmail is a function that takes a string and returns nothing
   setPassword: (e:any) => void; 
   setClassCode: (e:any) => void;
@@ -40,7 +42,8 @@ class App extends React.Component<{}, myState> {
   constructor(props: myProps) {
     super(props);
     this.state = {
-      sessionToken: "hello",
+      backArrowToggle: true,
+      sessionToken: "",
       email: "",
       firstName: "",
       lastName: "",
@@ -54,6 +57,8 @@ class App extends React.Component<{}, myState> {
       setClassCode: (code)=>{this.setState({classCode: code})},
       setFirstName: (first)=>{this.setState({firstName: first})},
       setLastName: (last)=>{this.setState({lastName: last})},
+    
+      
      
     };
     console.log("[App.js] Constructor");
@@ -82,34 +87,18 @@ class App extends React.Component<{}, myState> {
     this.setState({ sessionToken: "" });
   };
 
-  // protectedViews = () => {
-  //   return this.state.sessionToken === localStorage.getItem("token") ? (
-  //     <MyDashboard />
-  //   ) : (
-      
-  //     <Login
-  //       updateToken={this.state.updateToken}
-  //       firstName={this.state.firstName}
-  //       lastName={this.state.lastName}
-  //       email={this.state.email}
-  //       setEmail={this.state.setEmail}
-  //       password={this.state.password}
-  //       setPassword={this.state.setPassword}
-  //       classCode={this.state.classCode}
-  //       setClassCode={this.state.setClassCode}
-  //       sessionToken={this.state.sessionToken}
-      
-        
-
-        
-  //     />
-  //   );
-  // };
+  
 
   componentDidMount() {
     console.log("[App.js] component did mount");
     this.collectToken();
   }
+
+  arrowHandler = () => {
+    this.state.backArrowToggle === true
+      ? this.setState({ backArrowToggle: false })
+      : this.setState({ backArrowToggle: true });
+  };
 
   render() {
     console.log("[App.js] render");
@@ -122,8 +111,16 @@ class App extends React.Component<{}, myState> {
           <Switch>
           {this.state.sessionToken === localStorage.getItem("token") ? (
                    <Route exact path="/mydashboard">
-                   <MyDashboard />
-                 </Route>
+                   <MyDashboard 
+                   firstName={this.state.firstName}
+                   lastName={this.state.lastName}
+                   sessionToken={this.state.sessionToken}
+                   backArrowToggle={this.state.backArrowToggle}
+                   arrowHandler={this.arrowHandler}
+                
+                   key={this.state.sessionToken}/>
+                   
+                  </Route>
             ) : (
               <Route exact path="/">
               <Login
@@ -141,16 +138,8 @@ class App extends React.Component<{}, myState> {
               />
             </Route> 
             )}
-             {/* <Route exact path="/">
-              <Login
-                updateToken={this.state.updateToken}
-                firstName={this.state.firstName}
-                lastName={this.state.lastName}
-                email={this.state.email}
-                password={this.state.password}
-                sessionToken={this.state.sessionToken}
-              />
-            </Route>  */}
+      
+            
             <Route exact path="/selectrole">
               <SelectRole />
             </Route>
@@ -175,7 +164,9 @@ class App extends React.Component<{}, myState> {
               <AdminSignup />
             </Route>
             <Route exact path="/studentpin">
-              <StudentPin />
+              <StudentPin  
+                  classCode={this.state.classCode}
+              setClassCode={this.state.setClassCode} />
             </Route>
             <Route exact path="/teacherpin">
               <TeacherPin />
@@ -183,17 +174,26 @@ class App extends React.Component<{}, myState> {
             <Route exact path="/chart">
               <Chart />
             </Route>
-            {/* <Route exact path="/mydashboard">
-              <MyDashboard />
-            </Route> */}
+            
             <Route exact path="/addservice">
-              <AddServiceHours />
+              <AddServiceHours 
+               backArrowToggle={this.state.backArrowToggle}
+               arrowHandler={this.arrowHandler}
+              
+              />
             </Route>
             <Route exact path="/editservice">
-              <UpdateServiceHours />
+              <UpdateServiceHours
+              backArrowToggle={this.state.backArrowToggle}
+              arrowHandler={this.arrowHandler}
+
+              />
             </Route>
             <Route exact path="/events">
-              <ViewEvents />
+              <ViewEvents
+               backArrowToggle={this.state.backArrowToggle}
+               arrowHandler={this.arrowHandler}
+              />
             </Route>
             <Route exact path="/admindash">
               <AdminDash />
@@ -204,6 +204,7 @@ class App extends React.Component<{}, myState> {
             <Route exact path="/manageaccounts">
               <ManageAccounts />
             </Route>
+         
        
           </Switch>
         </BrowserRouter>

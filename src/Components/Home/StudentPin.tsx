@@ -22,8 +22,14 @@ import {
   );
 }
 
+type AcceptedProps={
+  setClassCode?:any,
+  classCode:any,
+  sessionToken?:any
+}
 
-class StudentPin extends React.Component {
+
+class StudentPin extends React.Component<AcceptedProps,{}> {
   render() {
     return (
       <div> 
@@ -60,6 +66,12 @@ class StudentPin extends React.Component {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={(e) => {
+                  this.props.setClassCode(e.target.value)
+                  console.log(this.props.setClassCode)
+              
+                }}
+                defaultValue={this.props.classCode}
               />
         
          

@@ -27,7 +27,7 @@ class UpdateEvents extends React.Component {
   render() {
     return (
       <div>
-        <Sitebar />
+        {/* <Sitebar /> */}
         <Container style={{paddingLeft:"40px", paddingRight:"40px"}}component="main" maxWidth="xs">
           <CssBaseline />
           <div style={{ marginTop: "25px" }}>

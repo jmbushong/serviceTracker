@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom"
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
@@ -39,8 +40,9 @@ function Copyright() {
 
 
 
-
 class Signup extends React.Component<AcceptedProps,{}> {
+
+  
   handleSubmit =(event:any) => {
     event.preventDefault();
     fetch(`http://localhost:4000/user/signup`,{
@@ -51,7 +53,7 @@ class Signup extends React.Component<AcceptedProps,{}> {
             lastName: this.props.lastName, 
             email: this.props.email,
             password: this.props.password,
-            classId:12, //go back and make this dynamic
+            classId:this.props.classCode
           }}),
         headers: new Headers({
             'Content-Type': 'application/json'
@@ -64,10 +66,21 @@ class Signup extends React.Component<AcceptedProps,{}> {
        
     })
   }
+
+checkForToken= () =>{
+    if(!this.props.sessionToken || this.props.firstName === undefined ){
+      return ( <Redirect to= "/signup"/>)
+    }return(<Redirect to= "/myDashboard"/>)
+  }
+
+
+    
+     
+   
   render() {
     return (
       <div> 
-
+ 
   
       <div className= "mainDiv" >
       
@@ -190,8 +203,11 @@ class Signup extends React.Component<AcceptedProps,{}> {
 </Container>
 
 </div>
+{this.checkForToken()}
   </div>
+ 
     );
+ 
   }
 }
 

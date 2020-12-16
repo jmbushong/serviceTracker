@@ -23,11 +23,23 @@ import {
     Link
    } from "react-router-dom";
 
-class AddServiceHours extends React.Component {
+   type AcceptedProps = {
+   
+    backArrowToggle: any;
+    arrowHandler: any;
+  };
+class AddServiceHours extends React.Component <AcceptedProps, {}> {
+  componentDidMount(){
+    this.props.arrowHandler();
+  }
+
   render() {
     return (
       <div>
-        <Sitebar />
+        <Sitebar
+        backArrowToggle={this.props.backArrowToggle}
+        arrowHandler={this.props.arrowHandler}
+        />
         <Container style={{paddingLeft:"40px", paddingRight:"40px"}}component="main" maxWidth="xs">
           <CssBaseline />
           <div style={{ marginTop: "25px" }}>

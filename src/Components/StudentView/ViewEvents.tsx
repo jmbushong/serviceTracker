@@ -5,11 +5,22 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import Sitebar from '../Sitebar/Sitebar';
 
+type AcceptedProps = {
+  backArrowToggle: any;
+  arrowHandler: any;
+};
 
-class ViewEvents extends React.Component {
-
+class ViewEvents extends React.Component  <AcceptedProps, {}> {
+  componentDidMount(){
+    this.props.arrowHandler();
+  }
     render() { 
-        return (   <div><Sitebar /> <h2 style={{textAlign:"center", marginTop:"50px", marginBottom:"50px"}}>Upcoming Service Opportunities</h2><div className="viewEvents">
+        return (   <div>
+          <Sitebar
+            backArrowToggle={this.props.backArrowToggle}
+            arrowHandler={this.props.arrowHandler}
+          /> 
+        <h2 style={{textAlign:"center", marginTop:"50px", marginBottom:"50px"}}>Upcoming Service Opportunities</h2><div className="viewEvents">
         <Accordion square >
           <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
             <Typography>Peer Tutoring</Typography>

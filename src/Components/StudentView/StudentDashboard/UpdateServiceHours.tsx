@@ -14,31 +14,41 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import {
-    Link
-   } from "react-router-dom";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import { Link } from "react-router-dom";
 
-class UpdateServiceHours extends React.Component {
+type AcceptedProps = {
+   
+  backArrowToggle: any;
+  arrowHandler: any;
+};
+
+class UpdateServiceHours extends React.Component <AcceptedProps, {}>{
+  componentDidMount(){
+    this.props.arrowHandler();
+  }
   render() {
     return (
-      <div >
-        <Sitebar />
-        <Container style={{paddingLeft:"40px", paddingRight:"40px"}} component="main" maxWidth="xs">
+      <div>
+        <Sitebar
+          backArrowToggle={this.props.backArrowToggle}
+          arrowHandler={this.props.arrowHandler}
+        />
+        <Container
+          style={{ paddingLeft: "40px", paddingRight: "40px" }}
+          component="main"
+          maxWidth="xs"
+        >
           <CssBaseline />
           <div style={{ marginTop: "25px" }}>
-            <Typography
-           
-              component="h1"
-              variant="h5"
-            >
+            <Typography component="h1" variant="h5">
               Edit Service
             </Typography>
-        
+
             <br></br>
             <br></br>
             <form noValidate>
@@ -57,13 +67,15 @@ class UpdateServiceHours extends React.Component {
                 </Grid>
                 <Grid item xs={12} sm={6}></Grid>
                 <Grid item xs={12}>
-                  <FormControl style={{minWidth:160}} >
-                    <InputLabel id="demo-simple-select-label">Type of Service</InputLabel>
+                  <FormControl style={{ minWidth: 160 }}>
+                    <InputLabel id="demo-simple-select-label">
+                      Type of Service
+                    </InputLabel>
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                    //   value={age}
-                    //   onChange={handleChange}
+                      //   value={age}
+                      //   onChange={handleChange}
                     >
                       <MenuItem value={10}>Tutoring</MenuItem>
                       <MenuItem value={20}>Recycling</MenuItem>
@@ -71,7 +83,6 @@ class UpdateServiceHours extends React.Component {
                       <MenuItem value={30}>Other</MenuItem>
                     </Select>
                   </FormControl>{" "}
-                  
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
@@ -85,13 +96,15 @@ class UpdateServiceHours extends React.Component {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                <FormControl style={{minWidth:160, marginBottom:"25px"}} >
-                    <InputLabel id="demo-simple-select-label">Number of Hours</InputLabel>
+                  <FormControl style={{ minWidth: 160, marginBottom: "25px" }}>
+                    <InputLabel id="demo-simple-select-label">
+                      Number of Hours
+                    </InputLabel>
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                    //   value={age}
-                    //   onChange={handleChange}
+                      //   value={age}
+                      //   onChange={handleChange}
                     >
                       <MenuItem value={10}>0.5</MenuItem>
                       <MenuItem value={20}>1</MenuItem>
@@ -107,14 +120,16 @@ class UpdateServiceHours extends React.Component {
                   </FormControl>{" "}
                 </Grid>
               </Grid>
-              <Link to="/mydashboard"><Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-              >
-               UPDATE
-              </Button></Link>
+              <Link to="/mydashboard">
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                >
+                  UPDATE
+                </Button>
+              </Link>
               <Grid container justify="flex-end"></Grid>
             </form>
           </div>
