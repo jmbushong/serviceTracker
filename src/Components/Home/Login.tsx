@@ -8,6 +8,7 @@ import Falcon from "../../Assets/White Falcon.png";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import {Link} from "react-router-dom";
+import { Redirect } from "react-router-dom"
 
 function Copyright() {
   return (
@@ -19,6 +20,7 @@ function Copyright() {
   );
 }
 
+
 type AcceptedProps={
   sessionToken:any, 
   updateToken:any,
@@ -29,7 +31,10 @@ type AcceptedProps={
   setEmail: any,
   setPassword: any,
   classCode?:any,
-  setClassCode?:any
+  setClassCode?:any,
+  setFirstName?: any,
+  setLastName?: any,
+  collectToken: any
 }
 
 class Login extends React.Component<AcceptedProps,{}> {
@@ -37,6 +42,43 @@ class Login extends React.Component<AcceptedProps,{}> {
     super(props);
     
   }
+
+  handleSubmit =(event:any) => {
+    event.preventDefault();
+    fetch(`http://localhost:4000/user/login`,{
+        method: 'POST', 
+        body: JSON.stringify({
+          studentUser: {
+            firstName: this.props.firstName, 
+            lastName: this.props.lastName, 
+            email: this.props.email,
+            password: this.props.password,
+            classId:this.props.classCode
+          }}),
+        headers: new Headers({
+            'Content-Type': 'application/json'
+        })
+    }).then(
+      (response) => {
+        if (response.status===200){
+          console.log("Login was successful");
+        }
+        else {
+          console.log('Login in failed');
+        }
+        return response.json();
+       }
+
+   ).then((json)=>{
+       this.props.updateToken(json.sessionToken)
+   })
+}
+
+checkForToken= () =>{
+  if(!this.props.sessionToken || this.props.firstName === undefined ){
+    return ( <Redirect to= "/"/>)
+  }return(<Redirect to= "/myDashboard"/>)
+}
 
   render() {
     return (
@@ -59,7 +101,7 @@ class Login extends React.Component<AcceptedProps,{}> {
           NJHS ServiceTracker
         </Typography>
         <br></br>
-        <form noValidate>
+        <form onSubmit={this.handleSubmit} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}></Grid>
             <Grid item xs={12} sm={6}></Grid>
@@ -101,9 +143,12 @@ class Login extends React.Component<AcceptedProps,{}> {
             </Grid>
             <Grid item xs={12}></Grid>
           </Grid>
-         <Link to="./admindash"> <Button type="submit" fullWidth variant="contained" color="primary">
+         {/* <Link to="./admindash"> */}
+            <Button type="submit" fullWidth variant="contained" color="primary">
             Member Login
-          </Button></Link>
+          </Button>
+         
+          {/* </Link> */}
 
           <Grid container justify="flex-end">
             <Grid item className="smallMarginTop">
@@ -121,6 +166,7 @@ class Login extends React.Component<AcceptedProps,{}> {
 </Container>
 
 </div>
+{this.checkForToken()}
   </div>
 
     );

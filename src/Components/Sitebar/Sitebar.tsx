@@ -7,6 +7,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom"
 
 type AcceptedProps={
   backArrowToggle:any, 
@@ -19,7 +20,7 @@ class Sitebar extends React.Component<AcceptedProps, {}> {
     
     console.log("[App.js] Constructor");
   }
-
+  
 
   render() {
     return (

@@ -40,7 +40,7 @@ class SelectRole extends React.Component {
       
       
       </div>
-      <div className="formPadding">
+      <div style={{marginTop: "50px"}} className="formPadding">
         <Typography className="signupTitle" component="h1" variant="h6">
           Choose Your Account Type:
         </Typography>
@@ -50,17 +50,17 @@ class SelectRole extends React.Component {
           <Grid container spacing={2}>
          
         
-            <Grid item xs={12}>
+            <Grid item xs={6}>
+              
             <Link to="/studentpin">
-            <Button fullWidth variant="contained" >
+            <Button style={{height: '150px'}}  fullWidth variant="contained" >
            STUDENT
           </Button> </Link>
-        
          
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={6} >
             <Link to="/adminsignup">
-            <Button  fullWidth variant="contained" >
+            <Button style={{height: '150px'}} fullWidth variant="contained" >
             TEACHER
           </Button></Link>
         

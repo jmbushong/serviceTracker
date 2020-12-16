@@ -37,6 +37,7 @@ type myState = {
 
 type myProps={
   updateToken: any;
+  collectToken: any;
 }
 class App extends React.Component<{}, myState> {
   constructor(props: myProps) {
@@ -134,12 +135,28 @@ class App extends React.Component<{}, myState> {
                 setPassword={this.state.setPassword}
                 classCode={this.state.classCode}
                 setClassCode={this.state.setClassCode}
+                collectToken={this.collectToken}
                 
               />
             </Route> 
             )}
       
-            
+      <Route exact path="/">
+              <Login
+                updateToken={this.updateToken}
+                firstName={this.state.firstName}
+                lastName={this.state.lastName}
+                email={this.state.email}
+                password={this.state.password}
+                sessionToken={this.state.sessionToken}
+                setEmail={this.state.setEmail}
+                setPassword={this.state.setPassword}
+                classCode={this.state.classCode}
+                setClassCode={this.state.setClassCode}
+                collectToken={this.collectToken}
+                
+              />
+            </Route> 
             <Route exact path="/selectrole">
               <SelectRole />
             </Route>

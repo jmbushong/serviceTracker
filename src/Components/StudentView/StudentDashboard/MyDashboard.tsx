@@ -50,7 +50,7 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
         />
         <Box className="studentDash">
           <h4 style={{ textAlign: "center", marginTop: "30px" }}>
-            {`${this.props.firstName} ${this.props.lastName}'s`} Dashboard
+            My Dashboard
           </h4>
 
           <Box className="progressCircle">
