@@ -8,16 +8,48 @@ import { faAddressBook } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Box from "@material-ui/core/Box";
 import {Link} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { CircularProgressbar } from "react-circular-progressbar";
 import AdminSitebar from "../Sitebar/AdminSitebar"
 
 const percentage = 66;
 
-class AdminDash extends React.Component {
+
+type AcceptedProps = {
+
+  sessionToken?: any;
+  backArrowToggle: any;
+  arrowHandler: any;
+  clearToken: any;
+};
+class AdminDash extends React.Component <AcceptedProps, {}> {
+  constructor(props: AcceptedProps) {
+    super(props);
+  }
+  checkForToken = () => {
+    if (!this.props.sessionToken) {
+      return <Redirect to="/login" />;
+    }
+    return <Redirect to="/admindash" />;
+  };
+
+  componentDidMount() {
+ 
+    this.checkForToken()
+      this.props.arrowHandler();
+    }
+  
+
   render() {
     return (
       <div  >
-        <AdminSitebar />
+        <AdminSitebar
+         backArrowToggle={this.props.backArrowToggle}
+         arrowHandler={this.props.arrowHandler}
+         clearToken={this.props.clearToken}
+         sessionToken={this.props.sessionToken}
+       
+        />
         <Box className="admindash" >
           <Box className="admindash_div">
             <h2 style={{letterSpacing: '3px'}} >

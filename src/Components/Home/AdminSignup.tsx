@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Falcon from "../../Assets/White Falcon.png";
+import { Redirect } from "react-router-dom"
 import Box from "@material-ui/core/Box";
 import {
  Link
@@ -22,10 +23,60 @@ function Copyright() {
     );
   }
   
+  type AcceptedProps={
+    sessionToken:any, 
+    updateToken:any,
+    email:any,
+    firstName: string,
+    lastName: string, 
+    password: any,
+    setEmail: any,
+    setPassword: any,
+    classCode?:any,
+    setClassCode?:any,
+    setFirstName?: any,
+    setLastName?: any
+  
+  }
 
 
+class AdminSignup extends React.Component <AcceptedProps,{}>{
+  
+  handleSubmit =(event:any) => {
+    event.preventDefault();
+    fetch(`http://localhost:4000/teacheruser/signup`,{
+        method: 'POST', 
+        body: JSON.stringify({
+          teacherUser: {
+            firstName: this.props.firstName, 
+            lastName: this.props.lastName, 
+            email: this.props.email,
+            password: this.props.password,
+            classId:155577
+           
+          }}),
+        headers: new Headers({
+            'Content-Type': 'application/json'
+        })
+    }).then(
+        (response) => response.json()
+  
+    ).then((json)=>{
+        this.props.updateToken(json.sessionToken)
+       
+    })
+  }
 
-class AdminSignup extends React.Component {
+checkForToken= () =>{
+    if(!this.props.sessionToken || this.props.firstName === undefined ){
+      return ( <Redirect to= "/adminsignup"/>)
+    }return(<Redirect to= "/admindash"/>)
+  }
+
+
+    
+
+
   render() {
     return (
         <div> 
@@ -48,7 +99,7 @@ class AdminSignup extends React.Component {
                 NJHS ServiceTracker
               </Typography>
               <br></br>
-              <form noValidate>
+              <form onSubmit={this.handleSubmit}  noValidate>
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
                     <TextField
@@ -60,6 +111,12 @@ class AdminSignup extends React.Component {
                       id="firstName"
                       label="First Name"
                       autoFocus
+                      onChange={(e) => {
+                        this.props.setFirstName(e.target.value)
+                        console.log(this.props.firstName)
+                    
+                      }}
+                      defaultValue={this.props.firstName}
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
@@ -71,6 +128,12 @@ class AdminSignup extends React.Component {
                       label="Last Name"
                       name="lastName"
                       autoComplete="lname"
+                      onChange={(e) => {
+                        this.props.setLastName(e.target.value)
+                        console.log(this.props.lastName)
+                    
+                      }}
+                      defaultValue={this.props.lastName}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -82,6 +145,12 @@ class AdminSignup extends React.Component {
                       label="Email Address"
                       name="email"
                       autoComplete="email"
+                      onChange={(e) => {
+                        this.props.setEmail(e.target.value)
+                        console.log(this.props.email)
+                    
+                      }}
+                      defaultValue={this.props.email}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -94,11 +163,17 @@ class AdminSignup extends React.Component {
                       type="password"
                       id="password"
                       autoComplete="current-password"
+                      onChange={(e) => {
+                        this.props.setPassword(e.target.value)
+                        console.log(this.props.password)
+                    
+                      }}
+                      defaultValue={this.props.password}
                     />
                   </Grid>
                   <Grid item xs={12}></Grid>
                 </Grid>
-                <Link to="/teacherpin">
+                {/* <Link to="/teacherpin"> */}
                 <Button
                
                   type="submit"
@@ -107,7 +182,8 @@ class AdminSignup extends React.Component {
                   color="primary"
                 >
                   Admin Sign Up
-                </Button> </Link>
+                </Button> 
+                {/* </Link> */}
         
                 <Grid container justify="flex-end">
                 
@@ -126,6 +202,7 @@ class AdminSignup extends React.Component {
 </Container>
 
 </div>
+{this.checkForToken()}
   </div>
     );
   }

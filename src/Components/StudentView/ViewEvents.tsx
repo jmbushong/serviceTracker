@@ -6,8 +6,10 @@ import Typography from '@material-ui/core/Typography';
 import Sitebar from '../Sitebar/Sitebar';
 
 type AcceptedProps = {
+  sessionToken?: any;
   backArrowToggle: any;
   arrowHandler: any;
+  clearToken: any;
 };
 
 class ViewEvents extends React.Component  <AcceptedProps, {}> {
@@ -17,8 +19,10 @@ class ViewEvents extends React.Component  <AcceptedProps, {}> {
     render() { 
         return (   <div>
           <Sitebar
-            backArrowToggle={this.props.backArrowToggle}
-            arrowHandler={this.props.arrowHandler}
+                  backArrowToggle={this.props.backArrowToggle}
+                  arrowHandler={this.props.arrowHandler}
+                  clearToken={this.props.clearToken}
+                  sessionToken={this.props.sessionToken}
           /> 
         <h2 style={{textAlign:"center", marginTop:"50px", marginBottom:"50px"}}>Upcoming Service Opportunities</h2><div className="viewEvents">
         <Accordion square >

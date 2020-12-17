@@ -20,6 +20,8 @@ type AcceptedProps = {
   key: any;
   backArrowToggle: any;
   arrowHandler: any;
+  clearToken: any;
+
 };
 
 class MyDashboard extends React.Component<AcceptedProps, {}> {
@@ -45,8 +47,10 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
     return (
       <React.Fragment>
         <Sitebar 
-        backArrowToggle={this.props.backArrowToggle}
-        arrowHandler={this.props.arrowHandler}
+          backArrowToggle={this.props.backArrowToggle}
+          arrowHandler={this.props.arrowHandler}
+          clearToken={this.props.clearToken}
+          sessionToken={this.props.sessionToken}
         />
         <Box className="studentDash">
           <h4 style={{ textAlign: "center", marginTop: "30px" }}>

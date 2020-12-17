@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
-
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Box from "@material-ui/core/Box";
 import Falcon from "../../Assets/White Falcon.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Link
  
  } from "react-router-dom";
+ import { faBookOpen} from "@fortawesome/free-solid-svg-icons";
 
  function Copyright() {
   return (
@@ -52,17 +53,20 @@ class SelectRole extends React.Component {
         
             <Grid item xs={6}>
               
-            <Link to="/studentpin">
+            <Link to="/signup">
             <Button style={{height: '150px'}}  fullWidth variant="contained" >
            STUDENT
           </Button> </Link>
          
             </Grid>
             <Grid item xs={6} >
-            <Link to="/adminsignup">
+              <div >   <Link to="/adminsignup">
             <Button style={{height: '150px'}} fullWidth variant="contained" >
-            TEACHER
-          </Button></Link>
+            
+            <Grid item xs={12}>  TEACHER</Grid>
+            
+          </Button>
+         </Link></div>
         
       
             </Grid>

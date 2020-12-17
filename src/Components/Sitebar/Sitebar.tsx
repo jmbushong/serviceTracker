@@ -10,17 +10,22 @@ import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom"
 
 type AcceptedProps={
-  backArrowToggle:any, 
-  arrowHandler: any
+  backArrowToggle: any;
+  arrowHandler: any;
+  clearToken: any;
+  sessionToken: any;
 }
 
 class Sitebar extends React.Component<AcceptedProps, {}> {
-  constructor(props: AcceptedProps) {
-    super(props);
-    
-    console.log("[App.js] Constructor");
-  }
-  
+  checkForToken = () => {
+    if (!this.props.sessionToken) {
+      return <Redirect to="/" />;
+    } else {
+      return console.log("hello");
+    }
+  };
+
+
 
   render() {
     return (
@@ -28,7 +33,7 @@ class Sitebar extends React.Component<AcceptedProps, {}> {
         <AppBar position="static">
           <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
             {this.props.backArrowToggle === true ? (
-              <Link to="/mydashboard">
+              <Link to="/myDashboard">
                 <IconButton>
                   <ArrowBackIcon style={{ color: "white" }} />
                 </IconButton>
@@ -36,12 +41,20 @@ class Sitebar extends React.Component<AcceptedProps, {}> {
             ) : (
               <div></div>
             )}
-
-            <IconButton edge="start" color="inherit" aria-label="menu">
-              <MenuIcon />
+            <IconButton
+              onClick={() => {
+                this.props.clearToken();
+               
+              }}
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+            >
+              Logout
             </IconButton>
           </Toolbar>
         </AppBar>
+        {this.checkForToken()}
       </React.Fragment>
     );
   }

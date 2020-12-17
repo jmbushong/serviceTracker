@@ -23,8 +23,10 @@ import { Link } from "react-router-dom";
 
 type AcceptedProps = {
    
+  sessionToken?: any;
   backArrowToggle: any;
   arrowHandler: any;
+  clearToken: any;
 };
 
 class UpdateServiceHours extends React.Component <AcceptedProps, {}>{
@@ -35,8 +37,10 @@ class UpdateServiceHours extends React.Component <AcceptedProps, {}>{
     return (
       <div>
         <Sitebar
-          backArrowToggle={this.props.backArrowToggle}
-          arrowHandler={this.props.arrowHandler}
+              backArrowToggle={this.props.backArrowToggle}
+              arrowHandler={this.props.arrowHandler}
+              clearToken={this.props.clearToken}
+              sessionToken={this.props.sessionToken}
         />
         <Container
           style={{ paddingLeft: "40px", paddingRight: "40px" }}

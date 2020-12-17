@@ -26,6 +26,7 @@ type AcceptedProps={
   setClassCode?:any,
   setFirstName?: any,
   setLastName?: any
+
 }
 
 function Copyright() {
@@ -170,7 +171,29 @@ checkForToken= () =>{
                       }}
                       defaultValue={this.props.password}
                     />
+                    
                   </Grid>
+                  <Grid item xs={12}>
+            <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="Code"
+                label="Enter Class Code "
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                onChange={(e) => {
+                  this.props.setClassCode(e.target.value)
+                  console.log(this.props.setClassCode)
+              
+                }}
+                defaultValue={this.props.classCode}
+              />
+        
+         
+            </Grid>
+                  
                   <Grid item xs={12}></Grid>
                 </Grid>
                 {/* <Link to="/mydashboard"> */}

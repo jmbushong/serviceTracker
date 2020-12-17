@@ -26,19 +26,20 @@ type myState = {
   studentAccount: any;
   teacherAccount: any;
   eventInformation: any;
-  classCode:any;
+  classCode: any;
   backArrowToggle: any;
-  setEmail: (e:string) => void; //setEmail is a function that takes a string and returns nothing
-  setPassword: (e:any) => void; 
-  setClassCode: (e:any) => void;
-  setFirstName: (e:any) => void; 
-  setLastName: (e:any) => void;  
+  setEmail: (e: string) => void; //setEmail is a function that takes a string and returns nothing
+  setPassword: (e: any) => void;
+  setClassCode: (e: any) => void;
+  setFirstName: (e: any) => void;
+  setLastName: (e: any) => void;
 };
 
-type myProps={
+type myProps = {
   updateToken: any;
   collectToken: any;
-}
+  clearToken:any;
+};
 class App extends React.Component<{}, myState> {
   constructor(props: myProps) {
     super(props);
@@ -53,19 +54,24 @@ class App extends React.Component<{}, myState> {
       teacherAccount: [],
       eventInformation: [],
       classCode: "",
-      setEmail: (email)=>{this.setState({email: email})},
-      setPassword: (pass)=>{this.setState({password: pass})},
-      setClassCode: (code)=>{this.setState({classCode: code})},
-      setFirstName: (first)=>{this.setState({firstName: first})},
-      setLastName: (last)=>{this.setState({lastName: last})},
-    
-      
-     
+      setEmail: (email) => {
+        this.setState({ email: email });
+      },
+      setPassword: (pass) => {
+        this.setState({ password: pass });
+      },
+      setClassCode: (code) => {
+        this.setState({ classCode: code });
+      },
+      setFirstName: (first) => {
+        this.setState({ firstName: first });
+      },
+      setLastName: (last) => {
+        this.setState({ lastName: last });
+      },
     };
     console.log("[App.js] Constructor");
   }
-
-
 
   //Here we are calling the setState() method and updating our value of session token
   collectToken = () => {
@@ -88,8 +94,6 @@ class App extends React.Component<{}, myState> {
     this.setState({ sessionToken: "" });
   };
 
-  
-
   componentDidMount() {
     console.log("[App.js] component did mount");
     this.collectToken();
@@ -110,38 +114,39 @@ class App extends React.Component<{}, myState> {
 
         <BrowserRouter>
           <Switch>
-          {this.state.sessionToken === localStorage.getItem("token") ? (
-                   <Route exact path="/mydashboard">
-                   <MyDashboard 
-                   firstName={this.state.firstName}
-                   lastName={this.state.lastName}
-                   sessionToken={this.state.sessionToken}
-                   backArrowToggle={this.state.backArrowToggle}
-                   arrowHandler={this.arrowHandler}
-                
-                   key={this.state.sessionToken}/>
-                   
-                  </Route>
+            {this.state.sessionToken === localStorage.getItem("token") ? (
+              <Route exact path="/mydashboard">
+                <MyDashboard
+                  firstName={this.state.firstName}
+                  lastName={this.state.lastName}
+                  sessionToken={this.state.sessionToken}
+                  backArrowToggle={this.state.backArrowToggle}
+                  arrowHandler={this.arrowHandler}
+                  key={this.state.sessionToken}
+               
+                  clearToken={this.clearToken}
+            
+                />
+              </Route>
             ) : (
               <Route exact path="/">
-              <Login
-                updateToken={this.updateToken}
-                firstName={this.state.firstName}
-                lastName={this.state.lastName}
-                email={this.state.email}
-                password={this.state.password}
-                sessionToken={this.state.sessionToken}
-                setEmail={this.state.setEmail}
-                setPassword={this.state.setPassword}
-                classCode={this.state.classCode}
-                setClassCode={this.state.setClassCode}
-                collectToken={this.collectToken}
-                
-              />
-            </Route> 
+                <Login
+                  updateToken={this.updateToken}
+                  firstName={this.state.firstName}
+                  lastName={this.state.lastName}
+                  email={this.state.email}
+                  password={this.state.password}
+                  sessionToken={this.state.sessionToken}
+                  setEmail={this.state.setEmail}
+                  setPassword={this.state.setPassword}
+                  classCode={this.state.classCode}
+                  setClassCode={this.state.setClassCode}
+                  collectToken={this.collectToken}
+                />
+              </Route>
             )}
-      
-      <Route exact path="/">
+
+            <Route exact path="/">
               <Login
                 updateToken={this.updateToken}
                 firstName={this.state.firstName}
@@ -154,36 +159,48 @@ class App extends React.Component<{}, myState> {
                 classCode={this.state.classCode}
                 setClassCode={this.state.setClassCode}
                 collectToken={this.collectToken}
-                
               />
-            </Route> 
+            </Route>
             <Route exact path="/selectrole">
               <SelectRole />
             </Route>
             <Route exact path="/signup">
-              <Signup 
-                   updateToken={this.updateToken}
-                   firstName={this.state.firstName}
-                   lastName={this.state.lastName}
-                   email={this.state.email}
-                   password={this.state.password}
-                   sessionToken={this.state.sessionToken}
-                   setEmail={this.state.setEmail}
-                   setPassword={this.state.setPassword}
-                   classCode={this.state.classCode}
-                   setClassCode={this.state.setClassCode}
-                   setFirstName={this.state.setFirstName}
-                   setLastName={this.state.setLastName}
-                   
+              <Signup
+                updateToken={this.updateToken}
+                firstName={this.state.firstName}
+                lastName={this.state.lastName}
+                email={this.state.email}
+                password={this.state.password}
+                sessionToken={this.state.sessionToken}
+                setEmail={this.state.setEmail}
+                setPassword={this.state.setPassword}
+                classCode={this.state.classCode}
+                setClassCode={this.state.setClassCode}
+                setFirstName={this.state.setFirstName}
+                setLastName={this.state.setLastName}
               />
             </Route>
             <Route exact path="/adminsignup">
-              <AdminSignup />
+              <AdminSignup
+                updateToken={this.updateToken}
+                firstName={this.state.firstName}
+                lastName={this.state.lastName}
+                email={this.state.email}
+                password={this.state.password}
+                sessionToken={this.state.sessionToken}
+                setEmail={this.state.setEmail}
+                setPassword={this.state.setPassword}
+                classCode={this.state.classCode}
+                setClassCode={this.state.setClassCode}
+                setFirstName={this.state.setFirstName}
+                setLastName={this.state.setLastName}
+              />
             </Route>
             <Route exact path="/studentpin">
-              <StudentPin  
-                  classCode={this.state.classCode}
-              setClassCode={this.state.setClassCode} />
+              <StudentPin
+                classCode={this.state.classCode}
+                setClassCode={this.state.setClassCode}
+              />
             </Route>
             <Route exact path="/teacherpin">
               <TeacherPin />
@@ -191,38 +208,59 @@ class App extends React.Component<{}, myState> {
             <Route exact path="/chart">
               <Chart />
             </Route>
-            
+
             <Route exact path="/addservice">
-              <AddServiceHours 
-               backArrowToggle={this.state.backArrowToggle}
-               arrowHandler={this.arrowHandler}
-              
+              <AddServiceHours
+                backArrowToggle={this.state.backArrowToggle}
+                arrowHandler={this.arrowHandler}
+                clearToken={this.clearToken}
+                sessionToken={this.state.sessionToken}
+                
               />
             </Route>
             <Route exact path="/editservice">
               <UpdateServiceHours
-              backArrowToggle={this.state.backArrowToggle}
-              arrowHandler={this.arrowHandler}
-
+                backArrowToggle={this.state.backArrowToggle}
+                arrowHandler={this.arrowHandler}
+                clearToken={this.clearToken}
+                sessionToken={this.state.sessionToken}
+               
               />
             </Route>
             <Route exact path="/events">
               <ViewEvents
-               backArrowToggle={this.state.backArrowToggle}
-               arrowHandler={this.arrowHandler}
+                backArrowToggle={this.state.backArrowToggle}
+                arrowHandler={this.arrowHandler}
+                clearToken={this.clearToken}
+                sessionToken={this.state.sessionToken}
+              
               />
             </Route>
             <Route exact path="/admindash">
-              <AdminDash />
+              <AdminDash
+                sessionToken={this.state.sessionToken}
+                backArrowToggle={this.state.backArrowToggle}
+                arrowHandler={this.arrowHandler}
+                key={this.state.sessionToken}
+                clearToken={this.clearToken}
+              />
             </Route>
             <Route exact path="/adminevent">
-              <EventSchedule />
+              <EventSchedule
+                backArrowToggle={this.state.backArrowToggle}
+                arrowHandler={this.arrowHandler}
+                clearToken={this.clearToken}
+                sessionToken={this.state.sessionToken}
+              />
             </Route>
             <Route exact path="/manageaccounts">
-              <ManageAccounts />
+              <ManageAccounts
+                backArrowToggle={this.state.backArrowToggle}
+                arrowHandler={this.arrowHandler}
+                clearToken={this.clearToken}
+                sessionToken={this.state.sessionToken}
+              />
             </Route>
-         
-       
           </Switch>
         </BrowserRouter>
       </div>
