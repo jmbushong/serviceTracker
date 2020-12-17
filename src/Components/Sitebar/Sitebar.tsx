@@ -19,7 +19,7 @@ type AcceptedProps={
 class Sitebar extends React.Component<AcceptedProps, {}> {
   checkForToken = () => {
     if (!this.props.sessionToken) {
-      return <Redirect to="/" />;
+      return <Redirect to="/"/>;
     } else {
       return console.log("hello");
     }

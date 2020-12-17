@@ -30,11 +30,14 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
   }
 
   checkForToken = () => {
-    if (!this.props.sessionToken || this.props.firstName === undefined) {
-      return <Redirect to="/login" />;
+    if (!this.props.sessionToken) {
+      return <Redirect to="/"/>;
+    } else {
+      return console.log(this.props.sessionToken);
     }
-    return <Redirect to="/myDashboard" />;
   };
+
+ 
 
   componentDidMount() {
     console.log(this.props.firstName);

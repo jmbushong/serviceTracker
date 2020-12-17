@@ -28,7 +28,7 @@ class AdminDash extends React.Component <AcceptedProps, {}> {
   }
   checkForToken = () => {
     if (!this.props.sessionToken) {
-      return <Redirect to="/login" />;
+      return <Redirect to="/" />;
     }
     return <Redirect to="/admindash" />;
   };

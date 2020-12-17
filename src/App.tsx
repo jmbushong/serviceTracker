@@ -16,6 +16,7 @@ import AdminDash from "./Components/AdminView/AdminDash";
 import EventSchedule from "./Components/AdminView/Events/EventSchedule";
 import ManageAccounts from "./Components/AdminView/ManageAccounts";
 import Sitebar from "./Components/Sitebar/Sitebar";
+import { Redirect } from "react-router-dom";
 
 type myState = {
   sessionToken: any;
@@ -33,6 +34,7 @@ type myState = {
   setClassCode: (e: any) => void;
   setFirstName: (e: any) => void;
   setLastName: (e: any) => void;
+  isAdmin: boolean;
 };
 
 type myProps = {
@@ -54,6 +56,7 @@ class App extends React.Component<{}, myState> {
       teacherAccount: [],
       eventInformation: [],
       classCode: "",
+      isAdmin: true,
       setEmail: (email) => {
         this.setState({ email: email });
       },
@@ -114,7 +117,8 @@ class App extends React.Component<{}, myState> {
 
         <BrowserRouter>
           <Switch>
-            {this.state.sessionToken === localStorage.getItem("token") ? (
+       
+
               <Route exact path="/mydashboard">
                 <MyDashboard
                   firstName={this.state.firstName}
@@ -128,24 +132,7 @@ class App extends React.Component<{}, myState> {
             
                 />
               </Route>
-            ) : (
-              <Route exact path="/">
-                <Login
-                  updateToken={this.updateToken}
-                  firstName={this.state.firstName}
-                  lastName={this.state.lastName}
-                  email={this.state.email}
-                  password={this.state.password}
-                  sessionToken={this.state.sessionToken}
-                  setEmail={this.state.setEmail}
-                  setPassword={this.state.setPassword}
-                  classCode={this.state.classCode}
-                  setClassCode={this.state.setClassCode}
-                  collectToken={this.collectToken}
-                />
-              </Route>
-            )}
-
+           
             <Route exact path="/">
               <Login
                 updateToken={this.updateToken}
@@ -159,6 +146,7 @@ class App extends React.Component<{}, myState> {
                 classCode={this.state.classCode}
                 setClassCode={this.state.setClassCode}
                 collectToken={this.collectToken}
+                isAdmin={this.state.isAdmin}
               />
             </Route>
             <Route exact path="/selectrole">

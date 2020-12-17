@@ -52,7 +52,7 @@ class AdminSignup extends React.Component <AcceptedProps,{}>{
             lastName: this.props.lastName, 
             email: this.props.email,
             password: this.props.password,
-            classId:155577
+            classId:10291989
            
           }}),
         headers: new Headers({
