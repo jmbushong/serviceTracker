@@ -36,6 +36,8 @@ type myState = {
   setLastName: (e: any) => void;
   setTeacherProfile: (e: any) => void;
   isAdmin: boolean;
+  setIsAdminTrue: (e: any) => void;
+  setIsAdminFalse: (e: any) => void;
 };
 
 type myProps = {
@@ -47,7 +49,7 @@ class App extends React.Component<{}, myState> {
   constructor(props: myProps) {
     super(props);
     this.state = {
-      backArrowToggle: true,
+      backArrowToggle: false,
       sessionToken: "",
       email: "",
       firstName: "",
@@ -75,7 +77,14 @@ class App extends React.Component<{}, myState> {
       },
       setTeacherProfile: (info) => {
         this.setState({teacherAccount: info});
-      }
+      },
+      setIsAdminTrue: (e) => {
+        this.setState({isAdmin: e});
+      },
+      setIsAdminFalse: (e) => {
+        this.setState({isAdmin: e});
+      },
+
     };
     console.log("[App.js] Constructor");
   }
@@ -151,6 +160,10 @@ class App extends React.Component<{}, myState> {
                 setClassCode={this.state.setClassCode}
                 collectToken={this.collectToken}
                 isAdmin={this.state.isAdmin}
+                setIsAdminTrue={this.state.setIsAdminTrue}
+                setIsAdminFalse={this.state.setIsAdminFalse}
+                setTeacherProfile={this.state.setTeacherProfile}
+               
               />
             </Route>
             <Route exact path="/selectrole">

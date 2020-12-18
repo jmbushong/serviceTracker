@@ -36,6 +36,9 @@ type AcceptedProps = {
   setLastName?: any;
   collectToken: any;
   isAdmin: boolean;
+  setIsAdminTrue: any;
+  setIsAdminFalse: any;
+  setTeacherProfile: (e: any) => void,
 };
 
 class Login extends React.Component<AcceptedProps, {}> {
@@ -69,6 +72,7 @@ class Login extends React.Component<AcceptedProps, {}> {
         return response.json();
       })
       .then((json) => {
+        this.props.setIsAdminTrue(true)
         this.props.updateToken(json.sessionToken);
         if(this.props.sessionToken){console.log('yes')}else{
         return fetch(`http://localhost:4000/teacheruser/login`, {
@@ -76,8 +80,7 @@ class Login extends React.Component<AcceptedProps, {}> {
           body: JSON.stringify({
             teacherUser: {
               email: this.props.email,
-              password: this.props.password,
-              classId: 444,
+              password: this.props.password
             },
           }),
           headers: new Headers({
@@ -93,6 +96,13 @@ class Login extends React.Component<AcceptedProps, {}> {
             return response.json();
           })
           .then((json) => {
+              this.props.setIsAdminFalse(false);
+              console.log(this.props.isAdmin) //taking information from the server and setting it to our state
+              if (json !== undefined) {
+                this.props.setTeacherProfile(json); //taking information from the server and setting it to our state
+              } else {
+                this.props.setTeacherProfile([]);
+              }
             this.props.updateToken(json.sessionToken);
           });}
       });
@@ -101,7 +111,7 @@ class Login extends React.Component<AcceptedProps, {}> {
   checkForToken = () => {
     if (!this.props.sessionToken) {
       return <Redirect to="/" />;
-    } else if (this.props.isAdmin === false) {
+    } else if (this.props.isAdmin === true) {
       return <Redirect to="/myDashboard" />;
     } else {
       return <Redirect to="/admindash" />;

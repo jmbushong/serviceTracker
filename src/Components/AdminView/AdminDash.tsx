@@ -38,6 +38,7 @@ class AdminDash extends React.Component <AcceptedProps, {}> {
  
     this.checkForToken()
       this.props.arrowHandler();
+      console.log(this.props.teacherAccount)
     }
   
 
