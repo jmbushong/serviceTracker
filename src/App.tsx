@@ -34,6 +34,7 @@ type myState = {
   setClassCode: (e: any) => void;
   setFirstName: (e: any) => void;
   setLastName: (e: any) => void;
+  setTeacherProfile: (e: any) => void;
   isAdmin: boolean;
 };
 
@@ -72,6 +73,9 @@ class App extends React.Component<{}, myState> {
       setLastName: (last) => {
         this.setState({ lastName: last });
       },
+      setTeacherProfile: (info) => {
+        this.setState({teacherAccount: info});
+      }
     };
     console.log("[App.js] Constructor");
   }
@@ -182,6 +186,8 @@ class App extends React.Component<{}, myState> {
                 setClassCode={this.state.setClassCode}
                 setFirstName={this.state.setFirstName}
                 setLastName={this.state.setLastName}
+                teacherAccount={this.state.teacherAccount}
+                setTeacherProfile={this.state.setTeacherProfile}
               />
             </Route>
             <Route exact path="/studentpin">
@@ -191,7 +197,8 @@ class App extends React.Component<{}, myState> {
               />
             </Route>
             <Route exact path="/teacherpin">
-              <TeacherPin />
+              <TeacherPin sessionToken={this.state.sessionToken}
+              teacherAccount={this.state.teacherAccount} />
             </Route>
             <Route exact path="/chart">
               <Chart />
@@ -227,6 +234,7 @@ class App extends React.Component<{}, myState> {
             <Route exact path="/admindash">
               <AdminDash
                 sessionToken={this.state.sessionToken}
+                teacherAccount={this.state.teacherAccount}
                 backArrowToggle={this.state.backArrowToggle}
                 arrowHandler={this.arrowHandler}
                 key={this.state.sessionToken}

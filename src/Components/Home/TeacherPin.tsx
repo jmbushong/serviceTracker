@@ -24,8 +24,21 @@ function Copyright() {
 }
 
 
-class TeacherPin extends React.Component {
+type myProps={
+  sessionToken:any,
+  teacherAccount: any
+}
+
+
+
+class TeacherPin extends React.Component<myProps,{}> {
+
+  componentDidMount(){
+    console.log(this.props.teacherAccount.teacherUser?.classId)
+  }
   render() {
+    
+    
     return (
       <div> 
 
@@ -43,8 +56,8 @@ class TeacherPin extends React.Component {
       </div>
       <div className="formPadding">
         <Typography className="signupTitle" component="h1" variant="h6">
-          CLASS CODE
-          
+          CLASS CODE:
+          {this.props.teacherAccount.teacherUser?.classId}
         </Typography>
         <h5 className="signupTitle"> Students will use this code to join your group. </h5>
         <br></br>
@@ -54,7 +67,7 @@ class TeacherPin extends React.Component {
          
         
             <Grid item xs={12}>
-            <h1 className="signupTitle">153754</h1>
+            <h1 className="signupTitle"></h1>
          
             </Grid>
             <Grid item xs={12}>

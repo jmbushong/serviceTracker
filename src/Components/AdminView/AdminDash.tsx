@@ -21,6 +21,7 @@ type AcceptedProps = {
   backArrowToggle: any;
   arrowHandler: any;
   clearToken: any;
+  teacherAccount: any
 };
 class AdminDash extends React.Component <AcceptedProps, {}> {
   constructor(props: AcceptedProps) {
@@ -86,8 +87,8 @@ class AdminDash extends React.Component <AcceptedProps, {}> {
             </h3></Link>
             <div className="classCode">
               {" "}
-              {/* <h4>Class PIN</h4> */}
-              {/* <h1 >153754</h1> */}
+              <h4>Class PIN</h4>
+           <h1> {this.props.teacherAccount.teacherUser?.classId}</h1>
               
             </div>
           </Box>

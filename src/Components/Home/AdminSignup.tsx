@@ -35,13 +35,24 @@ function Copyright() {
     classCode?:any,
     setClassCode?:any,
     setFirstName?: any,
-    setLastName?: any
+    setLastName?: any,
+    setTeacherProfile: (e: any) => void,
+  teacherAccount: any
   
   }
+  
+
+
+  
+
+
+
+
+  
 
 
 class AdminSignup extends React.Component <AcceptedProps,{}>{
-  
+ 
   handleSubmit =(event:any) => {
     event.preventDefault();
     fetch(`http://localhost:4000/teacheruser/signup`,{
@@ -51,8 +62,7 @@ class AdminSignup extends React.Component <AcceptedProps,{}>{
             firstName: this.props.firstName, 
             lastName: this.props.lastName, 
             email: this.props.email,
-            password: this.props.password,
-            classId:10291989
+            password: this.props.password
            
           }}),
         headers: new Headers({
@@ -62,10 +72,19 @@ class AdminSignup extends React.Component <AcceptedProps,{}>{
         (response) => response.json()
   
     ).then((json)=>{
-        this.props.updateToken(json.sessionToken)
        
-    })
-  }
+        if (json !== undefined) {
+          this.props.setTeacherProfile(json); //taking information from the server and setting it to our state
+        } else {
+          this.props.setTeacherProfile([]);
+        }
+        this.props.updateToken(json.sessionToken)
+        console.log(this.props.teacherAccount.teacherUser?.classId)
+      });
+    }
+  
+
+
 
 checkForToken= () =>{
     if(!this.props.sessionToken || this.props.firstName === undefined ){
