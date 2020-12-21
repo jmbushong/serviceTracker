@@ -21,17 +21,22 @@ type AcceptedProps = {
   backArrowToggle: any;
   arrowHandler: any;
   clearToken: any;
-  teacherAccount: any
+  teacherAccount: any;
+  isAdmin: any
 };
 class AdminDash extends React.Component <AcceptedProps, {}> {
   constructor(props: AcceptedProps) {
     super(props);
   }
   checkForToken = () => {
+    console.log(this.props.isAdmin)
     if (!this.props.sessionToken) {
       return <Redirect to="/" />;
+    } else if (this.props.isAdmin === false) {
+      return <Redirect to="/myDashboard" />;
+    } else {
+      return <Redirect to="/admindash" />;
     }
-    return <Redirect to="/admindash" />;
   };
 
   componentDidMount() {

@@ -21,6 +21,8 @@ type AcceptedProps = {
   backArrowToggle: any;
   arrowHandler: any;
   clearToken: any;
+  isAdmin: any;
+  setIsAdminFalse: any;
 
 };
 
@@ -30,10 +32,14 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
   }
 
   checkForToken = () => {
+    console.log(this.props.isAdmin)
+    
     if (!this.props.sessionToken) {
-      return <Redirect to="/"/>;
+      return <Redirect to="/" />;
+    } else if (this.props.isAdmin === false) {
+      return <Redirect to="/myDashboard" />;
     } else {
-      return console.log(this.props.sessionToken);
+      return <Redirect to="/admindash" />;
     }
   };
 
@@ -41,6 +47,7 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
 
   componentDidMount() {
     console.log(this.props.firstName);
+    this.props.setIsAdminFalse(false);
     this.checkForToken()
       this.props.arrowHandler();
     }

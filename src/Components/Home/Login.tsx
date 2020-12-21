@@ -45,7 +45,7 @@ class Login extends React.Component<AcceptedProps, {}> {
   constructor(props: AcceptedProps) {
     super(props);
   }
-
+ 
   handleSubmit = (event: any) => {
     event.preventDefault();
     fetch(`http://localhost:4000/user/login`, {
@@ -72,7 +72,7 @@ class Login extends React.Component<AcceptedProps, {}> {
         return response.json();
       })
       .then((json) => {
-        this.props.setIsAdminTrue(true)
+        this.props.setIsAdminFalse(false)
         this.props.updateToken(json.sessionToken);
         if(this.props.sessionToken){console.log('yes')}else{
         return fetch(`http://localhost:4000/teacheruser/login`, {
@@ -96,7 +96,7 @@ class Login extends React.Component<AcceptedProps, {}> {
             return response.json();
           })
           .then((json) => {
-              this.props.setIsAdminFalse(false);
+              this.props.setIsAdminTrue(true);
               console.log(this.props.isAdmin) //taking information from the server and setting it to our state
               if (json !== undefined) {
                 this.props.setTeacherProfile(json); //taking information from the server and setting it to our state
@@ -111,7 +111,7 @@ class Login extends React.Component<AcceptedProps, {}> {
   checkForToken = () => {
     if (!this.props.sessionToken) {
       return <Redirect to="/" />;
-    } else if (this.props.isAdmin === true) {
+    } else if (this.props.isAdmin === false) {
       return <Redirect to="/myDashboard" />;
     } else {
       return <Redirect to="/admindash" />;

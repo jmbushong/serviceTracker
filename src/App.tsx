@@ -116,9 +116,9 @@ class App extends React.Component<{}, myState> {
   }
 
   arrowHandler = () => {
-    this.state.backArrowToggle === true
-      ? this.setState({ backArrowToggle: false })
-      : this.setState({ backArrowToggle: true });
+    this.state.backArrowToggle === false
+      ? this.setState({ backArrowToggle: true })
+      : this.setState({ backArrowToggle: false });
   };
 
   render() {
@@ -131,20 +131,32 @@ class App extends React.Component<{}, myState> {
         <BrowserRouter>
           <Switch>
        
-
+         
               <Route exact path="/mydashboard">
                 <MyDashboard
+                isAdmin={this.state.isAdmin}
                   firstName={this.state.firstName}
                   lastName={this.state.lastName}
                   sessionToken={this.state.sessionToken}
                   backArrowToggle={this.state.backArrowToggle}
                   arrowHandler={this.arrowHandler}
                   key={this.state.sessionToken}
-               
+                  setIsAdminFalse={this.state.setIsAdminFalse}
                   clearToken={this.clearToken}
             
                 />
               </Route>
+              <Route exact path="/admindash">
+              <AdminDash
+                sessionToken={this.state.sessionToken}
+                teacherAccount={this.state.teacherAccount}
+                backArrowToggle={this.state.backArrowToggle}
+                arrowHandler={this.arrowHandler}
+                key={this.state.sessionToken}
+                clearToken={this.clearToken}
+                isAdmin={this.state.isAdmin}
+              />
+            </Route>
            
             <Route exact path="/">
               <Login
@@ -244,7 +256,7 @@ class App extends React.Component<{}, myState> {
               
               />
             </Route>
-            <Route exact path="/admindash">
+            {/* <Route exact path="/admindash">
               <AdminDash
                 sessionToken={this.state.sessionToken}
                 teacherAccount={this.state.teacherAccount}
@@ -252,8 +264,9 @@ class App extends React.Component<{}, myState> {
                 arrowHandler={this.arrowHandler}
                 key={this.state.sessionToken}
                 clearToken={this.clearToken}
+                isAdmin={this.state.isAdmin}
               />
-            </Route>
+            </Route> */}
             <Route exact path="/adminevent">
               <EventSchedule
                 backArrowToggle={this.state.backArrowToggle}
