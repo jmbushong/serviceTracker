@@ -7,7 +7,6 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
@@ -22,17 +21,66 @@ import Select from '@material-ui/core/Select';
 import {
     Link
    } from "react-router-dom";
+   import { Redirect } from "react-router-dom";
 
    type AcceptedProps = {
+     setIsAdminFalse: any;
+     isAdmin:any;
     sessionToken?: any;
     backArrowToggle: any;
     arrowHandler: any;
     clearToken: any;
+    date: any;
+    typeOfService: any;
+    description: any;
+    hours:any;
+    status: any; 
+    studentUserId: any;
+    setDate: (e: any) => void;
+  setTypeOfService: (e: any) => void;
+  setDescription: (e: any) => void;
+  setHours: (e: any) => void;
+  setStatus: (e: any) => void;
   };
 class AddServiceHours extends React.Component <AcceptedProps, {}> {
   componentDidMount(){
     this.props.arrowHandler();
+    this.props.setIsAdminFalse(false);
+    if (!this.props.sessionToken) {
+      return <Redirect to="/" />;
+    } else if (this.props.isAdmin === false) {
+      return <Redirect to="/myDashboard" />;
+    } else {
+      return <Redirect to="/admindash" />;
+    }
   }
+
+  handleSubmit = (event: any) => {
+    event.preventDefault();
+    fetch(`http://localhost:4000/service/`, {
+      method: "POST",
+      body: JSON.stringify({
+        service: {
+          date: this.props.date,
+          typeOfService: this.props.typeOfService,
+          description: this.props.description,
+          hours: this.props.hours,
+          status: this.props.status,
+        },
+      }),
+      headers: new Headers({
+        "Content-Type": "application/json",
+      }),
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          console.log("Login was successful");
+        } else {
+          console.log("Login in failed");
+        }
+        return response.json();
+      })
+  };
 
   render() {
     return (
@@ -56,7 +104,7 @@ class AddServiceHours extends React.Component <AcceptedProps, {}> {
         
             <br></br>
             <br></br>
-            <form noValidate>
+            <form onSubmit={this.handleSubmit} noValidate>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <form noValidate>

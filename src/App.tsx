@@ -19,6 +19,12 @@ import Sitebar from "./Components/Sitebar/Sitebar";
 import { Redirect } from "react-router-dom";
 
 type myState = {
+  date: any;
+  typeOfService: any;
+  description: any;
+  hours:any;
+  status: any; 
+  studentUserId: any;
   sessionToken: any;
   email: any;
   firstName: string;
@@ -38,6 +44,11 @@ type myState = {
   isAdmin: boolean;
   setIsAdminTrue: (e: any) => void;
   setIsAdminFalse: (e: any) => void;
+  setDate: (e: any) => void;
+  setTypeOfService: (e: any) => void;
+  setDescription: (e: any) => void;
+  setHours: (e: any) => void;
+  setStatus: (e: any) => void;
 };
 
 type myProps = {
@@ -49,6 +60,12 @@ class App extends React.Component<{}, myState> {
   constructor(props: myProps) {
     super(props);
     this.state = {
+      date: "",
+      typeOfService: "",
+      description: "",
+      hours:"",
+      status: "",
+      studentUserId: "",
       backArrowToggle: false,
       sessionToken: "",
       email: "",
@@ -84,6 +101,22 @@ class App extends React.Component<{}, myState> {
       setIsAdminFalse: (e) => {
         this.setState({isAdmin: e});
       },
+      setDate: (date) => {
+        this.setState({ date: date });
+      },
+      setTypeOfService: (desc) => {
+        this.setState({ typeOfService: desc });
+      },
+      setDescription: (desc) => {
+        this.setState({ description: desc });
+      },
+      setHours: (hours) => {
+        this.setState({ hours:hours });
+      },
+      setStatus: (status) => {
+        this.setState({ status:status });
+      },
+
 
     };
     console.log("[App.js] Constructor");
@@ -231,15 +264,32 @@ class App extends React.Component<{}, myState> {
 
             <Route exact path="/addservice">
               <AddServiceHours
+              setIsAdminFalse={this.state.setIsAdminFalse}
+               isAdmin={this.state.isAdmin}
                 backArrowToggle={this.state.backArrowToggle}
                 arrowHandler={this.arrowHandler}
                 clearToken={this.clearToken}
                 sessionToken={this.state.sessionToken}
+                date= {this.state.date}
+                typeOfService= {this.state.typeOfService}
+                description= {this.state.description}
+                hours= {this.state.hours}
+                status={this.state.status}
+                studentUserId={this.state.studentUserId}
+                setDate={this.state.setDate}
+                setTypeOfService={this.state.setTypeOfService}
+                setDescription={this.state.setDescription}
+                setHours={this.state.setHours}
+                setStatus={this.state.setStatus}
+  
+                
                 
               />
             </Route>
             <Route exact path="/editservice">
               <UpdateServiceHours
+               setIsAdminFalse={this.state.setIsAdminFalse}
+               isAdmin={this.state.isAdmin}
                 backArrowToggle={this.state.backArrowToggle}
                 arrowHandler={this.arrowHandler}
                 clearToken={this.clearToken}
@@ -249,6 +299,8 @@ class App extends React.Component<{}, myState> {
             </Route>
             <Route exact path="/events">
               <ViewEvents
+               setIsAdminFalse={this.state.setIsAdminFalse}
+               isAdmin={this.state.isAdmin}
                 backArrowToggle={this.state.backArrowToggle}
                 arrowHandler={this.arrowHandler}
                 clearToken={this.clearToken}

@@ -4,8 +4,11 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import Sitebar from '../Sitebar/Sitebar';
+import { Redirect } from "react-router-dom";
 
-type AcceptedProps = {
+type AcceptedProps = {    
+  setIsAdminFalse: any;
+  isAdmin:any;
   sessionToken?: any;
   backArrowToggle: any;
   arrowHandler: any;
@@ -15,6 +18,14 @@ type AcceptedProps = {
 class ViewEvents extends React.Component  <AcceptedProps, {}> {
   componentDidMount(){
     this.props.arrowHandler();
+    this.props.setIsAdminFalse(false);
+    if (!this.props.sessionToken) {
+      return <Redirect to="/" />;
+    } else if (this.props.isAdmin === false) {
+      return <Redirect to="/myDashboard" />;
+    } else {
+      return <Redirect to="/admindash" />;
+    }
   }
     render() { 
         return (   <div>

@@ -20,9 +20,11 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 type AcceptedProps = {
-   
+  setIsAdminFalse: any;
+  isAdmin:any;
   sessionToken?: any;
   backArrowToggle: any;
   arrowHandler: any;
@@ -32,6 +34,14 @@ type AcceptedProps = {
 class UpdateServiceHours extends React.Component <AcceptedProps, {}>{
   componentDidMount(){
     this.props.arrowHandler();
+    this.props.setIsAdminFalse(false);
+    if (!this.props.sessionToken) {
+      return <Redirect to="/" />;
+    } else if (this.props.isAdmin === false) {
+      return <Redirect to="/myDashboard" />;
+    } else {
+      return <Redirect to="/admindash" />;
+    }
   }
   render() {
     return (
