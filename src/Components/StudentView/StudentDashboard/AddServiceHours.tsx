@@ -110,6 +110,14 @@ class AddServiceHours extends React.Component<AcceptedProps, {}> {
                       InputLabelProps={{
                         shrink: true,
                       }}
+                      onChange={ 
+                        (e)=>{  
+                          console.log(e.target.value)
+                          this.props.setDate(e.target.value);
+                          console.log(this.props.date)
+                          console.log(e.target.value)
+                        }}
+                        defaultValue= {0}
                     />
                   </form>
                 </Grid>
@@ -122,41 +130,37 @@ class AddServiceHours extends React.Component<AcceptedProps, {}> {
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      //   value={age}
-                      //   onChange={handleChange}
+                      onChange={ 
+                        (e)=>{  
+                          console.log(e.target.value)
+                          this.props.setTypeOfService(e.target.value);
+                          console.log(this.props.typeOfService)
+                          console.log(e.target.value)
+                        }}
+                        defaultValue={this.props.typeOfService}
+                      
                     >
                       <MenuItem
                         value={"Tutoring"}
-                        onClick={(e) => {
-                          this.props.setTypeOfService("Tutoring");
-                          console.log(this.props.typeOfService);
-                        }}
+           
                       >
                         Tutoring
                       </MenuItem>
                       <MenuItem value={"Recycling"}
-                          onClick={(e) => {
-                        this.props.setTypeOfService("Recycling");
-                        console.log(this.props.typeOfService);
-                      }}
+         
                       
                       
                       >Recycling</MenuItem>
                       <MenuItem
                         value={"NJHS Sponsored Event"}
                       
-                        onClick={(e) => {
-                          this.props.setTypeOfService("NJHS Sponsored Event");
-                          console.log(this.props.typeOfService);
-                        }}
+           
                       >
                         NJHS Sponsored Event
                       </MenuItem>
                       <MenuItem value={"Other"} 
-                     onClick={(e) => {
-                          this.props.setTypeOfService("Other");
-                          console.log(this.props.typeOfService);
-                        }}>
+            
+                        >
                         Other
                       </MenuItem>
                     </Select>
@@ -185,19 +189,20 @@ class AddServiceHours extends React.Component<AcceptedProps, {}> {
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      //   value={age}
-                      //   onChange={handleChange}
+                      onChange={ 
+                        (e)=>{  
+                          console.log(e.target.value)
+                          this.props.setHours(e.target.value);
+                          console.log(this.props.hours)
+                          console.log(e.target.value)
+                        }}
+                        defaultValue= {0}
                     >
-                      <MenuItem value={10}>0.5</MenuItem>
-                      <MenuItem value={20}>1</MenuItem>
-                      <MenuItem value={30}>1.5</MenuItem>
-                      <MenuItem value={30}>2</MenuItem>
-                      <MenuItem value={30}>2.5</MenuItem>
-                      <MenuItem value={30}>3</MenuItem>
-                      <MenuItem value={30}>3.5</MenuItem>
-                      <MenuItem value={30}>4</MenuItem>
-                      <MenuItem value={30}>4.5</MenuItem>
-                      <MenuItem value={30}>5</MenuItem>
+                      <MenuItem value={1}>1 hour </MenuItem>
+                      <MenuItem value={2}>2 hours </MenuItem>
+                      <MenuItem value={3}>3 hours</MenuItem>
+              
+                    
                     </Select>
                   </FormControl>{" "}
                 </Grid>
@@ -216,6 +221,9 @@ class AddServiceHours extends React.Component<AcceptedProps, {}> {
             </form>
           </div>
         </Container>
+        {console.log(this.props.typeOfService)} 
+        {console.log(this.props.hours)} 
+        {console.log(this.props.date)} 
       </div>
     );
   }
