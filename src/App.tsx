@@ -35,6 +35,8 @@ type myState = {
   eventInformation: any;
   classCode: any;
   backArrowToggle: any;
+  serviceRequests: any;
+  setServiceRequests: (e: any) => void;
   setEmail: (e: string) => void; //setEmail is a function that takes a string and returns nothing
   setPassword: (e: any) => void;
   setClassCode: (e: any) => void;
@@ -72,11 +74,15 @@ class App extends React.Component<{}, myState> {
       firstName: "",
       lastName: "",
       password: "",
+      serviceRequests: [],
       studentAccount: [],
       teacherAccount: [],
       eventInformation: [],
       classCode: "",
       isAdmin: true,
+      setServiceRequests: (entry) => {
+        this.setState({ serviceRequests: entry });
+      },
       setEmail: (email) => {
         this.setState({ email: email });
       },
@@ -288,12 +294,25 @@ class App extends React.Component<{}, myState> {
             </Route>
             <Route exact path="/editservice">
               <UpdateServiceHours
+               serviceRequests={this.state.serviceRequests}
+               setServiceRequests={this.state.setServiceRequests}
                setIsAdminFalse={this.state.setIsAdminFalse}
                isAdmin={this.state.isAdmin}
                 backArrowToggle={this.state.backArrowToggle}
                 arrowHandler={this.arrowHandler}
                 clearToken={this.clearToken}
                 sessionToken={this.state.sessionToken}
+                date= {this.state.date}
+                typeOfService= {this.state.typeOfService}
+                description= {this.state.description}
+                hours= {this.state.hours}
+                status={this.state.status}
+                studentUserId={this.state.studentUserId}
+                setDate={this.state.setDate}
+                setTypeOfService={this.state.setTypeOfService}
+                setDescription={this.state.setDescription}
+                setHours={this.state.setHours}
+                setStatus={this.state.setStatus}
                
               />
             </Route>

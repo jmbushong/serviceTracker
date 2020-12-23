@@ -29,12 +29,70 @@ type AcceptedProps = {
   backArrowToggle: any;
   arrowHandler: any;
   clearToken: any;
+  date: any;
+  typeOfService: any;
+  description: any;
+  hours: any;
+  status: any;
+  studentUserId: any;
+  serviceRequests: any;
+  setDate: (e: any) => void;
+  setTypeOfService: (e: any) => void;
+  setDescription: (e: any) => void;
+  setHours: (e: any) => void;
+  setStatus: (e: any) => void;
+  setServiceRequests: (e: any) => void;
 };
 
+
+
+
 class UpdateServiceHours extends React.Component <AcceptedProps, {}>{
+  fetchServiceRequests = () =>{
+    fetch('http://localhost:4000/service', {
+        method: 'GET',
+        headers: new Headers ({
+            'Content-Type': 'application/json',
+            'Authorization': this.props.sessionToken
+        })
+    }).then((res=> res.json()))
+    .then((json) => {
+        console.log(json)
+        this.props.setServiceRequests(json) //taking information from the server and setting it to our state
+        
+    })
+}
+  handleSubmit = (event: any) => {
+    event.preventDefault();
+    fetch(`http://localhost:4000/service${this.props.serviceRequests.id}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        service: {
+          date: this.props.date,
+          typeOfService: this.props.typeOfService,
+          description: this.props.description,
+          hours: this.props.hours,
+          status: this.props.status,
+        },
+      }),
+      headers: new Headers({
+        "Content-Type": "application/json",
+        Authorization: this.props.sessionToken
+      }),
+    }).then((response) => {
+      if (response.status === 200) {
+        console.log("Service update was successful");
+      } else {
+        console.log("Service update failed");
+      }
+      return response.json();
+    });
+  };
   componentDidMount(){
     this.props.arrowHandler();
     this.props.setIsAdminFalse(false);
+    this.fetchServiceRequests()
+    console.log(this.props.serviceRequests)
     if (!this.props.sessionToken) {
       return <Redirect to="/" />;
     } else if (this.props.isAdmin === false) {
@@ -65,7 +123,7 @@ class UpdateServiceHours extends React.Component <AcceptedProps, {}>{
 
             <br></br>
             <br></br>
-            <form noValidate>
+            <form onSubmit={this.handleSubmit} noValidate>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <form noValidate>
@@ -120,16 +178,9 @@ class UpdateServiceHours extends React.Component <AcceptedProps, {}>{
                       //   value={age}
                       //   onChange={handleChange}
                     >
-                      <MenuItem value={10}>0.5</MenuItem>
-                      <MenuItem value={20}>1</MenuItem>
-                      <MenuItem value={30}>1.5</MenuItem>
-                      <MenuItem value={30}>2</MenuItem>
-                      <MenuItem value={30}>2.5</MenuItem>
-                      <MenuItem value={30}>3</MenuItem>
-                      <MenuItem value={30}>3.5</MenuItem>
-                      <MenuItem value={30}>4</MenuItem>
-                      <MenuItem value={30}>4.5</MenuItem>
-                      <MenuItem value={30}>5</MenuItem>
+                      <MenuItem value={1}>1 hour </MenuItem>
+                      <MenuItem value={2}>2 hours </MenuItem>
+                      <MenuItem value={3}>3 hours</MenuItem>
                     </Select>
                   </FormControl>{" "}
                 </Grid>
@@ -148,6 +199,7 @@ class UpdateServiceHours extends React.Component <AcceptedProps, {}>{
             </form>
           </div>
         </Container>
+        {console.log(this.props.serviceRequests)}
       </div>
     );
   }
