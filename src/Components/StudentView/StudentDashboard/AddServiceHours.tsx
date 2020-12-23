@@ -53,7 +53,7 @@ class AddServiceHours extends React.Component<AcceptedProps, {}> {
 
   handleSubmit = (event: any) => {
     event.preventDefault();
-    fetch(`http://localhost:4000/service/`, {
+    fetch(`http://localhost:4000/service`, {
       method: "POST",
       body: JSON.stringify({
         service: {
@@ -66,12 +66,13 @@ class AddServiceHours extends React.Component<AcceptedProps, {}> {
       }),
       headers: new Headers({
         "Content-Type": "application/json",
+        Authorization: this.props.sessionToken
       }),
     }).then((response) => {
       if (response.status === 200) {
-        console.log("Login was successful");
+        console.log("Service submission was successful");
       } else {
-        console.log("Login in failed");
+        console.log("Service submission failed");
       }
       return response.json();
     });
@@ -110,14 +111,13 @@ class AddServiceHours extends React.Component<AcceptedProps, {}> {
                       InputLabelProps={{
                         shrink: true,
                       }}
-                      onChange={ 
-                        (e)=>{  
-                          console.log(e.target.value)
-                          this.props.setDate(e.target.value);
-                          console.log(this.props.date)
-                          console.log(e.target.value)
-                        }}
-                        defaultValue= {0}
+                      onChange={(e) => {
+                        console.log(e.target.value);
+                        this.props.setDate(e.target.value);
+                        console.log(this.props.date);
+                        console.log(e.target.value);
+                      }}
+                      defaultValue={0}
                     />
                   </form>
                 </Grid>
@@ -130,39 +130,20 @@ class AddServiceHours extends React.Component<AcceptedProps, {}> {
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      onChange={ 
-                        (e)=>{  
-                          console.log(e.target.value)
-                          this.props.setTypeOfService(e.target.value);
-                          console.log(this.props.typeOfService)
-                          console.log(e.target.value)
-                        }}
-                        defaultValue={this.props.typeOfService}
-                      
+                      onChange={(e) => {
+                        console.log(e.target.value);
+                        this.props.setTypeOfService(e.target.value);
+                        console.log(this.props.typeOfService);
+                        console.log(e.target.value);
+                      }}
+                      defaultValue={this.props.typeOfService}
                     >
-                      <MenuItem
-                        value={"Tutoring"}
-           
-                      >
-                        Tutoring
-                      </MenuItem>
-                      <MenuItem value={"Recycling"}
-         
-                      
-                      
-                      >Recycling</MenuItem>
-                      <MenuItem
-                        value={"NJHS Sponsored Event"}
-                      
-           
-                      >
+                      <MenuItem value={"Tutoring"}>Tutoring</MenuItem>
+                      <MenuItem value={"Recycling"}>Recycling</MenuItem>
+                      <MenuItem value={"NJHS Sponsored Event"}>
                         NJHS Sponsored Event
                       </MenuItem>
-                      <MenuItem value={"Other"} 
-            
-                        >
-                        Other
-                      </MenuItem>
+                      <MenuItem value={"Other"}>Other</MenuItem>
                     </Select>
                   </FormControl>{" "}
                 </Grid>
@@ -189,25 +170,22 @@ class AddServiceHours extends React.Component<AcceptedProps, {}> {
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      onChange={ 
-                        (e)=>{  
-                          console.log(e.target.value)
-                          this.props.setHours(e.target.value);
-                          console.log(this.props.hours)
-                          console.log(e.target.value)
-                        }}
-                        defaultValue= {0}
+                      onChange={(e) => {
+                        console.log(e.target.value);
+                        this.props.setHours(e.target.value);
+                        console.log(this.props.hours);
+                        console.log(e.target.value);
+                      }}
+                      defaultValue={0}
                     >
                       <MenuItem value={1}>1 hour </MenuItem>
                       <MenuItem value={2}>2 hours </MenuItem>
                       <MenuItem value={3}>3 hours</MenuItem>
-              
-                    
                     </Select>
                   </FormControl>{" "}
                 </Grid>
               </Grid>
-              <Link to="/mydashboard">
+              {/* <Link to="/mydashboard"> */}
                 <Button
                   type="submit"
                   fullWidth
@@ -216,14 +194,14 @@ class AddServiceHours extends React.Component<AcceptedProps, {}> {
                 >
                   Submit
                 </Button>
-              </Link>
+              {/* </Link> */}
               <Grid container justify="flex-end"></Grid>
             </form>
           </div>
         </Container>
-        {console.log(this.props.typeOfService)} 
-        {console.log(this.props.hours)} 
-        {console.log(this.props.date)} 
+        {console.log(this.props.typeOfService)}
+        {console.log(this.props.hours)}
+        {console.log(this.props.date)}
       </div>
     );
   }
