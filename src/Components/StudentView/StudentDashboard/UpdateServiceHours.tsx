@@ -64,7 +64,7 @@ class UpdateServiceHours extends React.Component <AcceptedProps, {}>{
 }
   handleSubmit = (event: any) => {
     event.preventDefault();
-    fetch(`http://localhost:4000/service${this.props.serviceRequests.id}`, {
+    fetch(`http://localhost:4000/service/${this.props.serviceRequests.id}`, {
       method: "PUT",
       body: JSON.stringify({
         service: {
@@ -134,6 +134,13 @@ class UpdateServiceHours extends React.Component <AcceptedProps, {}>{
                       InputLabelProps={{
                         shrink: true,
                       }}
+                      onChange={(e) => {
+                        console.log(e.target.value);
+                        this.props.setDate(e.target.value);
+                        console.log(this.props.date);
+                        console.log(e.target.value);
+                      }}
+                      defaultValue={0}
                     />
                   </form>
                 </Grid>
@@ -146,25 +153,36 @@ class UpdateServiceHours extends React.Component <AcceptedProps, {}>{
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      //   value={age}
-                      //   onChange={handleChange}
+                      onChange={(e) => {
+                        console.log(e.target.value);
+                        this.props.setTypeOfService(e.target.value);
+                        console.log(this.props.typeOfService);
+                        console.log(e.target.value);
+                      }}
+                      defaultValue={this.props.typeOfService}
                     >
-                      <MenuItem value={10}>Tutoring</MenuItem>
-                      <MenuItem value={20}>Recycling</MenuItem>
-                      <MenuItem value={30}>NJHS Sponsored Event</MenuItem>
-                      <MenuItem value={30}>Other</MenuItem>
+                       <MenuItem value={"Tutoring"}>Tutoring</MenuItem>
+                      <MenuItem value={"Recycling"}>Recycling</MenuItem>
+                      <MenuItem value={"NJHS Sponsored Event"}>
+                        NJHS Sponsored Event
+                      </MenuItem>
+                      <MenuItem value={"Other"}>Other</MenuItem>
                     </Select>
                   </FormControl>{" "}
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    name="password"
-                    label="Decription of Service"
-                    type="password"
-                    id="password"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  name="description"
+                  label="Description of Service"
+                  id="text"
+                  onChange={(e) => {
+                    this.props.setDescription(e.target.value);
+                    console.log(this.props.description);
+                  }}
+                  defaultValue={this.props.description}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -175,8 +193,13 @@ class UpdateServiceHours extends React.Component <AcceptedProps, {}>{
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      //   value={age}
-                      //   onChange={handleChange}
+                      onChange={(e) => {
+                        console.log(e.target.value);
+                        this.props.setHours(e.target.value);
+                        console.log(this.props.hours);
+                        console.log(e.target.value);
+                      }}
+                      defaultValue={0}
                     >
                       <MenuItem value={1}>1 hour </MenuItem>
                       <MenuItem value={2}>2 hours </MenuItem>
@@ -185,7 +208,7 @@ class UpdateServiceHours extends React.Component <AcceptedProps, {}>{
                   </FormControl>{" "}
                 </Grid>
               </Grid>
-              <Link to="/mydashboard">
+              {/* <Link to="/mydashboard"> */}
                 <Button
                   type="submit"
                   fullWidth
@@ -194,12 +217,15 @@ class UpdateServiceHours extends React.Component <AcceptedProps, {}>{
                 >
                   UPDATE
                 </Button>
-              </Link>
+              {/* </Link> */}
               <Grid container justify="flex-end"></Grid>
             </form>
           </div>
         </Container>
         {console.log(this.props.serviceRequests)}
+        {console.log(this.props.typeOfService)}
+        {console.log(this.props.hours)}
+        {console.log(this.props.date)}
       </div>
     );
   }
