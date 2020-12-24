@@ -170,10 +170,22 @@ export default class Chart extends React.Component<AcceptedProps, {}> {
           </TableRow>
         </TableHead>
         <TableBody>
-       
+     
           {rows.map((row) => (
-            <Row key={row.serviceType} row={row} />
+            <React.Fragment key={this.props.serviceRequests.id}>
+              <TableRow>
+              <TableCell>
+         
+        </TableCell>
+
+              <TableCell align="center">test </TableCell>
+              <TableCell align="center">3 </TableCell>
+              <TableCell align="center">approved </TableCell>
+              </TableRow>
+            <Row row={row} />
+            </React.Fragment>
           ))}
+
         
         </TableBody>
       </Table>
