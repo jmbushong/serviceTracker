@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
@@ -85,6 +83,7 @@ function Row(props: { row: ReturnType<typeof createData> }) {
         <TableCell component="th" scope="row">
           {/* {row.name} */}
           {/* {row.serviceType} */}
+          {/* {this.props.serviceRequests[0].typeOfService} */}
           ServiceTypeTest
         </TableCell>
         <TableCell align="center">
@@ -135,7 +134,11 @@ export default class Chart extends React.Component<AcceptedProps, {}> {
     super(props);
   }
  
+  componentDidMount(){
+    this.fetchServiceRequests();
+    console.log(this.props.serviceRequests)
 
+  }
   fetchServiceRequests = () =>{
     fetch('http://localhost:4000/service', {
         method: 'GET',
@@ -152,11 +155,7 @@ export default class Chart extends React.Component<AcceptedProps, {}> {
     })
   }
   
-  componentDidMount(){
-    this.fetchServiceRequests();
-    console.log(this.props.serviceRequests)
-    this.fetchServiceRequests();
-  }
+  
 
   render() {
   return (
@@ -171,9 +170,11 @@ export default class Chart extends React.Component<AcceptedProps, {}> {
           </TableRow>
         </TableHead>
         <TableBody>
+       
           {rows.map((row) => (
             <Row key={row.serviceType} row={row} />
           ))}
+        
         </TableBody>
       </Table>
     </TableContainer>
