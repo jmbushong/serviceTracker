@@ -23,6 +23,9 @@ type AcceptedProps = {
   clearToken: any;
   isAdmin: any;
   setIsAdminFalse: any;
+  serviceRequests:any;
+  setServiceRequests: (e: any) => void;
+               
 
 };
 
@@ -98,7 +101,10 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
             </Box>
           </Box>
           <Box className="studentChart">
-            <Chart />
+            <Chart serviceRequests={this.props.serviceRequests}
+               setServiceRequests={this.props.setServiceRequests}
+               sessionToken={this.props.sessionToken}
+               />
           </Box>
         </Box>
         {this.checkForToken()}

@@ -182,6 +182,8 @@ class App extends React.Component<{}, myState> {
                   key={this.state.sessionToken}
                   setIsAdminFalse={this.state.setIsAdminFalse}
                   clearToken={this.clearToken}
+                  serviceRequests={this.state.serviceRequests}
+               setServiceRequests={this.state.setServiceRequests}
             
                 />
               </Route>
@@ -265,7 +267,8 @@ class App extends React.Component<{}, myState> {
               teacherAccount={this.state.teacherAccount} />
             </Route>
             <Route exact path="/chart">
-              <Chart />
+              <Chart   serviceRequests={this.state.serviceRequests}
+               setServiceRequests={this.state.setServiceRequests} />
             </Route>
 
             <Route exact path="/addservice">
