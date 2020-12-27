@@ -16,7 +16,7 @@ const percentage = 66;
 type AcceptedProps = {
   firstName: string;
   lastName: string;
-  sessionToken?: any;
+  sessionToken: any;
   key: any;
   backArrowToggle: any;
   arrowHandler: any;

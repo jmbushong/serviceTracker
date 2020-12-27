@@ -124,7 +124,7 @@ const rows = [
 ];
 
 type AcceptedProps = {
-  sessionToken?: any; 
+  sessionToken: any; 
   serviceRequests: any;
   setServiceRequests: (e: any) => void;
 };
@@ -170,8 +170,21 @@ export default class Chart extends React.Component<AcceptedProps, {}> {
           </TableRow>
         </TableHead>
         <TableBody>
-     
-          {rows.map((row) => (
+        {this.props.serviceRequests.map((service:any, index:any) => (
+            <React.Fragment key={index} >
+              <TableRow>
+              <TableCell>
+         
+        </TableCell>
+
+              <TableCell align="center">{this.props.serviceRequests[index]?.typeOfService} </TableCell>
+              <TableCell align="center">{this.props.serviceRequests[index]?.hours}  </TableCell>
+              <TableCell align="center">approved </TableCell>
+              </TableRow>
+           
+            </React.Fragment>
+          ))}
+          {/* {rows.map((row) => (
             <React.Fragment key={this.props.serviceRequests.id}>
               <TableRow>
               <TableCell>
@@ -184,7 +197,7 @@ export default class Chart extends React.Component<AcceptedProps, {}> {
               </TableRow>
             <Row row={row} />
             </React.Fragment>
-          ))}
+          ))} */}
 
         
         </TableBody>

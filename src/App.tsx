@@ -268,7 +268,8 @@ class App extends React.Component<{}, myState> {
             </Route>
             <Route exact path="/chart">
               <Chart   serviceRequests={this.state.serviceRequests}
-               setServiceRequests={this.state.setServiceRequests} />
+               setServiceRequests={this.state.setServiceRequests}
+               sessionToken={this.state.sessionToken} />
             </Route>
 
             <Route exact path="/addservice">
