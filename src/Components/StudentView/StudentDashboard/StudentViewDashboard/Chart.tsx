@@ -142,9 +142,9 @@ export default class Chart extends React.Component<AcceptedProps, myState> {
             </TableRow>
           </TableHead>
           <TableBody>
-            {this.props.serviceRequests.map((service: any, index: any) => (
+            {this.props.serviceRequests.length > 0 ? this.props.serviceRequests.map((service: any, index: any) => (
               <React.Fragment key={this.props.serviceRequests.id}>
-                {/* onMouseOver= {()=> this.setState({itemId: this.props.serviceRequests[index].id })} */}
+                
                 <TableRow    >
                   <TableCell></TableCell>
                   <IconButton
@@ -186,7 +186,7 @@ export default class Chart extends React.Component<AcceptedProps, myState> {
                     className="noPadding"
                     style={{ paddingBottom: 0, paddingTop: 0 }}
                     colSpan={6}
-                    onMouseOver={() =>
+                    onClick={() =>
                       this.setState({
                         itemId: this.props.serviceRequests[index].id,
                       })
@@ -217,7 +217,7 @@ export default class Chart extends React.Component<AcceptedProps, myState> {
                   </TableCell>
                 </TableRow>
               </React.Fragment>
-            ))}
+            )): <div></div>}
           </TableBody>
         </Table>
       </TableContainer>

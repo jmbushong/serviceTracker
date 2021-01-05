@@ -32,10 +32,15 @@ type AcceptedProps = {
 
 };
 
+let arr:any= []
+let sum:number=0;
+const add= (a:number , b:number )=> a + b
+
 class MyDashboard extends React.Component<AcceptedProps, {}> {
   constructor(props: AcceptedProps) {
     super(props);
   }
+
 
 
   checkForToken = () => {
@@ -50,11 +55,21 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
     }
   };
 
+ percentage=() =>{
+  {this.props.serviceRequests.length > 0 ? this.props.serviceRequests.map((service: any, index: any) =>(
+    
+   arr.push(this.props.serviceRequests[index].hours)
+  ))
+ : console.log('did not work')}
+ {this.props.serviceRequests.length > 0 ? sum = arr.reduce(add) : console.log('did not work')}
  
+}
 
   componentDidMount() {
     console.log(this.props.firstName);
     this.props.setIsAdminFalse(false);
+   
+   
     this.checkForToken()
       this.props.arrowHandler();
     }
@@ -75,7 +90,7 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
           </h4>
 
           <Box className="progressCircle">
-            <CircularProgressbar value={percentage} text={`20/30`} />
+            <CircularProgressbar value={sum} text={`${sum}/30`} />
           </Box>
           <Box
             className="studentChart"
@@ -115,6 +130,9 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
           </Box>
         </Box>
         {this.checkForToken()}
+        { this.percentage()}
+        {arr.length=0}
+  
       </React.Fragment>
     );
   }
