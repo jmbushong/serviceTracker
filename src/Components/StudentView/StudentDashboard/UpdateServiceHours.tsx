@@ -23,6 +23,7 @@ import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 
 type AcceptedProps = {
+  indexNumber:any;
   setIsAdminFalse: any;
   isAdmin:any;
   sessionToken?: any;
@@ -59,12 +60,14 @@ class UpdateServiceHours extends React.Component <AcceptedProps, {}>{
     .then((json) => {
         console.log(json)
         this.props.setServiceRequests(json) //taking information from the server and setting it to our state
+        console.log(this.props.indexNumber)
         
     })
 }
+// ${this.props.serviceRequests.id}
   handleSubmit = (event: any) => {
     event.preventDefault();
-    fetch(`http://localhost:4000/service/${this.props.serviceRequests.id}`, {
+    fetch(`http://localhost:4000/service/${this.props.indexNumber}`, {
       method: "PUT",
       body: JSON.stringify({
         service: {
@@ -93,6 +96,7 @@ class UpdateServiceHours extends React.Component <AcceptedProps, {}>{
     this.props.setIsAdminFalse(false);
     this.fetchServiceRequests()
     console.log(this.props.serviceRequests)
+    console.log(this.props.indexNumber)
     if (!this.props.sessionToken) {
       return <Redirect to="/" />;
     } else if (this.props.isAdmin === false) {

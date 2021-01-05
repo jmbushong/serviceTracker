@@ -18,7 +18,13 @@ import ManageAccounts from "./Components/AdminView/ManageAccounts";
 import Sitebar from "./Components/Sitebar/Sitebar";
 import { Redirect } from "react-router-dom";
 
+//In App.tsx-- set state of indexNumber & setIndexNumber
+//pass indexNumber to UpdateServiceHours
+//pass setIndexNumber to Chart
+//Inside Chart- onClick function changes value indexNumber so that it reflects the current thing I'm clicking
+
 type myState = {
+  indexNumber:any;
   date: any;
   typeOfService: any;
   description: any;
@@ -37,6 +43,7 @@ type myState = {
   backArrowToggle: any;
   serviceRequests: any;
   setServiceRequests: (e: any) => void;
+  setIndexNumber: (e: any) => void;
   setEmail: (e: string) => void; //setEmail is a function that takes a string and returns nothing
   setPassword: (e: any) => void;
   setClassCode: (e: any) => void;
@@ -62,6 +69,7 @@ class App extends React.Component<{}, myState> {
   constructor(props: myProps) {
     super(props);
     this.state = {
+      indexNumber:0,
       date: "",
       typeOfService: "",
       description: "",
@@ -79,9 +87,12 @@ class App extends React.Component<{}, myState> {
       teacherAccount: [],
       eventInformation: [],
       classCode: "",
-      isAdmin: true,
+      isAdmin: false,
       setServiceRequests: (entry) => {
-        this.setState({ serviceRequests: entry });
+        this.setState({serviceRequests: entry});
+      },
+      setIndexNumber: (e) => {
+        this.setState({indexNumber: e});
       },
       setEmail: (email) => {
         this.setState({ email: email });
@@ -155,9 +166,10 @@ class App extends React.Component<{}, myState> {
   }
 
   arrowHandler = () => {
-    this.state.backArrowToggle === false
-      ? this.setState({ backArrowToggle: true })
-      : this.setState({ backArrowToggle: false });
+    
+    this.state.backArrowToggle === true
+      ? this.setState({ backArrowToggle: false })
+      : this.setState({ backArrowToggle: true });
   };
 
   render() {
@@ -173,6 +185,8 @@ class App extends React.Component<{}, myState> {
          
               <Route exact path="/mydashboard">
                 <MyDashboard
+                indexNumber={this.state.indexNumber}
+                setIndexNumber={this.state.setIndexNumber}
                 isAdmin={this.state.isAdmin}
                   firstName={this.state.firstName}
                   lastName={this.state.lastName}
@@ -269,7 +283,9 @@ class App extends React.Component<{}, myState> {
             <Route exact path="/chart">
               <Chart   serviceRequests={this.state.serviceRequests}
                setServiceRequests={this.state.setServiceRequests}
-               sessionToken={this.state.sessionToken} />
+               sessionToken={this.state.sessionToken}
+               setIndexNumber={this.state.setIndexNumber} 
+               indexNumber={this.state.indexNumber}/>
             </Route>
 
             <Route exact path="/addservice">
@@ -317,6 +333,7 @@ class App extends React.Component<{}, myState> {
                 setDescription={this.state.setDescription}
                 setHours={this.state.setHours}
                 setStatus={this.state.setStatus}
+                indexNumber={this.state.indexNumber}
                
               />
             </Route>

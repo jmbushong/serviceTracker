@@ -11,9 +11,11 @@ import AddBoxIcon from "@material-ui/icons/AddBox";
 import EventNoteIcon from "@material-ui/icons/EventNote";
 import { Link } from "react-router-dom";
 
-const percentage = 66;
+
+let percentage = 56;
 
 type AcceptedProps = {
+  indexNumber:any;
   firstName: string;
   lastName: string;
   sessionToken: any;
@@ -25,6 +27,7 @@ type AcceptedProps = {
   setIsAdminFalse: any;
   serviceRequests:any;
   setServiceRequests: (e: any) => void;
+  setIndexNumber:(e:any)=>void;
                
 
 };
@@ -33,6 +36,7 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
   constructor(props: AcceptedProps) {
     super(props);
   }
+
 
   checkForToken = () => {
     console.log(this.props.isAdmin)
@@ -104,6 +108,9 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
             <Chart serviceRequests={this.props.serviceRequests}
                setServiceRequests={this.props.setServiceRequests}
                sessionToken={this.props.sessionToken}
+               setIndexNumber={this.props.setIndexNumber}
+
+               indexNumber={this.props.indexNumber}
                />
           </Box>
         </Box>
