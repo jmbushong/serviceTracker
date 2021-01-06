@@ -19,7 +19,7 @@ type AcceptedProps = {
 
   sessionToken?: any;
   backArrowToggle: any;
-  arrowHandler: any;
+  // arrowHandler: any;
   clearToken: any;
   teacherAccount: any;
   isAdmin: any
@@ -42,7 +42,7 @@ class AdminDash extends React.Component <AcceptedProps, {}> {
   componentDidMount() {
  
     this.checkForToken()
-      this.props.arrowHandler();
+      // this.props.arrowHandler();
       console.log(this.props.teacherAccount)
     }
   
@@ -52,7 +52,7 @@ class AdminDash extends React.Component <AcceptedProps, {}> {
       <div  >
         <AdminSitebar
          backArrowToggle={this.props.backArrowToggle}
-         arrowHandler={this.props.arrowHandler}
+        //  arrowHandler={this.props.arrowHandler}
          clearToken={this.props.clearToken}
          sessionToken={this.props.sessionToken}
        

@@ -5,8 +5,6 @@ import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
@@ -28,7 +26,7 @@ type AcceptedProps = {
   isAdmin:any;
   sessionToken?: any;
   backArrowToggle: any;
-  arrowHandler: any;
+  // arrowHandler: any;
   clearToken: any;
   date: any;
   typeOfService: any;
@@ -43,12 +41,27 @@ type AcceptedProps = {
   setHours: (e: any) => void;
   setStatus: (e: any) => void;
   setServiceRequests: (e: any) => void;
+  setSpecificEntry?:(e:any)=>void;
+  specificEntry?:any;
+  setBackArrowToggle:(e:any)=>void; 
 };
 
+type myState={
+  serviceUpdate:boolean;
+  setServiceUpdate:(e:any)=> void;
+}
 
 
 
-class UpdateServiceHours extends React.Component <AcceptedProps, {}>{
+class UpdateServiceHours extends React.Component <AcceptedProps, myState>{
+  constructor(props: AcceptedProps) {
+    super(props);
+    this.state = {
+      serviceUpdate:false,
+      setServiceUpdate: (e) => {this.setState({serviceUpdate: e})}
+    };
+ 
+  }
   fetchServiceRequests = () =>{
     fetch('http://localhost:4000/service', {
         method: 'GET',
@@ -85,14 +98,26 @@ class UpdateServiceHours extends React.Component <AcceptedProps, {}>{
     }).then((response) => {
       if (response.status === 200) {
         console.log("Service update was successful");
+        this.state.setServiceUpdate(true);
+     
+        
       } else {
         console.log("Service update failed");
       }
       return response.json();
+      
     });
+ 
   };
+
+  checkForProfile=() => {
+    if (this.state.serviceUpdate){
+      return <Redirect to="/mydashboard"/>
+    }
+  }
+
   componentDidMount(){
-    this.props.arrowHandler();
+    this.props.setBackArrowToggle(true) 
     this.props.setIsAdminFalse(false);
     this.fetchServiceRequests()
     console.log(this.props.serviceRequests)
@@ -110,7 +135,7 @@ class UpdateServiceHours extends React.Component <AcceptedProps, {}>{
       <div>
         <Sitebar
               backArrowToggle={this.props.backArrowToggle}
-              arrowHandler={this.props.arrowHandler}
+              // arrowHandler={this.props.arrowHandler}
               clearToken={this.props.clearToken}
               sessionToken={this.props.sessionToken}
         />
@@ -144,7 +169,7 @@ class UpdateServiceHours extends React.Component <AcceptedProps, {}>{
                         console.log(this.props.date);
                         console.log(e.target.value);
                       }}
-                      defaultValue={0}
+                      defaultValue={this.props.specificEntry.date}
                     />
                   </form>
                 </Grid>
@@ -163,7 +188,7 @@ class UpdateServiceHours extends React.Component <AcceptedProps, {}>{
                         console.log(this.props.typeOfService);
                         console.log(e.target.value);
                       }}
-                      defaultValue={this.props.typeOfService}
+                      defaultValue={this.props.specificEntry.typeOfService}
                     >
                        <MenuItem value={"Tutoring"}>Tutoring</MenuItem>
                       <MenuItem value={"Recycling"}>Recycling</MenuItem>
@@ -186,7 +211,7 @@ class UpdateServiceHours extends React.Component <AcceptedProps, {}>{
                     this.props.setDescription(e.target.value);
                     console.log(this.props.description);
                   }}
-                  defaultValue={this.props.description}
+                  defaultValue={this.props.specificEntry.description}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -203,7 +228,7 @@ class UpdateServiceHours extends React.Component <AcceptedProps, {}>{
                         console.log(this.props.hours);
                         console.log(e.target.value);
                       }}
-                      defaultValue={0}
+                      defaultValue={this.props.specificEntry.hours}
                     >
                       <MenuItem value={1}>1 hour </MenuItem>
                       <MenuItem value={2}>2 hours </MenuItem>
@@ -229,10 +254,13 @@ class UpdateServiceHours extends React.Component <AcceptedProps, {}>{
         {console.log(this.props.serviceRequests)}
         {console.log(this.props.typeOfService)}
         {console.log(this.props.hours)}
-        {console.log(this.props.date)}
+        {console.log(this.props.specificEntry.date)}
+        {this.checkForProfile()}
       </div>
     );
+    
   }
+ 
 }
 
 export default UpdateServiceHours;

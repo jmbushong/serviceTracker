@@ -9,13 +9,13 @@ type AcceptedProps = {
 
   sessionToken?: any;
   backArrowToggle: any;
-  arrowHandler: any;
+  // arrowHandler: any;
   clearToken: any;
 };
 
 class EventSchedule extends React.Component  <AcceptedProps, {}> {
   componentDidMount(){
-    this.props.arrowHandler();
+    // this.props.arrowHandler();
   }
   render() {
     return (
@@ -23,7 +23,7 @@ class EventSchedule extends React.Component  <AcceptedProps, {}> {
         {" "}
         <AdminSitebar
           backArrowToggle={this.props.backArrowToggle}
-          arrowHandler={this.props.arrowHandler}
+          // arrowHandler={this.props.arrowHandler}
           clearToken={this.props.clearToken}
           sessionToken={this.props.sessionToken}
         />{" "}

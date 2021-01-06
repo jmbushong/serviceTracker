@@ -21,18 +21,21 @@ type AcceptedProps = {
   sessionToken: any;
   key: any;
   backArrowToggle: any;
-  arrowHandler: any;
+  arrowHandler?: any;
+  setBackArrowToggle:(e:any)=>void;
   clearToken: any;
   isAdmin: any;
   setIsAdminFalse: any;
   serviceRequests:any;
   setServiceRequests: (e: any) => void;
   setIndexNumber:(e:any)=>void;
+  setSpecificEntry:(e:any)=>void;
+  specificEntry:any;
                
 
 };
 
-let arr:any= []
+let arr:any= [0]
 let sum:number=0;
 const add= (a:number , b:number )=> a + b
 
@@ -56,31 +59,53 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
   };
 
  percentage=() =>{
+  {this.arrLength()}
   {this.props.serviceRequests.length > 0 ? this.props.serviceRequests.map((service: any, index: any) =>(
     
    arr.push(this.props.serviceRequests[index].hours)
   ))
  : console.log('did not work')}
- {this.props.serviceRequests.length > 0 ? sum = arr.reduce(add) : console.log('did not work')}
+ {this.props.serviceRequests.length > 0 ? sum = arr.reduce(add) : sum=0}
  
 }
 
+fetchServiceRequests = () => {
+  fetch("http://localhost:4000/service", {
+    method: "GET",
+    headers: new Headers({
+      "Content-Type": "application/json",
+      Authorization: this.props.sessionToken,
+    }),
+  })
+    .then((res) => res.json())
+    .then((json) => {
+      console.log(json);
+      this.props.setServiceRequests(json); //taking information from the server and setting it to our state
+      console.log(this.props.serviceRequests);
+    });
+};
+
   componentDidMount() {
     console.log(this.props.firstName);
+    this.props.setBackArrowToggle(false) 
     this.props.setIsAdminFalse(false);
-   
-   
+    this.arrLength()
+    this.fetchServiceRequests();
+    this.percentage()
     this.checkForToken()
-      this.props.arrowHandler();
+    
     }
+   
+    arrLength=()=>{arr.length=0}
   
 
   render() {
     return (
       <React.Fragment>
+        
         <Sitebar 
           backArrowToggle={this.props.backArrowToggle}
-          arrowHandler={this.props.arrowHandler}
+          // arrowHandler={this.props.arrowHandler}
           clearToken={this.props.clearToken}
           sessionToken={this.props.sessionToken}
         />
@@ -124,14 +149,16 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
                setServiceRequests={this.props.setServiceRequests}
                sessionToken={this.props.sessionToken}
                setIndexNumber={this.props.setIndexNumber}
-
                indexNumber={this.props.indexNumber}
+               specificEntry={this.props.specificEntry}
+               setSpecificEntry={this.props.setSpecificEntry}
+
                />
           </Box>
         </Box>
         {this.checkForToken()}
         { this.percentage()}
-        {arr.length=0}
+        {this.arrLength()}
   
       </React.Fragment>
     );

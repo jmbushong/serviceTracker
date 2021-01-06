@@ -25,6 +25,7 @@ import { Redirect } from "react-router-dom";
 
 type myState = {
   indexNumber:any;
+  specificEntry: any;
   date: any;
   typeOfService: any;
   description: any;
@@ -42,8 +43,10 @@ type myState = {
   classCode: any;
   backArrowToggle: any;
   serviceRequests: any;
+  setBackArrowToggle: (e: any) => void;
   setServiceRequests: (e: any) => void;
   setIndexNumber: (e: any) => void;
+  setSpecificEntry: (e: any) => void;
   setEmail: (e: string) => void; //setEmail is a function that takes a string and returns nothing
   setPassword: (e: any) => void;
   setClassCode: (e: any) => void;
@@ -70,6 +73,7 @@ class App extends React.Component<{}, myState> {
     super(props);
     this.state = {
       indexNumber:0,
+      specificEntry:[],
       date: "",
       typeOfService: "",
       description: "",
@@ -90,6 +94,12 @@ class App extends React.Component<{}, myState> {
       isAdmin: false,
       setServiceRequests: (entry) => {
         this.setState({serviceRequests: entry});
+      },
+      setBackArrowToggle: (e) => {
+        this.setState({backArrowToggle: e});
+      },
+      setSpecificEntry: (entry) => {
+        this.setState({specificEntry: entry});
       },
       setIndexNumber: (e) => {
         this.setState({indexNumber: e});
@@ -165,12 +175,12 @@ class App extends React.Component<{}, myState> {
     this.collectToken();
   }
 
-  arrowHandler = () => {
+  // arrowHandler = () => {
     
-    this.state.backArrowToggle === true
-      ? this.setState({ backArrowToggle: false })
-      : this.setState({ backArrowToggle: true });
-  };
+  //   this.state.backArrowToggle === true
+  //     ? this.setState({ backArrowToggle: false })
+  //     : this.setState({ backArrowToggle: true });
+  // };
 
   render() {
     console.log("[App.js] render");
@@ -187,17 +197,20 @@ class App extends React.Component<{}, myState> {
                 <MyDashboard
                 indexNumber={this.state.indexNumber}
                 setIndexNumber={this.state.setIndexNumber}
+                specificEntry={this.state.specificEntry}
+                setSpecificEntry={this.state.setSpecificEntry}
                 isAdmin={this.state.isAdmin}
                   firstName={this.state.firstName}
                   lastName={this.state.lastName}
                   sessionToken={this.state.sessionToken}
                   backArrowToggle={this.state.backArrowToggle}
-                  arrowHandler={this.arrowHandler}
+                  // arrowHandler={this.arrowHandler}
                   key={this.state.sessionToken}
                   setIsAdminFalse={this.state.setIsAdminFalse}
                   clearToken={this.clearToken}
                   serviceRequests={this.state.serviceRequests}
                setServiceRequests={this.state.setServiceRequests}
+               setBackArrowToggle={this.state.setBackArrowToggle}
             
                 />
               </Route>
@@ -206,7 +219,7 @@ class App extends React.Component<{}, myState> {
                 sessionToken={this.state.sessionToken}
                 teacherAccount={this.state.teacherAccount}
                 backArrowToggle={this.state.backArrowToggle}
-                arrowHandler={this.arrowHandler}
+                // arrowHandler={this.arrowHandler}
                 key={this.state.sessionToken}
                 clearToken={this.clearToken}
                 isAdmin={this.state.isAdmin}
@@ -285,15 +298,18 @@ class App extends React.Component<{}, myState> {
                setServiceRequests={this.state.setServiceRequests}
                sessionToken={this.state.sessionToken}
                setIndexNumber={this.state.setIndexNumber} 
-               indexNumber={this.state.indexNumber}/>
+               indexNumber={this.state.indexNumber}
+               specificEntry={this.state.specificEntry}
+               setSpecificEntry={this.state.setSpecificEntry}/>
             </Route>
 
             <Route exact path="/addservice">
               <AddServiceHours
+              setBackArrowToggle={this.state.setBackArrowToggle}
               setIsAdminFalse={this.state.setIsAdminFalse}
                isAdmin={this.state.isAdmin}
                 backArrowToggle={this.state.backArrowToggle}
-                arrowHandler={this.arrowHandler}
+                // arrowHandler={this.arrowHandler}
                 clearToken={this.clearToken}
                 sessionToken={this.state.sessionToken}
                 date= {this.state.date}
@@ -314,12 +330,14 @@ class App extends React.Component<{}, myState> {
             </Route>
             <Route exact path="/editservice">
               <UpdateServiceHours
+               specificEntry={this.state.specificEntry}
+               setSpecificEntry={this.state.setSpecificEntry}
                serviceRequests={this.state.serviceRequests}
                setServiceRequests={this.state.setServiceRequests}
                setIsAdminFalse={this.state.setIsAdminFalse}
                isAdmin={this.state.isAdmin}
                 backArrowToggle={this.state.backArrowToggle}
-                arrowHandler={this.arrowHandler}
+                // arrowHandler={this.arrowHandler}
                 clearToken={this.clearToken}
                 sessionToken={this.state.sessionToken}
                 date= {this.state.date}
@@ -334,15 +352,17 @@ class App extends React.Component<{}, myState> {
                 setHours={this.state.setHours}
                 setStatus={this.state.setStatus}
                 indexNumber={this.state.indexNumber}
+                setBackArrowToggle={this.state.setBackArrowToggle}
                
               />
             </Route>
             <Route exact path="/events">
               <ViewEvents
+              setBackArrowToggle={this.state.setBackArrowToggle}
                setIsAdminFalse={this.state.setIsAdminFalse}
                isAdmin={this.state.isAdmin}
                 backArrowToggle={this.state.backArrowToggle}
-                arrowHandler={this.arrowHandler}
+                // arrowHandler={this.arrowHandler}
                 clearToken={this.clearToken}
                 sessionToken={this.state.sessionToken}
               
@@ -362,7 +382,7 @@ class App extends React.Component<{}, myState> {
             <Route exact path="/adminevent">
               <EventSchedule
                 backArrowToggle={this.state.backArrowToggle}
-                arrowHandler={this.arrowHandler}
+                // arrowHandler={this.arrowHandler}
                 clearToken={this.clearToken}
                 sessionToken={this.state.sessionToken}
               />
@@ -370,7 +390,7 @@ class App extends React.Component<{}, myState> {
             <Route exact path="/manageaccounts">
               <ManageAccounts
                 backArrowToggle={this.state.backArrowToggle}
-                arrowHandler={this.arrowHandler}
+                // arrowHandler={this.arrowHandler}
                 clearToken={this.clearToken}
                 sessionToken={this.state.sessionToken}
               />

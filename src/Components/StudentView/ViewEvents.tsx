@@ -6,18 +6,19 @@ import Typography from '@material-ui/core/Typography';
 import Sitebar from '../Sitebar/Sitebar';
 import { Redirect } from "react-router-dom";
 
-type AcceptedProps = {    
+type AcceptedProps = {   
+  setBackArrowToggle:(e:any)=>void; 
   setIsAdminFalse: any;
   isAdmin:any;
   sessionToken?: any;
   backArrowToggle: any;
-  arrowHandler: any;
+  // arrowHandler: any;
   clearToken: any;
 };
 
 class ViewEvents extends React.Component  <AcceptedProps, {}> {
   componentDidMount(){
-    this.props.arrowHandler();
+    this.props.setBackArrowToggle(true) 
     this.props.setIsAdminFalse(false);
     if (!this.props.sessionToken) {
       return <Redirect to="/" />;
@@ -31,7 +32,7 @@ class ViewEvents extends React.Component  <AcceptedProps, {}> {
         return (   <div>
           <Sitebar
                   backArrowToggle={this.props.backArrowToggle}
-                  arrowHandler={this.props.arrowHandler}
+                  // arrowHandler={this.props.arrowHandler}
                   clearToken={this.props.clearToken}
                   sessionToken={this.props.sessionToken}
           /> 

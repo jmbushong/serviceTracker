@@ -80,6 +80,8 @@ type AcceptedProps = {
   serviceRequests: any;
   setServiceRequests: (e: any) => void;
   indexNumber:any;
+  setSpecificEntry:(e:any)=>void;
+  specificEntry:any;
 };
 
 type myState = {
@@ -135,7 +137,7 @@ export default class Chart extends React.Component<AcceptedProps, myState> {
               <IconButton size="small">
                 <TableCell></TableCell>
               </IconButton>
-
+              <TableCell>Date of Service</TableCell>
               <TableCell>Service Type</TableCell>
               <TableCell align="center">Hours</TableCell>
               <TableCell align="center">Status</TableCell>
@@ -161,7 +163,10 @@ export default class Chart extends React.Component<AcceptedProps, myState> {
 
                       console.log(this.props.serviceRequests[index]);
                       console.log(this.props.indexNumber);
-                      this.props.setIndexNumber(this.props.serviceRequests[index].id)
+                      this.props.setIndexNumber(this.props.serviceRequests[index].id);
+                      this.props.setSpecificEntry(this.props.serviceRequests[index])
+                      console.log(this.props.specificEntry)
+                      
                       console.log(this.props.indexNumber);
                     }}
                   >
@@ -172,14 +177,15 @@ export default class Chart extends React.Component<AcceptedProps, myState> {
                       <KeyboardArrowDownIcon />
                     )}
                   </IconButton>
-
+                  <TableCell align="left">    {this.props.serviceRequests[index]?.date}</TableCell>
+              
                   <TableCell align="left">
                     {this.props.serviceRequests[index]?.typeOfService}{" "}
                   </TableCell>
                   <TableCell align="center">
                     {this.props.serviceRequests[index]?.hours}{" "}
                   </TableCell>
-                  <TableCell align="center">approved </TableCell>
+                  <TableCell align="center">Awaiting Approval </TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell
@@ -208,8 +214,9 @@ export default class Chart extends React.Component<AcceptedProps, myState> {
                           </Link>
                           <DeleteIcon />
                         </Box>
+                    
                         <p style={{ padding: "15px" }}>
-                   
+                          
                           {this.props.serviceRequests[index]?.description}
                         </p>
                       </Box>
@@ -220,6 +227,7 @@ export default class Chart extends React.Component<AcceptedProps, myState> {
             )): <div></div>}
           </TableBody>
         </Table>
+       
       </TableContainer>
     );
   }

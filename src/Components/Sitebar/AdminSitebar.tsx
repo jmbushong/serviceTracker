@@ -13,7 +13,7 @@ import Menu from "@material-ui/core/Menu";
 
 type AcceptedProps = {
   backArrowToggle: any;
-  arrowHandler: any;
+  // arrowHandler: any;
   clearToken: any;
   sessionToken: any;
 };

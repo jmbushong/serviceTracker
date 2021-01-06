@@ -20,11 +20,12 @@ import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 
 type AcceptedProps = {
+  setBackArrowToggle:(e:any)=>void;
   setIsAdminFalse: any;
   isAdmin: any;
   sessionToken?: any;
   backArrowToggle: any;
-  arrowHandler: any;
+  // arrowHandler: any;
   clearToken: any;
   date: any;
   typeOfService: any;
@@ -38,9 +39,23 @@ type AcceptedProps = {
   setHours: (e: any) => void;
   setStatus: (e: any) => void;
 };
-class AddServiceHours extends React.Component<AcceptedProps, {}> {
+
+type myState={
+  serviceUpdate:boolean;
+  setServiceUpdate:(e:any)=> void;
+}
+
+class AddServiceHours extends React.Component<AcceptedProps, myState> {
+  constructor(props: AcceptedProps) {
+    super(props);
+    this.state = {
+      serviceUpdate:false,
+      setServiceUpdate: (e) => {this.setState({serviceUpdate: e})}
+    };
+ 
+  }
   componentDidMount() {
-    this.props.arrowHandler();
+    this.props.setBackArrowToggle(true) 
     this.props.setIsAdminFalse(false);
     if (!this.props.sessionToken) {
       return <Redirect to="/" />;
@@ -71,19 +86,25 @@ class AddServiceHours extends React.Component<AcceptedProps, {}> {
     }).then((response) => {
       if (response.status === 200) {
         console.log("Service submission was successful");
+        this.state.setServiceUpdate(true);
       } else {
         console.log("Service submission failed");
       }
       return response.json();
     });
   };
+  checkForServiceEntry=() => {
+    if (this.state.serviceUpdate){
+      return <Redirect to="/mydashboard"/>
+    }
+  }
 
   render() {
     return (
       <div>
         <Sitebar
           backArrowToggle={this.props.backArrowToggle}
-          arrowHandler={this.props.arrowHandler}
+          // arrowHandler={this.props.arrowHandler}
           clearToken={this.props.clearToken}
           sessionToken={this.props.sessionToken}
         />
@@ -136,7 +157,7 @@ class AddServiceHours extends React.Component<AcceptedProps, {}> {
                         console.log(this.props.typeOfService);
                         console.log(e.target.value);
                       }}
-                      defaultValue={this.props.typeOfService}
+                      defaultValue={" "}
                     >
                       <MenuItem value={"Tutoring"}>Tutoring</MenuItem>
                       <MenuItem value={"Recycling"}>Recycling</MenuItem>
@@ -159,7 +180,7 @@ class AddServiceHours extends React.Component<AcceptedProps, {}> {
                       this.props.setDescription(e.target.value);
                       console.log(this.props.description);
                     }}
-                    defaultValue={this.props.description}
+                    defaultValue={" "}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -202,6 +223,7 @@ class AddServiceHours extends React.Component<AcceptedProps, {}> {
         {console.log(this.props.typeOfService)}
         {console.log(this.props.hours)}
         {console.log(this.props.date)}
+        {this.checkForServiceEntry()}
       </div>
     );
   }
