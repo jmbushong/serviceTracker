@@ -45,7 +45,25 @@ class Sitebar extends React.Component<AcceptedProps, myState> {
     };
   }
 
-
+  deleteUser = async()=>{
+    try{
+      const response= await 
+          fetch(`http://localhost:4000/user/delete`,{
+                method: 'DELETE',
+                headers: new Headers({
+                    'Content-Type': 'application/json',
+                    'Authorization': this.props.sessionToken
+                })
+            })
+            const json= await response.json()
+            console.log(json)
+            console.log('Profile is deleted')
+    }
+    catch(err){
+      console.log(err)
+    }
+  
+  }
 
   checkForToken = () => {
     if (!this.props.sessionToken) {
@@ -95,9 +113,12 @@ class Sitebar extends React.Component<AcceptedProps, myState> {
                     this.props.clearToken();
                   }}
                 >
-                  Logout
+                  Logout 
                 </MenuItem>
-                <MenuItem onClick={this.handleClose}>Delete Account</MenuItem>
+                <MenuItem   onClick={() => {
+                    this.deleteUser();
+                    this.props.clearToken();
+                  }}>Delete Account</MenuItem>
               </Menu>
             </div>
           </Toolbar>

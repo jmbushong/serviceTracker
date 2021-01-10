@@ -87,6 +87,11 @@ class AddServiceHours extends React.Component<AcceptedProps, myState> {
       if (response.status === 200) {
         console.log("Service submission was successful");
         this.state.setServiceUpdate(true);
+        //set each prop to empty
+        this.props.setDate("")
+        this.props.setHours(0)
+        this.props.setTypeOfService("")
+        this.props.setDescription("")
       } else {
         console.log("Service submission failed");
       }
@@ -164,6 +169,9 @@ class AddServiceHours extends React.Component<AcceptedProps, myState> {
                       <MenuItem value={"NJHS Sponsored Event"}>
                         NJHS Sponsored Event
                       </MenuItem>
+                      <MenuItem value={"Volunteering"}>
+                        Volunteering
+                      </MenuItem>
                       <MenuItem value={"Other"}>Other</MenuItem>
                     </Select>
                   </FormControl>{" "}
@@ -222,7 +230,7 @@ class AddServiceHours extends React.Component<AcceptedProps, myState> {
         </Container>
         {console.log(this.props.typeOfService)}
         {console.log(this.props.hours)}
-        {console.log(this.props.date)}
+        {console.log(this.props.description)}
         {this.checkForServiceEntry()}
       </div>
     );

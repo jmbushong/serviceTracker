@@ -60,7 +60,7 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
 
  percentage=() =>{
   {this.arrLength()}
-  {this.props.serviceRequests.length > 0 ? this.props.serviceRequests.map((service: any, index: any) =>(
+  {this.props.serviceRequests.length > 0 ? this.props.serviceRequests?.map((service: any, index: any) =>(
     
    arr.push(this.props.serviceRequests[index].hours)
   ))
@@ -115,7 +115,7 @@ fetchServiceRequests = () => {
           </h4>
 
           <Box className="progressCircle">
-            <CircularProgressbar value={sum} text={`${sum}/30`} />
+            <CircularProgressbar value={sum/30 * 100} text={`${sum}/30`} />
           </Box>
           <Box
             className="studentChart"

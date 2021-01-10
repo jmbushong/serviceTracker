@@ -19,69 +19,16 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import { Link } from "react-router-dom";
 import { SettingsPowerRounded } from "@material-ui/icons";
 
-// function Row(props: { row: ReturnType<typeof createData> }) {
-//   const { row } = props;
-//   const [open, setOpen] = React.useState(false);
-//   const classes = useRowStyles();
 
-//   return (
-//     <React.Fragment>
-//       <TableRow className={classes.root}>
-//         <TableCell>
-//           <IconButton
-//             aria-label="expand row"
-//             size="small"
-//             onClick={() => setOpen(!open)}
-//           >
-//             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-//           </IconButton>
-//         </TableCell>
-//         <TableCell component="th" scope="row">
-//           {/* {row.name} */}
-//           {/* {row.serviceType} */}
-//           {/* {this.props.serviceRequests[0].typeOfService} */}
-//           ServiceTypeTest
-//         </TableCell>
-//         <TableCell align="center">
-//           {/* {row.hours} */}
-//           HoursTest
-//         </TableCell>
-//         <TableCell align="center">
-//           {/* {row.status} */}
-//           StatusTest
-//         </TableCell>
-//       </TableRow>
-//       <TableRow>
-//         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-//           <Collapse in={open} timeout="auto" unmountOnExit>
-//             <Box style={{ padding: "5px" }} margin={1}>
-//               <Box className="editIcon">
-//                 <h5 style={{ marginRight: "auto" }}>Details</h5>
-//                 <Link to="/editservice">
-//                   <EditIcon style={{ marginRight: "10px" }} />
-//                 </Link>
-//                 <DeleteIcon />
-//               </Box>
-//               <p style={{ padding: "15px" }}>
-//                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed
-//                 vitae ipsa natus laboriosam et odio deleniti.
-//               </p>
-//             </Box>
-//           </Collapse>
-//         </TableCell>
-//       </TableRow>
-//     </React.Fragment>
-//   );
-// }
 
 type AcceptedProps = {
-  setIndexNumber:any;
+  setIndexNumber: any;
   sessionToken: any;
   serviceRequests: any;
   setServiceRequests: (e: any) => void;
-  indexNumber:any;
-  setSpecificEntry:(e:any)=>void;
-  specificEntry:any;
+  indexNumber: any;
+  setSpecificEntry: (e: any) => void;
+  specificEntry: any;
 };
 
 type myState = {
@@ -123,6 +70,44 @@ export default class Chart extends React.Component<AcceptedProps, myState> {
       });
   };
 
+  //   deleteEntry = () =>{
+  //     fetch(`http://localhost:4000/service/${this.props.indexNumber}`,{
+  //         method: 'DELETE',
+  //         headers: new Headers({
+  //             'Content-Type': 'application/json',
+  //             'Authorization': this.props.sessionToken
+  //         })
+  //     })
+  //     .then(res => {
+  //       if(res.status === 200){
+  //         console.log("Item successfully deleted")
+  //       }
+  //       else{
+  //         console.log("Oop. Did not delete")
+  //       }
+  //     })
+  // }
+
+  deleteEntryAsync2 = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:4000/service/${this.props.indexNumber}`,
+        {
+          method: "DELETE",
+          headers: new Headers({
+            "Content-Type": "application/json",
+            Authorization: this.props.sessionToken,
+          }),
+        }
+      );
+      const json = await response.json();
+      console.log(json);
+      this.fetchServiceRequests();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   render() {
     return (
       <TableContainer
@@ -144,90 +129,111 @@ export default class Chart extends React.Component<AcceptedProps, myState> {
             </TableRow>
           </TableHead>
           <TableBody>
-            {this.props.serviceRequests.length > 0 ? this.props.serviceRequests.map((service: any, index: any) => (
-              <React.Fragment key={this.props.serviceRequests.id}>
-                
-                <TableRow    >
-                  <TableCell></TableCell>
-                  <IconButton
-                    aria-label="expand row"
-                    size="small"
-                    onClick={(e) => {
-                      this.state.itemId !== this.props.serviceRequests[index].id
-                        ? this.setState({
+            {this.props.serviceRequests.length > 0 ? (
+              this.props.serviceRequests.map((service: any, index: any) => (
+                <React.Fragment key={this.props.serviceRequests.id}>
+                  <TableRow>
+                    <TableCell></TableCell>
+                    <IconButton
+                      aria-label="expand row"
+                      size="small"
+                      onClick={ (e) => {
+                       
+                          this.state.itemId !==
+                          this.props.serviceRequests[index].id
+                            ? this.setState({
+                                itemId: this.props.serviceRequests[index].id,
+                              })
+                            : this.setState({ itemId: 100 });
+
+                            this.props.setSpecificEntry(
+                              this.props.serviceRequests[index]
+                            );
+                            
+                            this.props.setIndexNumber(
+                              this.props.serviceRequests[index].id
+                            );
+
+                            
+
+                            
+
+                        
+                         
+                        } }
+                    >
+                      {this.props.serviceRequests[index].id ===
+                      this.state.itemId ? (
+                        <KeyboardArrowUpIcon />
+                      ) : (
+                        <KeyboardArrowDownIcon />
+                      )}
+                    </IconButton>
+                    <TableCell align="left">
+                      {" "}
+                      {this.props.serviceRequests[index]?.date}
+                    </TableCell>
+
+                    <TableCell align="left">
+                      {this.props.serviceRequests[index]?.typeOfService}{" "}
+                    </TableCell>
+                    <TableCell align="center">
+                      {this.props.serviceRequests[index]?.hours}{" "}
+                    </TableCell>
+                    <TableCell align="center">Awaiting Approval </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell
+                      className="noPadding"
+                      style={{ paddingBottom: 0, paddingTop: 0 }}
+                      colSpan={6}
+                      onClick={ () => {
+                        this.setState({
                             itemId: this.props.serviceRequests[index].id,
                           })
-                        : this.setState({ itemId: 100 });
-
-                     
-
-                      console.log(this.props.serviceRequests[index]);
-                      console.log(this.props.indexNumber);
-                      this.props.setIndexNumber(this.props.serviceRequests[index].id);
-                      this.props.setSpecificEntry(this.props.serviceRequests[index])
-                      console.log(this.props.specificEntry)
-                      
-                      console.log(this.props.indexNumber);
-                    }}
-                  >
-                    {this.props.serviceRequests[index].id ===
-                    this.state.itemId ? (
-                      <KeyboardArrowUpIcon />
-                    ) : (
-                      <KeyboardArrowDownIcon />
-                    )}
-                  </IconButton>
-                  <TableCell align="left">    {this.props.serviceRequests[index]?.date}</TableCell>
-              
-                  <TableCell align="left">
-                    {this.props.serviceRequests[index]?.typeOfService}{" "}
-                  </TableCell>
-                  <TableCell align="center">
-                    {this.props.serviceRequests[index]?.hours}{" "}
-                  </TableCell>
-                  <TableCell align="center">Awaiting Approval </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell
-                    className="noPadding"
-                    style={{ paddingBottom: 0, paddingTop: 0 }}
-                    colSpan={6}
-                    onClick={() =>
-                      this.setState({
-                        itemId: this.props.serviceRequests[index].id,
-                      })
-                    }
-                  >
-                    <Collapse
-                      in={
-                        this.props.serviceRequests[index].id ===
-                        this.state.itemId
+                        }
                       }
-                      timeout="auto"
-                      unmountOnExit
+                      // onClick={() =>
+                      //   this.setState({
+                      //     itemId: this.props.serviceRequests[index].id,
+                      //   })
+                      // }
                     >
-                      <Box style={{ padding: "5px" }} margin={1}>
-                        <Box className="editIcon">
-                          <h5 style={{ marginRight: "auto" }}>Details</h5>
-                          <Link to="/editservice">
-                            <EditIcon style={{ marginRight: "10px" }} />
-                          </Link>
-                          <DeleteIcon />
+                      <Collapse
+                        in={
+                          this.props.serviceRequests[index].id ===
+                          this.state.itemId
+                        }
+                        timeout="auto"
+                        unmountOnExit
+                      >
+                        <Box style={{ padding: "5px" }} margin={1}>
+                          <Box className="editIcon">
+                            <h5 style={{ marginRight: "auto" }}>Details</h5>
+                            <Link to="/editservice">
+                              <EditIcon style={{ marginRight: "10px" }} />
+                            </Link>
+                            <DeleteIcon
+                              onClick={() => {
+                                this.deleteEntryAsync2();
+                              }}
+                            />
+                          </Box>
+
+                          <p style={{ padding: "15px" }}>
+                            {this.props.serviceRequests[index]?.description}
+                          </p>
                         </Box>
-                    
-                        <p style={{ padding: "15px" }}>
-                          
-                          {this.props.serviceRequests[index]?.description}
-                        </p>
-                      </Box>
-                    </Collapse>
-                  </TableCell>
-                </TableRow>
-              </React.Fragment>
-            )): <div></div>}
+                      </Collapse>
+                    </TableCell>
+                  </TableRow>
+                </React.Fragment>
+              ))
+            ) : (
+              <div></div>
+            )}
           </TableBody>
         </Table>
-       
       </TableContainer>
     );
   }
