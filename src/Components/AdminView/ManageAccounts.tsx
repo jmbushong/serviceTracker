@@ -14,15 +14,59 @@ type AcceptedProps = {
 
   sessionToken?: any;
   backArrowToggle: any;
+ classCode?: any;
+ teacherAccount: any,
   // arrowHandler: any;
   clearToken: any;
+  setBackArrowToggle: (e: any) => void;
+ 
 
 };
 
-class ManageAccounts extends React.Component <AcceptedProps, {}>  {
+type MyState={
+  studentAccounts:any,
+  setStudentAccounts:  (e: any) => void;
+}
+
+class ManageAccounts extends React.Component <AcceptedProps, MyState>  {
+  constructor(props: AcceptedProps) {
+    super(props);
+    this.state = {
+      studentAccounts:[],
+      setStudentAccounts: (entry) => {
+        this.setState({studentAccounts: entry});
+      },
+    };
+ 
+  }
+
+
   componentDidMount(){
     // this.props.arrowHandler();
+    this.props.setBackArrowToggle(true);
+    console.log(this.props.teacherAccount.teacherUser.classId)
+    this.fetchTeacherData()
+    
   }
+
+  //This fetch gets all information linked to the classId that is logged in. I then took the list of students and set it to the variable studentData. This is the variable I will use to map over the page. 
+  fetchTeacherData = () => {
+    fetch(`http://localhost:4000/teacherUser/${this.props.teacherAccount.teacherUser.classId}`, {
+      method: "GET",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        Authorization: this.props.sessionToken,
+      }),
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json);
+        console.log(json.classId)
+        this.state.setStudentAccounts(json.studentUsers); 
+        console.log(this.state.studentAccounts);
+      });
+  };
+  
   render() {
     return (
       <Box>

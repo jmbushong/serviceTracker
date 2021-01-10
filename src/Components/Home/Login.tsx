@@ -97,7 +97,7 @@ class Login extends React.Component<AcceptedProps, {}> {
           })
           .then((json) => {
               this.props.setIsAdminTrue(true);
-              console.log(this.props.isAdmin) //taking information from the server and setting it to our state
+               //taking information from the server and setting it to our state
               if (json !== undefined) {
                 this.props.setTeacherProfile(json); //taking information from the server and setting it to our state
               } else {

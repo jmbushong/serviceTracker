@@ -216,6 +216,8 @@ class App extends React.Component<{}, myState> {
               </Route>
               <Route exact path="/admindash">
               <AdminDash
+              setIsAdminTrue={this.state.setIsAdminTrue}
+              setBackArrowToggle={this.state.setBackArrowToggle}
                 sessionToken={this.state.sessionToken}
                 teacherAccount={this.state.teacherAccount}
                 backArrowToggle={this.state.backArrowToggle}
@@ -389,10 +391,13 @@ class App extends React.Component<{}, myState> {
             </Route>
             <Route exact path="/manageaccounts">
               <ManageAccounts
+                teacherAccount={this.state.teacherAccount}
                 backArrowToggle={this.state.backArrowToggle}
                 // arrowHandler={this.arrowHandler}
                 clearToken={this.clearToken}
                 sessionToken={this.state.sessionToken}
+                setBackArrowToggle={this.state.setBackArrowToggle}
+                classCode={this.state.classCode}
               />
             </Route>
           </Switch>

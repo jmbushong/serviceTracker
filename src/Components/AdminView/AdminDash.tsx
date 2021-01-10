@@ -22,12 +22,18 @@ type AcceptedProps = {
   // arrowHandler: any;
   clearToken: any;
   teacherAccount: any;
-  isAdmin: any
+  isAdmin: any;
+  setBackArrowToggle:any;
+  setIsAdminTrue: (e: any) => void;
+  
 };
 class AdminDash extends React.Component <AcceptedProps, {}> {
   constructor(props: AcceptedProps) {
     super(props);
   }
+
+  
+
   checkForToken = () => {
     console.log(this.props.isAdmin)
     if (!this.props.sessionToken) {
@@ -40,7 +46,8 @@ class AdminDash extends React.Component <AcceptedProps, {}> {
   };
 
   componentDidMount() {
- 
+    this.props.setBackArrowToggle(false); 
+    this.props.setIsAdminTrue(true)
     this.checkForToken()
       // this.props.arrowHandler();
       console.log(this.props.teacherAccount)
