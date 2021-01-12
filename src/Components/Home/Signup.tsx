@@ -25,7 +25,8 @@ type AcceptedProps={
   classCode?:any,
   setClassCode?:any,
   setFirstName?: any,
-  setLastName?: any
+  setLastName?: any,
+  setIsAdminFalse: (e: any) => void;
 
 }
 
@@ -63,6 +64,7 @@ class Signup extends React.Component<AcceptedProps,{}> {
         (response) => response.json()
   
     ).then((json)=>{
+      this.props.setIsAdminFalse(false)
         this.props.updateToken(json.sessionToken)
        
     })

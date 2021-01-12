@@ -11,12 +11,32 @@ type AcceptedProps = {
   backArrowToggle: any;
   // arrowHandler: any;
   clearToken: any;
+  setBackArrowToggle: (e: any) => void;
 };
 
 class EventSchedule extends React.Component  <AcceptedProps, {}> {
   componentDidMount(){
+    this.props.setBackArrowToggle(true) 
     // this.props.arrowHandler();
   }
+
+  // fetchEvents = () => {
+  //   fetch(`http://localhost:4000/teacherUser`, {
+  //     method: "GET",
+  //     headers: new Headers({
+  //       "Content-Type": "application/json",
+  //       Authorization: this.props.sessionToken,
+  //     }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((json) => {
+  //       console.log(json);
+  //       console.log(json.classId);
+  //       this.state.setStudentAccounts(json.studentUsers);
+  //       console.log(this.state.studentAccounts);
+  //     });
+  // };
+
   render() {
     return (
       <div>

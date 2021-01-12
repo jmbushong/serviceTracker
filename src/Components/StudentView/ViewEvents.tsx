@@ -7,13 +7,14 @@ import Sitebar from '../Sitebar/Sitebar';
 import { Redirect } from "react-router-dom";
 
 type AcceptedProps = {   
-  setBackArrowToggle:(e:any)=>void; 
+ 
   setIsAdminFalse: any;
   isAdmin:any;
   sessionToken?: any;
   backArrowToggle: any;
   // arrowHandler: any;
   clearToken: any;
+  setBackArrowToggle: (e: any) => void;
 };
 
 class ViewEvents extends React.Component  <AcceptedProps, {}> {
@@ -28,6 +29,8 @@ class ViewEvents extends React.Component  <AcceptedProps, {}> {
       return <Redirect to="/admindash" />;
     }
   }
+
+  
     render() { 
         return (   <div>
           <Sitebar

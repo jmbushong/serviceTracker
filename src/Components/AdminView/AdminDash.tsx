@@ -27,12 +27,42 @@ type AcceptedProps = {
   setIsAdminTrue: (e: any) => void;
   
 };
-class AdminDash extends React.Component <AcceptedProps, {}> {
+
+type myState={
+  classId: any;
+  setClassId: (e: any) => void;
+}
+
+class AdminDash extends React.Component <AcceptedProps, myState> {
   constructor(props: AcceptedProps) {
     super(props);
+    this.state = {
+      classId:[],
+      setClassId: (entry) => {
+        this.setState({classId: entry});
+      },
+    };
+
   }
 
   
+  fetchTeacherData = () => {
+    
+    fetch(`http://localhost:4000/teacherUser`, {
+      method: "GET",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        Authorization: this.props.sessionToken,
+      }),
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json);
+        console.log(json.classId)
+        this.state.setClassId(json.classId); 
+        
+      });
+  };
 
   checkForToken = () => {
     console.log(this.props.isAdmin)
@@ -46,6 +76,7 @@ class AdminDash extends React.Component <AcceptedProps, {}> {
   };
 
   componentDidMount() {
+    this.fetchTeacherData()
     this.props.setBackArrowToggle(false); 
     this.props.setIsAdminTrue(true)
     this.checkForToken()
@@ -101,7 +132,7 @@ class AdminDash extends React.Component <AcceptedProps, {}> {
             <div className="classCode">
               {" "}
               <h4>Class PIN</h4>
-           <h1> {this.props.teacherAccount.teacherUser?.classId}</h1>
+           <h1> {this.state.classId}</h1>
               
             </div>
           </Box>

@@ -149,6 +149,11 @@ class App extends React.Component<{}, myState> {
     console.log("[App.js] Constructor");
   }
 
+  //fetchTeacherStuff is called when you login
+  //also call fetchTeacherStuff when you don't have information
+  //component did mount-- make it so that renders empty array while waiting for teacherstuff fetch
+  //token is unique identifier 
+  
   //Here we are calling the setState() method and updating our value of session token
   collectToken = () => {
     if (localStorage.getItem("token")) {
@@ -265,6 +270,7 @@ class App extends React.Component<{}, myState> {
                 setClassCode={this.state.setClassCode}
                 setFirstName={this.state.setFirstName}
                 setLastName={this.state.setLastName}
+                setIsAdminFalse={this.state.setIsAdminFalse}
               />
             </Route>
             <Route exact path="/adminsignup">
@@ -383,6 +389,7 @@ class App extends React.Component<{}, myState> {
             </Route> */}
             <Route exact path="/adminevent">
               <EventSchedule
+              setBackArrowToggle={this.state.setBackArrowToggle}
                 backArrowToggle={this.state.backArrowToggle}
                 // arrowHandler={this.arrowHandler}
                 clearToken={this.clearToken}
@@ -391,6 +398,7 @@ class App extends React.Component<{}, myState> {
             </Route>
             <Route exact path="/manageaccounts">
               <ManageAccounts
+               setIsAdminTrue={this.state.setIsAdminTrue}
                 teacherAccount={this.state.teacherAccount}
                 backArrowToggle={this.state.backArrowToggle}
                 // arrowHandler={this.arrowHandler}
