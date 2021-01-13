@@ -75,6 +75,22 @@ class AdminSitebar extends React.Component<AcceptedProps, myState> {
     catch(err){
       console.log(err)
     }
+    try{
+        
+      const response= await 
+      fetch(`http://localhost:4000/teacherUser/deleteclassentries`,{
+            method: 'DELETE',
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            })
+        })
+        const json= await response.json()
+        console.log(json)
+        console.log('Class entries are deleted')
+    }
+    catch(err){
+      console.log(err)
+    }
   
   }
   
