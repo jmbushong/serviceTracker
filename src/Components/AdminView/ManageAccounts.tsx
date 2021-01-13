@@ -24,12 +24,19 @@ type AcceptedProps = {
 type MyState = {
   studentAccounts: any;
   setStudentAccounts: (e: any) => void;
+  userId:any;
+  setUserId: (e: any) => void;
 };
 
 class ManageAccounts extends React.Component<AcceptedProps, MyState> {
   constructor(props: AcceptedProps) {
     super(props);
     this.state = {
+      userId:800,
+      setUserId: (entry) => {
+        this.setState({ userId: entry });
+      },
+
       studentAccounts: [],
       setStudentAccounts: (entry) => {
         this.setState({ studentAccounts: entry });
@@ -44,6 +51,35 @@ class ManageAccounts extends React.Component<AcceptedProps, MyState> {
 
     this.fetchTeacherData();
   }
+
+  //RIGHT NOW THIS DELETE TAKES TWO CLICKS FOR IT TO WORK ---FIX THIS:
+
+  deleteEntryAsync2 = async () => {
+    if(this.state.userId !== 800){
+      try { 
+        const response = await fetch(
+          `http://localhost:4000/user/${this.state.userId}`,
+          {
+            method: "DELETE",
+            headers: new Headers({
+              "Content-Type": "application/json",
+              Authorization: this.props.sessionToken,
+            }),
+          }
+        );
+        const json = await response.json();
+        console.log(json);
+        
+        this.props.setBackArrowToggle(true);
+        this.fetchTeacherData();
+        this.state.setUserId(800);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+   
+  };
+
 
   //This fetch gets all information linked to the classId that is logged in. I then took the list of students and set it to the variable studentData. This is the variable I will use to map over the page.
   fetchTeacherData = () => {
@@ -96,7 +132,22 @@ class ManageAccounts extends React.Component<AcceptedProps, MyState> {
                     {this.state.studentAccounts[index]?.email}
                   </ListItemText>
                   <EditIcon />
-                  <DeleteIcon />
+                  <DeleteIcon 
+                  onClick={() => {
+                   
+                    try{  this.state.setUserId(this.state.studentAccounts[index]?.id)
+                   
+                      this.deleteEntryAsync2()
+                      console.log(this.state.userId)
+                      
+                      ;} 
+                    catch (err) {
+                      console.log(err);
+                    }}
+                  
+                  }
+                  
+                  />
                 </ListItem>
               </Box>
             ))
