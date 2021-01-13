@@ -39,6 +39,44 @@ class AdminSitebar extends React.Component<AcceptedProps, myState> {
       anchorReference: "anchorEl",
     };
   }
+
+  deleteUser = async()=>{
+    try{
+      const response= await 
+          fetch(`http://localhost:4000/teacherUser/deleteadmin`,{
+                method: 'DELETE',
+                headers: new Headers({
+                    'Content-Type': 'application/json',
+                    'Authorization': this.props.sessionToken
+                })
+            })
+            const json= await response.json()
+            console.log(json)
+            console.log('Teacher is deleted')
+         
+        
+    }
+    catch(err){
+      console.log(err)
+    }
+    try{
+        
+      const response= await 
+      fetch(`http://localhost:4000/teacherUser/deleteclass`,{
+            method: 'DELETE',
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            })
+        })
+        const json= await response.json()
+        console.log(json)
+        console.log('Class is deleted')
+    }
+    catch(err){
+      console.log(err)
+    }
+  
+  }
   
   checkForToken = () => {
     if (!this.props.sessionToken) {
@@ -91,7 +129,7 @@ class AdminSitebar extends React.Component<AcceptedProps, myState> {
                 >
                   Logout
                 </MenuItem>
-                <MenuItem onClick={this.handleClose}>Delete Account</MenuItem>
+                <MenuItem onClick={()=>{this.deleteUser();  this.props.clearToken();}}>Delete Account</MenuItem>
               </Menu>
             </div>
           </Toolbar>
