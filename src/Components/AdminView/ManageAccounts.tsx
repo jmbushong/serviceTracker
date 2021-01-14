@@ -52,13 +52,13 @@ class ManageAccounts extends React.Component<AcceptedProps, MyState> {
     this.fetchTeacherData();
   }
 
-  //RIGHT NOW THIS DELETE TAKES TWO CLICKS FOR IT TO WORK ---FIX THIS:
+  //This function takes the argument id which is passed into the deleteEntryAsync2 function on line 140. The argument being passed into this function is the id associated with user name
 
-  deleteEntryAsync2 = async () => {
-    if(this.state.userId !== 800){
+  deleteEntryAsync2 = async (id:number) => {
+
       try { 
         const response = await fetch(
-          `http://localhost:4000/user/${this.state.userId}`,
+          `http://localhost:4000/user/${id}`,
           {
             method: "DELETE",
             headers: new Headers({
@@ -72,11 +72,11 @@ class ManageAccounts extends React.Component<AcceptedProps, MyState> {
         
         this.props.setBackArrowToggle(true);
         this.fetchTeacherData();
-        this.state.setUserId(800);
+       
       } catch (err) {
         console.log(err);
       }
-    }
+    
    
   };
 
@@ -135,10 +135,10 @@ class ManageAccounts extends React.Component<AcceptedProps, MyState> {
                   <DeleteIcon 
                   onClick={() => {
                    
-                    try{  this.state.setUserId(this.state.studentAccounts[index]?.id)
-                   
-                      this.deleteEntryAsync2()
-                      console.log(this.state.userId)
+                    try{ 
+                     
+                      this.deleteEntryAsync2(this.state.studentAccounts[index]?.id)
+                      console.log(this.state.studentAccounts[index]?.id)
                       
                       ;} 
                     catch (err) {
