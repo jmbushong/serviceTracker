@@ -17,6 +17,8 @@ import EventSchedule from "./Components/AdminView/Events/EventSchedule";
 import ManageAccounts from "./Components/AdminView/ManageAccounts";
 import Sitebar from "./Components/Sitebar/Sitebar";
 import { Redirect } from "react-router-dom";
+import UpdateEvents from "./Components/AdminView/Events/UpdateEvents";
+import AddEvent from "./Components/AdminView/Events/AddEvents";
 
 //In App.tsx-- set state of indexNumber & setIndexNumber
 //pass indexNumber to UpdateServiceHours
@@ -389,6 +391,7 @@ class App extends React.Component<{}, myState> {
             </Route> */}
             <Route exact path="/adminevent">
               <EventSchedule
+              setIsAdminTrue={this.state.setIsAdminTrue}
               setBackArrowToggle={this.state.setBackArrowToggle}
                 backArrowToggle={this.state.backArrowToggle}
                 // arrowHandler={this.arrowHandler}
@@ -406,6 +409,28 @@ class App extends React.Component<{}, myState> {
                 sessionToken={this.state.sessionToken}
                 setBackArrowToggle={this.state.setBackArrowToggle}
                 classCode={this.state.classCode}
+              />
+            </Route>
+
+            <Route exact path="/eventupdate">
+              <UpdateEvents  
+              clearToken={this.clearToken}
+                setIsAdminTrue={this.state.setIsAdminTrue}
+                backArrowToggle={this.state.backArrowToggle}
+                sessionToken={this.state.sessionToken}
+                setBackArrowToggle={this.state.setBackArrowToggle}
+             
+              />
+            </Route>
+
+            <Route exact path="/addevent">
+              <AddEvent  
+              clearToken={this.clearToken}
+                setIsAdminTrue={this.state.setIsAdminTrue}
+                backArrowToggle={this.state.backArrowToggle}
+                sessionToken={this.state.sessionToken}
+                setBackArrowToggle={this.state.setBackArrowToggle}
+             
               />
             </Route>
           </Switch>

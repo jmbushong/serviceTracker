@@ -1,33 +1,39 @@
 import React, { Component } from "react";
-import Sitebar from "../../Sitebar/Sitebar";
 
-import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-
+import AdminSitebar from "../../Sitebar/AdminSitebar";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import {
     Link
    } from "react-router-dom";
 
-class UpdateEvents extends React.Component {
+   type AcceptedProps = {
+    sessionToken?: any;
+    clearToken?: any;
+    backArrowToggle: any;
+    setBackArrowToggle: (e: any) => void;
+    setIsAdminTrue: (e: any) => void;
+  };
+  
+ 
+
+class UpdateEvents extends React.Component <AcceptedProps, {}>{
   render() {
     return (
       <div>
-        {/* <Sitebar /> */}
+         <AdminSitebar
+          backArrowToggle={this.props.backArrowToggle}
+          clearToken={this.props.clearToken}
+          sessionToken={this.props.sessionToken}
+        />
         <Container style={{paddingLeft:"40px", paddingRight:"40px"}}component="main" maxWidth="xs">
           <CssBaseline />
           <div style={{ marginTop: "25px" }}>

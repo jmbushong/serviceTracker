@@ -9,6 +9,14 @@ import AdminSitebar from "../Sitebar/AdminSitebar";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
 
 type AcceptedProps = {
   sessionToken?: any;
@@ -26,9 +34,11 @@ type MyState = {
   setStudentAccounts: (e: any) => void;
   userId:any;
   setUserId: (e: any) => void;
+  setOpen: (e: any) => void;
+  open:any;
 };
 
-class ManageAccounts extends React.Component<AcceptedProps, MyState> {
+class ManageAccounts extends React.Component<AcceptedProps, MyState>{
   constructor(props: AcceptedProps) {
     super(props);
     this.state = {
@@ -36,12 +46,24 @@ class ManageAccounts extends React.Component<AcceptedProps, MyState> {
       setUserId: (entry) => {
         this.setState({ userId: entry });
       },
+      open:false,
+      setOpen: (entry) => {
+        this.setState({ open: entry });
+      },
 
       studentAccounts: [],
       setStudentAccounts: (entry) => {
         this.setState({ studentAccounts: entry });
       },
     };
+  }
+
+  handleClickOpen=()=>{
+    this.state.setOpen(true)
+  }
+
+  handleClickClose=()=>{
+    this.state.setOpen(false)
   }
 
   componentDidMount() {
@@ -131,7 +153,58 @@ class ManageAccounts extends React.Component<AcceptedProps, MyState> {
                     {" "}
                     {this.state.studentAccounts[index]?.email}
                   </ListItemText>
-                  <EditIcon />
+                  <EditIcon onClick={()=>{this.handleClickOpen()}} />
+                  <div>
+    
+      <Dialog open={this.state.open}>
+        <DialogTitle id="form-dialog-title">Student User Information</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Fill in the inputs below to update student user information.
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="First Name"
+            type="email"
+            fullWidth
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Last Name"
+            type="email"
+            fullWidth
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Email Address"
+            type="email"
+            fullWidth
+          />
+           <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Password"
+            type="email"
+            fullWidth
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={()=>{this.handleClickClose()}} >
+            Cancel
+          </Button>
+          <Button  >
+            Submit
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </div>
                   <DeleteIcon 
                   onClick={() => {
                    
