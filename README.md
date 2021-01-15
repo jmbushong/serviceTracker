@@ -13,7 +13,7 @@ The purpose of this web application is to enable service organizations to track 
 
 ### Project Planning
 
-Initial stages of the project was spent carefully planning the details using Tello on a high level. This was then layed out in lucid to provide a more detailed structure and allow us to see the flow of information from the server-side to the frontend and vice versa. Figma was incorporated to provide the mockup for all our app pages. Links to our project planning, diagrams and flowchart are listed below this page.
+Initial stages of the project was spent carefully planning the details using both Lucid & Figma. Lucid graphs were used to provide plan the folder structure and to see the flow of information from the server-side to the frontend and vice versa. Figma was incorporated to provide the mockup for all our app pages. Links to our project planning, diagrams and flowchart are listed below this page.
 
 ### Project Setup & Key Features
 
