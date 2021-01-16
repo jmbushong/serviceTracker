@@ -93,7 +93,7 @@ class SelectRole extends React.Component {
           </div>
         </Container>
 
-        <div
+        {/* <div
           style={{
             backgroundColor: "#222222",
             color: "#222222",
@@ -103,8 +103,8 @@ class SelectRole extends React.Component {
             height: "30px",
           }}
         >
-          {/* <Copyright /> */}
-        </div>
+          <Copyright />
+        </div> */}
       </Grid>
     );
   }

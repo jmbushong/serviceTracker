@@ -171,7 +171,7 @@ class AdminSignup extends React.Component<AcceptedProps, {}> {
                 type="submit"
                 fullWidth
                 variant="contained"
-                style={{ backgroundColor: "#6c63ff", color: "white" }}
+                style={{ backgroundColor: "#ef476f", color: "white" }}
               >
                 Admin Sign Up
               </Button>
@@ -191,7 +191,7 @@ class AdminSignup extends React.Component<AcceptedProps, {}> {
           </div>
         </Container>
 
-        <div
+        {/* <div
           style={{
             backgroundColor: "#222222",
             color: "#222222",
@@ -202,7 +202,7 @@ class AdminSignup extends React.Component<AcceptedProps, {}> {
           }}
         >
           <Copyright />
-        </div>
+        </div> */}
         {this.checkForToken()}
       </Grid>
     );

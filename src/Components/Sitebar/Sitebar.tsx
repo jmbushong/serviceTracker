@@ -86,7 +86,7 @@ class Sitebar extends React.Component<AcceptedProps, myState> {
     const open = Boolean(this.state.anchorE1);
     return (
       <React.Fragment>
-        <AppBar position="static">
+        <AppBar style={{backgroundColor: " #2f2e41"}} position="static">
           <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
             {this.props.backArrowToggle === true ? (
               <Link to="/myDashboard">

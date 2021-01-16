@@ -211,7 +211,7 @@ class Login extends React.Component<AcceptedProps, {}> {
                 type="submit"
                 fullWidth
                 variant="contained"
-                style={{ backgroundColor: "#6c63ff", color: "white" }}
+                style={{ backgroundColor: "#ef476f", color: "white" }}
               >
                 Member Login
               </Button>
@@ -227,10 +227,10 @@ class Login extends React.Component<AcceptedProps, {}> {
             </form>
           </div>
         </Container>
-
+{/* 
         <div
           style={{
-            backgroundColor: "#222222",
+            // backgroundColor: "#222222",
             color: "#222222",
             position: "fixed",
             bottom: "0",
@@ -239,7 +239,7 @@ class Login extends React.Component<AcceptedProps, {}> {
           }}
         >
           <Copyright />
-        </div>
+        </div> */}
         {this.checkForToken()}
       </Grid>
     );

@@ -119,25 +119,25 @@ fetchServiceRequests = () => {
           </Box>
           <Box
             className="studentChart"
-            style={{ background: "#F6D55C", padding: "0px" }}
+            style={{ background: "#ffd166", padding: "0px" }}
           >
             <Box className="toRight">
               {" "}
               <ButtonGroup
-                style={{ background: "#F6D55C" }}
+                style={{ background: "#ffd166" }}
                 className="toRight"
                 disableElevation
                 variant="contained"
                 aria-label="text primary button group"
               >
                 <Link to="/addservice">
-                  <Button style={{ background: "#F6D55C" }}>
+                  <Button style={{ background: "#ffd166" }}>
                     <AddBoxIcon />
                   </Button>
                 </Link>
                 <Link to="/events">
                   {" "}
-                  <Button style={{ background: "#F6D55C", marginRight: "0px" }}>
+                  <Button style={{ background: "#ffd166", marginRight: "0px" }}>
                     <EventNoteIcon />
                   </Button>
                 </Link>
