@@ -1,5 +1,5 @@
 # ServiceTracker
-![picture](ServiceTracker screenshot.png) 
+![picture](../../../ServiceTrackerPhoto.png) 
 
 ## Introduction
 
