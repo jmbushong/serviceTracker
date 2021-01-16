@@ -1,60 +1,41 @@
-@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Sofia&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Sofia&display=swap");
 
 /* Auth- Login and Sign up */
 
-*{
-  margin:0;
-  padding:0;
- 
+* {
+  margin: 0;
+  padding: 0;
 }
 
-.newLanding{
-  background-image: url('../src/Assets/undraw_the_world_is_mine_nb0e\ \(1\).svg') ;
+.newLanding {
+  background-image: url("../src/Assets/undraw_the_world_is_mine_nb0e\ \(1\).svg");
   background-repeat: no-repeat;
   background-size: 90%;
   object-fit: cover;
   background-position: center;
-  
-  
-
- 
+  display: none;
 }
 
-
-
-
-
-
-.falconpic{
-display:flex;
-justify-content: center;
-margin-top:30px
-
-
-
-
+.falconpic {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
 }
 
-.mainDiv{
-  background-color:#f7f7f7;
+.mainDiv {
+  background-color: #f7f7f7;
   height: 100vh;
-  
-  
 }
 
-.formPadding{
+.formPadding {
   padding: 10px 25px;
   margin-top: 10px;
-
-  
-  
 }
 
-.signupTitle{
+.signupTitle {
   text-align: center;
-  font-family: 'Sofia', cursive !important;
-  
+  font-family: "Sofia", cursive !important;
 }
 
 /* .table{
@@ -66,195 +47,174 @@ margin-top:30px
   bottom: 50px;
 } */
 
-
 /* Chart.js */
 
 /* Links */
 
-a{
+a {
   text-decoration: none;
 }
 
-a:active{
+a:active {
   text-decoration: none;
 }
 
-.smallMarginTop{
-  margin-top:15px !important;
+.smallMarginTop {
+  margin-top: 15px !important;
 }
 
-.studentDash{
+.studentDash {
   width: 100vw;
-  margin-left:auto;
+  margin-left: auto;
   margin-right: auto;
 }
 
-.progressCircle{
-  margin-top:25px;
-  margin-left:auto;
-  margin-right:auto;
+.progressCircle {
+  margin-top: 25px;
+  margin-left: auto;
+  margin-right: auto;
   width: 150px;
   margin-bottom: 25px;
 }
 
-.studentChart{
-
+.studentChart {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-
 }
 
-
 @media only screen and (min-width: 600px) {
- 
-  .studentChart{
+  .newLanding {
+    background-image: url("../src/Assets/undraw_the_world_is_mine_nb0e\ \(1\).svg");
+    background-repeat: no-repeat;
+    background-size: "contain";
+    object-fit: cover;
+    background-position: center;
+  }
+
+  .studentChart {
     padding: 0px 0;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
-
   }
 
-  .progressCircle{
+  .progressCircle {
     width: 200px;
-    margin-top:25px;
-    
-  
+    margin-top: 25px;
   }
-  
-  .studentButtons{
-    background-color:yellow;
+
+  .studentButtons {
+    background-color: yellow;
     width: 30%;
-    margin-left:auto;
+    margin-left: auto;
     margin-right: auto;
-    
   }
-  .viewEvents{
-  width: 60vw;
-  margin-left: auto;
-  margin-right:auto;
+  .viewEvents {
+    width: 60vw;
+    margin-left: auto;
+    margin-right: auto;
   }
-  .auth{
+  .auth {
     background-color: white;
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.212);
-    transform:translateY(5%)
-
-   
+    transform: translateY(5%);
   }
-  .admindash_div{
- 
-  
-    transform:translateX(25%);
+  .admindash_div {
+    transform: translateX(25%);
     width: 60vw;
-    
-    
-   
-
   }
-.classCode{
-  width: 25vw;
-  margin-left:auto;
-  margin-right: auto;
-  transform:translateX(-60%)
-
+  .classCode {
+    width: 25vw;
+    margin-left: auto;
+    margin-right: auto;
+    transform: translateX(-60%);
+  }
+  .studentAccounts {
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+  }
 }
-.studentAccounts{
-  margin-left:auto;
-  margin-right:auto;
-  width: 600px;
+@media only screen and (min-width: 886px) {
+  .newLanding {
+    display: block;
+    background-image: url("../src/Assets/undraw_the_world_is_mine_nb0e\ \(1\).svg");
+    background-repeat: no-repeat;
+    background-size: "contain";
+
+    /* object-fit: cover; */
+    background-position: center;
+  }
 }
-  
-  }
-  @media only screen and (min-width: 768px) {
-  
 
-  
-  }
+.MuiTableCell-root {
+  padding: 5px 0px !important;
+}
 
-  .MuiTableCell-root{
-    padding: 5px 0px!important;
-
-  }
-
-.editIcon{
-  display:flex;
+.editIcon {
+  display: flex;
   justify-content: flex-end;
-  
-
 }
 
-.studentButtons{
-  background-color:yellow;
+.studentButtons {
+  background-color: yellow;
   margin-top: 20px;
 }
 
-.toRight{
-  margin-left:auto;
-  width:130px;
-
+.toRight {
+  margin-left: auto;
+  width: 130px;
 }
 
-.admindash{
- height: 80vh;
+.admindash {
+  height: 80vh;
 
- margin-left: auto;
- margin-right:auto; 
- margin-top:40px;
-}
-
-.admindash_div{
- 
+  margin-left: auto;
   margin-right: auto;
-  margin-left:auto;
+  margin-top: 40px;
+}
+
+.admindash_div {
+  margin-right: auto;
+  margin-left: auto;
   padding-left: 50px;
- 
-
-
-
 }
 
-.admindash_icons{
+.admindash_icons {
   font-size: 45px;
-  color: #3CAEA3;
+  color: #3caea3;
   margin-right: 35px;
-
 }
 
-.marginBottom{
+.marginBottom {
   margin-bottom: 30px;
-  
 }
 
-
-
-.classCode{
+.classCode {
   padding-top: 5px;
-  
 }
 
-.classCode h1{
+.classCode h1 {
   transform: translateX(50px);
   font-size: 300%;
   letter-spacing: 8px;
-  display:inline;
-  color: #253C7F;
-
+  display: inline;
+  color: #253c7f;
 }
 
-hr{
-  height:10px;
-  background-color: #F6D55C;
-  border:none;
+hr {
+  height: 10px;
+  background-color: #f6d55c;
+  border: none;
   width: 180px;
   margin-bottom: 36px;
   transform: translateX(25%);
   margin-top: 10px;
-
 }
 
-.visited:visited{
-  color:black;
+.visited:visited {
+  color: black;
 }
 
 /* .studentAccounts{
@@ -263,9 +223,9 @@ hr{
   width: 400px;
 } */
 
-.noPadding{
+.noPadding {
   padding-bottom: 0px !important;
-  padding-top:0px !important;
+  padding-top: 0px !important;
 }
 
 /* Manage Student Accounts */
