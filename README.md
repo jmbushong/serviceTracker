@@ -1,5 +1,5 @@
 # ServiceTracker
-![picture](Assets/ServiceTracker screenshot.png) 
+![picture](https://drive.google.com/file/d/15XhoU8PoibFHkPiV-STkDUf8OoXX4taU/view?usp=sharing) 
 
 ## Introduction
 
