@@ -5,7 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Box from "@material-ui/core/Box";
-import Falcon from "../../Assets/White Falcon.png";
+import Falcon from "../../Assets/FC_Mascot_update.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Link
@@ -27,13 +27,13 @@ import {
 class SelectRole extends React.Component {
   render() {
     return (
-      <div> 
+      <Grid container component="main" style={{height:'100vh'}} >
+        <CssBaseline />
+        <Grid item xs={false} sm={6} md={5} className="newLanding" />
 
-  
-      <div className= "mainDiv" >
-      
+
        
-      <Container className="auth" component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs">
       <CssBaseline />
       
          
@@ -92,9 +92,9 @@ class SelectRole extends React.Component {
       </Container>
 
 
-</div>
-  </div>
 
+
+</Grid>
     );
   }
 }

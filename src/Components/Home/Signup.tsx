@@ -7,7 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Falcon from "../../Assets/White Falcon.png";
+import Falcon from "../../Assets/FC_Mascot_update.png";
 import {
  Link
 } from "react-router-dom";
@@ -82,24 +82,25 @@ checkForToken= () =>{
    
   render() {
     return (
-      <div> 
- 
+      <Grid container component="main" style={{height:'100vh'}} >
+      <CssBaseline />
+      <Grid item xs={false} sm={6} md={5} className="newLanding" />
   
-      <div className= "mainDiv" >
+ 
       
        
-      <Container className="auth" component="main" maxWidth="xs">
+      <Container  component="main" maxWidth="xs">
       <CssBaseline />
       
-         
+{/*          
       <div className="falconpic"> <img src={Falcon} style={{width: '10em',  borderRadius: "30%"}}></img>
       
       
-      </div>
+      </div> */}
   
           <div className="formPadding">
               <Typography className="signupTitle" component="h1" variant="h6">
-                NJHS ServiceTracker
+                Student Sign-Up
               </Typography>
               <br></br>
               <form onSubmit={this.handleSubmit} noValidate>
@@ -227,9 +228,10 @@ checkForToken= () =>{
       
 </Container>
 
-</div>
+
 {this.checkForToken()}
-  </div>
+ 
+  </Grid>
  
     );
  

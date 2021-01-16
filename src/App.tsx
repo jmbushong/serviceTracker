@@ -55,7 +55,7 @@ type myState = {
   setFirstName: (e: any) => void;
   setLastName: (e: any) => void;
   setTeacherProfile: (e: any) => void;
-  isAdmin: boolean;
+  isAdmin: any;
   setIsAdminTrue: (e: any) => void;
   setIsAdminFalse: (e: any) => void;
   setDate: (e: any) => void;
@@ -93,7 +93,7 @@ class App extends React.Component<{}, myState> {
       teacherAccount: [],
       eventInformation: [],
       classCode: "",
-      isAdmin: false,
+      isAdmin: "",
       setServiceRequests: (entry) => {
         this.setState({serviceRequests: entry});
       },
