@@ -1,5 +1,5 @@
 # ServiceTracker
-![picture](img/serviceTracker screenshot.png)
+
 
 ## Introduction
 
