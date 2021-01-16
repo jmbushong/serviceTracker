@@ -1,5 +1,5 @@
 # ServiceTracker
-![picture](/../../Assets/serviceTracker screenshot.png)
+hourtracker\src\Assets\ServiceTracker screenshot.png
 
 ## Introduction
 
