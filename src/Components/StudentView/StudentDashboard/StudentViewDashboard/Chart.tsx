@@ -116,7 +116,7 @@ export default class Chart extends React.Component<AcceptedProps, myState> {
       >
         <Table aria-label="collapsible table">
           <TableHead>
-            <TableRow>
+            <TableRow >
               <TableCell />
 
               <IconButton size="small">
@@ -132,7 +132,7 @@ export default class Chart extends React.Component<AcceptedProps, myState> {
             {this.props.serviceRequests.length > 0 ? (
               this.props.serviceRequests.map((service: any, index: any) => (
                 <React.Fragment key={this.props.serviceRequests.id}>
-                  <TableRow>
+                  <TableRow style={{height:"45px"}}> 
                     <TableCell></TableCell>
                     <IconButton
                       aria-label="expand row"

@@ -86,12 +86,13 @@ class Sitebar extends React.Component<AcceptedProps, myState> {
     const open = Boolean(this.state.anchorE1);
     return (
       <React.Fragment>
-        <AppBar style={{backgroundColor: " #2f2e41"}} position="static">
+        <nav style={{backgroundColor:"#fafafa"}}   >
           <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
+        
             {this.props.backArrowToggle === true ? (
               <Link to="/myDashboard">
                 <IconButton>
-                  <ArrowBackIcon style={{ color: "white" }} />
+                  <ArrowBackIcon style={{ color: "black" }} />
                 </IconButton>
               </Link>
             ) : (
@@ -100,7 +101,7 @@ class Sitebar extends React.Component<AcceptedProps, myState> {
           
             <div>
               <IconButton onClick={this.handleMenu}>
-                <MenuIcon style={{color:"white"}} />
+                <MenuIcon style={{color:"black"}} />
               </IconButton>
               <Menu
                 id="menu-appbar"
@@ -122,7 +123,7 @@ class Sitebar extends React.Component<AcceptedProps, myState> {
               </Menu>
             </div>
           </Toolbar>
-        </AppBar>
+        </nav>
         {this.checkForToken()}
       </React.Fragment>
     );

@@ -117,7 +117,7 @@ class AdminSitebar extends React.Component<AcceptedProps, myState> {
     const open = Boolean(this.state.anchorE1);
     return (
       <React.Fragment>
-        <AppBar style={{backgroundColor:"#222222"}} position="static">
+        <AppBar position="static">
           <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
             {this.props.backArrowToggle === true ? (
               <Link to="/adminDash">

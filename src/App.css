@@ -8,6 +8,14 @@
   padding: 0;
 }
 
+.blueDiv{
+  background-color: #5390d9;
+    height: 40vh;
+     padding: 1px;
+     display:block;
+}
+
+
 .newLanding {
   background-image: url("../src/Assets/undraw_the_world_is_mine_nb0e\ \(1\).svg");
   background-repeat: no-repeat;
@@ -73,15 +81,27 @@ a:active {
   margin-top: 25px;
   margin-left: auto;
   margin-right: auto;
-  width: 150px;
+  width: 180px;
   margin-bottom: 25px;
+  
 }
+
 
 .studentChart {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
+
+.studentContainer{
+  
+  height:90vh;
+   background-color: #fafafa;
+    margin-left:0%;
+    margin-right:0%;
+  
+  
+    }
 
 @media only screen and (min-width: 600px) {
   .newLanding {
@@ -92,16 +112,22 @@ a:active {
     background-position: center;
   }
 
-  .studentChart {
-    padding: 0px 0;
-    width: 50%;
+  .studentDash {
+    width: 70vw;
     margin-left: auto;
-    margin-right: auto;
+    margin-right: auto; 
+  }
+
+  .studentChart {
+    padding: 0px 0px;
+    width: 100%;
+    position:relative;
   }
 
   .progressCircle {
-    width: 200px;
     margin-top: 25px;
+    width: 150px;
+    margin-bottom: 25px;
   }
 
   .studentButtons {
@@ -135,8 +161,71 @@ a:active {
     margin-right: auto;
     width: 600px;
   }
+
+  
+.blueDiv{
+  background-color: #5390d9;
+    height: 100vh;
+     padding: 1px;
+     
+}
+
+.studentContainer{
+  
+  height:90vh;
+   background-color: #fafafa;
+    margin-left:2%;
+    margin-right:2%;
+  
+  
+    }
+
 }
 @media only screen and (min-width: 886px) {
+
+.studentContainer{
+  
+height:90vh;
+ background-color: #fafafa;
+  margin-left:5%;
+  margin-right:5%;
+
+
+  }
+  
+
+.blueDiv{
+  background-color: #5390d9;
+    height: 100vh;
+     padding: 1px;
+     display:block;
+}
+
+  
+ 
+
+  .progressCircle {
+    width: 200px;
+    
+  }
+
+
+  .studentDash {
+    width: 60vw;
+   
+   
+  }
+
+  .studentChart {
+    padding: 0px 0px;
+    width: 100%;
+   
+    
+    position:relative;
+    
+    
+  }
+
   .newLanding {
     display: block;
     background-image: url("../src/Assets/undraw_the_world_is_mine_nb0e\ \(1\).svg");
@@ -231,3 +320,4 @@ hr {
 /* Manage Student Accounts */
 /* .accountRows{
   width: 100% !important;} */
+
