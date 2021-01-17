@@ -8,11 +8,13 @@
   padding: 0;
 }
 
+
 .blueDiv{
-  background-color: #5390d9;
-    height: 40vh;
+  background-color: #2d2d2d;
+    height: 35vh;
      padding: 1px;
      display:block;
+     margin-bottom:5px;
 }
 
 
@@ -72,9 +74,10 @@ a:active {
 }
 
 .studentDash {
-  width: 100vw;
+  width: 90vw;
   margin-left: auto;
   margin-right: auto;
+
 }
 
 .progressCircle {
@@ -91,6 +94,9 @@ a:active {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
+  padding-left:"3px";
+  padding-right:"3px";
+
 }
 
 .studentContainer{
@@ -113,21 +119,22 @@ a:active {
   }
 
   .studentDash {
-    width: 70vw;
-    margin-left: auto;
+    width: 60vw;
+    margin-left:30px;
     margin-right: auto; 
   }
 
   .studentChart {
     padding: 0px 0px;
+  
     width: 100%;
     position:relative;
   }
 
   .progressCircle {
     margin-top: 25px;
-    width: 150px;
-    margin-bottom: 25px;
+    width: 130px;
+
   }
 
   .studentButtons {
@@ -140,6 +147,7 @@ a:active {
     width: 60vw;
     margin-left: auto;
     margin-right: auto;
+
   }
   .auth {
     background-color: white;
@@ -164,9 +172,11 @@ a:active {
 
   
 .blueDiv{
-  background-color: #5390d9;
-    height: 100vh;
-     padding: 1px;
+  background-color:  #2d2d2d;
+  height: 30vh;
+   padding: 1px;
+   display:block;
+   margin-bottom: 200px;
      
 }
 
@@ -180,8 +190,24 @@ a:active {
   
     }
 
+    .addServiceButton{
+      background-color: white !important;
+     
+      
+  
+      
+      
+    
+      
+      
+ 
+      }
+      
+
 }
 @media only screen and (min-width: 886px) {
+
+
 
 .studentContainer{
   
@@ -195,10 +221,12 @@ height:90vh;
   
 
 .blueDiv{
-  background-color: #5390d9;
-    height: 100vh;
-     padding: 1px;
+  background-color:  #2d2d2d;
+    height: 44vh;
+     padding: 3px;
      display:block;
+     margin-bottom: 200px;
+    
 }
 
   
@@ -212,6 +240,7 @@ height:90vh;
 
   .studentDash {
     width: 60vw;
+    margin-left:30px;
    
    
   }
@@ -253,7 +282,7 @@ height:90vh;
 
 .toRight {
   margin-left: auto;
-  width: 130px;
+  width: 155px;
 }
 
 .admindash {

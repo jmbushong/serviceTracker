@@ -120,8 +120,8 @@ class AddServiceHours extends React.Component<AcceptedProps, myState> {
         >
           <CssBaseline />
           <div style={{ marginTop: "25px" }}>
-            <Typography component="h1" variant="h5">
-              Add Service
+            <Typography component="h1" variant="h4" className="signupTitle">
+              Add Service Entry
             </Typography>
 
             <br></br>
@@ -219,9 +219,9 @@ class AddServiceHours extends React.Component<AcceptedProps, myState> {
                   type="submit"
                   fullWidth
                   variant="contained"
-                  color="primary"
+                  style={{backgroundColor: "#ef476f", color: "white"}}
                 >
-                  Submit
+                 <h3>Submit</h3> 
                 </Button>
               {/* </Link> */}
               <Grid container justify="flex-end"></Grid>

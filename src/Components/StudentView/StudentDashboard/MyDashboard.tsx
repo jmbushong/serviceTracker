@@ -12,6 +12,9 @@ import EventNoteIcon from "@material-ui/icons/EventNote";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
+import ViewEvents from "../ViewEvents";
+import { GridDataContainer } from "@material-ui/data-grid";
+
 
 let percentage = 56;
 
@@ -120,8 +123,10 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
             variant="h4"
             style={{marginBottom: "25px"}}
           >
-            Service Summary
+            Student Dashboard
           </Typography> 
+       
+          
           
         
           
@@ -141,23 +146,34 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
               value={(sum / 30) * 100}
               text={`${sum}/30`}
             />
+               <Grid container component="main" >
+              
+              
+               </Grid>
+   
           </Box>
-     
+   
+         
           </div>
           
+       
           </Grid>
+         
+        
        
           <Grid style={{backgroundColor:"#fafafa"}} item xs={12} sm={6} md={6} lg={7}> 
  
           <Box className="studentDash">
           
-         
+{/*          
           <Box
             className="studentChart"
             style={{ background: "white", padding: "0px" }}
           >
+           
             
             <Box className="toRight">
+              
               
               {" "}
               <ButtonGroup
@@ -167,6 +183,7 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
                 variant="contained"
                 aria-label="text primary button group"
               >
+                
                 <Link to="/addservice">
                   <Button style={{ color: "#ef476f" }}>
                     <AddBoxIcon />
@@ -180,8 +197,15 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
                 </Link>
               </ButtonGroup>
             </Box>
-          </Box>
+          </Box> */}
           <Box className="studentChart">
+          <ViewEvents setBackArrowToggle={this.props.setBackArrowToggle}
+               setIsAdminFalse={this.props.setIsAdminFalse}
+               isAdmin={this.props.isAdmin}
+                backArrowToggle={this.props.backArrowToggle}
+                // arrowHandler={this.arrowHandler}
+                clearToken={this.props.clearToken}
+                sessionToken={this.props.sessionToken}/>
             <Chart
               serviceRequests={this.props.serviceRequests}
               setServiceRequests={this.props.setServiceRequests}
@@ -191,10 +215,11 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
               specificEntry={this.props.specificEntry}
               setSpecificEntry={this.props.setSpecificEntry}
             />
+            
           </Box>
         </Box>
            </Grid>
-           
+          
        
         </Grid>
         {/* <Box className="studentDash">

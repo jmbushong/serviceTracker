@@ -18,6 +18,9 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { Link } from "react-router-dom";
 import { SettingsPowerRounded } from "@material-ui/icons";
+import Button from "@material-ui/core/Button";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
+import AddBoxIcon from "@material-ui/icons/AddBox";
 
 
 
@@ -111,11 +114,54 @@ export default class Chart extends React.Component<AcceptedProps, myState> {
   render() {
     return (
       <TableContainer
-        style={{ paddingLeft: "15px", paddingRight: "15px" }}
+        // style={{ paddingLeft: "15px", paddingRight: "15px" }}
+        style={{marginTop:"15px"}}
         component={Paper}
       >
+       
+            
+            <Box style={{ background: "#ef476f",color:"white", padding: "0px", width: "100%"}}>
+              <Box >
+                {" "}
+              <h2 style={{marginLeft:"25px"}}>Service Hours </h2>
+      
+              <Box
+            className="studentChart"
+            style={{ background: "white", padding: "0px" }}
+          >
+           
+            
+            <Box className="toRight">
+              
+              
+              {" "}
+              <ButtonGroup
+                style={{ background: "white" }}
+                className="toRight"
+                disableElevation
+                variant="contained"
+                aria-label="text primary button group"
+              >
+                
+                <Link to="/addservice">
+                  <Button style={{ color: "#ef476f" }}>
+                    <AddBoxIcon style={{marginRight: "5px"}} /> Add Entry
+                  </Button>
+                </Link>
+            
+              </ButtonGroup>
+            </Box>
+          </Box>
+              
+              
+              
+          
+              </Box>
+            </Box>
         <Table aria-label="collapsible table">
+         
           <TableHead>
+         
             <TableRow >
               <TableCell />
 
@@ -132,7 +178,8 @@ export default class Chart extends React.Component<AcceptedProps, myState> {
             {this.props.serviceRequests.length > 0 ? (
               this.props.serviceRequests.map((service: any, index: any) => (
                 <React.Fragment key={this.props.serviceRequests.id}>
-                  <TableRow style={{height:"45px"}}> 
+                 
+                  <TableRow style={{height:"45px", marginRight:"3px", marginLeft:"3px"}}> 
                     <TableCell></TableCell>
                     <IconButton
                       aria-label="expand row"

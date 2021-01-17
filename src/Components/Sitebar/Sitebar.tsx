@@ -88,7 +88,7 @@ class Sitebar extends React.Component<AcceptedProps, myState> {
       <React.Fragment>
         <nav style={{backgroundColor:"#fafafa"}}   >
           <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
-        
+          
             {this.props.backArrowToggle === true ? (
               <Link to="/myDashboard">
                 <IconButton>

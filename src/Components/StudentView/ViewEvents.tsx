@@ -74,13 +74,13 @@ class ViewEvents extends React.Component  <AcceptedProps, myState> {
     render() { 
         return (   <div>
           {" "}
-          <Sitebar
+          {/* <Sitebar
             backArrowToggle={this.props.backArrowToggle}
             // arrowHandler={this.props.arrowHandler}
             clearToken={this.props.clearToken}
             sessionToken={this.props.sessionToken}
-          />{" "}
-          <h2
+          />{" "} */}
+          {/* <h2
             style={{
               textAlign: "center",
               marginTop: "50px",
@@ -88,25 +88,27 @@ class ViewEvents extends React.Component  <AcceptedProps, myState> {
             }}
           >
             Upcoming Service Opportunities
-          </h2>
+          </h2> */}
          
           <div className="viewEvents">
-            <Box style={{ background: "#F6D55C", padding: "0px", width: "100%" }}>
-              <Box className="toRight">
+            
+            <Box style={{ background: "#5390d9", color:"white", padding: "0px", width: "100%" }}>
+              <Box >
                 {" "}
-                <ButtonGroup
-                  style={{ background: "#F6D55C" }}
+              <h2 style={{marginLeft:"25px"}}>Upcoming Events</h2>
+                {/* <ButtonGroup
+                  style={{ color: "black" }}
                   className="toRight"
                   disableElevation
                   variant="contained"
                   aria-label="text primary button group"
                 >
                   <Link to="/addevents">
-                    <Button style={{ background: "#F6D55C", marginLeft: "60px" }}>
+                    <Button style={{ color: "black", marginLeft: "60px" }}>
                      
                     </Button>
                   </Link>
-                </ButtonGroup>
+                </ButtonGroup> */}
               </Box>
             </Box>
             {this.state.eventInfo.length > 0 ? (
@@ -118,6 +120,11 @@ class ViewEvents extends React.Component  <AcceptedProps, myState> {
                   >
                   
                     <Typography style={{ marginLeft: "15px" }}>
+                      {this.state.eventInfo[index].date} 
+          
+                    </Typography>
+                    <Typography style={{ marginLeft: "45px" }}>
+                     
                       {this.state.eventInfo[index].title}
                     </Typography>
                     <div style={{ marginLeft: "auto" }}>
