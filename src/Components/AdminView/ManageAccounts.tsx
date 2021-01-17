@@ -3,7 +3,7 @@ import List from "@material-ui/core/List";
 import ListItem, { ListItemProps } from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-
+import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import AdminSitebar from "../Sitebar/AdminSitebar";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
@@ -130,9 +130,9 @@ class ManageAccounts extends React.Component<AcceptedProps, MyState>{
           clearToken={this.props.clearToken}
           sessionToken={this.props.sessionToken}
         />
-        <h2 style={{ textAlign: "center", margin: "30px" }}>
-          Student Accounts
-        </h2>
+        <Typography className="adminTitle" component="h2"
+            variant="h5"  style={{ textAlign: "center",  margin: "30px"  }}>Student Accounts</Typography>
+    
 
         <Box className="studentAccounts">
           {" "}
@@ -157,11 +157,10 @@ class ManageAccounts extends React.Component<AcceptedProps, MyState>{
                   <div>
     
       <Dialog open={this.state.open}>
-        <DialogTitle id="form-dialog-title">Student User Information</DialogTitle>
+        <DialogTitle  id="form-dialog-title"><Typography className="adminTitle" component="h2"
+            variant="h5"  style={{ textAlign: "center" }}>Edit Student User Information</Typography></DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            Fill in the inputs below to update student user information.
-          </DialogContentText>
+    
           <TextField
             autoFocus
             margin="dense"

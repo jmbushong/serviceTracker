@@ -11,6 +11,9 @@ import {Link} from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import { CircularProgressbar } from "react-circular-progressbar";
 import AdminSitebar from "../Sitebar/AdminSitebar"
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+
 
 const percentage = 66;
 
@@ -95,7 +98,64 @@ class AdminDash extends React.Component <AcceptedProps, myState> {
          sessionToken={this.props.sessionToken}
        
         />
+
+<Grid container  component="main" >
+        <Grid item xs={12} sm={12} md={12} lg={12} >   
         <Box className="admindash" >
+          <Box className="admindash_div">
+          <Typography
+            className="adminTitle"
+            component="h1"
+            variant="h4"
+            style={{marginBottom: "25px",  font: "Sofia, cursive !important"}}
+          >
+            Admin Dashboard
+          </Typography> 
+            <hr/>
+       
+          <Box className= "admindash_card" >
+            <h3 className="marginBottom">
+              {" "}
+              <FontAwesomeIcon className="admindash_icons" icon={faTrophy} />
+              Leaderboard
+            </h3>
+            </Box>
+            <h3 className="marginBottom">
+              {" "}
+              <FontAwesomeIcon className="admindash_icons" icon={faClock} />
+              Manage Hours
+            </h3>
+            <Link className="visited" to="/adminevent"><h3 className="marginBottom">
+              {" "}
+              <FontAwesomeIcon
+                className="admindash_icons"
+                icon={faCalendarAlt}
+              />
+              Schedule Event
+            </h3></Link>
+            <Link to="/manageaccounts"><h3 className="marginBottom">
+              <FontAwesomeIcon
+                className="admindash_icons"
+                icon={faAddressBook}
+              />
+              Student Accounts
+            </h3></Link>
+            <div className="classCode">
+              {" "}
+              <h4>Class PIN</h4>
+           <h1> {this.state.classId}</h1>
+              
+            </div>
+          </Box>
+     
+       
+        </Box>
+       
+          
+          
+  
+             </Grid></Grid>
+        {/* <Box className="admindash" >
           <Box className="admindash_div">
             <h2 style={{letterSpacing: '3px'}} >
               ADMIN DASHBOARD
@@ -138,7 +198,7 @@ class AdminDash extends React.Component <AcceptedProps, myState> {
           </Box>
      
        
-        </Box>
+        </Box> */}
       
       </div>
     );

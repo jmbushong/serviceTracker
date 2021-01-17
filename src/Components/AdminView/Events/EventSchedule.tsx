@@ -129,15 +129,8 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
           clearToken={this.props.clearToken}
           sessionToken={this.props.sessionToken}
         />{" "}
-        <h2
-          style={{
-            textAlign: "center",
-            marginTop: "50px",
-            marginBottom: "50px",
-          }}
-        >
-          Upcoming Service Opportunities
-        </h2>
+        <Typography className="adminTitle" component="h2"
+            variant="h5"  style={{ textAlign: "center",  margin: "30px"  }}>Upcoming Events</Typography>
         <div></div>
         <div className="viewEvents">
           <Box style={{ background: "#F6D55C", padding: "0px", width: "100%" }}>
@@ -154,7 +147,7 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
                   <Button style={{ background: "#F6D55C", marginLeft: "60px" }}>
                     <AddBoxIcon    onClick={() => {
                         this.handleClickOpen("Add Event ");
-                      }} />
+                      }} /> 
                   </Button>
           
               </Button>
@@ -170,7 +163,8 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
                   aria-controls="panel1d-content"
                   id="panel1d-header"
                 >
-                  <Typography style={{ marginLeft: "15px" }}>
+                 
+                  <Typography  style={{ marginLeft: "15px" }}>
                     {this.state.eventInfo[index].title}
                   </Typography>
                   <div style={{ marginLeft: "auto" }}>
@@ -193,7 +187,9 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
                     <div >
                       <Dialog open={this.state.open}>
                         <DialogTitle id="form-dialog-title">
-                          {this.state.title}
+                        <Typography className="adminTitle" component="h2"
+            variant="h5"  style={{ textAlign: "center" }}>{this.state.title}</Typography>
+                          
                         </DialogTitle>
                         <DialogContent>
                           <form noValidate>

@@ -48,6 +48,10 @@
   font-family: "Sofia", cursive !important;
 }
 
+.adminTitle{
+  font-family: "Sofia", cursive !important;
+}
+
 /* .table{
   margin: 50px;
 }
@@ -294,14 +298,17 @@ height:90vh;
 }
 
 .admindash_div {
+
+  transform: translateX(25%);
+
   margin-right: auto;
   margin-left: auto;
-  padding-left: 50px;
+  
 }
 
 .admindash_icons {
   font-size: 45px;
-  color: #118ab2;
+  color: #5390d9;
   margin-right: 35px;
 }
 
