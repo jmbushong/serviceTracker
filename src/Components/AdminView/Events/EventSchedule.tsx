@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
-
+import AddEvents from "./AddEvents";
+import UpdateEvent from "./UpdateEvents";
 import Box from "@material-ui/core/Box";
 
 import AddBoxIcon from "@material-ui/icons/AddBox";
@@ -42,11 +43,15 @@ type AcceptedProps = {
 type myState = {
   eventInfo: any;
   setEventInfo: (e: any) => void;
+  eventId: any;
+  setEventId: (e: any) => void;
+
   setOpen: (e: any) => void;
   open: any;
+  setOpen2: (e: any) => void;
+  open2: any;
   title: any;
   setTitle: (e: any) => void;
-
 };
 
 class EventSchedule extends React.Component<AcceptedProps, myState> {
@@ -55,23 +60,35 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
     this.state = {
       eventInfo: [],
       setEventInfo: (entry) => {
-        this.setState({ eventInfo: entry });
+        this.setState({eventInfo: entry });
+      },
+      eventId: 900,
+      setEventId: (entry) => {
+        this.setState({eventId: entry });
       },
       open: false,
       setOpen: (entry) => {
         this.setState({ open: entry });
       },
+      open2: false,
+      setOpen2: (entry) => {
+        this.setState({ open2: entry });
+      },
       title: " ",
       setTitle: (entry) => {
         this.setState({ title: entry });
       },
-    
     };
   }
 
-  handleClickOpen = (e:any) => {
+  handleClickOpen = () => {
     this.state.setOpen(true);
-    this.state.setTitle(e);
+  };
+
+  handleClickOpen2 = () => {
+    this.state.setOpen2(true);
+    
+   
   };
 
   handleClickClose = () => {
@@ -129,48 +146,62 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
           clearToken={this.props.clearToken}
           sessionToken={this.props.sessionToken}
         />{" "}
-        <Typography className="adminTitle" component="h2"
-            variant="h5"  style={{ textAlign: "center",  margin: "30px"  }}>Upcoming Events</Typography>
+        <Typography
+          className="adminTitle"
+          component="h2"
+          variant="h5"
+          style={{ textAlign: "center", margin: "30px" }}
+        >
+          Upcoming Events
+        </Typography>
         <div></div>
         <div className="viewEvents">
-          <Box style={{ background: "#F6D55C", padding: "0px", width: "100%" }}>
+          <Box style={{ background: "#5390d9", padding: "0px", width: "100%" }}>
             <Box className="toRight">
               {" "}
               <Button
-                style={{ background: "#F6D55C" }}
+                style={{ background: "#5390d9" }}
                 className="toRight"
                 disableElevation
                 variant="contained"
                 aria-label="text primary button group"
               >
-                
-                  <Button style={{ background: "#F6D55C", marginLeft: "60px" }}>
-                    <AddBoxIcon    onClick={() => {
-                        this.handleClickOpen("Add Event ");
-                      }} /> 
-                  </Button>
-          
+                <Button style={{ background: "white", marginLeft: "60px" }}>
+                  <AddBoxIcon
+                    onClick={() => {
+                      this.handleClickOpen();
+                    }}
+                  />
+                </Button>
               </Button>
             </Box>
           </Box>
           {this.state.eventInfo.length > 0 ? (
             this.state.eventInfo.map((event: any, index: any) => (
-              <Accordion style={{margin:"1px"}} key={this.state.eventInfo.id} square>
+              <Accordion
+                style={{ margin: "1px" }}
+                key={this.state.eventInfo.id}
+                square
+              >
                 <AccordionSummary
-               
-                 
-                  
                   aria-controls="panel1d-content"
                   id="panel1d-header"
                 >
-                 
-                  <Typography  style={{ marginLeft: "15px" }}>
+                  <Typography style={{ marginLeft: "15px" }}>
+                    {this.state.eventInfo[index].date}
+                  </Typography>
+                  <Typography style={{ marginLeft: "35px" }}>
                     {this.state.eventInfo[index].title}
                   </Typography>
                   <div style={{ marginLeft: "auto" }}>
                     <EditIcon
                       onClick={() => {
-                        this.handleClickOpen('Update Event Details');
+                        this.handleClickOpen2();
+                        this.setState({
+                          eventId: this.state.eventInfo[index]
+                        });
+                        console.log(this.state.eventId)
+                    
                       }}
                     />
                     <DeleteIcon
@@ -184,107 +215,21 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
                       }}
                     />
 
-                    <div >
-                      <Dialog open={this.state.open}>
-                        <DialogTitle id="form-dialog-title">
-                        <Typography className="adminTitle" component="h2"
-            variant="h5"  style={{ textAlign: "center" }}>{this.state.title}</Typography>
-                          
-                        </DialogTitle>
-                        <DialogContent>
-                          <form noValidate>
-                            <Grid container spacing={2}>
-                              <Grid item xs={12} sm={6}>
-                                <form noValidate>
-                                  <TextField
-                                    id="date"
-                                    label="Date of Service"
-                                    type="date"
-                                    InputLabelProps={{
-                                      shrink: true,
-                                    }}
-                                  />
-                                </form>
-                              </Grid>
-                              <Grid item xs={12} sm={6}></Grid>
-                              <Grid item xs={12}>
-                                <FormControl style={{ minWidth: 160 }}>
-                                  <TextField
-                                    autoFocus
-                                    margin="dense"
-                                    id="name"
-                                    label="Title of Event"
-                                    type="email"
-                                    fullWidth
-                                  />
-                                  <TextField
-                                    autoFocus
-                                    margin="dense"
-                                    id="name"
-                                    label="Location"
-                                    type="email"
-                                    fullWidth
-                                  />
-                                </FormControl>{" "}
-                              </Grid>
-                              <Grid item xs={12}>
-                                <TextField
-                                  variant="outlined"
-                                  required
-                                  fullWidth
-                                  name="password"
-                                  label="Event Description"
-                                  type="password"
-                                  id="password"
-                                />
-                              </Grid>
-                              <Grid item xs={12}>
-                                <FormControl
-                                  style={{
-                                    minWidth: 160,
-                                    marginBottom: "25px",
-                                  }}
-                                >
-                                  <InputLabel id="demo-simple-select-label">
-                                    Number of Hours
-                                  </InputLabel>
-                                  <Select
-                                    labelId="demo-simple-select-label"
-                                    id="demo-simple-select"
-                                    //   value={age}
-                                    //   onChange={handleChange}
-                                  >
-                                    <MenuItem value={1}>1</MenuItem>
-                                    <MenuItem value={2}>2</MenuItem>
-                                    <MenuItem value={3}>3</MenuItem>
-                                  </Select>
-                                </FormControl>{" "}
-                              </Grid>
-                            </Grid>
-
-                            <DialogActions>
-                              <Button
-                                onClick={() => {
-                                  this.handleClickClose();
-                                }}
-                              >
-                                Cancel
-                              </Button>
-                              <Link to="/adminevent">
-                                <Button
-                                  onClick={() => {
-                                    this.handleClickClose();
-                                  }}
-                                  type="submit"
-                                >
-                                  Submit
-                                </Button>
-                              </Link>
-                            </DialogActions>
-                            <Grid container justify="flex-end"></Grid>
-                          </form>
-                        </DialogContent>
-                      </Dialog>
+                    <div>
+                      <UpdateEvent
+                        open2={this.state.open2}
+                        eventInfo={this.state.eventInfo}
+                        setOpen2={this.state.setOpen2}
+                        eventId={this.state.eventId}
+                      />
+                      <AddEvents
+                        fetchService={this.fetchService}
+                        open={this.state.open}
+                        eventInfo={this.state.eventInfo}
+                        setOpen={this.state.setOpen}
+                        sessionToken={this.props.sessionToken}
+                       
+                      />
                     </div>
                   </div>
                 </AccordionSummary>

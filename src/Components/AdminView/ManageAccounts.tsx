@@ -9,14 +9,14 @@ import AdminSitebar from "../Sitebar/AdminSitebar";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import EditStudentAccounts from "../AdminView/EditStudentAccounts"
 
 type AcceptedProps = {
   sessionToken?: any;
@@ -32,21 +32,21 @@ type AcceptedProps = {
 type MyState = {
   studentAccounts: any;
   setStudentAccounts: (e: any) => void;
-  userId:any;
+  userId: any;
   setUserId: (e: any) => void;
   setOpen: (e: any) => void;
-  open:any;
+  open: any;
 };
 
-class ManageAccounts extends React.Component<AcceptedProps, MyState>{
+class ManageAccounts extends React.Component<AcceptedProps, MyState> {
   constructor(props: AcceptedProps) {
     super(props);
     this.state = {
-      userId:800,
+      userId: 800,
       setUserId: (entry) => {
         this.setState({ userId: entry });
       },
-      open:false,
+      open: false,
       setOpen: (entry) => {
         this.setState({ open: entry });
       },
@@ -58,13 +58,14 @@ class ManageAccounts extends React.Component<AcceptedProps, MyState>{
     };
   }
 
-  handleClickOpen=()=>{
-    this.state.setOpen(true)
-  }
+  handleClickOpen = () => {
+    this.state.setOpen(true);
+  };
 
-  handleClickClose=()=>{
-    this.state.setOpen(false)
-  }
+  handleClickClose = () => {
+    this.state.setOpen(false);
+  
+  };
 
   componentDidMount() {
     // this.props.arrowHandler();
@@ -76,32 +77,24 @@ class ManageAccounts extends React.Component<AcceptedProps, MyState>{
 
   //This function takes the argument id which is passed into the deleteEntryAsync2 function on line 140. The argument being passed into this function is the id associated with user name
 
-  deleteEntryAsync2 = async (id:number) => {
+  deleteEntryAsync2 = async (id: number) => {
+    try {
+      const response = await fetch(`http://localhost:4000/user/${id}`, {
+        method: "DELETE",
+        headers: new Headers({
+          "Content-Type": "application/json",
+          Authorization: this.props.sessionToken,
+        }),
+      });
+      const json = await response.json();
+      console.log(json);
 
-      try { 
-        const response = await fetch(
-          `http://localhost:4000/user/${id}`,
-          {
-            method: "DELETE",
-            headers: new Headers({
-              "Content-Type": "application/json",
-              Authorization: this.props.sessionToken,
-            }),
-          }
-        );
-        const json = await response.json();
-        console.log(json);
-        
-        this.props.setBackArrowToggle(true);
-        this.fetchTeacherData();
-       
-      } catch (err) {
-        console.log(err);
-      }
-    
-   
+      this.props.setBackArrowToggle(true);
+      this.fetchTeacherData();
+    } catch (err) {
+      console.log(err);
+    }
   };
-
 
   //This fetch gets all information linked to the classId that is logged in. I then took the list of students and set it to the variable studentData. This is the variable I will use to map over the page.
   fetchTeacherData = () => {
@@ -121,6 +114,30 @@ class ManageAccounts extends React.Component<AcceptedProps, MyState>{
       });
   };
 
+
+  //This fetch updates the information This will be tricky.
+
+  // UpdateStudentData = () => {
+  //   fetch(`http://localhost:4000/teacherUser/${this.state.studentAccounts[index].id}`, {
+  //     method: "PUT",
+  //     body: JSON.stringify({
+
+  //     })
+  //     headers: new Headers({
+  //       "Content-Type": "application/json",
+  //       Authorization: this.props.sessionToken,
+  //     }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((json) => {
+  //       console.log(json);
+  //       console.log(json.classId);
+  //       this.state.setStudentAccounts(json.studentUsers);
+  //       console.log(this.state.studentAccounts);
+  //     });
+  // };
+
+
   render() {
     return (
       <Box>
@@ -130,9 +147,14 @@ class ManageAccounts extends React.Component<AcceptedProps, MyState>{
           clearToken={this.props.clearToken}
           sessionToken={this.props.sessionToken}
         />
-        <Typography className="adminTitle" component="h2"
-            variant="h5"  style={{ textAlign: "center",  margin: "30px"  }}>Student Accounts</Typography>
-    
+        <Typography
+          className="adminTitle"
+          component="h2"
+          variant="h5"
+          style={{ textAlign: "center", margin: "30px" }}
+        >
+          Student Accounts
+        </Typography>
 
         <Box className="studentAccounts">
           {" "}
@@ -153,78 +175,42 @@ class ManageAccounts extends React.Component<AcceptedProps, MyState>{
                     {" "}
                     {this.state.studentAccounts[index]?.email}
                   </ListItemText>
-                  <EditIcon onClick={()=>{this.handleClickOpen()}} />
-                  <div>
-    
-      <Dialog open={this.state.open}>
-        <DialogTitle  id="form-dialog-title"><Typography className="adminTitle" component="h2"
-            variant="h5"  style={{ textAlign: "center" }}>Edit Student User Information</Typography></DialogTitle>
-        <DialogContent>
-    
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="First Name"
-            type="email"
-            fullWidth
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Last Name"
-            type="email"
-            fullWidth
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
-            fullWidth
-          />
-           <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Password"
-            type="email"
-            fullWidth
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={()=>{this.handleClickClose()}} >
-            Cancel
-          </Button>
-          <Button  >
-            Submit
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
-                  <DeleteIcon 
-                  onClick={() => {
-                   
-                    try{ 
-                     
-                      this.deleteEntryAsync2(this.state.studentAccounts[index]?.id)
-                      console.log(this.state.studentAccounts[index]?.id)
-                      
-                      ;} 
-                    catch (err) {
-                      console.log(err);
+                  <EditIcon
+                    onClick={() => {
+                      this.handleClickOpen();
+                  
+                        this.setState({
+                            userId: this.state.studentAccounts[index]
+                          })
+                        
+                  
+                      console.log(this.state.studentAccounts[index].id)
                     }}
-                  
-                  }
-                  
+                  />
+                  <div>
+                    <EditStudentAccounts  
+                    open={this.state.open}
+                    userId={this.state.userId}
+                    setOpen={this.state.setOpen}/>
+                
+                  </div>
+                  <DeleteIcon
+                    onClick={() => {
+                      try {
+                        this.deleteEntryAsync2(
+                          this.state.studentAccounts[index]?.id
+                        );
+                        console.log(this.state.studentAccounts[index]?.id);
+                      } catch (err) {
+                        console.log(err);
+                      }
+                    }}
                   />
                 </ListItem>
               </Box>
             ))
           ) : (
-            <div >You don't currently have any students. </div>
+            <div>You don't currently have any students. </div>
           )}
         </Box>
       </Box>

@@ -114,7 +114,7 @@ class AddServiceHours extends React.Component<AcceptedProps, myState> {
           sessionToken={this.props.sessionToken}
         />
         <Container
-          style={{ paddingLeft: "40px", paddingRight: "40px" }}
+          style={{ paddingLeft: "40px", paddingRight: "40px", marginTop:"100px" }}
           component="main"
           maxWidth="xs"
         >

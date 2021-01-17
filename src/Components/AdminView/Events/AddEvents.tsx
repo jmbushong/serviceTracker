@@ -1,139 +1,247 @@
 import React, { Component } from "react";
-import Sitebar from "../../Sitebar/Sitebar";
-
-import Avatar from "@material-ui/core/Avatar";
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
 import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import AdminSitebar from "../../Sitebar/AdminSitebar";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import {
-    Link
-   } from "react-router-dom";
+import Grid from "@material-ui/core/Grid";
+import { Link } from "react-router-dom";
+import FormControl from "@material-ui/core/FormControl";
+import MenuItem from "@material-ui/core/MenuItem";
+import InputLabel from "@material-ui/core/InputLabel";
+import Select from "@material-ui/core/Select";
+import { Redirect } from "react-router-dom";
 
-   type AcceptedProps = {
-    sessionToken?: any;
-    clearToken?: any;
-    backArrowToggle: any;
-    setBackArrowToggle: (e: any) => void;
-    setIsAdminTrue: (e: any) => void;
-  };
+type AcceptedProps = {
+  sessionToken?: any;
+  eventInfo: any;
+  setOpen: (e: any) => void;
+fetchService:any;
+  open: any;
+};
+
+type myState = {
+  date: any;
+  title: any;
+  description: any;
+  hours: any;
+  location: any;
+  eventUpdate:boolean;
+  setEventUpdate:(e:any)=> void;
   
- 
 
-class AddEvent extends React.Component <AcceptedProps, {}>{
+  setDate: (e: any) => void;
+  setTitle: (e: any) => void;
+  setDescription: (e: any) => void;
+  setHours: (e: any) => void;
+  setLocation: (e: any) => void;
+};
+
+class AddEvent extends React.Component<AcceptedProps, myState> {
+  constructor(props: AcceptedProps) {
+    super(props);
+    this.state = {
+      date: "",
+      location: "",
+      description: "",
+      hours: 900,
+      title: " ",
+      eventUpdate:false,
+      setEventUpdate: (e) => {this.setState({eventUpdate: e})},
+      setDate: (e) => {this.setState({date: e})},
+      setLocation: (e) => {this.setState({location: e})},
+      setHours: (e) => {this.setState({hours: e})},
+      setDescription: (e) => {this.setState({description: e})},
+      setTitle: (e) => {this.setState({title: e})}
+    };
+  }
+
+  handleSubmit = (event: any) => {
+    event.preventDefault();
+    fetch(`http://localhost:4000/events/`, {
+      method: "POST",
+      body: JSON.stringify({
+        events: {
+          date: this.state.date,
+          title: this.state.title,
+          description: this.state.description,
+          hours: this.state.hours,
+          location: this.state.location,
+        },
+      }),
+      headers: new Headers({
+        "Content-Type": "application/json",
+        Authorization: this.props.sessionToken
+      }),
+    }).then((response) => {
+      if (response.status === 200) {
+        console.log("Event submission was successful");
+        this.state.setEventUpdate(true);
+        //set each prop to empty
+        this.state.setDate("");
+        this.state.setHours(0);
+        this.state.setTitle("");
+        this.state.setDescription("");
+        this.state.setLocation("");
+        this.props.setOpen(false);
+        this.props.fetchService();
+      } else {
+        console.log("Event submission failed");
+      }
+      return response.json();
+    });
+  };
+
+  checkForEventEntry=() => {
+    if (this.state.eventUpdate){
+      return <Redirect to="/adminEvent"/>
+    }
+  }
+
+  handleClickClose = () => {
+    this.props.setOpen(false);
+  };
+
   render() {
     return (
-      <div>
-         <AdminSitebar
-          backArrowToggle={this.props.backArrowToggle}
-          clearToken={this.props.clearToken}
-          sessionToken={this.props.sessionToken}
-        />
-        <Container style={{paddingLeft:"40px", paddingRight:"40px"}}component="main" maxWidth="xs">
-          <CssBaseline />
-          <div style={{ marginTop: "25px" }}>
-            <Typography
-           
-              component="h1"
-              variant="h5"
-            >
-              Add Event
-            </Typography>
-        
-            <br></br>
-            <br></br>
-            <form noValidate>
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                  <form noValidate>
-                    <TextField
-                      id="date"
-                      label="Date of Service"
-                      type="date"
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                    />
-                  </form>
-                </Grid>
-                <Grid item xs={12} sm={6}></Grid>
-                <Grid item xs={12}>
-                  <FormControl style={{minWidth:160}} >
-                    <InputLabel id="demo-simple-select-label">Type of Service</InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                    //   value={age}
-                    //   onChange={handleChange}
-                    >
-                      <MenuItem value={10}>Tutoring</MenuItem>
-                      <MenuItem value={20}>Recycling</MenuItem>
-                      <MenuItem value={30}>NJHS Sponsored Event</MenuItem>
-                      <MenuItem value={30}>Other</MenuItem>
-                    </Select>
-                  </FormControl>{" "}
-                  
-                </Grid>
-                <Grid item xs={12}>
+      <Dialog open={this.props.open}>
+        <DialogTitle id="form-dialog-title">
+          <Typography
+            className="adminTitle"
+            component="h2"
+            variant="h5"
+            style={{ textAlign: "center" }}
+          >
+            Add Event
+          </Typography>
+        </DialogTitle>
+        <form onSubmit={this.handleSubmit} noValidate>
+        <DialogContent>
+         
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <form noValidate>
                   <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    name="password"
-                    label="Decription of Service"
-                    type="password"
-                    id="password"
+                    id="date"
+                    label="Date of Service"
+                    type="date"
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    onChange={(e) => {
+                      this.state.setDate(e.target.value);
+                      console.log(this.state.date)
+                    }}
+                    defaultValue={0}
                   />
-                </Grid>
-                <Grid item xs={12}>
-                <FormControl style={{minWidth:160, marginBottom:"25px"}} >
-                    <InputLabel id="demo-simple-select-label">Number of Hours</InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
+                </form>
+              </Grid>
+              <Grid item xs={12} sm={6}></Grid>
+              <Grid item xs={12}>
+                <FormControl style={{ minWidth: 160 }}>
+                  <TextField
+                    autoFocus
+                    margin="dense"
+                    id="name"
+                    label="Title of Event"
+                    type="email"
+                    fullWidth
+                    onChange={(e) => {
+                    
+                      this.state.setTitle(e.target.value);
+                     
+                    }}
+                    defaultValue={" "}
+                  />
+                  <TextField
+                    autoFocus
+                    margin="dense"
+                    id="name"
+                    label="Location"
+                    type="email"
+                    fullWidth
+                    onChange={(e) => {
+              
+                      this.state.setLocation(e.target.value);
+                     
+                    }}
+                    defaultValue={" "}
+                  />
+                </FormControl>{" "}
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Event Description"
+                  type="text"
+                  onChange={(e) => {
+              
+                    this.state.setDescription(e.target.value);
+                   
+                  }}
+                  defaultValue={" "}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <FormControl
+                  style={{
+                    minWidth: 160,
+                    marginBottom: "25px",
+                  }}
+                >
+                  <InputLabel id="demo-simple-select-label">
+                    Number of Hours
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    onChange={(e) => {
+                 
+                      this.state.setHours(e.target.value);
+                   
+                    }}
+                    defaultValue={0}
                     //   value={age}
                     //   onChange={handleChange}
-                    >
-                      <MenuItem value={10}>0.5</MenuItem>
-                      <MenuItem value={20}>1</MenuItem>
-                      <MenuItem value={30}>1.5</MenuItem>
-                      <MenuItem value={30}>2</MenuItem>
-                      <MenuItem value={30}>2.5</MenuItem>
-                      <MenuItem value={30}>3</MenuItem>
-                      <MenuItem value={30}>3.5</MenuItem>
-                      <MenuItem value={30}>4</MenuItem>
-                      <MenuItem value={30}>4.5</MenuItem>
-                      <MenuItem value={30}>5</MenuItem>
-                    </Select>
-                  </FormControl>{" "}
-                </Grid>
+                  >
+                    <MenuItem value={1}>1</MenuItem>
+                    <MenuItem value={2}>2</MenuItem>
+                    <MenuItem value={3}>3</MenuItem>
+                  </Select>
+                </FormControl>{" "}
               </Grid>
-              <Link to="/mydashboard"><Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
+            </Grid>
+
+            <DialogActions>
+              <Button
+                onClick={() => {
+                  this.handleClickClose();
+                }}
               >
-                Update 
-              </Button></Link>
-              <Grid container justify="flex-end"></Grid>
-            </form>
-          </div>
-        </Container>
-      </div>
+                Cancel
+              </Button>
+             
+                <Button
+              
+                  type="submit"
+                >
+                  Submit
+                </Button>
+       
+            </DialogActions>
+            <Grid container justify="flex-end"></Grid>
+     
+        </DialogContent> </form>
+        {this.checkForEventEntry()}
+      </Dialog>
     );
   }
 }

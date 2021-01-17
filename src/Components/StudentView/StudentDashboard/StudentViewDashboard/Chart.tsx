@@ -73,23 +73,7 @@ export default class Chart extends React.Component<AcceptedProps, myState> {
       });
   };
 
-  //   deleteEntry = () =>{
-  //     fetch(`http://localhost:4000/service/${this.props.indexNumber}`,{
-  //         method: 'DELETE',
-  //         headers: new Headers({
-  //             'Content-Type': 'application/json',
-  //             'Authorization': this.props.sessionToken
-  //         })
-  //     })
-  //     .then(res => {
-  //       if(res.status === 200){
-  //         console.log("Item successfully deleted")
-  //       }
-  //       else{
-  //         console.log("Oop. Did not delete")
-  //       }
-  //     })
-  // }
+  
 
   deleteEntryAsync2 = async () => {
     try {

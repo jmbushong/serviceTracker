@@ -86,7 +86,7 @@ class Sitebar extends React.Component<AcceptedProps, myState> {
     const open = Boolean(this.state.anchorE1);
     return (
       <React.Fragment>
-        <nav style={{backgroundColor:"#fafafa"}}   >
+        <AppBar style={{backgroundColor:"white"}}  >
           <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
           
             {this.props.backArrowToggle === true ? (
@@ -123,7 +123,7 @@ class Sitebar extends React.Component<AcceptedProps, myState> {
               </Menu>
             </div>
           </Toolbar>
-        </nav>
+        </AppBar>
         {this.checkForToken()}
       </React.Fragment>
     );

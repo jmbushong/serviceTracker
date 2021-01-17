@@ -413,25 +413,25 @@ class App extends React.Component<{}, myState> {
             </Route>
 
             <Route exact path="/eventupdate">
-              <UpdateEvents  
+              {/* <UpdateEvents  
               clearToken={this.clearToken}
                 setIsAdminTrue={this.state.setIsAdminTrue}
                 backArrowToggle={this.state.backArrowToggle}
                 sessionToken={this.state.sessionToken}
                 setBackArrowToggle={this.state.setBackArrowToggle}
              
-              />
+              /> */}
             </Route>
 
             <Route exact path="/addevent">
-              <AddEvent  
+              {/* <AddEvent  
               clearToken={this.clearToken}
                 setIsAdminTrue={this.state.setIsAdminTrue}
                 backArrowToggle={this.state.backArrowToggle}
                 sessionToken={this.state.sessionToken}
                 setBackArrowToggle={this.state.setBackArrowToggle}
              
-              />
+              /> */}
             </Route>
           </Switch>
         </BrowserRouter>

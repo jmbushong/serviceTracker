@@ -140,7 +140,7 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
  
              <Box className="progressCircle">
             <CircularProgressbar
-              styles={{ path: { stroke: "#06d6a0" }, text: { fill: "white" } }}
+              styles={{ path: { stroke: "#06d6a0" }, text: { fill: "black" } }}
               value={(sum / 30) * 100}
               text={`${sum}/30`}
             />
