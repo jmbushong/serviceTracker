@@ -97,13 +97,14 @@ class Signup extends React.Component<AcceptedProps, {}> {
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <TextField
-                    autoComplete="fname"
+              
                     name="firstName"
                     variant="outlined"
                     required
                     fullWidth
                     id="firstName"
                     label="First Name"
+                    autoComplete="off"
                     autoFocus
                     onChange={(e) => {
                       this.props.setFirstName(e.target.value);
@@ -120,7 +121,7 @@ class Signup extends React.Component<AcceptedProps, {}> {
                     id="lastName"
                     label="Last Name"
                     name="lastName"
-                    autoComplete="lname"
+                    autoComplete="off"
                     onChange={(e) => {
                       this.props.setLastName(e.target.value);
                       console.log(this.props.lastName);
@@ -136,7 +137,7 @@ class Signup extends React.Component<AcceptedProps, {}> {
                     id="email"
                     label="Email Address"
                     name="email"
-                    autoComplete="email"
+                    autoComplete="off"
                     onChange={(e) => {
                       this.props.setEmail(e.target.value);
                       console.log(this.props.email);
@@ -153,7 +154,7 @@ class Signup extends React.Component<AcceptedProps, {}> {
                     label="Password"
                     type="password"
                     id="password"
-                    autoComplete="current-password"
+                    autoComplete="off"
                     onChange={(e) => {
                       this.props.setPassword(e.target.value);
                       console.log(this.props.password);
@@ -170,7 +171,7 @@ class Signup extends React.Component<AcceptedProps, {}> {
                     label="Enter Class Code "
                     type="password"
                     id="password"
-                    autoComplete="current-password"
+                    autoComplete="off"
                     onChange={(e) => {
                       this.props.setClassCode(e.target.value);
                       console.log(this.props.setClassCode);

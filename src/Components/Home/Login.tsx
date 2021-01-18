@@ -179,7 +179,7 @@ class Login extends React.Component<AcceptedProps, {}> {
                     id="email"
                     label="Email Address"
                     name="email"
-                    autoComplete="email"
+                    autoComplete="off"
                     onChange={(e) => {
                       this.props.setEmail(e.target.value);
                       console.log(this.props.email);
@@ -196,7 +196,7 @@ class Login extends React.Component<AcceptedProps, {}> {
                     label="Password"
                     type="password"
                     id="password"
-                    autoComplete="current-password"
+                    autoComplete="off"
                     onChange={(e) => {
                       this.props.setPassword(e.target.value);
                       console.log(this.props.password);

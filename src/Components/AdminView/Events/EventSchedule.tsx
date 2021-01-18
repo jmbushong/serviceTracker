@@ -45,26 +45,42 @@ type myState = {
   setEventInfo: (e: any) => void;
   eventId: any;
   setEventId: (e: any) => void;
+  date: any;
+  setDate: (e: any) => void;
+ title: any;
+  setTitle: (e: any) => void;
 
   setOpen: (e: any) => void;
   open: any;
   setOpen2: (e: any) => void;
   open2: any;
-  title: any;
-  setTitle: (e: any) => void;
+  oneEvent: any;
+  setOneEvent: (e: any) => void;
 };
 
 class EventSchedule extends React.Component<AcceptedProps, myState> {
   constructor(props: AcceptedProps) {
     super(props);
     this.state = {
+      date: "",
+      setDate: (entry) => {
+        this.setState({ date: entry });
+      },
+     title: "",
+      setTitle: (entry) => {
+        this.setState({ date: entry });
+      },
+      oneEvent: [],
       eventInfo: [],
+      setOneEvent: (entry) => {
+        this.setState({ oneEvent: entry });
+      },
       setEventInfo: (entry) => {
-        this.setState({eventInfo: entry });
+        this.setState({ eventInfo: entry });
       },
       eventId: 900,
       setEventId: (entry) => {
-        this.setState({eventId: entry });
+        this.setState({ eventId: entry });
       },
       open: false,
       setOpen: (entry) => {
@@ -74,21 +90,13 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
       setOpen2: (entry) => {
         this.setState({ open2: entry });
       },
-      title: " ",
-      setTitle: (entry) => {
-        this.setState({ title: entry });
-      },
     };
   }
 
   handleClickOpen = () => {
     this.state.setOpen(true);
-  };
-
-  handleClickOpen2 = () => {
-    this.state.setOpen2(true);
+  
     
-   
   };
 
   handleClickClose = () => {
@@ -98,8 +106,13 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
   componentDidMount() {
     this.props.setIsAdminTrue(true);
     this.props.setBackArrowToggle(true);
-    this.fetchService();
+    this.fetchEvents();
+    
   }
+
+  handleClickOpen2 = () => {
+    this.state.setOpen2(true);
+  };
 
   deleteEvent = async (id: number) => {
     try {
@@ -114,13 +127,13 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
       console.log(json);
 
       this.props.setBackArrowToggle(true);
-      this.fetchService();
+      this.fetchEvents();
     } catch (err) {
       console.log(err);
     }
   };
 
-  fetchService = () => {
+  fetchEvents = () => {
     fetch(`http://localhost:4000/events`, {
       method: "GET",
       headers: new Headers({
@@ -133,6 +146,21 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
         console.log(json);
         this.state.setEventInfo(json);
         console.log(this.state.eventInfo);
+      });
+  };
+
+  fetchEventRequests = (id:any) => {
+    fetch(`http://localhost:4000/events/${id}`, {
+      method: "GET",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        Authorization: this.props.sessionToken,
+      }),
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        this.state.setOneEvent(json);
+        console.log(this.state.oneEvent);
       });
   };
 
@@ -198,10 +226,10 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
                       onClick={() => {
                         this.handleClickOpen2();
                         this.setState({
-                          eventId: this.state.eventInfo[index]
+                          eventId: this.state.eventInfo[index],
                         });
-                        console.log(this.state.eventId)
-                    
+                        this.fetchEventRequests(this.state.eventInfo[index]?.id)
+                        console.log(this.state.eventId);
                       }}
                     />
                     <DeleteIcon
@@ -216,19 +244,26 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
                     />
 
                     <div>
+                     
                       <UpdateEvent
                         open2={this.state.open2}
                         eventInfo={this.state.eventInfo}
+                        setEventInfo={this.state.setEventInfo}
                         setOpen2={this.state.setOpen2}
                         eventId={this.state.eventId}
+                        sessionToken={this.props.sessionToken}
+                        fetchEvents={this.fetchEvents}
+                        oneEvent={this.state.oneEvent}
+                        setOneEvent={this.state.setOneEvent}
+
+
                       />
                       <AddEvents
-                        fetchService={this.fetchService}
+                        fetchEvents={this.fetchEvents}
                         open={this.state.open}
                         eventInfo={this.state.eventInfo}
                         setOpen={this.state.setOpen}
                         sessionToken={this.props.sessionToken}
-                       
                       />
                     </div>
                   </div>
@@ -283,7 +318,16 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
               </Accordion>
             ))
           ) : (
-            <div></div>
+            <div>
+              You currently have no events scheduled
+              <AddEvents
+                fetchEvents={this.fetchEvents}
+                open={this.state.open}
+                eventInfo={this.state.eventInfo}
+                setOpen={this.state.setOpen}
+                sessionToken={this.props.sessionToken}
+              />
+            </div>
           )}
         </div>
         {console.log(this.state.eventInfo.title)}

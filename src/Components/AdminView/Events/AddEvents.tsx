@@ -1,16 +1,15 @@
 import React, { Component } from "react";
-import EditIcon from "@material-ui/icons/Edit";
-import DeleteIcon from "@material-ui/icons/Delete";
+
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
+
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import { Link } from "react-router-dom";
+
 import FormControl from "@material-ui/core/FormControl";
 import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -21,7 +20,7 @@ type AcceptedProps = {
   sessionToken?: any;
   eventInfo: any;
   setOpen: (e: any) => void;
-fetchService:any;
+fetchEvents:any;
   open: any;
 };
 
@@ -82,14 +81,14 @@ class AddEvent extends React.Component<AcceptedProps, myState> {
       if (response.status === 200) {
         console.log("Event submission was successful");
         this.state.setEventUpdate(true);
-        //set each prop to empty
+        // set each prop to empty
         this.state.setDate("");
         this.state.setHours(0);
         this.state.setTitle("");
         this.state.setDescription("");
         this.state.setLocation("");
         this.props.setOpen(false);
-        this.props.fetchService();
+        this.props.fetchEvents();
       } else {
         console.log("Event submission failed");
       }
@@ -127,6 +126,7 @@ class AddEvent extends React.Component<AcceptedProps, myState> {
               <Grid item xs={12} sm={6}>
                 <form noValidate>
                   <TextField
+                     
                     id="date"
                     label="Date of Service"
                     type="date"
@@ -145,11 +145,12 @@ class AddEvent extends React.Component<AcceptedProps, myState> {
               <Grid item xs={12}>
                 <FormControl style={{ minWidth: 160 }}>
                   <TextField
+                      autoComplete="off"
                     autoFocus
                     margin="dense"
                     id="name"
                     label="Title of Event"
-                    type="email"
+                    type="text"
                     fullWidth
                     onChange={(e) => {
                     
@@ -159,14 +160,15 @@ class AddEvent extends React.Component<AcceptedProps, myState> {
                     defaultValue={" "}
                   />
                   <TextField
+                      autoComplete="off"
                     autoFocus
                     margin="dense"
                     id="name"
                     label="Location"
-                    type="email"
+                    type="text"
                     fullWidth
                     onChange={(e) => {
-              
+                    
                       this.state.setLocation(e.target.value);
                      
                     }}
@@ -176,6 +178,7 @@ class AddEvent extends React.Component<AcceptedProps, myState> {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                    autoComplete="off"
                   variant="outlined"
                   required
                   fullWidth
