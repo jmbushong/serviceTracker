@@ -113,7 +113,7 @@ class ViewEvents extends React.Component  <AcceptedProps, myState> {
             </Box>
             {this.state.eventInfo.length > 0 ? (
               this.state.eventInfo.map((event: any, index: any) => (
-                <Accordion key={this.state.eventInfo.id} square>
+                <Accordion style={{ margin: ".5px" }} key={this.state.eventInfo.id} square>
                   <AccordionSummary
                     aria-controls="panel1d-content"
                     id="panel1d-header"
@@ -173,7 +173,7 @@ class ViewEvents extends React.Component  <AcceptedProps, myState> {
                 </Accordion>
               ))
             ) : (
-              <div></div>
+              <div style={{marginTop: "30px"}}> There are no upcoming events. </div>
             )}
           </div>
           {console.log(this.state.eventInfo.title)}

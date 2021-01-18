@@ -241,7 +241,7 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
           {this.state.eventInfo.length > 0 ? (
             this.state.eventInfo.map((event: any, index: any) => (
               <Accordion
-                style={{ margin: "1px" }}
+                style={{ margin: ".5px" }}
                 key={this.state.eventInfo.id}
                 square
               >
