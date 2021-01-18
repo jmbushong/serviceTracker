@@ -1,31 +1,27 @@
 import React, { Component } from "react";
-import Sitebar from "../../Sitebar/Sitebar";
 
+import Sitebar from "../../Sitebar/Sitebar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import Grid from "@material-ui/core/Grid";
-
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import { Link } from "react-router-dom";
+
 import { Redirect } from "react-router-dom";
 
+//This component enables students to ADD service entries for approval
+
 type AcceptedProps = {
-  setBackArrowToggle:(e:any)=>void;
+  setBackArrowToggle: (e: any) => void;
   setIsAdminFalse: any;
   isAdmin: any;
   sessionToken?: any;
   backArrowToggle: any;
-  // arrowHandler: any;
   clearToken: any;
   date: any;
   typeOfService: any;
@@ -40,22 +36,27 @@ type AcceptedProps = {
   setStatus: (e: any) => void;
 };
 
-type myState={
-  serviceUpdate:boolean;
-  setServiceUpdate:(e:any)=> void;
-}
+type myState = {
+  serviceUpdate: boolean;
+  setServiceUpdate: (e: any) => void;
+};
 
 class AddServiceHours extends React.Component<AcceptedProps, myState> {
   constructor(props: AcceptedProps) {
     super(props);
     this.state = {
-      serviceUpdate:false,
-      setServiceUpdate: (e) => {this.setState({serviceUpdate: e})}
+      serviceUpdate: false,
+      setServiceUpdate: (e) => {
+        this.setState({ serviceUpdate: e });
+      },
     };
- 
   }
+
+  // ComponentDidMount: 
+  //1) Keeps back arrow off of landing page sitebar 
+  //2. If page refreshes, the user will be brought back to this page
   componentDidMount() {
-    this.props.setBackArrowToggle(true) 
+    this.props.setBackArrowToggle(true);
     this.props.setIsAdminFalse(false);
     if (!this.props.sessionToken) {
       return <Redirect to="/" />;
@@ -66,6 +67,11 @@ class AddServiceHours extends React.Component<AcceptedProps, myState> {
     }
   }
 
+  //This submit enables a user to post a new service entry
+  //In the fetch a few things are happening
+  //1. Entry posts to database
+  //2. serviceUpdate value is set to true- thus redirecting to /mydashboard
+  //3. setting prop values back to zero
   handleSubmit = (event: any) => {
     event.preventDefault();
     fetch(`http://localhost:4000/service`, {
@@ -81,40 +87,46 @@ class AddServiceHours extends React.Component<AcceptedProps, myState> {
       }),
       headers: new Headers({
         "Content-Type": "application/json",
-        Authorization: this.props.sessionToken
+        Authorization: this.props.sessionToken,
       }),
     }).then((response) => {
       if (response.status === 200) {
         console.log("Service submission was successful");
         this.state.setServiceUpdate(true);
         //set each prop to empty
-        this.props.setDate("")
-        this.props.setHours(0)
-        this.props.setTypeOfService("")
-        this.props.setDescription("")
+        this.props.setDate("");
+        this.props.setHours(0);
+        this.props.setTypeOfService("");
+        this.props.setDescription("");
       } else {
         console.log("Service submission failed");
       }
       return response.json();
     });
   };
-  checkForServiceEntry=() => {
-    if (this.state.serviceUpdate){
-      return <Redirect to="/mydashboard"/>
+
+  //When an entry is successful posted, the user
+  //is brought back to student dashboard
+  checkForServiceEntry = () => {
+    if (this.state.serviceUpdate) {
+      return <Redirect to="/mydashboard" />;
     }
-  }
+  };
 
   render() {
     return (
       <div>
         <Sitebar
           backArrowToggle={this.props.backArrowToggle}
-          // arrowHandler={this.props.arrowHandler}
           clearToken={this.props.clearToken}
           sessionToken={this.props.sessionToken}
         />
         <Container
-          style={{ paddingLeft: "40px", paddingRight: "40px", marginTop:"100px" }}
+          style={{
+            paddingLeft: "40px",
+            paddingRight: "40px",
+            marginTop: "100px",
+          }}
           component="main"
           maxWidth="xs"
         >
@@ -169,9 +181,7 @@ class AddServiceHours extends React.Component<AcceptedProps, myState> {
                       <MenuItem value={"NJHS Sponsored Event"}>
                         NJHS Sponsored Event
                       </MenuItem>
-                      <MenuItem value={"Volunteering"}>
-                        Volunteering
-                      </MenuItem>
+                      <MenuItem value={"Volunteering"}>Volunteering</MenuItem>
                       <MenuItem value={"Other"}>Other</MenuItem>
                     </Select>
                   </FormControl>{" "}
@@ -215,14 +225,14 @@ class AddServiceHours extends React.Component<AcceptedProps, myState> {
                 </Grid>
               </Grid>
               {/* <Link to="/mydashboard"> */}
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  style={{backgroundColor: "#ef476f", color: "white"}}
-                >
-                 <h3>Submit</h3> 
-                </Button>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                style={{ backgroundColor: "#ef476f", color: "white" }}
+              >
+                <h3>Submit</h3>
+              </Button>
               {/* </Link> */}
               <Grid container justify="flex-end"></Grid>
             </form>

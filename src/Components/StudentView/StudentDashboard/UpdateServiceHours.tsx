@@ -200,14 +200,14 @@ class UpdateServiceHours extends React.Component <AcceptedProps, myState>{
               sessionToken={this.props.sessionToken}
         />
         <Container
-          style={{ paddingLeft: "40px", paddingRight: "40px" }}
+          style={{ paddingLeft: "40px", paddingRight: "40px", marginTop:"100px" }}
           component="main"
           maxWidth="xs"
         >
           <CssBaseline />
-          <div style={{ marginTop: "25px" }}>
-            <Typography component="h1" variant="h5">
-              Edit Service
+          <div  style={{ marginTop: "25px" }}>
+          <Typography component="h1" variant="h4" className="signupTitle">
+              Edit Service Entry
             </Typography>
 
             <br></br>
@@ -309,7 +309,7 @@ class UpdateServiceHours extends React.Component <AcceptedProps, myState>{
                   type="submit"
                   fullWidth
                   variant="contained"
-                  color="primary"
+                  style={{backgroundColor: "#ef476f", color: "white"}}
                   //if less than one diabled 
                 >
                   UPDATE

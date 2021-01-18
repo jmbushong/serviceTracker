@@ -1,40 +1,25 @@
 import React, { Component } from "react";
+
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import AddEvents from "./AddEvents";
 import UpdateEvent from "./UpdateEvents";
 import Box from "@material-ui/core/Box";
-
 import AddBoxIcon from "@material-ui/icons/AddBox";
-import MenuItem from "@material-ui/core/MenuItem";
-
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
-
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-
-import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
-
-import TextField from "@material-ui/core/TextField";
-
 import AdminSitebar from "../../Sitebar/AdminSitebar";
-import Grid from "@material-ui/core/Grid";
-
 import Typography from "@material-ui/core/Typography";
-import InputLabel from "@material-ui/core/InputLabel";
 
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import { Link } from "react-router-dom";
+//This component shows the Events that are currently scheduled
+//This component also has links to EDIT EVENTS & ADD EVENTS
+// Delete functionality is also built in here
 
 type AcceptedProps = {
   sessionToken?: any;
   backArrowToggle: any;
-  // arrowHandler: any;
   clearToken: any;
   setBackArrowToggle: (e: any) => void;
   setIsAdminTrue: (e: any) => void;
@@ -47,13 +32,13 @@ type myState = {
   setEventId: (e: any) => void;
   date: any;
   setDate: (e: any) => void;
- title: any;
+  title: any;
   setTitle: (e: any) => void;
   description: any;
   setDescription: (e: any) => void;
- location: any;
+  location: any;
   setLocation: (e: any) => void;
- hours: any;
+  hours: any;
   setHours: (e: any) => void;
 
   setOpen: (e: any) => void;
@@ -62,7 +47,7 @@ type myState = {
   open2: any;
   oneEvent: any;
   setOneEvent: (e: any) => void;
-  eventInfoIndex:any;
+  eventInfoIndex: any;
   setEventInfoIndex: (e: any) => void;
 };
 
@@ -70,15 +55,15 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
   constructor(props: AcceptedProps) {
     super(props);
     this.state = {
-      hours:"",
+      hours: "",
       setHours: (entry) => {
         this.setState({ hours: entry });
       },
-     location:"",
+      location: "",
       setLocation: (entry) => {
         this.setState({ location: entry });
       },
-      description:"",
+      description: "",
       setDescription: (entry) => {
         this.setState({ description: entry });
       },
@@ -90,7 +75,7 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
       setDate: (entry) => {
         this.setState({ date: entry });
       },
-     title: "",
+      title: "",
       setTitle: (entry) => {
         this.setState({ title: entry });
       },
@@ -117,27 +102,34 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
     };
   }
 
+  //This function opens up ADD EVENTS modal
   handleClickOpen = () => {
     this.state.setOpen(true);
-  
-    
   };
 
-  handleClickClose = () => {
-    this.state.setOpen(false);
-  };
-
-  componentDidMount() {
-    this.props.setIsAdminTrue(true);
-    this.props.setBackArrowToggle(true);
-    this.fetchEvents();
-    
-  }
-
+  //This function opens up the UPDATE EVENTS modal
   handleClickOpen2 = () => {
     this.state.setOpen2(true);
   };
 
+  //This function closes the ADD EVENTS modal
+  handleClickClose = () => {
+    this.state.setOpen(false);
+  };
+
+  //When the component loads:
+  //1. Admin is set as true. AKA If a user refreshes the page, they will be
+  //redirected to admin landing
+  //2. Back Arrow is Present on this page
+  //3. Events are fetched, so the table can be populated
+  componentDidMount() {
+    this.props.setIsAdminTrue(true);
+    this.props.setBackArrowToggle(true);
+    this.fetchEvents();
+  }
+
+  //This function deletes a specific event when the user clicks trashcan
+  //After deleting the event, fetchEvents() is called, to get updated info
   deleteEvent = async (id: number) => {
     try {
       const response = await fetch(`http://localhost:4000/events/${id}`, {
@@ -174,9 +166,16 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
       });
   };
 
+  //This fetch is called when the button is clicked and pulls info for individual event
+  //Notice that it takes an argument that is specified down in the return
+  //------This allow us to actually select a specific event
+  //After the fetch is run, we update the state of all our variables
+  //------This ensures that we have the most up-to-date info
+  //------ when autopopulating our PUT form
+  //-------It also makes sure that if a user only updates one detail
+  //-------the rest of the items will have a value and not be blank
 
-  //This fetch is called when the button is click and pulls info for individual event
-  fetchEventRequests = (id:any) => {
+  fetchEventRequests = (id: any) => {
     fetch(`http://localhost:4000/events/${id}`, {
       method: "GET",
       headers: new Headers({
@@ -184,18 +183,18 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
         Authorization: this.props.sessionToken,
       }),
     })
-      .then((res => res.json()))
+      .then((res) => res.json())
       .then((json) => {
-        console.log(json)
-        console.log(json.date)
+        console.log(json);
+        console.log(json.date);
         this.state.setOneEvent(json);
-        this.state.setDate(this.state.eventInfoIndex.date)
-        this.state.setTitle(this.state.eventInfoIndex.title)
-        this.state.setDescription(this.state.eventInfoIndex.description)
-        this.state.setLocation(this.state.eventInfoIndex.location)
-        this.state.setHours(this.state.eventInfoIndex.hours)
+        this.state.setDate(this.state.eventInfoIndex.date);
+        this.state.setTitle(this.state.eventInfoIndex.title);
+        this.state.setDescription(this.state.eventInfoIndex.description);
+        this.state.setLocation(this.state.eventInfoIndex.location);
+        this.state.setHours(this.state.eventInfoIndex.hours);
         console.log(this.state.oneEvent);
-        console.log(this.state.date)
+        console.log(this.state.date);
       });
   };
 
@@ -252,32 +251,34 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
                 >
                   <Typography style={{ marginLeft: "15px" }}>
                     {this.state.eventInfo[index].date}
-                    {/* {this.handleIndex(this.state.eventInfo[index])} */}
                   </Typography>
                   <Typography style={{ marginLeft: "35px" }}>
                     {this.state.eventInfo[index].title}
                   </Typography>
                   <div style={{ marginLeft: "auto" }}>
+                  {/* On this icon a few things are happening:
+                  1. The modal opens. 
+                  2. I'm storing the value of the index to a variable, so I can use this in UpdateEvents.tsx 
+                  3. I'm sending the id of this entry to fetchEventRequests, so I can collect & store all info related to this id */}
                     <EditIcon
                       onClick={() => {
                         this.handleClickOpen2();
-                
-                        // this.setState({
-                        //   eventId: this.state.eventInfo[index],
-                        // });
-                       
+
                         this.state.setEventInfoIndex(
                           this.state.eventInfo[index]
                         );
-                        this.fetchEventRequests(this.state.eventInfo[index]?.id)
-                        console.log(this.state.eventInfo[index]);
+                        this.fetchEventRequests(
+                          this.state.eventInfo[index]?.id
+                        );
+                      
                       }}
                     />
+                    {/* To get the delete icon working, I need to be able to access the id of the specific event. I do this by passing the id into the deleteEvent function as an argument.  */}
                     <DeleteIcon
                       onClick={() => {
                         try {
                           this.deleteEvent(this.state.eventInfo[index]?.id);
-                          console.log(this.state.eventInfo[index]?.id);
+                        
                         } catch (err) {
                           console.log(err);
                         }
@@ -285,33 +286,24 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
                     />
 
                     <div>
-                     
                       <UpdateEvent
                         hours={this.state.hours}
-                     
                         setHours={this.state.setHours}
-                       location={this.state.location}
-                     
-                       setLocation={this.state.setLocation}
-                      title={this.state.title}
-                      setDate={this.state.setDate}
-                      setTitle={this.state.setTitle}
-                      setDescription={this.state.setDescription}
-                      description={this.state.description}
+                        location={this.state.location}
+                        setLocation={this.state.setLocation}
+                        title={this.state.title}
+                        setDate={this.state.setDate}
+                        setTitle={this.state.setTitle}
+                        setDescription={this.state.setDescription}
+                        description={this.state.description}
                         open2={this.state.open2}
                         date={this.state.date}
-               
                         eventInfo={this.state.eventInfo}
                         eventInfoIndex={this.state.eventInfoIndex}
-                        // setEventInfo={this.state.setEventInfo}
                         setOpen2={this.state.setOpen2}
-                        // eventId={this.state.eventId}
                         sessionToken={this.props.sessionToken}
                         fetchEvents={this.fetchEvents}
                         oneEvent={this.state.oneEvent}
-                        // setOneEvent={this.state.setOneEvent}
-
-
                       />
                       <AddEvents
                         fetchEvents={this.fetchEvents}
@@ -373,8 +365,9 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
               </Accordion>
             ))
           ) : (
-            <div>
-              You currently have no events scheduled
+            <div style={{marginTop: "30px"}}>
+              You currently have no events scheduled.
+              {/* I needed to put AddEvents here as well. Otherwise, the modal won't open unless a user has already created events */}
               <AddEvents
                 fetchEvents={this.fetchEvents}
                 open={this.state.open}
@@ -385,7 +378,6 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
             </div>
           )}
         </div>
-        {console.log(this.state.eventInfo.title)}
       </div>
     );
   }
