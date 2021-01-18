@@ -9,13 +9,8 @@ import AdminSitebar from "../Sitebar/AdminSitebar";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
+import { Redirect } from "react-router-dom";
+
 import EditStudentAccounts from "../AdminView/EditStudentAccounts"
 
 type AcceptedProps = {
@@ -30,18 +25,50 @@ type AcceptedProps = {
 };
 
 type MyState = {
+  firstName:any;
+  lastName:any;
+  email:any;
+  password:any;
+  setFirstName: (e: any) => void;
+  setLastName: (e: any) => void;
+  setEmail: (e: any) => void;
+  setPassword: (e: any) => void;
   studentAccounts: any;
   setStudentAccounts: (e: any) => void;
   userId: any;
   setUserId: (e: any) => void;
   setOpen: (e: any) => void;
   open: any;
+  oneStudent:any;
+  setOneStudent:(e:any) => void;
 };
 
 class ManageAccounts extends React.Component<AcceptedProps, MyState> {
   constructor(props: AcceptedProps) {
     super(props);
     this.state = {
+      oneStudent: [],
+      setOneStudent: (entry) => {
+        this.setState({ oneStudent: entry });
+      },
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      setFirstName: (entry) => {
+        this.setState({ firstName: entry });
+      },
+      setLastName: (entry) => {
+        this.setState({ lastName: entry });
+      },
+      setEmail: (entry) => {
+        this.setState({ email: entry });
+      },
+      setPassword: (entry) => {
+        this.setState({ password: entry });
+      },
+
+
       userId: 800,
       setUserId: (entry) => {
         this.setState({ userId: entry });
@@ -64,6 +91,7 @@ class ManageAccounts extends React.Component<AcceptedProps, MyState> {
 
   handleClickClose = () => {
     this.state.setOpen(false);
+
   
   };
 
@@ -98,7 +126,7 @@ class ManageAccounts extends React.Component<AcceptedProps, MyState> {
 
   //This fetch gets all information linked to the classId that is logged in. I then took the list of students and set it to the variable studentData. This is the variable I will use to map over the page.
   fetchTeacherData = () => {
-    fetch(`http://localhost:4000/teacherUser`, {
+    fetch(`http://localhost:4000/user/all`, {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -109,16 +137,37 @@ class ManageAccounts extends React.Component<AcceptedProps, MyState> {
       .then((json) => {
         console.log(json);
         console.log(json.classId);
-        this.state.setStudentAccounts(json.studentUsers);
+        this.state.setStudentAccounts(json);
         console.log(this.state.studentAccounts);
       });
   };
 
+  fetchSpecificStudent = (id: any) => {
+    fetch(`http://localhost:4000/user/${id}`, {
+      method: "GET",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        Authorization: this.props.sessionToken,
+      }),
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json);
+        console.log(json.date);
+        this.state.setOneStudent(json);
+        this.state.setFirstName(this.state.userId.firstName);
+        this.state.setLastName(this.state.userId.lastName);
+        this.state.setEmail(this.state.userId.email);
+        this.state.setPassword(this.state.userId.password);
+     
+   
+      });
+  };
 
   //This fetch updates the information This will be tricky.
 
   // UpdateStudentData = () => {
-  //   fetch(`http://localhost:4000/teacherUser/${this.state.studentAccounts[index].id}`, {
+  //   fetch(`http://localhost:4000/user/${this.props.userid.id}`, {
   //     method: "PUT",
   //     body: JSON.stringify({
 
@@ -130,10 +179,9 @@ class ManageAccounts extends React.Component<AcceptedProps, MyState> {
   //   })
   //     .then((res) => res.json())
   //     .then((json) => {
-  //       console.log(json);
-  //       console.log(json.classId);
-  //       this.state.setStudentAccounts(json.studentUsers);
-  //       console.log(this.state.studentAccounts);
+       
+  //       this.state.setSpecificStudent(json);
+      
   //     });
   // };
 
@@ -181,17 +229,33 @@ class ManageAccounts extends React.Component<AcceptedProps, MyState> {
                   
                         this.setState({
                             userId: this.state.studentAccounts[index]
-                          })
+                          });
+                          this.fetchSpecificStudent(
+                            this.state.studentAccounts[index].id
+                          );
                         
                   
-                      console.log(this.state.studentAccounts[index].id)
                     }}
                   />
                   <div>
                     <EditStudentAccounts  
+                    setFirstName={this.state.setFirstName}
+                    setLastName={this.state.setLastName}
+                    setEmail={this.state.setEmail}
+                    setPassword={this.state.setPassword}
+                    fetchTeacherData={this.fetchTeacherData}
+
+                
                     open={this.state.open}
                     userId={this.state.userId}
-                    setOpen={this.state.setOpen}/>
+                    setOpen={this.state.setOpen}
+                    sessionToken={this.props.sessionToken}
+                    firstName={this.state.firstName}
+                    lastName={this.state.lastName}
+                   email={this.state.email}
+                   password={this.state.password}
+                 
+                    />
                 
                   </div>
                   <DeleteIcon
