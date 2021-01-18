@@ -49,6 +49,12 @@ type myState = {
   setDate: (e: any) => void;
  title: any;
   setTitle: (e: any) => void;
+  description: any;
+  setDescription: (e: any) => void;
+ location: any;
+  setLocation: (e: any) => void;
+ hours: any;
+  setHours: (e: any) => void;
 
   setOpen: (e: any) => void;
   open: any;
@@ -56,19 +62,37 @@ type myState = {
   open2: any;
   oneEvent: any;
   setOneEvent: (e: any) => void;
+  eventInfoIndex:any;
+  setEventInfoIndex: (e: any) => void;
 };
 
 class EventSchedule extends React.Component<AcceptedProps, myState> {
   constructor(props: AcceptedProps) {
     super(props);
     this.state = {
+      hours:"",
+      setHours: (entry) => {
+        this.setState({ hours: entry });
+      },
+     location:"",
+      setLocation: (entry) => {
+        this.setState({ location: entry });
+      },
+      description:"",
+      setDescription: (entry) => {
+        this.setState({ description: entry });
+      },
+      eventInfoIndex: [],
+      setEventInfoIndex: (entry) => {
+        this.setState({ eventInfoIndex: entry });
+      },
       date: "",
       setDate: (entry) => {
         this.setState({ date: entry });
       },
      title: "",
       setTitle: (entry) => {
-        this.setState({ date: entry });
+        this.setState({ title: entry });
       },
       oneEvent: [],
       eventInfo: [],
@@ -133,6 +157,7 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
     }
   };
 
+  //This fetch is specifically used to populate the chart
   fetchEvents = () => {
     fetch(`http://localhost:4000/events`, {
       method: "GET",
@@ -149,6 +174,8 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
       });
   };
 
+
+  //This fetch is called when the button is click and pulls info for individual event
   fetchEventRequests = (id:any) => {
     fetch(`http://localhost:4000/events/${id}`, {
       method: "GET",
@@ -157,10 +184,18 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
         Authorization: this.props.sessionToken,
       }),
     })
-      .then((res) => res.json())
+      .then((res => res.json()))
       .then((json) => {
+        console.log(json)
+        console.log(json.date)
         this.state.setOneEvent(json);
+        this.state.setDate(this.state.eventInfoIndex.date)
+        this.state.setTitle(this.state.eventInfoIndex.title)
+        this.state.setDescription(this.state.eventInfoIndex.description)
+        this.state.setLocation(this.state.eventInfoIndex.location)
+        this.state.setHours(this.state.eventInfoIndex.hours)
         console.log(this.state.oneEvent);
+        console.log(this.state.date)
       });
   };
 
@@ -217,6 +252,7 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
                 >
                   <Typography style={{ marginLeft: "15px" }}>
                     {this.state.eventInfo[index].date}
+                    {/* {this.handleIndex(this.state.eventInfo[index])} */}
                   </Typography>
                   <Typography style={{ marginLeft: "35px" }}>
                     {this.state.eventInfo[index].title}
@@ -225,11 +261,16 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
                     <EditIcon
                       onClick={() => {
                         this.handleClickOpen2();
-                        this.setState({
-                          eventId: this.state.eventInfo[index],
-                        });
+                
+                        // this.setState({
+                        //   eventId: this.state.eventInfo[index],
+                        // });
+                       
+                        this.state.setEventInfoIndex(
+                          this.state.eventInfo[index]
+                        );
                         this.fetchEventRequests(this.state.eventInfo[index]?.id)
-                        console.log(this.state.eventId);
+                        console.log(this.state.eventInfo[index]);
                       }}
                     />
                     <DeleteIcon
@@ -246,15 +287,29 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
                     <div>
                      
                       <UpdateEvent
+                        hours={this.state.hours}
+                     
+                        setHours={this.state.setHours}
+                       location={this.state.location}
+                     
+                       setLocation={this.state.setLocation}
+                      title={this.state.title}
+                      setDate={this.state.setDate}
+                      setTitle={this.state.setTitle}
+                      setDescription={this.state.setDescription}
+                      description={this.state.description}
                         open2={this.state.open2}
+                        date={this.state.date}
+               
                         eventInfo={this.state.eventInfo}
-                        setEventInfo={this.state.setEventInfo}
+                        eventInfoIndex={this.state.eventInfoIndex}
+                        // setEventInfo={this.state.setEventInfo}
                         setOpen2={this.state.setOpen2}
-                        eventId={this.state.eventId}
+                        // eventId={this.state.eventId}
                         sessionToken={this.props.sessionToken}
                         fetchEvents={this.fetchEvents}
                         oneEvent={this.state.oneEvent}
-                        setOneEvent={this.state.setOneEvent}
+                        // setOneEvent={this.state.setOneEvent}
 
 
                       />
