@@ -120,11 +120,12 @@ class AdminDash extends React.Component <AcceptedProps, myState> {
               Leaderboard
             </h3>
             </Box>
-            <h3 className="marginBottom">
+            <Link to="/managehours">  <h3 className="marginBottom">
               {" "}
               <FontAwesomeIcon className="admindash_icons" icon={faClock} />
               Manage Hours
-            </h3>
+            </h3></Link>
+          
             <Link className="visited" to="/adminevent"><h3 className="marginBottom">
               {" "}
               <FontAwesomeIcon

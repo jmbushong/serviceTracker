@@ -19,6 +19,7 @@ import Sitebar from "./Components/Sitebar/Sitebar";
 import { Redirect } from "react-router-dom";
 import UpdateEvents from "./Components/AdminView/Events/UpdateEvents";
 import AddEvent from "./Components/AdminView/Events/AddEvents";
+import ManageHoursTable from "./Components/AdminView/ManageHours";
 
 //In App.tsx-- set state of indexNumber & setIndexNumber
 //pass indexNumber to UpdateServiceHours
@@ -405,6 +406,19 @@ class App extends React.Component<{}, myState> {
                 teacherAccount={this.state.teacherAccount}
                 backArrowToggle={this.state.backArrowToggle}
                 // arrowHandler={this.arrowHandler}
+                clearToken={this.clearToken}
+                sessionToken={this.state.sessionToken}
+                setBackArrowToggle={this.state.setBackArrowToggle}
+                classCode={this.state.classCode}
+              />
+            </Route>
+
+            <Route exact path="/managehours">
+              <ManageHoursTable
+               setIsAdminTrue={this.state.setIsAdminTrue}
+                teacherAccount={this.state.teacherAccount}
+                backArrowToggle={this.state.backArrowToggle}
+  
                 clearToken={this.clearToken}
                 sessionToken={this.state.sessionToken}
                 setBackArrowToggle={this.state.setBackArrowToggle}
