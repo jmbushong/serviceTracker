@@ -211,7 +211,7 @@ export default class Chart extends React.Component<AcceptedProps, myState> {
                     <TableCell align="center">
                       {this.props.serviceRequests[index]?.hours}{" "}
                     </TableCell>
-                    <TableCell align="center">Awaiting Approval </TableCell>
+                    <TableCell align="center"> {this.props.serviceRequests[index]?.status} </TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell
