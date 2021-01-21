@@ -36,6 +36,8 @@ type myState = {
   serviceRequests: any;
   setServiceRequests: (e: any) => void;
   setOpen: (e: any) => void;
+  update: boolean;
+  setUpdate: (e: any) => void;
 };
 
 export default class ManageHoursTable extends React.Component<
@@ -46,10 +48,14 @@ export default class ManageHoursTable extends React.Component<
     super(props);
     this.state = {
       statusView:"awaiting",
-      status: "awaiting approval",
+      status: "Awaiting Approval",
       serviceRequests: [],
       setServiceRequests: (e) => {
         this.setState({ serviceRequests: e });
+      },
+      update: false,
+      setUpdate: (e) => {
+        this.setState({ update: e });
       },
       // setStatusView: (e) => {
       //   this.setState({ statusView: e });
@@ -64,7 +70,7 @@ export default class ManageHoursTable extends React.Component<
   }
 
   componentDidMount() {
-    this.fetchServiceRequests("nostatus");
+    this.fetchServiceRequests("awaiting");
     this.props.setBackArrowToggle(true);
     this.props.setIsAdminTrue(true);
   }
@@ -85,6 +91,8 @@ export default class ManageHoursTable extends React.Component<
     }).then((response) => {
       if (response.status === 200) {
         console.log("Service status update submission was successful");
+        this.state.setUpdate(true);
+        this.fetchServiceRequests("awaiting")
       } else {
         console.log("Service status update submission failed");
       }
@@ -109,7 +117,35 @@ export default class ManageHoursTable extends React.Component<
     }).then((response) => {
       if (response.status === 200) {
         console.log("Service status update submission was successful");
-        // this.fetchServiceRequests();
+        this.fetchServiceRequests("awaiting")
+      } else {
+        console.log("Service status update submission failed");
+      }
+      return response.json();
+    });
+  };
+
+
+
+  handleSubmit3 = (id: any, currentStatus:any) => {
+    // id.preventDefault();
+
+    fetch(`http://localhost:4000/service/status/${id}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        service: {
+          status: "awaiting approval",
+        },
+      }),
+      headers: new Headers({
+        "Content-Type": "application/json",
+        Authorization: this.props.sessionToken,
+      }),
+    }).then((response) => {
+      if (response.status === 200) {
+        console.log("Service status update submission was successful");
+        
+        currentStatus === "approved" ? this.fetchServiceRequests("approved"): this.fetchServiceRequests("denied")
       } else {
         console.log("Service status update submission failed");
       }
@@ -122,7 +158,7 @@ export default class ManageHoursTable extends React.Component<
     // let url2= `http://localhost:4000/service/${e}`
     let url:any;
 
-    if(e !== undefined){  url=  `http://localhost:4000/service/${e}`} else{ url='http://localhost:4000/service/nostatus'}
+    if(e !== undefined){  url=  `http://localhost:4000/service/${e}`} else{ url='http://localhost:4000/service/awaiting'}
 
     fetch(url, {
       method: "GET",
@@ -175,16 +211,16 @@ export default class ManageHoursTable extends React.Component<
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          defaultValue={"nostatus"}
+          defaultValue={"awaiting"}
           onChange={(e) => {
             console.log(e.target.value);
-           
-            this.fetchServiceRequests(e.target.value)
+            this.fetchServiceRequests(e.target.value);
+            this.setState({statusView: e.target.value})
           }}
           // onChange={(e:any)=> {
           //   this.setState({statusView: e.target.value})}}
         >
-          <MenuItem value={"nostatus"}>Awaiting Approval</MenuItem>
+          <MenuItem value={"awaiting"}>Awaiting Approval</MenuItem>
           <MenuItem value={"approved"}>Approved</MenuItem>
           <MenuItem value={"denied"}>Denied</MenuItem>
         </Select>
@@ -248,7 +284,7 @@ export default class ManageHoursTable extends React.Component<
                       <br></br>
                       {this.state.serviceRequests[index]?.description}
                     </TableCell>
-
+                {this.state.statusView === "awaiting" ?
                     <TableCell align="center">
                       <Button
                         style={{
@@ -287,7 +323,23 @@ export default class ManageHoursTable extends React.Component<
                       >
                         Denied
                       </Button>
-                    </TableCell>
+                    </TableCell> : 
+                    <TableCell>
+                      <Button style={{backgroundColor:"#ffd166"}} variant="contained"
+                      onClick={() => {
+                        // this.setState({ status: "awaiting approval" });
+                        this.handleSubmit3(
+                          this.state.serviceRequests[index]?.id, this.state.statusView
+                        );
+                      }}
+                      //add a second parameter & use that parameter as ternary in handlesubmit3
+                      
+                      >Undo</Button>
+                      
+                      </TableCell>}
+
+
+
                   </TableRow>
                   <TableRow></TableRow>
                 </React.Fragment>
@@ -298,6 +350,8 @@ export default class ManageHoursTable extends React.Component<
           </TableBody>
         </Table>
         {console.log(this.state.status)}
+
+        {console.log(this.state.statusView)}
       </TableContainer>
     );
   }
