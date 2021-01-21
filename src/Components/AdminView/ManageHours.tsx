@@ -134,7 +134,7 @@ export default class ManageHoursTable extends React.Component<
       method: "PUT",
       body: JSON.stringify({
         service: {
-          status: "awaiting approval",
+          status: "Awaiting Approval",
         },
       }),
       headers: new Headers({
