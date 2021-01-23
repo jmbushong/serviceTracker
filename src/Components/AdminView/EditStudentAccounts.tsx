@@ -102,7 +102,7 @@ class EditStudentAccounts extends React.Component<AcceptedProps, myState> {
   //WHY ISN'T THIS REDIRECT WORKING?
   checkForUpdate = () => {
     if (this.state.update) {
-      return <Redirect to="/manageaccounts" />;
+      return <Redirect to="/adminDash" />;
     }
     console.log(this.state.update);
   };
@@ -163,12 +163,12 @@ class EditStudentAccounts extends React.Component<AcceptedProps, myState> {
               margin="dense"
               id="name"
               label="Password"
-              // type="password"
+              type="password"
               fullWidth
               onChange={(e) => {
                 this.props.setPassword(e.target.value);
               }}
-              defaultValue={this.props.userId.password}
+              // defaultValue={this.props.userId.password}
             />
           </DialogContent>
           <DialogActions>

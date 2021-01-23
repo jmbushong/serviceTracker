@@ -98,7 +98,7 @@ class AddEvent extends React.Component<AcceptedProps, myState> {
 
   checkForEventEntry=() => {
     if (this.state.eventUpdate){
-      return <Redirect to="/adminEvent"/>
+      return <Redirect to="/adminDash"/>
     }
   }
 

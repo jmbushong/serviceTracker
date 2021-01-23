@@ -117,7 +117,7 @@ class AdminSitebar extends React.Component<AcceptedProps, myState> {
     const open = Boolean(this.state.anchorE1);
     return (
       <React.Fragment>
-        <AppBar style={{backgroundColor:"white"}} position="static">
+        <AppBar style={{backgroundColor:"white"}} position="absolute">
           <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
             
             {this.props.backArrowToggle === true ? (

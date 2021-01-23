@@ -10,8 +10,10 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { Redirect } from "react-router-dom";
+import Container from "@material-ui/core/Container";
+import Paper from "@material-ui/core/Paper";
 
-import EditStudentAccounts from "../AdminView/EditStudentAccounts"
+import EditStudentAccounts from "../AdminView/EditStudentAccounts";
 
 type AcceptedProps = {
   sessionToken?: any;
@@ -25,10 +27,10 @@ type AcceptedProps = {
 };
 
 type MyState = {
-  firstName:any;
-  lastName:any;
-  email:any;
-  password:any;
+  firstName: any;
+  lastName: any;
+  email: any;
+  password: any;
   setFirstName: (e: any) => void;
   setLastName: (e: any) => void;
   setEmail: (e: any) => void;
@@ -39,8 +41,8 @@ type MyState = {
   setUserId: (e: any) => void;
   setOpen: (e: any) => void;
   open: any;
-  oneStudent:any;
-  setOneStudent:(e:any) => void;
+  oneStudent: any;
+  setOneStudent: (e: any) => void;
 };
 
 class ManageAccounts extends React.Component<AcceptedProps, MyState> {
@@ -68,7 +70,6 @@ class ManageAccounts extends React.Component<AcceptedProps, MyState> {
         this.setState({ password: entry });
       },
 
-
       userId: 800,
       setUserId: (entry) => {
         this.setState({ userId: entry });
@@ -91,13 +92,11 @@ class ManageAccounts extends React.Component<AcceptedProps, MyState> {
 
   handleClickClose = () => {
     this.state.setOpen(false);
-
-  
   };
 
   componentDidMount() {
     // this.props.arrowHandler();
-    this.props.setBackArrowToggle(true);
+    // this.props.setBackArrowToggle(true);
     this.props.setIsAdminTrue(true);
 
     this.fetchTeacherData();
@@ -159,8 +158,6 @@ class ManageAccounts extends React.Component<AcceptedProps, MyState> {
         this.state.setLastName(this.state.userId.lastName);
         this.state.setEmail(this.state.userId.email);
         this.state.setPassword(this.state.userId.password);
-     
-   
       });
   };
 
@@ -179,51 +176,78 @@ class ManageAccounts extends React.Component<AcceptedProps, MyState> {
   //   })
   //     .then((res) => res.json())
   //     .then((json) => {
-       
+
   //       this.state.setSpecificStudent(json);
-      
+
   //     });
   // };
-
 
   render() {
     return (
       <Box>
-        <AdminSitebar
+        {/* <AdminSitebar
           backArrowToggle={this.props.backArrowToggle}
           // arrowHandler={this.props.arrowHandler}
           clearToken={this.props.clearToken}
           sessionToken={this.props.sessionToken}
-        />
-        <Typography
+        /> */}
+        {/* <Typography
           className="adminTitle"
           component="h2"
           variant="h5"
-          style={{ textAlign: "center", margin: "30px" }}
+          style={{ textAlign: "center", margin: "30px", color:"black" }}
         >
           Student Accounts
-        </Typography>
+        </Typography> */}
 
-        <Box className="studentAccounts">
+        <Container
+          maxWidth="lg"
+          style={{ height: "80vh", paddingLeft:"0" }}
+          className="studentAccounts"
+        >
           {" "}
+          <Typography
+            className="adminTitle"
+            component="h2"
+            variant="h5"
+            style={{
+              textAlign: "center",
+              marginTop: "80px",
+              paddingTop: "30px",
+              color: "black",
+            }}
+          >
+            Student Accounts
+          </Typography>
           {this.state.studentAccounts.length > 0 ? (
             this.state.studentAccounts.map((service: any, index: any) => (
               <Box width="auto" key={this.state.studentAccounts.id}>
                 <List component="nav" aria-label="main mailbox folders"></List>
                 <ListItem className="accountRows" button>
-                  <ListItemIcon>
-                    <AccountCircleIcon />
-                  </ListItemIcon>
+        
+        
                   <ListItemText>
-                    {this.state.studentAccounts[index]?.firstName +
-                      " " +
-                      this.state.studentAccounts[index]?.lastName}
-                  </ListItemText>
-                  <ListItemText>
-                    {" "}
+                    <h4 style={{ display: "inline" }}>
+                      {" "}
+                      {this.state.studentAccounts[index]?.firstName +
+                        " " +
+                        this.state.studentAccounts[index]?.lastName}{" "}
+                    </h4>
+                    <div style={{ display: "inline" }}>
+                      {" "}
+                
+                    
+                    </div>{" "}
+                   {" "}
+                    <br></br>
                     {this.state.studentAccounts[index]?.email}
+                    <br></br>
                   </ListItemText>
-                  <EditIcon
+                  {/* <ListItemText>
+          
+                    {this.state.studentAccounts[index]?.email}
+                  </ListItemText> */}
+                  {/* <EditIcon
                     onClick={() => {
                       this.handleClickOpen();
                   
@@ -236,29 +260,25 @@ class ManageAccounts extends React.Component<AcceptedProps, MyState> {
                         
                   
                     }}
-                  />
+                  /> */}
                   <div>
-                    <EditStudentAccounts  
-                    setFirstName={this.state.setFirstName}
-                    setLastName={this.state.setLastName}
-                    setEmail={this.state.setEmail}
-                    setPassword={this.state.setPassword}
-                    fetchTeacherData={this.fetchTeacherData}
-
-                
-                    open={this.state.open}
-                    userId={this.state.userId}
-                    setOpen={this.state.setOpen}
-                    sessionToken={this.props.sessionToken}
-                    firstName={this.state.firstName}
-                    lastName={this.state.lastName}
-                   email={this.state.email}
-                   password={this.state.password}
-                 
+                    <EditStudentAccounts
+                      setFirstName={this.state.setFirstName}
+                      setLastName={this.state.setLastName}
+                      setEmail={this.state.setEmail}
+                      setPassword={this.state.setPassword}
+                      fetchTeacherData={this.fetchTeacherData}
+                      open={this.state.open}
+                      userId={this.state.userId}
+                      setOpen={this.state.setOpen}
+                      sessionToken={this.props.sessionToken}
+                      firstName={this.state.firstName}
+                      lastName={this.state.lastName}
+                      email={this.state.email}
+                      password={this.state.password}
                     />
-                
                   </div>
-                  <DeleteIcon
+                  {/* <DeleteIcon
                     onClick={() => {
                       try {
                         this.deleteEntryAsync2(
@@ -269,14 +289,41 @@ class ManageAccounts extends React.Component<AcceptedProps, MyState> {
                         console.log(err);
                       }
                     }}
-                  />
+                  /> */}
+                <EditIcon
+                       
+                       onClick={() => {
+                         this.handleClickOpen();
+
+                         this.setState({
+                           userId: this.state.studentAccounts[index],
+                         });
+                         this.fetchSpecificStudent(
+                           this.state.studentAccounts[index].id
+                         );
+                       }}
+                     />
+               <DeleteIcon
+               style={{marginRight:"0px"}}
+                      onClick={() => {
+                        try {
+                          this.deleteEntryAsync2(
+                            this.state.studentAccounts[index]?.id
+                          );
+                          console.log(this.state.studentAccounts[index]?.id);
+                        } catch (err) {
+                          console.log(err);
+                        }
+                      }}
+                    />
+                    
                 </ListItem>
               </Box>
             ))
           ) : (
             <div>You don't currently have any students. </div>
           )}
-        </Box>
+        </Container>
       </Box>
     );
   }

@@ -149,7 +149,7 @@ a:active {
     margin-right: auto;
   }
   .viewEvents {
-    width: 60vw;
+    
     margin-left: auto;
     margin-right: auto;
 
@@ -299,7 +299,8 @@ height:90vh;
   position: relative;
   text-align: center;
   transform: rotate(20deg);
-  transform:translateY(100px)
+  transform:translateY(100px);
+  margin-top:80px;
 }
 #burst:before {
   content: "";
@@ -315,11 +316,12 @@ height:90vh;
 
 
 .admindash {
-  height: 80vh;
+  height: 100vh;
 
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 40px;
+
+  /* margin-left: auto;
+  margin-right: auto; */
+  margin-top: 100px;
 }
 
 .admindash_div {
@@ -332,9 +334,9 @@ height:90vh;
 }
 
 .admindash_icons {
-  font-size: 35px;
+  font-size: 25px;
   color: #5390d9;
-  margin-right: 35px;
+  margin-left: 15px
 }
 
 
@@ -347,6 +349,7 @@ height:90vh;
 .classCode {
   padding-top: 5px;
   text-align: center;
+  
 
 }
 

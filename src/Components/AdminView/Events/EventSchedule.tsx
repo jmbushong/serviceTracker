@@ -12,6 +12,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import Button from "@material-ui/core/Button";
 import AdminSitebar from "../../Sitebar/AdminSitebar";
 import Typography from "@material-ui/core/Typography";
+import Paper from '@material-ui/core/Paper';
 
 //This component shows the Events that are currently scheduled
 //This component also has links to EDIT EVENTS & ADD EVENTS
@@ -124,7 +125,7 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
   //3. Events are fetched, so the table can be populated
   componentDidMount() {
     this.props.setIsAdminTrue(true);
-    this.props.setBackArrowToggle(true);
+    // this.props.setBackArrowToggle(true);
     this.fetchEvents();
   }
 
@@ -202,40 +203,58 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
     return (
       <div>
         {" "}
-        <AdminSitebar
+        {/* <AdminSitebar
           backArrowToggle={this.props.backArrowToggle}
           // arrowHandler={this.props.arrowHandler}
           clearToken={this.props.clearToken}
           sessionToken={this.props.sessionToken}
-        />{" "}
-        <Typography
+        />{" "} */}
+        {/* <Typography
           className="adminTitle"
           component="h2"
           variant="h5"
-          style={{ textAlign: "center", margin: "30px" }}
+          style={{ textAlign: "center", marginTop: "130px", backgroundColor:"white" }}
+        >
+          Upcoming Events
+        </Typography> */}
+        <div></div>
+        <div className="viewEvents" style={{marginTop:"130px"}} >
+
+          <Box style={{ background: "#fafafa", padding: "0px",  marginLeft:"auto" }}>
+          <Typography
+          className="adminTitle"
+          component="h2"
+          variant="h5"
+          style={{ textAlign: "center", height:"50px", paddingLeft:"30px",  color: "black" }}
         >
           Upcoming Events
         </Typography>
-        <div></div>
-        <div className="viewEvents">
-          <Box style={{ background: "#5390d9", padding: "0px", width: "100%" }}>
-            <Box className="toRight">
-              {" "}
-              <Button
-                style={{ background: "#5390d9" }}
+            
+            <Box >
+    
+              <div
+                style={{ background: "white",  width: "100%", display:"flex"}}
                 className="toRight"
-                disableElevation
-                variant="contained"
-                aria-label="text primary button group"
+                
+      
               >
-                <Button style={{ background: "white", marginLeft: "60px" }}>
+
+{/* <Typography
+          className="adminTitle"
+          component="h2"
+          variant="h5"
+          style={{ textAlign: "center", height:"50px", paddingLeft:"30px",  color: "black" }}
+        >
+          Upcoming Events
+        </Typography> */}
+                <Button     style={{ background:"#ef476f", color: "white", width:"100%"  }}>
                   <AddBoxIcon
                     onClick={() => {
                       this.handleClickOpen();
                     }}
-                  />
+                  /> <h5 style={{ background: "#ef476f",   marginLeft:"5px"  }}>Add Event</h5> 
                 </Button>
-              </Button>
+              </div>
             </Box>
           </Box>
           {this.state.eventInfo.length > 0 ? (
@@ -250,11 +269,11 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
                   id="panel1d-header"
                 >
                   <Typography style={{ marginLeft: "15px" }}>
-                    {this.state.eventInfo[index].date}
+                  {this.state.eventInfo[index].title} <br></br>
+                   
+                    
                   </Typography>
-                  <Typography style={{ marginLeft: "35px" }}>
-                    {this.state.eventInfo[index].title}
-                  </Typography>
+               
                   <div style={{ marginLeft: "auto" }}>
                   {/* On this icon a few things are happening:
                   1. The modal opens. 
@@ -317,36 +336,22 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
                 </AccordionSummary>
                 <AccordionDetails style={{ padding: "0px 30px" }}>
                   <Typography>
-                    <p style={{ fontSize: "12px" }}>Date:</p>
+                    <p style={{ fontSize: "12px" }}>Date: {this.state.eventInfo[index].date} <br></br>
+                    Location: {this.state.eventInfo[index].location} <br></br>
+                    Hours:     {this.state.eventInfo[index].hours}
+                    </p>
                   </Typography>
-                  <Typography>
+                  {/* <Typography>
                     <p style={{ fontSize: "12px", marginLeft: "100px" }}>
                       Location:{" "}
                     </p>
-                  </Typography>
-                  <Typography>
-                    <p style={{ fontSize: "12px", marginLeft: "100px" }}>
-                      Hours:{" "}
-                    </p>
-                  </Typography>
+                  </Typography> */}
+          
                 </AccordionDetails>
                 <AccordionDetails>
-                  <Typography>
-                    <p style={{ fontSize: "12px", marginLeft: "15px" }}>
-                      {" "}
-                      {this.state.eventInfo[index].date}
-                    </p>
-                  </Typography>
-                  <Typography>
-                    <p style={{ fontSize: "12px", marginLeft: "68px" }}>
-                      {this.state.eventInfo[index].location}
-                    </p>
-                  </Typography>
-                  <Typography>
-                    <p style={{ fontSize: "12px", marginLeft: "110px" }}>
-                      {this.state.eventInfo[index].hours}
-                    </p>
-                  </Typography>
+
+           
+    
                 </AccordionDetails>
 
                 <AccordionDetails style={{ padding: "0px 30px" }}>
@@ -377,6 +382,7 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
               />
             </div>
           )}
+
         </div>
       </div>
     );
