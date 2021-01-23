@@ -183,7 +183,7 @@ export default class ManageHoursTable extends React.Component<
     return (
       <TableContainer
         // style={{ paddingLeft: "15px", paddingRight: "15px" }}
-        style={{ marginTop: "65px", height: "90vh" }}
+        style={{ marginTop: "40px", height: "100vh" }}
         // component={Paper}
       >
         {/* <AdminSitebar
@@ -287,8 +287,9 @@ export default class ManageHoursTable extends React.Component<
                         <Button
                           style={{
                             backgroundColor: "#06d6a0",
+                            marginTop:"5px",
                             color: "white",
-                            marginRight: "30px",
+                            marginRight: "10px",
                             width: "100px",
                             height: "60px",
                           }}
@@ -308,7 +309,7 @@ export default class ManageHoursTable extends React.Component<
                             backgroundColor: "#ef476f",
                             height: "60px",
                             color: "white",
-                            marginRight: "30px",
+                            marginRight: "10px",
                             marginTop:"5px",
                             width: "100px",
                           }}

@@ -100,18 +100,17 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
           sessionToken={this.props.sessionToken}
         />
         <Grid container component="main">
-          {/* <Grid item xs={3} sm={1} md={1} lg={1}>
-            {" "}
-          </Grid> */}
+      
 
-          <Grid style={{backgroundColor:"#2f2e41"}} item xs={2} sm={4} md={4} lg={3}>
+          <Grid style={{backgroundColor:"#2f2e41"}} item xs={2} sm={2} md={3} lg={3}>
             <Box className="admindash" >
-              <Hidden xsDown>
+              <Hidden smDown>
               <Typography
                 className="adminTitle"
                 component="h2"
                 variant="h5"
                 style={{
+                  marginLeft: "25px",
                   marginBottom: "25px",
                   font: "Sofia, cursive !important",
                   color: "white"
@@ -150,7 +149,7 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
                     icon={faTrophy}
            
                   />
-                    <Hidden xsDown>Leaderboard</Hidden> 
+                    <Hidden smDown>Leaderboard</Hidden> 
                 </h3>
               </Box>
 
@@ -165,7 +164,7 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
               >
                 {" "}
                 <FontAwesomeIcon className="admindash_icons" icon={faClock} />
-                <Hidden xsDown>Manage Hours</Hidden>  
+                <Hidden smDown>Manage Hours</Hidden>  
               </h3>
 
               <h3
@@ -181,7 +180,7 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
                   className="admindash_icons"
                   icon={faCalendarAlt}
                 />
-                  <Hidden xsDown>Schedule Event</Hidden>  
+                  <Hidden smDown>Schedule Event</Hidden>  
               </h3>
 
               <h3
@@ -196,7 +195,7 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
                   className="admindash_icons"
                   icon={faAddressBook}
                 />
-                   <Hidden xsDown>Student Accounts</Hidden>  
+                   <Hidden smDown>Student Accounts</Hidden>  
               </h3>
               {/* <div className="classCode">
               {" "}
@@ -208,8 +207,12 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
             </Box>
           </Grid>
 
-          <Grid item xs={10} sm={8} md={8} lg={8}>
-            {this.state.viewStudentAccount ? (
+          
+            {this.state.viewStudentAccount ? ( <>
+                  <Hidden xsDown><Grid item xs={1} sm={1} md={1} lg={1}>
+                  {" "}
+                </Grid></Hidden>
+              <Grid item xs={10} sm={8} md={8} lg={8}>
               <ManageAccounts
                 setIsAdminTrue={this.props.setIsAdminTrue}
                 teacherAccount={this.props.teacherAccount}
@@ -218,8 +221,13 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
                 clearToken={this.props.clearToken}
                 sessionToken={this.props.sessionToken}
                 setBackArrowToggle={this.props.setBackArrowToggle}
-              ></ManageAccounts>
+              ></ManageAccounts> </Grid> </>
             ) : this.state.viewEventSchedule ? (
+              <>
+              <Hidden xsDown><Grid item xs={1} sm={1} md={1} lg={1}>
+              {" "}
+            </Grid></Hidden>
+              <Grid item xs={10} sm={8} md={7} lg={6}>
               <EventSchedule
                 setIsAdminTrue={this.props.setIsAdminTrue}
                 backArrowToggle={this.props.backArrowToggle}
@@ -227,8 +235,12 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
                 clearToken={this.props.clearToken}
                 sessionToken={this.props.sessionToken}
                 setBackArrowToggle={this.props.setBackArrowToggle}
-              ></EventSchedule>
-            ) : this.state.viewManageHours ? (
+              ></EventSchedule> </Grid></>
+            ) : this.state.viewManageHours ? ( <>
+              <Hidden mdDown><Grid item xs={1} sm={1} md={1} lg={1}>
+              {" "}
+            </Grid></Hidden>
+              <Grid item xs={10} sm={10} md={9} lg={8}>
               <ManageHoursTable
                 teacherAccount={this.props.teacherAccount}
                 setIsAdminTrue={this.props.setIsAdminTrue}
@@ -236,8 +248,9 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
                 clearToken={this.props.clearToken}
                 sessionToken={this.props.sessionToken}
                 setBackArrowToggle={this.props.setBackArrowToggle}
-              ></ManageHoursTable>
+              ></ManageHoursTable> </Grid> </>
             ) : (
+              <Grid item xs={10} sm={8} md={8} lg={6}>
               <Hidden xsDown>
                 <div id="burst">
                   <h1
@@ -266,7 +279,7 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
                     {this.state.classId}
                   </h1>
                 </div>
-              </Hidden>
+              </Hidden> </Grid>
             )}
 
             {/* <Hidden xsDown><div id="burst" >
@@ -276,7 +289,7 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
 
 </div></Hidden> */}
           </Grid>
-        </Grid>
+      
 
         {/* <Grid container  component="main" >
         <Grid item xs={12} sm={6} md={6} lg={5} >   

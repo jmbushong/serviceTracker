@@ -161,26 +161,7 @@ class ManageAccounts extends React.Component<AcceptedProps, MyState> {
       });
   };
 
-  //This fetch updates the information This will be tricky.
 
-  // UpdateStudentData = () => {
-  //   fetch(`http://localhost:4000/user/${this.props.userid.id}`, {
-  //     method: "PUT",
-  //     body: JSON.stringify({
-
-  //     })
-  //     headers: new Headers({
-  //       "Content-Type": "application/json",
-  //       Authorization: this.props.sessionToken,
-  //     }),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((json) => {
-
-  //       this.state.setSpecificStudent(json);
-
-  //     });
-  // };
 
   render() {
     return (
