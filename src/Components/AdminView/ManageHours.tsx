@@ -179,8 +179,8 @@ export default class ManageHoursTable extends React.Component<
     return (
       <TableContainer
         // style={{ paddingLeft: "15px", paddingRight: "15px" }}
-        style={{ marginTop: "15px" }}
-        component={Paper}
+        style={{ marginTop: "15px", backgroundColor:"white", height: "100vh" }}
+        // component={Paper}
       >
         <AdminSitebar
           backArrowToggle={this.props.backArrowToggle}
@@ -191,8 +191,8 @@ export default class ManageHoursTable extends React.Component<
                 
         <Box
           style={{
-            background: "#ef476f",
-            color: "white",
+         
+            color: "black",
             padding: "0px",
             margin: "50px",
             width: "80%",
@@ -201,13 +201,13 @@ export default class ManageHoursTable extends React.Component<
           
           <Box>
             {" "}
-            <h2 style={{ marginLeft: "25px" }}>Service Hours </h2>
+            <h1 className="adminTitle" style={{textAlign:"center", marginBottom:"10px"}}>Manage Hours </h1>
             <Box
               className="studentChart"
-              style={{ background: "white", padding: "0px" }}
+              style={{  paddingTop: "10px" }}
             >
                 <FormControl  style={{width: "200px"}} >
-        <InputLabel id="demo-simple-select-label">Status</InputLabel>
+        {/* <InputLabel id="demo-simple-select-label">Status</InputLabel> */}
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
@@ -217,29 +217,21 @@ export default class ManageHoursTable extends React.Component<
             this.fetchServiceRequests(e.target.value);
             this.setState({statusView: e.target.value})
           }}
-          // onChange={(e:any)=> {
-          //   this.setState({statusView: e.target.value})}}
+ 
         >
           <MenuItem value={"awaiting"}>Awaiting Approval</MenuItem>
           <MenuItem value={"approved"}>Approved</MenuItem>
           <MenuItem value={"denied"}>Denied</MenuItem>
         </Select>
       </FormControl>
-              <Box className="toRight">
-                {" "}
-                <ButtonGroup
-                  style={{ background: "white" }}
-                  className="toRight"
-                  disableElevation
-                  variant="contained"
-                  aria-label="text primary button group"
-                ></ButtonGroup>
-              </Box>
+      
+         
             </Box>
           </Box>
 
         </Box>
-        <Table style={{ margin: "50px", width: "80vw" }}>
+        
+        <Table style={{ marginLeft: "auto", marginRight:"auto", width: "80vw" }}>
           <TableHead>
             <TableRow>
               <TableCell />

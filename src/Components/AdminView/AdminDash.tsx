@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import Paper from "@material-ui/core/Paper";
-import Sitebar from "../Sitebar/Sitebar";
+
 import { faTrophy } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
@@ -9,10 +8,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Box from "@material-ui/core/Box";
 import {Link} from "react-router-dom";
 import { Redirect } from "react-router-dom";
-import { CircularProgressbar } from "react-circular-progressbar";
+
 import AdminSitebar from "../Sitebar/AdminSitebar"
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
+import Hidden from '@material-ui/core/Hidden';
 
 
 const percentage = 66;
@@ -98,11 +98,14 @@ class AdminDash extends React.Component <AcceptedProps, myState> {
          sessionToken={this.props.sessionToken}
        
         />
+<Grid container  component="main"  >
 
-<Grid container  component="main" >
-        <Grid item xs={12} sm={12} md={12} lg={12} >   
+   
+<Grid item xs={3} sm={1} md={2} lg={3} >   </Grid>
+   
+        <Grid item xs={9} sm={5} md={4} lg={4} >   
         <Box className="admindash" >
-          <Box className="admindash_div">
+        
           <Typography
             className="adminTitle"
             component="h1"
@@ -120,7 +123,7 @@ class AdminDash extends React.Component <AcceptedProps, myState> {
               Leaderboard
             </h3>
             </Box>
-            <Link to="/managehours">  <h3 className="marginBottom">
+            <Link className="visited" to="/managehours">  <h3 className="marginBottom">
               {" "}
               <FontAwesomeIcon className="admindash_icons" icon={faClock} />
               Manage Hours
@@ -134,7 +137,77 @@ class AdminDash extends React.Component <AcceptedProps, myState> {
               />
               Schedule Event
             </h3></Link>
-            <Link to="/manageaccounts"><h3 className="marginBottom">
+            <Link className="visited" to="/manageaccounts"><h3 className="marginBottom">
+              <FontAwesomeIcon
+                className="admindash_icons"
+                icon={faAddressBook}
+              />
+              Student Accounts
+            </h3></Link>
+            {/* <div className="classCode">
+              {" "}
+              <h4>Class PIN</h4>
+           <h1> {this.state.classId}</h1>
+              
+            </div>
+   */}
+
+        </Box>
+       
+        
+             </Grid>
+     
+               
+<Grid item sm={4} md={3} lg={3} > 
+<Hidden xsDown><div id="burst" >
+<h1   className="adminTitle" style={{color:"black", position:"absolute", top: "80px", left: "75px"}}>Class Code</h1> <br></br>
+<h1 style={{color:"black", position:"absolute", top: "130px", left: "80px", fontSize: "55px", letterSpacing:"4px"}}> {this.state.classId}</h1>
+
+
+</div></Hidden>
+
+  </Grid>
+
+             
+             
+             </Grid>
+
+{/* <Grid container  component="main" >
+        <Grid item xs={12} sm={6} md={6} lg={5} >   
+        <Box className="admindash" style={{position:"relative"}} >
+      
+          <Typography
+            className="adminTitle"
+            component="h1"
+            variant="h4"
+            style={{marginBottom: "25px",  font: "Sofia, cursive !important"}}
+          >
+            Admin Dashboard
+          </Typography> 
+            <hr/>
+       
+          
+            <h3 className="marginBottom">
+              {" "}
+              <FontAwesomeIcon className="admindash_icons" icon={faTrophy} />
+              Leaderboard
+            </h3>
+     
+            <Link className="visited" to="/managehours">  <h3 className="marginBottom">
+              {" "}
+              <FontAwesomeIcon className="admindash_icons" icon={faClock} />
+              Manage Hours
+            </h3></Link>
+          
+            <Link className="visited" to="/adminevent"><h3 className="marginBottom">
+              {" "}
+              <FontAwesomeIcon
+                className="admindash_icons"
+                icon={faCalendarAlt}
+              />
+              Schedule Event
+            </h3></Link>
+            <Link className="visited" to="/manageaccounts"><h3 className="marginBottom">
               <FontAwesomeIcon
                 className="admindash_icons"
                 icon={faAddressBook}
@@ -147,7 +220,7 @@ class AdminDash extends React.Component <AcceptedProps, myState> {
            <h1> {this.state.classId}</h1>
               
             </div>
-          </Box>
+        
      
        
         </Box>
@@ -156,51 +229,7 @@ class AdminDash extends React.Component <AcceptedProps, myState> {
           
   
              </Grid></Grid>
-        {/* <Box className="admindash" >
-          <Box className="admindash_div">
-            <h2 style={{letterSpacing: '3px'}} >
-              ADMIN DASHBOARD
-            </h2>
-            <hr/>
-       
-          <Box className= "admindash_card" >
-            <h3 className="marginBottom">
-              {" "}
-              <FontAwesomeIcon className="admindash_icons" icon={faTrophy} />
-              Leaderboard
-            </h3>
-            </Box>
-            <h3 className="marginBottom">
-              {" "}
-              <FontAwesomeIcon className="admindash_icons" icon={faClock} />
-              Manage Hours
-            </h3>
-            <Link className="visited" to="/adminevent"><h3 className="marginBottom">
-              {" "}
-              <FontAwesomeIcon
-                className="admindash_icons"
-                icon={faCalendarAlt}
-              />
-              Schedule Event
-            </h3></Link>
-            <Link to="/manageaccounts"><h3 className="marginBottom">
-              <FontAwesomeIcon
-                className="admindash_icons"
-                icon={faAddressBook}
-              />
-              Student Accounts
-            </h3></Link>
-            <div className="classCode">
-              {" "}
-              <h4>Class PIN</h4>
-           <h1> {this.state.classId}</h1>
-              
-            </div>
-          </Box>
-     
-       
-        </Box> */}
-      
+       */}
       </div>
     );
   }

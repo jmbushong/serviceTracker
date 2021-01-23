@@ -119,16 +119,20 @@ class AdminSitebar extends React.Component<AcceptedProps, myState> {
       <React.Fragment>
         <AppBar style={{backgroundColor:"white"}} position="static">
           <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
+            
             {this.props.backArrowToggle === true ? (
               <Link to="/adminDash">
                 <IconButton>
                   <ArrowBackIcon style={{ color: "black" }} />
                 </IconButton>
+                
               </Link>
             ) : (
               <div></div>
             )}
+          
             <div>
+        
               <IconButton onClick={this.handleMenu}>
                 <MenuIcon style={{color:"black"}} />
               </IconButton>

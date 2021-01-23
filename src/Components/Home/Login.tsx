@@ -134,7 +134,9 @@ class Login extends React.Component<AcceptedProps, {}> {
 
   render() {
     return (
-      <Grid container component="main" style={{ height: "100vh" }}>
+  
+      <Grid container component="main" style={{height:"100vh"}}>
+     
         <CssBaseline />
 
         <Grid
@@ -241,7 +243,7 @@ class Login extends React.Component<AcceptedProps, {}> {
           <Copyright />
         </div> */}
         {this.checkForToken()}
-      </Grid>
+      </Grid> 
     );
   }
 }

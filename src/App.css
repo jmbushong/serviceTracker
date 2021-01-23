@@ -159,10 +159,10 @@ a:active {
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.212);
     transform: translateY(5%);
   }
-  .admindash_div {
-    transform: translateX(25%);
+  /* .admindash_div {
+    transform: translateX(25%); 
     width: 60vw;
-  }
+  } */
   .classCode {
     width: 25vw;
     margin-left: auto;
@@ -288,7 +288,31 @@ height:90vh;
 .toRight {
   margin-left: auto;
   width: 155px;
+ 
 }
+
+
+#burst {
+  background:  rgba(128, 128, 128, 0.103);
+  width: 280px;
+  height: 280px;
+  position: relative;
+  text-align: center;
+  transform: rotate(20deg);
+  transform:translateY(100px)
+}
+#burst:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  height: 280px;
+  width: 280px;
+  background:  #fafafa;
+  transform: rotate(135deg);
+}
+
 
 .admindash {
   height: 80vh;
@@ -302,31 +326,37 @@ height:90vh;
 
   transform: translateX(25%);
 
-  margin-right: auto;
-  margin-left: auto;
+   margin-right: auto;
+  margin-left: auto; 
   
 }
 
 .admindash_icons {
-  font-size: 45px;
+  font-size: 35px;
   color: #5390d9;
   margin-right: 35px;
 }
 
+
 .marginBottom {
   margin-bottom: 30px;
+ 
 }
+
 
 .classCode {
   padding-top: 5px;
+  text-align: center;
+
 }
 
 .classCode h1 {
-  transform: translateX(50px);
+
   font-size: 300%;
   letter-spacing: 8px;
   display: inline;
   color: #ef476f;
+  margin-left: 70px;
 }
 
 hr {
