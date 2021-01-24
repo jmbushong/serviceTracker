@@ -27,7 +27,8 @@ Below is a preview of the student dashboard. From this view, students are able t
 1. View Upcoming Events
 2. Submit, Update, & Delete Service Hours 
 
-![image](https://user-images.githubusercontent.com/67441821/105642306-02f97280-5e57-11eb-811b-fd1f62a1cf38.png)
+<img src="https://user-images.githubusercontent.com/67441821/105642306-02f97280-5e57-11eb-811b-fd1f62a1cf38.png" width=50%>
+
 
 
 
@@ -38,6 +39,7 @@ Below is a preview of the admin dashboard. From this view, administrators are ab
 3. Manage Upcoming Events (View, Add, Edit, & Delete)
 4. Manage Student Accounts (View, Edit, & Delete)
 
-![image](https://user-images.githubusercontent.com/67441821/105642154-f9bbd600-5e55-11eb-971f-f15db765a309.png)
+<img src="https://user-images.githubusercontent.com/67441821/105642154-f9bbd600-5e55-11eb-971f-f15db765a309.png" width=50%>
+
 
 
