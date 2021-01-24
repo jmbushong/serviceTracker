@@ -5,7 +5,7 @@
 
 ## Introduction
 
-The purpose of this web application is to enable service organizations to track and approve student service hours. The application was built & designed specifically for a local school's chapter of National Junior Honor Society. 
+ServiceTracker is a full stack web application that enables service organizations to track and approve student service hours. 
 
 ### Built with
 
@@ -14,9 +14,17 @@ The purpose of this web application is to enable service organizations to track 
 3. React
 4. Node.js
 
+### Getting Started
+1. Sponsor of Organization Creates Admin Account
+ When a sponsor of an organization goes to create an account, a class code is automatically generated for the user. Students will need to be provided this code in order to create their own account. This code is what links the student account with a specific organization. 
+
+2. Students Create Accounts
+Using the provided class code, students complete the sign-up form to create an account. 
+
 
 
 ### Student View
+When students create an account, they are prompted to provide a class code. This code is what links their account to the correct organization. 
 
 ![image](https://user-images.githubusercontent.com/67441821/105642306-02f97280-5e57-11eb-811b-fd1f62a1cf38.png)
 
