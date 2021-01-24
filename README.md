@@ -20,8 +20,6 @@ PostgreSQL, Express, React, & Node.js
 
 
 
-<img src="https://user-images.githubusercontent.com/67441821/105642306-02f97280-5e57-11eb-811b-fd1f62a1cf38.png" width=50%>
-
 ### Student View
 Below is a preview of the student dashboard. From this view, students are able to:
 1. View Upcoming Events
