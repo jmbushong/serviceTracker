@@ -9,10 +9,7 @@ ServiceTracker is a full stack web application that enables service organization
 
 ### Built with
 
-1. PostgreSQL
-2. Express
-3. React
-4. Node.js
+PostgreSQL, Express, React, & Node.js
 
 ### Getting Started
 1. CREATE ADMIN ACCOUNT:
