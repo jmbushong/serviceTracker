@@ -22,20 +22,19 @@ ServiceTracker is a full stack web application that enables service organization
     Using the provided class code, students complete the sign-up form to create an account. 
 
 
+
+<img src="https://user-images.githubusercontent.com/67441821/105642306-02f97280-5e57-11eb-811b-fd1f62a1cf38.png" width=50%>
+
 ### Student View
-<img src="https://user-images.githubusercontent.com/67441821/105642306-02f97280-5e57-11eb-811b-fd1f62a1cf38.png" width=50%><img src="https://user-images.githubusercontent.com/67441821/105642154-f9bbd600-5e55-11eb-971f-f15db765a309.png" width=50%>
-#### Above is a preview of the student dashboard. From this view, students are able to:
+Above is a preview of the student dashboard. From this view, students are able to:
 1. View Upcoming Events
 2. Submit, Update, & Delete Service Hours 
 
 
-
-
-
+<img src="https://user-images.githubusercontent.com/67441821/105642154-f9bbd600-5e55-11eb-971f-f15db765a309.png" width=50%>
 
 ### Admin View
-<img src="https://user-images.githubusercontent.com/67441821/105642154-f9bbd600-5e55-11eb-971f-f15db765a309.png" width=50%>
-####Above is a preview of the admin dashboard. From this view, administrators are able to:
+Above is a preview of the admin dashboard. From this view, administrators are able to:
 1. Search for Service Entries By Student
 2. Manage Service Hours (sorted by status)
 3. Manage Upcoming Events (View, Add, Edit, & Delete)
