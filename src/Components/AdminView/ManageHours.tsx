@@ -16,6 +16,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import Typography from "@material-ui/core/Typography";
 
 type AcceptedProps = {
   sessionToken?: any;
@@ -202,13 +203,14 @@ export default class ManageHoursTable extends React.Component<
           }}
         >
           <Box style={{ marginTop: "0px" }}>
-            {" "}
-            <h2
-              className="adminTitle"
-              style={{ textAlign: "center", marginBottom: "10px" }}
-            >
-              Manage Hours{" "}
-            </h2>
+      
+            <Typography
+          className="adminTitle"
+          component="h2"
+          variant="h5"
+          style={{ textAlign: "center", marginBottom:"5px",  color: "black" }}
+        >Manage Hours
+        </Typography>
             <Box
               className="studentChart"
               style={{ paddingTop: "10px", textAlign: "center" }}

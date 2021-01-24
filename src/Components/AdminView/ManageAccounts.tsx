@@ -170,7 +170,7 @@ class ManageAccounts extends React.Component<AcceptedProps, MyState> {
 
         <Container
           maxWidth="lg"
-          style={{ height: "100vh", paddingLeft:"0" }}
+          style={{ height: "100vh", paddingLeft:"0"}}
           className="studentAccounts manageAccountMarginTop"
         >
           {" "}
@@ -188,7 +188,7 @@ class ManageAccounts extends React.Component<AcceptedProps, MyState> {
           </Typography>
           {this.state.studentAccounts.length > 0 ? (
             this.state.studentAccounts.map((service: any, index: any) => (
-              <Box width="auto" className="manageAccountMarginLeft" key={this.state.studentAccounts.id}>
+              <Box  width="auto" className="manageAccountMarginLeft" key={this.state.studentAccounts.id}>
                 <List component="nav" aria-label="main mailbox folders"></List>
                 <ListItem className="accountRows" button>
         

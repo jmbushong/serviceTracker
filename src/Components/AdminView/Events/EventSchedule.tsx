@@ -203,26 +203,13 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
     return (
       <div>
         {" "}
-        {/* <AdminSitebar
-          backArrowToggle={this.props.backArrowToggle}
-          // arrowHandler={this.props.arrowHandler}
-          clearToken={this.props.clearToken}
-          sessionToken={this.props.sessionToken}
-        />{" "} */}
-        {/* <Typography
-          className="adminTitle"
-          component="h2"
-          variant="h5"
-          style={{ textAlign: "center", marginTop: "130px", backgroundColor:"white" }}
-        >
-          Upcoming Events
-        </Typography> */}
+    
         <div></div>
         <div className="viewEvents responsiveMarginTopAdmin"  >
 
           <Box style={{ background: "#fafafa", padding: "0px",  marginLeft:"auto" }}>
           <Typography
-          className="adminTitle"
+          className="adminTitle "
           component="h2"
           variant="h5"
           style={{ textAlign: "center", height:"50px", paddingLeft:"30px",  color: "black" }}
@@ -233,26 +220,19 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
             <Box >
     
               <div
-                style={{ background: "white",  width: "100%", display:"flex"}}
+                style={{  width: "100%", display:"flex"}}
                 className="toRight"
                 
       
               >
 
-{/* <Typography
-          className="adminTitle"
-          component="h2"
-          variant="h5"
-          style={{ textAlign: "center", height:"50px", paddingLeft:"30px",  color: "black" }}
-        >
-          Upcoming Events
-        </Typography> */}
-                <Button     style={{ background:"#ef476f", color: "white", width:"100%"  }}>
+
+                <Button  variant="contained"    style={{ backgroundColor:"#5390d9", color:"white", width:"25%"  }}>
                   <AddBoxIcon
                     onClick={() => {
                       this.handleClickOpen();
                     }}
-                  /> <h5 style={{ background: "#ef476f",   marginLeft:"5px"  }}>Add Event</h5> 
+                  /> <h5 style={{ color:"white",  marginLeft:"5px"  }}>Add Event</h5> 
                 </Button>
               </div>
             </Box>
@@ -260,7 +240,7 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
           {this.state.eventInfo.length > 0 ? (
             this.state.eventInfo.map((event: any, index: any) => (
               <Accordion
-                style={{ margin: ".5px" }}
+                style={{ margin: ".5px", backgroundColor: "white" }}
                 key={this.state.eventInfo.id}
                 square
               >

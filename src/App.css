@@ -7,11 +7,14 @@
   margin: 0;
   padding: 0;
 }
+
+
 .clipPhoto{
  
-  height: 350px;
+  height: 285px;
   z-index: 0;
-  transform:translateY(50px)
+  transform:translateY(10px);
+  transform:translateX(-10px)
 
 }
 
@@ -27,7 +30,7 @@ color: #ef476f;
   position:absolute;
   text-align: center;
   z-index: 1;
-  transform:translate(60px, 180px);
+  transform:translate(35px, 50px);
 
 }
 
@@ -36,21 +39,25 @@ position: relative;
 margin-right: auto;
 display:flex;
 justify-content: center;
-height: 100vh;
+align-items: center;
+height: 80vh;
+
   
   
 }
 .responsiveMarginTopAdmin{
-  margin-top:30px
+  margin-top:25px;
 }
 .manageHoursMarginTop{
-  margin-top:0px;
+  margin-top:10px;
   margin-left:10px;
 }
 .manageAccountMarginTop{
   margin-top:0px;
   margin-left:10px;
 }
+
+
 
 .manageAccountMarginLeft{
 
@@ -146,14 +153,15 @@ a:active {
 
 @media only screen and (min-width: 600px) {
 
+
+
   .clip{
     position: relative;
     margin-right: auto;
     display:flex;
     justify-content: center;
-
     height: 100vh;
-      
+    margin-top:0px;
       
     }
 
@@ -161,7 +169,7 @@ a:active {
  
     height: 400px;
     z-index: 0;
-    transform:translateY(120px);
+    transform:translateY(40px);
 
   
   }
@@ -178,7 +186,7 @@ a:active {
     position:absolute;
     text-align: center;
     z-index: 1;
-    transform:translate(60px, 300px);
+    transform:translate(60px, 70px);
   
   }
   
@@ -197,7 +205,7 @@ a:active {
     margin-left: 25px;
   }
   .responsiveMarginTopAdmin{
-    margin-top:130px
+    margin-top:100px;
   }
   .newLanding {
     background-image: url("../src/Assets/undraw_the_world_is_mine_nb0e\ \(1\).svg");
@@ -422,5 +430,3 @@ hr {
 }
 
 /* Manage Student Accounts */
-/* .accountRows{
-  width: 100% !important;} */

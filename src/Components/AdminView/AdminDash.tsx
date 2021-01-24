@@ -201,7 +201,7 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
               style={{ backgroundColor: "#2f2e41" }}
               item
               xs={2}
-              sm={2}
+              sm={1}
               md={2}
               lg={2}
             >
@@ -327,7 +327,7 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
                   {" "}
                 </Grid>
               </Hidden>
-              <Grid item xs={12} sm={8} md={7} lg={7}>
+              <Grid item xs={12} sm={9} md={8} lg={8}>
                 <EventSchedule
                   setIsAdminTrue={this.props.setIsAdminTrue}
                   backArrowToggle={this.props.backArrowToggle}
