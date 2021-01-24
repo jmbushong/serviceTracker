@@ -24,10 +24,7 @@ The purpose of this web application is to enable service organizations to track 
 ### Key Features
 
 ### Admin View
-![image](https://user-images.githubusercontent.com/67441821/105642403-7a2f0680-5e57-11eb-8de9-91678c836aac.png){:width="100px}
-![image](https://user-images.githubusercontent.com/67441821/105642154-f9bbd600-5e55-11eb-971f-f15db765a309.png){:width="100px}
-![image](https://user-images.githubusercontent.com/67441821/105642385-65527300-5e57-11eb-878c-e311620c19d7.png)![image](https://user-images.githubusercontent.com/67441821/105642396-700d0800-5e57-11eb-8129-481d6723542c.png)
-
+![image](https://user-images.githubusercontent.com/67441821/105642154-f9bbd600-5e55-11eb-971f-f15db765a309.png)
 
 
 Coming Soon... 
