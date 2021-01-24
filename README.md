@@ -1,5 +1,5 @@
 # ServiceTracker 
-![image](https://user-images.githubusercontent.com/67441821/104821703-b76a1780-580b-11eb-9099-2518616989e4.png =200x)
+<img src="https://user-images.githubusercontent.com/67441821/104821703-b76a1780-580b-11eb-9099-2518616989e4.png" width=50%>
 
 
 
