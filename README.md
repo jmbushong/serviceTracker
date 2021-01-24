@@ -5,12 +5,12 @@
 
 ## Introduction
 
-ServiceTracker is a full stack web application that enables service organizations to track and approve student service hours. 
+ServiceTracker is a full stack web application that enables service organizations to track and approve student service hours.
 
 ### Built with
 
 1. PostgreSQL, Express, React, & Node.js
-2. View server-side code <Link href="https://github.com/jmbushong/serviceTrackerServer">here</Link>
+2. View server-side code [here](https://github.com/jmbushong/serviceTrackerServer)
 
 ### Getting Started
 1. CREATE ADMIN ACCOUNT:
