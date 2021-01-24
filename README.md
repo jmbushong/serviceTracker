@@ -15,11 +15,11 @@ ServiceTracker is a full stack web application that enables service organization
 4. Node.js
 
 ### Getting Started
-1. Sponsor of Organization Creates Admin Account
- When a sponsor of an organization goes to create an account, a class code is automatically generated for the user. Students will need to be provided this code in order to create their own account. This code is what links the student account with a specific organization. 
+1. Sponsor of Organization Creates Admin Account: 
+    When a sponsor of an organization goes to create an account, a class code is automatically generated for the user. Students will need to be provided this code in order to create their own account. This code is what links the student account with a specific organization. 
 
-2. Students Create Accounts
-Using the provided class code, students complete the sign-up form to create an account. 
+2. Students Create Accounts:
+    Using the provided class code, students complete the sign-up form to create an account. 
 
 
 
