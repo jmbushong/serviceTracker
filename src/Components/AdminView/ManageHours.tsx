@@ -183,7 +183,8 @@ export default class ManageHoursTable extends React.Component<
     return (
       <TableContainer
         // style={{ paddingLeft: "15px", paddingRight: "15px" }}
-        style={{ marginTop: "40px", height: "100vh" }}
+        className="manageHoursMarginTop"
+        style={{  height: "100vh"}}
         // component={Paper}
       >
         {/* <AdminSitebar
@@ -197,7 +198,7 @@ export default class ManageHoursTable extends React.Component<
           style={{
             color: "black",
             padding: "0px",
-            margin: "50px",
+            margin: "10px",
           }}
         >
           <Box style={{ marginTop: "0px" }}>
@@ -208,7 +209,10 @@ export default class ManageHoursTable extends React.Component<
             >
               Manage Hours{" "}
             </h2>
-            <Box className="studentChart" style={{ paddingTop: "10px" }}>
+            <Box
+              className="studentChart"
+              style={{ paddingTop: "10px", textAlign: "center" }}
+            >
               <FormControl style={{ width: "200px" }}>
                 {/* <InputLabel id="demo-simple-select-label">Status</InputLabel> */}
                 <Select
@@ -237,7 +241,7 @@ export default class ManageHoursTable extends React.Component<
 
               {/* <TableCell>Name</TableCell> */}
               <TableCell></TableCell>
-
+              <TableCell align="left"> </TableCell>
               <TableCell align="left">Description</TableCell>
 
               <TableCell align="center">Status</TableCell>
@@ -268,30 +272,37 @@ export default class ManageHoursTable extends React.Component<
                     </TableCell> */}
                     <TableCell></TableCell>
 
-                    <TableCell align="left">
-                      
-                      <h4>{this.state.serviceRequests[index]?.studentUser.firstName}{" "} {this.state.serviceRequests[index]?.studentUser.lastName}</h4>
-                   
-                      Hours: {this.state.serviceRequests[index]?.hours}{" "}
+                    <TableCell align="left" style={{ fontSize: "11px", width:"100px" }}>
+                      {this.state.serviceRequests[index]?.hours}
+                      {" hour(s) "} <br></br> {"on "}{this.state.serviceRequests[index]?.date}{" "}
                       <br></br>
-                      Date: {this.state.serviceRequests[index]?.date} <br></br> <br></br>
-                
+                      <br></br>
+                    </TableCell>
+                    <TableCell style={{ fontSize: "12px" }}>
+                      {" "}
+                      <h4 style={{ marginRight: "35px" }}>
+                        {
+                          this.state.serviceRequests[index]?.studentUser
+                            .firstName
+                        }{" "}
+                        {
+                          this.state.serviceRequests[index]?.studentUser
+                            .lastName
+                        }
+                        {""}{" "}
+                      </h4>{" "}
                       {this.state.serviceRequests[index]?.description}
-                      <br></br>
-                      <br></br>
-                  
-                     
                     </TableCell>
                     {this.state.statusView === "awaiting" ? (
                       <TableCell align="center">
                         <Button
                           style={{
                             backgroundColor: "#06d6a0",
-                            marginTop:"5px",
+                            marginTop: "5px",
                             color: "white",
-                            marginRight: "10px",
-                            width: "100px",
-                            height: "60px",
+                            marginRight: "5px",
+                            width: "90px",
+                            height: "40px",
                           }}
                           variant="contained"
                           onClick={() => {
@@ -307,11 +318,11 @@ export default class ManageHoursTable extends React.Component<
                         <Button
                           style={{
                             backgroundColor: "#ef476f",
-                            height: "60px",
+                            height: "40px",
                             color: "white",
-                            marginRight: "10px",
-                            marginTop:"5px",
-                            width: "100px",
+                            marginRight: "5px",
+                            marginTop: "5px",
+                            width: "90px",
                           }}
                           variant="contained"
                           onClick={() => {
@@ -325,16 +336,15 @@ export default class ManageHoursTable extends React.Component<
                         </Button>
                       </TableCell>
                     ) : (
-                      <TableCell  align="center">
+                      <TableCell align="center">
                         <Button
-                         
                           style={{
                             backgroundColor: "#ffd166",
-                        
-                            marginRight: "30px",
-                            marginLeft:"30px",
+
+                            marginRight: "20px",
+                            marginLeft: "10px",
                             width: "80px",
-                            height: "50px",
+                            height: "40px",
                           }}
                           variant="contained"
                           onClick={() => {

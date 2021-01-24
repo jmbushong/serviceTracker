@@ -11,11 +11,15 @@ import MenuItem from "@material-ui/core/MenuItem";
 import { Link } from "react-router-dom";
 import Menu from "@material-ui/core/Menu";
 
+
 type AcceptedProps = {
   backArrowToggle: any;
   // arrowHandler: any;
   clearToken: any;
   sessionToken: any;
+  setViewManageHours:  (e: any) => void;
+  setViewStudentAccount:  (e: any) => void;
+  setViewEventSchedule:  (e: any) => void;
 };
 
 type myState = {
@@ -119,7 +123,19 @@ class AdminSitebar extends React.Component<AcceptedProps, myState> {
       <React.Fragment>
         <AppBar style={{backgroundColor:"white"}} position="absolute">
           <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
+            <IconButton className="signupTitle" style={{fontSize: "20px"}}
+             onClick={() => {
+              this.props.setViewManageHours(false );
+              this.props.setViewEventSchedule(false );
+              this.props.setViewStudentAccount(false );
+           
+            }}
+          
             
+          >ServiceTracker</IconButton>
+            
+
+      
             {this.props.backArrowToggle === true ? (
               <Link to="/adminDash">
                 <IconButton>
@@ -154,6 +170,7 @@ class AdminSitebar extends React.Component<AcceptedProps, myState> {
             </div>
           </Toolbar>
         </AppBar>
+   
         {this.checkForToken()}
       </React.Fragment>
     );

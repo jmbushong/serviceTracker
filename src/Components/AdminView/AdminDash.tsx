@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
-import { faTrophy } from "@fortawesome/free-solid-svg-icons";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faSearch} from "@fortawesome/free-solid-svg-icons";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 import { faAddressBook } from "@fortawesome/free-solid-svg-icons";
@@ -18,6 +19,19 @@ import Button from "@material-ui/core/Button";
 import EventSchedule from "./Events/EventSchedule";
 import ManageHours from "./ManageHoursTable";
 import ManageHoursTable from "./ManageHours";
+import BottomNavigation from "@material-ui/core/BottomNavigation";
+import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
+import FolderIcon from "@material-ui/icons/Folder";
+import RestoreIcon from "@material-ui/icons/Restore";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import LocationOnIcon from "@material-ui/icons/LocationOn";
+import Paper from "@material-ui/core/Paper";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import PhoneIcon from "@material-ui/icons/Phone";
+import clipboard from "../../Assets/undraw_No_data_re_kwbl.svg"
+
+import PersonPinIcon from "@material-ui/icons/PersonPin";
 
 const percentage = 66;
 
@@ -38,6 +52,9 @@ type myState = {
   viewStudentAccount: any;
   viewEventSchedule: any;
   viewManageHours: any;
+  setViewManageHours: (e: any) => void;
+  setViewEventSchedule: (e: any) => void;
+  setViewStudentAccount: (e: any) => void;
 };
 
 class AdminDash extends React.Component<AcceptedProps, myState> {
@@ -47,6 +64,15 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
       viewManageHours: false,
       viewEventSchedule: false,
       viewStudentAccount: false,
+      setViewManageHours: (entry) => {
+        this.setState({ viewManageHours: entry });
+      },
+      setViewEventSchedule: (entry) => {
+        this.setState({ viewEventSchedule: entry });
+      },
+      setViewStudentAccount: (entry) => {
+        this.setState({ viewStudentAccount: entry });
+      },
       classId: [],
       setClassId: (entry) => {
         this.setState({ classId: entry });
@@ -94,261 +120,256 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
     return (
       <div>
         <AdminSitebar
+          setViewManageHours={this.state.setViewManageHours}
+          setViewStudentAccount={this.state.setViewStudentAccount}
+          setViewEventSchedule={this.state.setViewEventSchedule}
           backArrowToggle={this.props.backArrowToggle}
           //  arrowHandler={this.props.arrowHandler}
           clearToken={this.props.clearToken}
           sessionToken={this.props.sessionToken}
+
         />
+        <Hidden smUp>
+          <Paper
+            square
+            style={{ marginTop: "50px", backgroundColor: "#2f2e41" }}
+          >
+            <Tabs
+              variant="fullWidth"
+              indicatorColor="primary"
+              textColor="primary"
+              aria-label="icon tabs example"
+            >
+           
+              <Tab icon={      <FontAwesomeIcon
+                       style={{ color: "white", fontSize: "20px" }}
+                      icon={faSearch}
+                    />} aria-label="phone" />
+              <Tab
+                    onClick={() => {
+                      this.setState({ viewStudentAccount: false });
+                      this.setState({ viewEventSchedule: false });
+                      this.setState({ viewManageHours: true });
+                    }}
+                icon={
+                  <FontAwesomeIcon
+                    style={{ color: "white", fontSize: "20px" }}
+                    icon={faClock}
+              
+                  />
+                }
+                aria-label="favorite"
+              />
+              <Tab
+                   onClick={() => {
+                    this.setState({ viewManageHours: false });
+                    this.setState({ viewStudentAccount: false });
+                    this.setState({ viewEventSchedule: true });
+                  }}
+                icon={
+                  <FontAwesomeIcon
+                    style={{ color: "white", fontSize: "20px" }}
+                    className="admindash_icons"
+                    icon={faCalendarAlt}
+               
+                  />
+                }
+                aria-label="person"
+              />
+                 <Tab
+                      onClick={() => {
+                        this.setState({ viewManageHours: false });
+                        this.setState({ viewEventSchedule: false });
+                        this.setState({ viewStudentAccount: true });
+                      }}
+                icon={
+                  <FontAwesomeIcon
+                  style={{ color: "white", fontSize: "20px" }}
+                  icon={faAddressBook}
+             
+                />
+                
+                }
+                aria-label="person"
+              />
+            </Tabs>
+          </Paper>
+        </Hidden>
         <Grid container component="main">
+          <Hidden xsDown>
+            <Grid
+              style={{ backgroundColor: "#2f2e41" }}
+              item
+              xs={2}
+              sm={2}
+              md={2}
+              lg={2}
+            >
+              <Box className="admindash">
+                <Hidden smDown>
+                  <Typography
+                           onClick={() => {
+                            this.setState({ viewStudentAccount: false });
+                            this.setState({ viewEventSchedule: false });
+                            this.setState({ viewManageHours: false});
+                          }}
+                    className="adminTitle"
+                    component="h2"
+                    variant="h5"
+                    style={{
+                      marginLeft: "25px",
+                      marginBottom: "25px",
+                      font: "Sofia, cursive !important",
+                      color: "white",
+                    }}
+                  >
+                   
+                  </Typography>
+                  {/* <hr /> */}
+                </Hidden>
       
 
-          <Grid style={{backgroundColor:"#2f2e41"}} item xs={2} sm={2} md={3} lg={3}>
-            <Box className="admindash" >
-              <Hidden smDown>
-              <Typography
-                className="adminTitle"
-                component="h2"
-                variant="h5"
-                style={{
-                  marginLeft: "25px",
-                  marginBottom: "25px",
-                  font: "Sofia, cursive !important",
-                  color: "white"
-            
-                }}
-              >
-                Admin Dashboard
-              </Typography>
-              <hr />
+                <Box className="admindash_card">
+                  <h3
+                    className="marginBottom"
+                    style={{ cursor: "pointer", color: "white" }}
+                  >
+                    {" "}
+                    <FontAwesomeIcon
+                      className="admindash_icons"
+                      icon={faSearch}
+                    />
+                    <Hidden smDown>Search</Hidden>
+                  </h3>
+                </Box>
 
-
-              </Hidden>
-              {/* <Typography
-                className="adminTitle"
-                component="h2"
-                variant="h5"
-                style={{
-                  marginBottom: "25px",
-                  font: "Sofia, cursive !important",
-                  color: "white"
-            
-                }}
-              >
-                Admin Dashboard
-              </Typography>
-              <hr /> */}
-
-              <Box className="admindash_card">
-                <h3 className="marginBottom"
-                     style={{ cursor: "pointer", color:"white" }}
+                <h3
+                  className="marginBottom"
+                  style={{ cursor: "pointer", color: "white" }}
+                  onClick={() => {
+                    this.setState({ viewStudentAccount: false });
+                    this.setState({ viewEventSchedule: false });
+                    this.setState({ viewManageHours: true });
+                  }}
                 >
+                  {" "}
+                  <FontAwesomeIcon className="admindash_icons" icon={faClock} />
+                  <Hidden smDown>Hours</Hidden>
+                </h3>
 
+                <h3
+                  className="marginBottom"
+                  style={{ cursor: "pointer", color: "white" }}
+                  onClick={() => {
+                    this.setState({ viewStudentAccount: false });
+                    this.setState({ viewManageHours: false });
+                    this.setState({ viewEventSchedule: true });
+                  }}
+                >
                   {" "}
                   <FontAwesomeIcon
                     className="admindash_icons"
-                    icon={faTrophy}
-           
+                    icon={faCalendarAlt}
                   />
-                    <Hidden smDown>Leaderboard</Hidden> 
+                  <Hidden smDown>Events</Hidden>
                 </h3>
-              </Box>
 
-              <h3
-                className="marginBottom"
-                style={{ cursor: "pointer", color:"white" }}
-                onClick={() => {
-                  this.setState({ viewStudentAccount: false });
-                  this.setState({ viewEventSchedule: false });
-                  this.setState({ viewManageHours: true });
-                }}
-              >
-                {" "}
-                <FontAwesomeIcon className="admindash_icons" icon={faClock} />
-                <Hidden smDown>Manage Hours</Hidden>  
-              </h3>
-
-              <h3
-                className="marginBottom"
-                style={{ cursor: "pointer", color:"white" }}
-                onClick={() => {
-                  this.setState({ viewStudentAccount: false });
-                  this.setState({ viewEventSchedule: true });
-                }}
-              >
-                {" "}
-                <FontAwesomeIcon
-                  className="admindash_icons"
-                  icon={faCalendarAlt}
-                />
-                  <Hidden smDown>Schedule Event</Hidden>  
-              </h3>
-
-              <h3
-                className="marginBottom"
-                style={{ cursor: "pointer", color:"white" }}
-                onClick={() => {
-                  this.setState({ viewStudentAccount: true });
-                }}
-           
-              >
-                <FontAwesomeIcon
-                  className="admindash_icons"
-                  icon={faAddressBook}
-                />
-                   <Hidden smDown>Student Accounts</Hidden>  
-              </h3>
-              {/* <div className="classCode">
+                <h3
+                  className="marginBottom"
+                  style={{ cursor: "pointer", color: "white" }}
+                  onClick={() => {
+                    this.setState({ viewManageHours: false });
+                    this.setState({ viewEventSchedule: false });
+                    this.setState({ viewStudentAccount: true });
+                  }}
+                >
+                  <FontAwesomeIcon
+                    className="admindash_icons"
+                    icon={faAddressBook}
+                    
+                  />
+                  <Hidden smDown>Accounts</Hidden>
+                </h3>
+                {/* <div className="classCode">
               {" "}
               <h4>Class PIN</h4>
            <h1> {this.state.classId}</h1>
               
             </div>
    */}
-            </Box>
-          </Grid>
+              </Box>
+            </Grid>
+          </Hidden>
 
-          
-            {this.state.viewStudentAccount ? ( <>
-                  <Hidden xsDown><Grid item xs={1} sm={1} md={1} lg={1}>
+          {this.state.viewStudentAccount ? (
+            <>
+          <Hidden xsDown>
+                <Grid item xs={1} sm={1} md={1} lg={1}>
                   {" "}
-                </Grid></Hidden>
-              <Grid item xs={10} sm={8} md={8} lg={8}>
-              <ManageAccounts
-                setIsAdminTrue={this.props.setIsAdminTrue}
-                teacherAccount={this.props.teacherAccount}
-                backArrowToggle={this.props.backArrowToggle}
-                // arrowHandler={this.arrowHandler}
-                clearToken={this.props.clearToken}
-                sessionToken={this.props.sessionToken}
-                setBackArrowToggle={this.props.setBackArrowToggle}
-              ></ManageAccounts> </Grid> </>
-            ) : this.state.viewEventSchedule ? (
-              <>
-              <Hidden xsDown><Grid item xs={1} sm={1} md={1} lg={1}>
-              {" "}
-            </Grid></Hidden>
-              <Grid item xs={10} sm={8} md={7} lg={6}>
-              <EventSchedule
-                setIsAdminTrue={this.props.setIsAdminTrue}
-                backArrowToggle={this.props.backArrowToggle}
-                // arrowHandler={this.arrowHandler}
-                clearToken={this.props.clearToken}
-                sessionToken={this.props.sessionToken}
-                setBackArrowToggle={this.props.setBackArrowToggle}
-              ></EventSchedule> </Grid></>
-            ) : this.state.viewManageHours ? ( <>
-              <Hidden mdDown><Grid item xs={1} sm={1} md={1} lg={1}>
-              {" "}
-            </Grid></Hidden>
-              <Grid item xs={10} sm={10} md={9} lg={8}>
-              <ManageHoursTable
-                teacherAccount={this.props.teacherAccount}
-                setIsAdminTrue={this.props.setIsAdminTrue}
-                backArrowToggle={this.props.backArrowToggle}
-                clearToken={this.props.clearToken}
-                sessionToken={this.props.sessionToken}
-                setBackArrowToggle={this.props.setBackArrowToggle}
-              ></ManageHoursTable> </Grid> </>
-            ) : (
-              <Grid item xs={10} sm={8} md={8} lg={6}>
+                </Grid>
+              </Hidden>
+              <Grid item xs={12} sm={8} md={8} lg={8}>
+                <ManageAccounts
+                  setIsAdminTrue={this.props.setIsAdminTrue}
+                  teacherAccount={this.props.teacherAccount}
+                  backArrowToggle={this.props.backArrowToggle}
+                  // arrowHandler={this.arrowHandler}
+                  clearToken={this.props.clearToken}
+                  sessionToken={this.props.sessionToken}
+                  setBackArrowToggle={this.props.setBackArrowToggle}
+                ></ManageAccounts>{" "}
+              </Grid>{" "}
+            </>
+          ) : this.state.viewEventSchedule ? (
+            <>
               <Hidden xsDown>
-                <div id="burst">
-                  <h1
-                    className="adminTitle"
-                    style={{
-                      color: "black",
-                      position: "absolute",
-                      top: "80px",
-                      left: "75px",
-                    }}
-                  >
-                    Class Code
-                  </h1>{" "}
-                  <br></br>
-                  <h1
-                    style={{
-                      color: "black",
-                      position: "absolute",
-                      top: "130px",
-                      left: "80px",
-                      fontSize: "55px",
-                      letterSpacing: "4px",
-                    }}
-                  >
-                    {" "}
-                    {this.state.classId}
-                  </h1>
-                </div>
-              </Hidden> </Grid>
-            )}
+                <Grid item xs={1} sm={1} md={1} lg={1}>
+                  {" "}
+                </Grid>
+              </Hidden>
+              <Grid item xs={12} sm={8} md={7} lg={7}>
+                <EventSchedule
+                  setIsAdminTrue={this.props.setIsAdminTrue}
+                  backArrowToggle={this.props.backArrowToggle}
+                  // arrowHandler={this.arrowHandler}
+                  clearToken={this.props.clearToken}
+                  sessionToken={this.props.sessionToken}
+                  setBackArrowToggle={this.props.setBackArrowToggle}
+                ></EventSchedule>{" "}
+              </Grid>
+            </>
+          ) : this.state.viewManageHours ? (
+            <>
+              {/* <Hidden mdDown>
+                <Grid item xs={1} sm={1} md={1} lg={1}>
+                  {" "}
+                </Grid>
+              </Hidden> */}
+              <Grid item xs={12} sm={10} md={9} lg={9}>
+                <ManageHoursTable
+                  teacherAccount={this.props.teacherAccount}
+                  setIsAdminTrue={this.props.setIsAdminTrue}
+                  backArrowToggle={this.props.backArrowToggle}
+                  clearToken={this.props.clearToken}
+                  sessionToken={this.props.sessionToken}
+                  setBackArrowToggle={this.props.setBackArrowToggle}
+                ></ManageHoursTable>{" "}
+              </Grid>{" "}
+            </>
+          ) : (
+            <Grid item xs={12} sm={8} md={9} lg={10} >
+              <div className="clip" > <img className="clipPhoto" src={clipboard}></img>
+              <div className="classCodeImage"> <h2 className="signupTitle" >Class Code </h2>    <h2 className="classCodeId classCodeNumber" >{this.state.classId}</h2> </div>
+             </div>
+             
 
-            {/* <Hidden xsDown><div id="burst" >
-<h1   className="adminTitle" style={{color:"black", position:"absolute", top: "80px", left: "75px"}}>Class Code</h1> <br></br>
-<h1 style={{color:"black", position:"absolute", top: "130px", left: "80px", fontSize: "55px", letterSpacing:"4px"}}> {this.state.classId}</h1>
 
+            </Grid> 
 
-</div></Hidden> */}
-          </Grid>
-      
+          )}
+        </Grid>
 
-        {/* <Grid container  component="main" >
-        <Grid item xs={12} sm={6} md={6} lg={5} >   
-        <Box className="admindash" style={{position:"relative"}} >
-      
-          <Typography
-            className="adminTitle"
-            component="h1"
-            variant="h4"
-            style={{marginBottom: "25px",  font: "Sofia, cursive !important"}}
-          >
-            Admin Dashboard
-          </Typography> 
-            <hr/>
        
-          
-            <h3 className="marginBottom">
-              {" "}
-              <FontAwesomeIcon className="admindash_icons" icon={faTrophy} />
-              Leaderboard
-            </h3>
-     
-            <Link className="visited" to="/managehours">  <h3 className="marginBottom">
-              {" "}
-              <FontAwesomeIcon className="admindash_icons" icon={faClock} />
-              Manage Hours
-            </h3></Link>
-          
-            <Link className="visited" to="/adminevent"><h3 className="marginBottom">
-              {" "}
-              <FontAwesomeIcon
-                className="admindash_icons"
-                icon={faCalendarAlt}
-              />
-              Schedule Event
-            </h3></Link>
-            <Link className="visited" to="/manageaccounts"><h3 className="marginBottom">
-              <FontAwesomeIcon
-                className="admindash_icons"
-                icon={faAddressBook}
-              />
-              Student Accounts
-            </h3></Link>
-            <div className="classCode">
-              {" "}
-              <h4>Class PIN</h4>
-           <h1> {this.state.classId}</h1>
-              
-            </div>
-        
-     
-       
-        </Box>
-       
-          
-          
-  
-             </Grid></Grid>
-       */}
       </div>
     );
   }

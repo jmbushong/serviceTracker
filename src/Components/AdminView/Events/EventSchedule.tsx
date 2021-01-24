@@ -218,7 +218,7 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
           Upcoming Events
         </Typography> */}
         <div></div>
-        <div className="viewEvents" style={{marginTop:"130px"}} >
+        <div className="viewEvents responsiveMarginTopAdmin"  >
 
           <Box style={{ background: "#fafafa", padding: "0px",  marginLeft:"auto" }}>
           <Typography

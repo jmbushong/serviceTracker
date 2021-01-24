@@ -166,34 +166,20 @@ class ManageAccounts extends React.Component<AcceptedProps, MyState> {
   render() {
     return (
       <Box>
-        {/* <AdminSitebar
-          backArrowToggle={this.props.backArrowToggle}
-          // arrowHandler={this.props.arrowHandler}
-          clearToken={this.props.clearToken}
-          sessionToken={this.props.sessionToken}
-        /> */}
-        {/* <Typography
-          className="adminTitle"
-          component="h2"
-          variant="h5"
-          style={{ textAlign: "center", margin: "30px", color:"black" }}
-        >
-          Student Accounts
-        </Typography> */}
+ 
 
         <Container
           maxWidth="lg"
-          style={{ height: "80vh", paddingLeft:"0" }}
-          className="studentAccounts"
+          style={{ height: "100vh", paddingLeft:"0" }}
+          className="studentAccounts manageAccountMarginTop"
         >
           {" "}
           <Typography
-            className="adminTitle"
+            className="adminTitle "
             component="h2"
             variant="h5"
             style={{
               textAlign: "center",
-              marginTop: "80px",
               paddingTop: "30px",
               color: "black",
             }}
@@ -202,7 +188,7 @@ class ManageAccounts extends React.Component<AcceptedProps, MyState> {
           </Typography>
           {this.state.studentAccounts.length > 0 ? (
             this.state.studentAccounts.map((service: any, index: any) => (
-              <Box width="auto" key={this.state.studentAccounts.id}>
+              <Box width="auto" className="manageAccountMarginLeft" key={this.state.studentAccounts.id}>
                 <List component="nav" aria-label="main mailbox folders"></List>
                 <ListItem className="accountRows" button>
         

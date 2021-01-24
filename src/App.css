@@ -7,6 +7,56 @@
   margin: 0;
   padding: 0;
 }
+.clipPhoto{
+ 
+  height: 350px;
+  z-index: 0;
+  transform:translateY(50px)
+
+}
+
+.classCodeId{
+font-size: 3rem;
+letter-spacing: 8px;
+color: #ef476f;
+
+
+}
+
+.classCodeImage{
+  position:absolute;
+  text-align: center;
+  z-index: 1;
+  transform:translate(60px, 180px);
+
+}
+
+.clip{
+position: relative;
+margin-right: auto;
+display:flex;
+justify-content: center;
+height: 100vh;
+  
+  
+}
+.responsiveMarginTopAdmin{
+  margin-top:30px
+}
+.manageHoursMarginTop{
+  margin-top:0px;
+  margin-left:10px;
+}
+.manageAccountMarginTop{
+  margin-top:0px;
+  margin-left:10px;
+}
+
+.manageAccountMarginLeft{
+
+  margin-left:10px;
+}
+
 
 .blueDiv {
   background-color: #fafafa;
@@ -95,6 +145,60 @@ a:active {
 }
 
 @media only screen and (min-width: 600px) {
+
+  .clip{
+    position: relative;
+    margin-right: auto;
+    display:flex;
+    justify-content: center;
+
+    height: 100vh;
+      
+      
+    }
+
+  .clipPhoto{
+ 
+    height: 400px;
+    z-index: 0;
+    transform:translateY(120px);
+
+  
+  }
+  
+  .classCodeId{
+  font-size: 3rem;
+  letter-spacing: 8px;
+  color: #ef476f;
+  
+  
+  }
+  
+  .classCodeImage{
+    position:absolute;
+    text-align: center;
+    z-index: 1;
+    transform:translate(60px, 300px);
+  
+  }
+  
+
+  .manageAccountMarginTop{
+    margin-top:80px;
+  
+  }
+  .manageAccountMarginLeft{
+  
+    margin-left:35px;
+  }
+
+  .manageHoursMarginTop{
+    margin-top:80px;
+    margin-left: 25px;
+  }
+  .responsiveMarginTopAdmin{
+    margin-top:130px
+  }
   .newLanding {
     background-image: url("../src/Assets/undraw_the_world_is_mine_nb0e\ \(1\).svg");
     background-repeat: no-repeat;
@@ -258,6 +362,7 @@ a:active {
   /* margin-left: auto;
   margin-right: auto; */
   margin-top: 100px;
+  
 }
 
 .admindash_div {
@@ -292,13 +397,13 @@ a:active {
 }
 
 hr {
-  height: 10px;
+  height: 8px;
   background-color: #f6d55c;
   border: none;
   width: 180px;
   margin-bottom: 36px;
-  transform: translateX(25%);
-  margin-top: 10px;
+  transform: translateX(10%);
+  margin-top: 5px;
 }
 
 .visited:visited {
