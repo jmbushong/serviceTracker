@@ -227,7 +227,7 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
               >
 
 
-                <Button  variant="contained"    style={{ backgroundColor:"#5390d9", color:"white", width:"25%"  }}>
+                <Button  variant="contained"    style={{ backgroundColor:"#5390d9", color:"white", width:"150px" }}>
                   <AddBoxIcon
                     onClick={() => {
                       this.handleClickOpen();
@@ -248,7 +248,14 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
                   aria-controls="panel1d-content"
                   id="panel1d-header"
                 >
-                  <Typography style={{ marginLeft: "15px" }}>
+                  <Typography style={{ marginLeft: "5px" }}>
+                  {this.state.eventInfo[index].date} 
+            
+                   
+                    
+                  </Typography>
+                  <Typography style={{ marginLeft: "55px" }}>
+                
                   {this.state.eventInfo[index].title} <br></br>
                    
                     
@@ -316,8 +323,14 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
                 </AccordionSummary>
                 <AccordionDetails style={{ padding: "0px 30px" }}>
                   <Typography>
-                    <p style={{ fontSize: "12px" }}>Date: {this.state.eventInfo[index].date} <br></br>
-                    Location: {this.state.eventInfo[index].location} <br></br>
+                    <p style={{ fontSize: "12px", marginRight:"45px" }}>
+                    Location: {this.state.eventInfo[index].location} 
+            
+                    </p>
+                  </Typography>
+                  <Typography>
+                    <p style={{ fontSize: "12px" }}>
+               
                     Hours:     {this.state.eventInfo[index].hours}
                     </p>
                   </Typography>
