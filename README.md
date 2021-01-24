@@ -10,9 +10,10 @@ ServiceTracker is a full stack web application that enables service organization
 ### Built with
 
 1. PostgreSQL, Express, React, & Node.js
-2. View server-side code [here](https://github.com/jmbushong/serviceTrackerServer)
+2. [View Server-Side Code ](https://github.com/jmbushong/serviceTrackerServer).
 
 ### Getting Started
+
 1. CREATE ADMIN ACCOUNT:
     When a sponsor of an organization goes to create an account, a class code is automatically generated for the user. Students will need to be provided this code in order to create their own account. This code is what links the student account with a specific organization. 
 
@@ -35,7 +36,7 @@ Below is a preview of the admin dashboard. From this view, administrators are ab
 1. Search for Service Entries By Student
 2. Manage Service Hours (sorted by status)
 3. Manage Upcoming Events (View, Add, Edit, & Delete)
-4. Manage Student Accounts (View, Edit, & Delete)
+4. Manage Studenst Accounts (View, Edit, & Delete)
 
 <img src="https://user-images.githubusercontent.com/67441821/105642154-f9bbd600-5e55-11eb-971f-f15db765a309.png" width=50%>
 
