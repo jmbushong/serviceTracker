@@ -8,6 +8,9 @@
   padding: 0;
 }
 
+.marginStudentDash{
+  margin-bottom:5px;
+}
 
 .clipPhoto{
  
@@ -70,7 +73,7 @@ height: 80vh;
   height: 35vh;
   padding: 1px;
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 25px;
 }
 
 .newLanding {
@@ -153,7 +156,9 @@ a:active {
 
 @media only screen and (min-width: 600px) {
 
-
+  .marginStudentDash{
+    margin-bottom:25px !important;
+  }
 
   .clip{
     position: relative;

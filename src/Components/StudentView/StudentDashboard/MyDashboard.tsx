@@ -118,10 +118,10 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
         <Grid container className="studentContainer" component="main" >
         <Grid item xs={12} sm={12} md={12} lg={12} >   
         <Typography
-            className="signupTitle"
+            className="signupTitle marginStudentDash"
             component="h1"
             variant="h4"
-            style={{marginBottom: "25px"}}
+            
           >
             Student Dashboard
           </Typography> 
