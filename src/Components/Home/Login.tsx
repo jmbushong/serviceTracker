@@ -9,9 +9,10 @@ import Container from "@material-ui/core/Container";
 import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
 import API_URL from "../../environment";
+import Hidden from "@material-ui/core/Hidden";
+import World from "../../Assets/undraw_the_world_is_mine_nb0e (1).svg";
 
 //This component appears on the page as soon as a user arrives to the site
-
 
 //This function is not currently being called.
 //It contains the copyright.
@@ -135,9 +136,7 @@ class Login extends React.Component<AcceptedProps, {}> {
 
   render() {
     return (
-  
-      <Grid container component="main" style={{height:"100vh"}}>
-     
+      <Grid container component="main" style={{ height: "100vh" }}>
         <CssBaseline />
 
         <Grid
@@ -153,27 +152,50 @@ class Login extends React.Component<AcceptedProps, {}> {
           <CssBaseline />
 
           <div className="formPadding">
-
+            <Hidden smUp>
+              <div
+                style={{
+                  width: "75vw",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <img className="miniImage" src={World}></img>
+              </div>
+            </Hidden>
             <Typography
-              className="signupTitle"
-              style={{ marginTop: "150px" }}
+              className="marginHome signupTitle"
+              style={{ marginBottom: "5px" }}
               component="h1"
               variant="h4"
             >
               ServiceTracker
             </Typography>
-            <Typography style={{ fontSize: "9pt", textAlign: "center" }}>
+            <Hidden smUp>
               {" "}
-              Easily tracks your hours, so you can focus on <i>
-                doing good.
-              </i>{" "}
-            </Typography>
+              <Typography style={{ fontSize: "10px", textAlign: "center" }}>
+                <p>
+                  Easily tracks your hours, so you can focus on{" "}
+                  <i>doing good.</i>
+                </p>
+              </Typography>
+            </Hidden>
+            <Hidden xsDown>
+              {" "}
+              <Typography style={{ fontSize: "13px", textAlign: "center" }}>
+                {" "}
+                Easily tracks your hours, so you can focus on <i>
+                  doing good.
+                </i>{" "}
+              </Typography>
+            </Hidden>
+
             <br></br>
 
             <form onSubmit={this.handleSubmit} noValidate>
               <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}></Grid>
-                <Grid item xs={12} sm={6}></Grid>
+                {/* <Grid item xs={6} sm={6}></Grid>
+                <Grid item xs={6} sm={6}></Grid> */}
                 <Grid item xs={12}>
                   <TextField
                     variant="outlined"
@@ -230,7 +252,7 @@ class Login extends React.Component<AcceptedProps, {}> {
             </form>
           </div>
         </Container>
-{/* 
+        {/* 
         <div
           style={{
             // backgroundColor: "#222222",
@@ -244,7 +266,7 @@ class Login extends React.Component<AcceptedProps, {}> {
           <Copyright />
         </div> */}
         {this.checkForToken()}
-      </Grid> 
+      </Grid>
     );
   }
 }

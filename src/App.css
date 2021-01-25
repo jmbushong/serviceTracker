@@ -8,6 +8,17 @@
   padding: 0;
 }
 
+.miniImage{
+  height:100px; 
+
+  margin-top:60px;
+  margin-bottom: 30px}
+
+
+.marginHome{
+  margin-top:0px !important;
+}
+
 .marginStudentDash{
   margin-bottom:5px;
 }
@@ -155,6 +166,10 @@ a:active {
 }
 
 @media only screen and (min-width: 600px) {
+
+  .marginHome{
+    margin-top:150px !important;
+  }
 
   .marginStudentDash{
     margin-bottom:25px !important;
