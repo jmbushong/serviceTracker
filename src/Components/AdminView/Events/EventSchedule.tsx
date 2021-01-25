@@ -13,6 +13,8 @@ import Button from "@material-ui/core/Button";
 import AdminSitebar from "../../Sitebar/AdminSitebar";
 import Typography from "@material-ui/core/Typography";
 import Paper from '@material-ui/core/Paper';
+import API_URL from "../../../environment";
+
 
 //This component shows the Events that are currently scheduled
 //This component also has links to EDIT EVENTS & ADD EVENTS
@@ -133,7 +135,7 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
   //After deleting the event, fetchEvents() is called, to get updated info
   deleteEvent = async (id: number) => {
     try {
-      const response = await fetch(`http://localhost:4000/events/${id}`, {
+      const response = await fetch(`${API_URL}/events/${id}`, {
         method: "DELETE",
         headers: new Headers({
           "Content-Type": "application/json",
@@ -152,7 +154,7 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
 
   //This fetch is specifically used to populate the chart
   fetchEvents = () => {
-    fetch(`http://localhost:4000/events`, {
+    fetch(`${API_URL}/events`, {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -177,7 +179,7 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
   //-------the rest of the items will have a value and not be blank
 
   fetchEventRequests = (id: any) => {
-    fetch(`http://localhost:4000/events/${id}`, {
+    fetch(`${API_URL}/events/${id}`, {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",

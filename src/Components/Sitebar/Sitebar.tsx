@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
+import API_URL from "../../environment";
 
 // type myState = {
 //   anchorE1: any;
@@ -48,7 +49,7 @@ class Sitebar extends React.Component<AcceptedProps, myState> {
   deleteUser = async()=>{
     try{
       const response= await 
-          fetch(`http://localhost:4000/user/delete`,{
+          fetch(`${API_URL}/user/delete`,{
                 method: 'DELETE',
                 headers: new Headers({
                     'Content-Type': 'application/json',
@@ -65,7 +66,7 @@ class Sitebar extends React.Component<AcceptedProps, myState> {
     try{
         
       const response= await 
-      fetch(`http://localhost:4000/teacherUser/deleteclassentries`,{
+      fetch(`${API_URL}/teacherUser/deleteclassentries`,{
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json'

@@ -11,6 +11,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { Redirect } from "react-router-dom";
+import API_URL from "../../../environment";
 
 type AcceptedProps = {
   indexNumber:any;
@@ -75,7 +76,7 @@ class UpdateServiceHours extends React.Component <AcceptedProps, myState>{
  
   }
   fetchServiceRequests = () =>{
-    fetch(`http://localhost:4000/service/${this.props.indexNumber}`, {
+    fetch(`${API_URL}/service/${this.props.indexNumber}`, {
         method: 'GET',
         headers: new Headers ({
             'Content-Type': 'application/json',
@@ -137,7 +138,7 @@ class UpdateServiceHours extends React.Component <AcceptedProps, myState>{
     //   service.hours= this.state.entryById.hours
     // }else{service.hours= this.state.hours}
 
-    fetch(`http://localhost:4000/service/${this.props.indexNumber}`, {
+    fetch(`${API_URL}/service/${this.props.indexNumber}`, {
       method: "PUT",
       body: JSON.stringify({
         // service

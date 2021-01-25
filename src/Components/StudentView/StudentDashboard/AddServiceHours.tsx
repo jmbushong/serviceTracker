@@ -11,6 +11,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import API_URL from "../../../environment";
 
 import { Redirect } from "react-router-dom";
 
@@ -74,7 +75,7 @@ class AddServiceHours extends React.Component<AcceptedProps, myState> {
   //3. setting prop values back to zero
   handleSubmit = (event: any) => {
     event.preventDefault();
-    fetch(`http://localhost:4000/service`, {
+    fetch(`${API_URL}/service`, {
       method: "POST",
       body: JSON.stringify({
         service: {

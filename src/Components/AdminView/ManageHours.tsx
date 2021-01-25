@@ -17,6 +17,7 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Typography from "@material-ui/core/Typography";
+import API_URL from "../../environment";
 
 type AcceptedProps = {
   sessionToken?: any;
@@ -78,7 +79,7 @@ export default class ManageHoursTable extends React.Component<
   handleSubmit = (id: any) => {
     // id.preventDefault();
 
-    fetch(`http://localhost:4000/service/status/${id}`, {
+    fetch(`${API_URL}/service/status/${id}`, {
       method: "PUT",
       body: JSON.stringify({
         service: {
@@ -104,7 +105,7 @@ export default class ManageHoursTable extends React.Component<
   handleSubmit2 = (id: any) => {
     // id.preventDefault();
 
-    fetch(`http://localhost:4000/service/status/${id}`, {
+    fetch(`${API_URL}/service/status/${id}`, {
       method: "PUT",
       body: JSON.stringify({
         service: {
@@ -129,7 +130,7 @@ export default class ManageHoursTable extends React.Component<
   handleSubmit3 = (id: any, currentStatus: any) => {
     // id.preventDefault();
 
-    fetch(`http://localhost:4000/service/status/${id}`, {
+    fetch(`${API_URL}/service/status/${id}`, {
       method: "PUT",
       body: JSON.stringify({
         service: {
@@ -160,9 +161,9 @@ export default class ManageHoursTable extends React.Component<
     let url: any;
 
     if (e !== undefined) {
-      url = `http://localhost:4000/service/${e}`;
+      url = `${API_URL}/service/${e}`;
     } else {
-      url = "http://localhost:4000/service/awaiting";
+      url = `${API_URL}/service/awaiting`;
     }
 
     fetch(url, {

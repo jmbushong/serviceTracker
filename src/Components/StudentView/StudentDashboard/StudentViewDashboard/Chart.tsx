@@ -21,6 +21,7 @@ import { SettingsPowerRounded } from "@material-ui/icons";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import AddBoxIcon from "@material-ui/icons/AddBox";
+import API_URL from "../../../../environment";
 
 
 
@@ -58,7 +59,7 @@ export default class Chart extends React.Component<AcceptedProps, myState> {
     console.log(this.props.serviceRequests);
   }
   fetchServiceRequests = () => {
-    fetch("http://localhost:4000/service", {
+    fetch(`${API_URL}/service`, {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -78,7 +79,7 @@ export default class Chart extends React.Component<AcceptedProps, myState> {
   deleteEntryAsync2 = async () => {
     try {
       const response = await fetch(
-        `http://localhost:4000/service/${this.props.indexNumber}`,
+        `${API_URL}/service/${this.props.indexNumber}`,
         {
           method: "DELETE",
           headers: new Headers({

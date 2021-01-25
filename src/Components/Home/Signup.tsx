@@ -8,6 +8,7 @@ import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
+import API_URL from "../../environment";
 
 //This component is where a STUDENT would create an account
 
@@ -43,7 +44,7 @@ class Signup extends React.Component<AcceptedProps, {}> {
   //This fetch CREATES a student user. They are then linked to the correct group through the class code.
   handleSubmit = (event: any) => {
     event.preventDefault();
-    fetch(`http://localhost:4000/user/signup`, {
+    fetch(`${API_URL}/user/signup`, {
       method: "POST",
       body: JSON.stringify({
         studentUser: {

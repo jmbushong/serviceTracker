@@ -13,6 +13,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import { Redirect } from "react-router-dom";
+import API_URL from "../../../environment";
 
 //This component is the EDIT EVENTS modal where event info is updated
 
@@ -62,7 +63,7 @@ class UpdateEvent extends React.Component<AcceptedProps, myState> {
   //this closing the modal, and fetchEvents() updates contents of table
   handleSubmit = (event: any) => {
     event.preventDefault();
-    fetch(`http://localhost:4000/events/${this.props.oneEvent.id}`, {
+    fetch(`${API_URL}/events/${this.props.oneEvent.id}`, {
       method: "PUT",
       body: JSON.stringify({
         events: {

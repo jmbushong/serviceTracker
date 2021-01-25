@@ -8,6 +8,7 @@ import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
+import API_URL from "../../environment";
 
 //This component is where an ADMIN would create an account
 
@@ -43,7 +44,7 @@ class AdminSignup extends React.Component<AcceptedProps, {}> {
   //This fetch CREATES an Admin account.
   handleSubmit = (event: any) => {
     event.preventDefault();
-    fetch(`http://localhost:4000/teacheruser/signup`, {
+    fetch(`${API_URL}/teacheruser/signup`, {
       method: "POST",
       body: JSON.stringify({
         teacherUser: {

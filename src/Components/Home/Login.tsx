@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
+import API_URL from "../../environment";
 
 //This component appears on the page as soon as a user arrives to the site
 
@@ -57,7 +58,7 @@ class Login extends React.Component<AcceptedProps, {}> {
   //It takes the inputted information, determines if student or teacher, and then shows proper page
   handleSubmit = (event: any) => {
     event.preventDefault();
-    fetch(`http://localhost:4000/user/login`, {
+    fetch(`${API_URL}/user/login`, {
       method: "POST",
       body: JSON.stringify({
         studentUser: {
@@ -86,7 +87,7 @@ class Login extends React.Component<AcceptedProps, {}> {
         if (this.props.sessionToken) {
           console.log("yes");
         } else {
-          return fetch(`http://localhost:4000/teacheruser/login`, {
+          return fetch(`${API_URL}/teacheruser/login`, {
             method: "POST",
             body: JSON.stringify({
               teacherUser: {

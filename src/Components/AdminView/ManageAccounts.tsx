@@ -14,6 +14,7 @@ import Container from "@material-ui/core/Container";
 import Paper from "@material-ui/core/Paper";
 
 import EditStudentAccounts from "../AdminView/EditStudentAccounts";
+import API_URL from "../../environment";
 
 type AcceptedProps = {
   sessionToken?: any;
@@ -106,7 +107,7 @@ class ManageAccounts extends React.Component<AcceptedProps, MyState> {
 
   deleteEntryAsync2 = async (id: number) => {
     try {
-      const response = await fetch(`http://localhost:4000/user/${id}`, {
+      const response = await fetch(`${API_URL}/user/${id}`, {
         method: "DELETE",
         headers: new Headers({
           "Content-Type": "application/json",
@@ -125,7 +126,7 @@ class ManageAccounts extends React.Component<AcceptedProps, MyState> {
 
   //This fetch gets all information linked to the classId that is logged in. I then took the list of students and set it to the variable studentData. This is the variable I will use to map over the page.
   fetchTeacherData = () => {
-    fetch(`http://localhost:4000/user/all`, {
+    fetch(`${API_URL}/user/all`, {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -142,7 +143,7 @@ class ManageAccounts extends React.Component<AcceptedProps, MyState> {
   };
 
   fetchSpecificStudent = (id: any) => {
-    fetch(`http://localhost:4000/user/${id}`, {
+    fetch(`${API_URL}/user/${id}`, {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",

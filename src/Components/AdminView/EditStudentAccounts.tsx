@@ -9,6 +9,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Typography from "@material-ui/core/Typography";
 import { Redirect } from "react-router-dom";
+import API_URL from "../../environment";
 
 type AcceptedProps = {
   fetchTeacherData: any;
@@ -73,7 +74,7 @@ class EditStudentAccounts extends React.Component<AcceptedProps, myState> {
     } 
     
     console.log(studentUser)
-    fetch(`http://localhost:4000/user/${this.props.userId.id}`, {
+    fetch(`${API_URL}/user/${this.props.userId.id}`, {
       method: "PUT",
       body: JSON.stringify({
         studentUser,

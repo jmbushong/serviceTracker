@@ -10,7 +10,7 @@ import { Redirect } from "react-router-dom";
 import MenuItem from "@material-ui/core/MenuItem";
 import { Link } from "react-router-dom";
 import Menu from "@material-ui/core/Menu";
-
+import API_URL from "../../environment";
 
 type AcceptedProps = {
   backArrowToggle: any;
@@ -47,7 +47,7 @@ class AdminSitebar extends React.Component<AcceptedProps, myState> {
   deleteUser = async()=>{
     try{
       const response= await 
-          fetch(`http://localhost:4000/teacherUser/deleteadmin`,{
+          fetch(`${API_URL}/teacherUser/deleteadmin`,{
                 method: 'DELETE',
                 headers: new Headers({
                     'Content-Type': 'application/json',
@@ -66,7 +66,7 @@ class AdminSitebar extends React.Component<AcceptedProps, myState> {
     try{
         
       const response= await 
-      fetch(`http://localhost:4000/teacherUser/deleteclass`,{
+      fetch(`${API_URL}/teacherUser/deleteclass`,{
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json'
@@ -82,7 +82,7 @@ class AdminSitebar extends React.Component<AcceptedProps, myState> {
     try{
         
       const response= await 
-      fetch(`http://localhost:4000/teacherUser/deleteclassentries`,{
+      fetch(`${API_URL}/teacherUser/deleteclassentries`,{
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json'

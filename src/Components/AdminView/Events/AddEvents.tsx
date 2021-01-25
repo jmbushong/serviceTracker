@@ -15,6 +15,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import { Redirect } from "react-router-dom";
+import API_URL from "../../../environment";
+
 
 type AcceptedProps = {
   sessionToken?: any;
@@ -23,6 +25,8 @@ type AcceptedProps = {
 fetchEvents:any;
   open: any;
 };
+
+
 
 type myState = {
   date: any;
@@ -61,8 +65,9 @@ class AddEvent extends React.Component<AcceptedProps, myState> {
   }
 
   handleSubmit = (event: any) => {
+   
     event.preventDefault();
-    fetch(`http://localhost:4000/events/`, {
+    fetch(`${API_URL}/events/`, {
       method: "POST",
       body: JSON.stringify({
         events: {

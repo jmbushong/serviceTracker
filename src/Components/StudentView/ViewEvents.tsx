@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Box from "@material-ui/core/Box";
+import API_URL from "../../environment";
 
 type AcceptedProps = {   
  
@@ -55,7 +56,7 @@ class ViewEvents extends React.Component  <AcceptedProps, myState> {
   }
 
   fetchService = () => {
-    fetch(`http://localhost:4000/events/studentview`, {
+    fetch(`${API_URL}/events/studentview`, {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",

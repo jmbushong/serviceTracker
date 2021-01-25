@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import ViewEvents from "../ViewEvents";
 import { GridDataContainer } from "@material-ui/data-grid";
+import API_URL from "../../../environment";
 
 
 let percentage = 56;
@@ -77,7 +78,7 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
   };
 
   fetchServiceRequests = () => {
-    fetch("http://localhost:4000/service", {
+    fetch(`${API_URL}/service`, {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",

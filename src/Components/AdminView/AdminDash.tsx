@@ -17,7 +17,7 @@ import Hidden from "@material-ui/core/Hidden";
 import ManageAccounts from "./ManageAccounts";
 import Button from "@material-ui/core/Button";
 import EventSchedule from "./Events/EventSchedule";
-import ManageHours from "./ManageHoursTable";
+
 import ManageHoursTable from "./ManageHours";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
@@ -30,6 +30,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import PhoneIcon from "@material-ui/icons/Phone";
 import clipboard from "../../Assets/undraw_No_data_re_kwbl.svg"
+import API_URL from "../../environment";
 
 import PersonPinIcon from "@material-ui/icons/PersonPin";
 
@@ -81,7 +82,7 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
   }
 
   fetchTeacherData = () => {
-    fetch(`http://localhost:4000/teacherUser`, {
+    fetch(`${API_URL}/teacherUser`, {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -345,7 +346,7 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
                   {" "}
                 </Grid>
               </Hidden> */}
-              <Grid item xs={12} sm={10} md={9} lg={9}>
+              <Grid item xs={12} sm={10} md={10} lg={9}>
                 <ManageHoursTable
                   teacherAccount={this.props.teacherAccount}
                   setIsAdminTrue={this.props.setIsAdminTrue}
