@@ -5,7 +5,7 @@ switch (window.location.hostname){
         API_URL= 'http://localhost:4000'
         break
     default: 
-        API_URL= 'https://jmb-service-tracker-server.herokuapp.com/'
+        API_URL= 'https://jmb-service-tracker-server.herokuapp.com'
 }
 
 export default API_URL;
