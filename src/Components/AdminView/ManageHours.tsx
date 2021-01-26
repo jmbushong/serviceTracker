@@ -276,7 +276,7 @@ export default class ManageHoursTable extends React.Component<
                     </TableCell>
                     <TableCell style={{ fontSize: "12px" }}>
                       {" "}
-                      <h4 style={{ marginRight: "35px" }}>
+                      <h4 style={{ marginRight: "0px" }}>
                         {
                           this.state.serviceRequests[index]?.studentUser
                             .firstName
@@ -290,16 +290,16 @@ export default class ManageHoursTable extends React.Component<
                       {this.state.serviceRequests[index]?.description}
                     </TableCell>
                     {this.state.statusView === "Pending" ? (
-                      <TableCell align="center">
+                      <TableCell align="center" className="tableWidth">
                         <Button
+                        className="buttonMargin"
                           style={{
                             backgroundColor: "#06d6a0",
                             marginTop: "5px",
                             color: "white",
-                      
-                            marginRight: "5px",
-                            width: "90px",
-                            height: "40px",
+                            marginBottom: "5px"
+                         
+                        
                           }}
                           variant="contained"
                           onClick={() => {
@@ -313,14 +313,12 @@ export default class ManageHoursTable extends React.Component<
                         </Button>
 
                         <Button
+                         className="buttonMargin"
                           style={{
                             backgroundColor: "#ef476f",
                             height: "40px",
                             color: "white",
                         
-                            marginRight: "5px",
-                            marginTop: "5px",
-                            width: "90px",
                           }}
                           variant="contained"
                           onClick={() => {

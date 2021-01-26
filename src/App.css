@@ -13,6 +13,17 @@ body{
   background-color:#fafafa;
 }
 
+.tableWidth{
+ width:150px;
+}
+.buttonMargin{
+  margin-right: 20px;
+  margin-left: 10px;
+  width: 80px;
+  height: 40px;
+ 
+}
+
 .marginClassTotals{
   text-align: center;
    height:50px;
@@ -179,6 +190,18 @@ a:active {
 }
 
 @media only screen and (min-width: 600px) {
+
+  .buttonMargin{
+    margin-right: 5px !important;
+    margin-left: 0px;
+    width: 80px;
+    height: 40px;
+  }
+
+  .tableWidth{
+    width:350px;
+
+   }
 
   .marginClassTotals{
     text-align: center;
