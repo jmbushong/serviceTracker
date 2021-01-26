@@ -265,14 +265,7 @@ export default class ManageHoursTable extends React.Component<
                       align="left"
                       style={{ marginLeft: "50px" }}
                     ></TableCell>
-                    {/* <TableCell align="left">
-            
-                      {
-                        this.state.serviceRequests[index]?.studentUser.firstName
-                      }
-                      {this.state.serviceRequests[index]?.studentUser.lastName}
-                      <br></br>
-                    </TableCell> */}
+               
                     <TableCell></TableCell>
 
                     <TableCell align="left" style={{ fontSize: "11px", width:"100px" }}>
@@ -310,7 +303,7 @@ export default class ManageHoursTable extends React.Component<
                           }}
                           variant="contained"
                           onClick={() => {
-                            this.setState({ status: "approved" });
+                            this.setState({ status: "Approved" });
                             this.handleSubmit(
                               this.state.serviceRequests[index]?.id
                             );
@@ -331,7 +324,7 @@ export default class ManageHoursTable extends React.Component<
                           }}
                           variant="contained"
                           onClick={() => {
-                            this.setState({ status: "denied" });
+                            this.setState({ status: "Denied" });
                             this.handleSubmit2(
                               this.state.serviceRequests[index]?.id
                             );
@@ -382,13 +375,3 @@ export default class ManageHoursTable extends React.Component<
   }
 }
 
-// import React, {Component} from 'react';
-
-// class ManageHoursTable extends React.Component {
-
-//     render() {
-//         return (  <div>Enter Content Here</div>);
-//     }
-// }
-
-// export default ManageHoursTable;

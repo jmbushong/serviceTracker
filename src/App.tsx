@@ -15,10 +15,7 @@ import ViewEvents from "./Components/StudentView/ViewEvents";
 import AdminDash from "./Components/AdminView/AdminDash";
 import EventSchedule from "./Components/AdminView/Events/EventSchedule";
 import ManageAccounts from "./Components/AdminView/ManageAccounts";
-import Sitebar from "./Components/Sitebar/Sitebar";
-import { Redirect } from "react-router-dom";
-import UpdateEvents from "./Components/AdminView/Events/UpdateEvents";
-import AddEvent from "./Components/AdminView/Events/AddEvents";
+
 import ManageHoursTable from "./Components/AdminView/ManageHours";
 
 //In App.tsx-- set state of indexNumber & setIndexNumber

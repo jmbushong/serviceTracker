@@ -53,6 +53,7 @@ type myState = {
   viewStudentAccount: any;
   viewEventSchedule: any;
   viewManageHours: any;
+  viewSearch: any;
   setViewManageHours: (e: any) => void;
   setViewEventSchedule: (e: any) => void;
   setViewStudentAccount: (e: any) => void;
@@ -63,6 +64,7 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
     super(props);
     this.state = {
       viewManageHours: false,
+      viewSearch: false,
       viewEventSchedule: false,
       viewStudentAccount: false,
       setViewManageHours: (entry) => {
@@ -290,13 +292,7 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
                   />
                   <Hidden smDown>Accounts</Hidden>
                 </h3>
-                {/* <div className="classCode">
-              {" "}
-              <h4>Class PIN</h4>
-           <h1> {this.state.classId}</h1>
-              
-            </div>
-   */}
+     
               </Box>
             </Grid>
           </Hidden>
@@ -313,7 +309,6 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
                   setIsAdminTrue={this.props.setIsAdminTrue}
                   teacherAccount={this.props.teacherAccount}
                   backArrowToggle={this.props.backArrowToggle}
-                  // arrowHandler={this.arrowHandler}
                   clearToken={this.props.clearToken}
                   sessionToken={this.props.sessionToken}
                   setBackArrowToggle={this.props.setBackArrowToggle}
