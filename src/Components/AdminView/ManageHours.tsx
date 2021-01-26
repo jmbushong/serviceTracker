@@ -297,7 +297,7 @@ export default class ManageHoursTable extends React.Component<
                             marginTop: "5px",
                             color: "white",
                       
-                            marginRight: "10px",
+                            marginRight: "5px",
                             width: "90px",
                             height: "40px",
                           }}
@@ -318,7 +318,7 @@ export default class ManageHoursTable extends React.Component<
                             height: "40px",
                             color: "white",
                         
-                            marginRight: "10px",
+                            marginRight: "5px",
                             marginTop: "5px",
                             width: "90px",
                           }}

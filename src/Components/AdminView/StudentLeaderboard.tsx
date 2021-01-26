@@ -13,18 +13,11 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
-import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
-import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
-import Chip from "@material-ui/core/Chip";
-import EditIcon from "@material-ui/icons/Edit";
-import DeleteIcon from "@material-ui/icons/Delete";
-import { Link } from "react-router-dom";
-import { SettingsPowerRounded } from "@material-ui/icons";
-
-import ButtonGroup from "@material-ui/core/ButtonGroup";
-import AddBoxIcon from "@material-ui/icons/AddBox";
 
 import Hidden from "@material-ui/core/Hidden";
+
+
+
 
 
 class StudentLeaderboard extends React.Component {
@@ -50,25 +43,23 @@ class StudentLeaderboard extends React.Component {
         component={Paper}
       >
        
-            <Box style={{ background: "white",color:"white", padding: "0px", width: "100%"}}>
+            <Box style={{ background: "white",color:"white", padding: "10px", width: "100%"}}>
               <Box >
-                {" "}
-              <h2 style={{marginLeft:"25px"}}> </h2>
-              
+       
       
               <Box
             className="studentChart"
             style={{ background: "white", padding: "0px" }}
           >
                <TextField
-             style={{marginLeft:"30px"}}
+             style={{marginLeft:"20px", width: "150px"}}
               label="Search by Name"
               margin="normal"
               variant="outlined"
             > </TextField>
             
             <TextField
-             style={{marginLeft:"20px"}}
+             style={{marginLeft:"20px", width: "150px"}}
               label="Search by Hours"
               margin="normal"
               variant="outlined"
@@ -77,21 +68,7 @@ class StudentLeaderboard extends React.Component {
            
 
 
-            <Box className="toRight">
-              
-              
-              {" "}
-              <ButtonGroup
-                style={{ background: "white" }}
-                className="toRight"
-                disableElevation
-                variant="contained"
-                aria-label="text primary button group"
-              >
-           
-            
-              </ButtonGroup>
-            </Box>
+     
           </Box>
               
               
@@ -99,20 +76,19 @@ class StudentLeaderboard extends React.Component {
           
               </Box>
             </Box>
-        <Table aria-label="collapsible table">
+        <Table aria-label="collapsible table" >
          
           <TableHead>
          
-            <TableRow >
-              <TableCell />
+            <TableRow style={{marginLeft:"10px"}} >
+        
 
-              <IconButton size="small">
-                <TableCell></TableCell>
-              </IconButton>
-              <TableCell>Rank</TableCell>
+             
+            <TableCell align="center">Rank</TableCell>
+             
               <TableCell>Name</TableCell>
-              <TableCell>Total Hours</TableCell>
-             <Hidden xsDown> <TableCell align="center">See More</TableCell></Hidden>
+              <TableCell>Hours</TableCell>
+             <Hidden xsDown> <TableCell >See More</TableCell></Hidden>
          
             </TableRow>
           </TableHead>
@@ -120,55 +96,63 @@ class StudentLeaderboard extends React.Component {
             
                 <React.Fragment >
                  
-                  <TableRow style={{height:"45px", marginRight:"3px", marginLeft:"3px"}}> 
-                    <TableCell></TableCell>
-                    <IconButton
-                     
-                    >
-              
-                    </IconButton>
+                  <TableRow style={{height:"45px", marginRight:"3px"}}> 
+                    <TableCell align="center">1</TableCell>
+        
                     <TableCell align="left">
+                        Jessica Smith
+                        
                  
                     </TableCell>
 
-                    <TableCell align="left">
-                   
-                    </TableCell>
-                    <Hidden xsDown>       <TableCell align="center">
+                    <TableCell align="left" > 20 </TableCell>
+                    <Hidden xsDown>       <TableCell>Click Here
                      
                     </TableCell></Hidden>
               
-                    <TableCell align="center" >  </TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell
-                     
-                  
-                    >
-                      <Collapse
-              
-                        timeout="auto"
-                        unmountOnExit
-                      >
-                        <Box style={{ padding: "5px" }} margin={1}>
-                          <Box className="editIcon">
-                            <h5 style={{ marginRight: "auto" }}>Details</h5>
-                            
-                     
-                      
-                          </Box>
-
-                          <p style={{ padding: "15px" }}>
-                          <Hidden smUp>      
-                      Hours: <br></br> Description: 
-                   </Hidden>
-                         
-                          </p>
-                        </Box>
-                      </Collapse>
-                    </TableCell>
+                   
                   </TableRow>
                 </React.Fragment>
+                <React.Fragment >
+                 
+                  <TableRow style={{height:"45px", marginRight:"3px"}}> 
+                    <TableCell align="center">1</TableCell>
+        
+                    <TableCell align="left">
+                        Jessica Smith
+                        
+                 
+                    </TableCell>
+
+                    <TableCell align="left" > 20 </TableCell>
+                    <Hidden xsDown>       <TableCell>Click Here
+                     
+                    </TableCell></Hidden>
+              
+                   
+                  </TableRow>
+                </React.Fragment>
+              
+                <React.Fragment >
+                 
+                 <TableRow style={{height:"45px", marginRight:"3px"}}> 
+                   <TableCell align="center">1</TableCell>
+       
+                   <TableCell align="left">
+                       Jessica Smith
+                       
+                
+                   </TableCell>
+
+                   <TableCell align="left" > 20 </TableCell>
+                   <Hidden xsDown>       <TableCell>Click Here
+                    
+                   </TableCell></Hidden>
+             
+                  
+                 </TableRow>
+               </React.Fragment>
+             
               
             
           </TableBody>
