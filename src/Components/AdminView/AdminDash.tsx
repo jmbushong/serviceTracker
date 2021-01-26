@@ -91,14 +91,13 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
     })
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
-        console.log(json.classId);
+   
         this.state.setClassId(json.classId);
       });
   };
 
   checkForToken = () => {
-    console.log(this.props.isAdmin);
+
     if (!this.props.sessionToken) {
       return <Redirect to="/" />;
     } else if (this.props.isAdmin === false) {
@@ -114,7 +113,7 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
     this.props.setIsAdminTrue(true);
     this.checkForToken();
     // this.props.arrowHandler();
-    console.log(this.props.teacherAccount);
+    
   }
 
   render() {

@@ -49,8 +49,8 @@ export default class ManageHoursTable extends React.Component<
   constructor(props: AcceptedProps) {
     super(props);
     this.state = {
-      statusView: "awaiting",
-      status: "Awaiting Approval",
+      statusView: "Pending",
+      status: "Pending",
       serviceRequests: [],
       setServiceRequests: (e) => {
         this.setState({ serviceRequests: e });
@@ -72,7 +72,7 @@ export default class ManageHoursTable extends React.Component<
   }
 
   componentDidMount() {
-    this.fetchServiceRequests("awaiting");
+    this.fetchServiceRequests("Pending");
     // this.props.setBackArrowToggle(true);
     this.props.setIsAdminTrue(true);
   }
@@ -94,7 +94,7 @@ export default class ManageHoursTable extends React.Component<
       if (response.status === 200) {
         console.log("Service status update submission was successful");
         this.state.setUpdate(true);
-        this.fetchServiceRequests("awaiting");
+        this.fetchServiceRequests("Pending");
       } else {
         console.log("Service status update submission failed");
       }
@@ -119,7 +119,7 @@ export default class ManageHoursTable extends React.Component<
     }).then((response) => {
       if (response.status === 200) {
         console.log("Service status update submission was successful");
-        this.fetchServiceRequests("awaiting");
+        this.fetchServiceRequests("Pending");
       } else {
         console.log("Service status update submission failed");
       }
@@ -163,7 +163,7 @@ export default class ManageHoursTable extends React.Component<
     if (e !== undefined) {
       url = `${API_URL}/service/${e}`;
     } else {
-      url = `${API_URL}/service/awaiting`;
+      url = `${API_URL}/service/Pending`;
     }
 
     fetch(url, {
@@ -221,16 +221,16 @@ export default class ManageHoursTable extends React.Component<
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  defaultValue={"awaiting"}
+                  defaultValue={"Pending"}
                   onChange={(e) => {
                     console.log(e.target.value);
                     this.fetchServiceRequests(e.target.value);
                     this.setState({ statusView: e.target.value });
                   }}
                 >
-                  <MenuItem value={"awaiting"}>Pending</MenuItem>
-                  <MenuItem value={"approved"}>Approved</MenuItem>
-                  <MenuItem value={"denied"}>Denied</MenuItem>
+                  <MenuItem value={"Pending"}>Pending</MenuItem>
+                  <MenuItem value={"Approved"}>Approved</MenuItem>
+                  <MenuItem value={"Denied"}>Denied</MenuItem>
                 </Select>
               </FormControl>
             </Box>
@@ -296,7 +296,7 @@ export default class ManageHoursTable extends React.Component<
                       </h4>{" "}
                       {this.state.serviceRequests[index]?.description}
                     </TableCell>
-                    {this.state.statusView === "awaiting" ? (
+                    {this.state.statusView === "Pending" ? (
                       <TableCell align="center">
                         <Button
                           style={{
