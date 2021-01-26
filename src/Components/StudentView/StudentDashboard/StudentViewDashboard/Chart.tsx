@@ -22,7 +22,7 @@ import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import API_URL from "../../../../environment";
-
+import Hidden from "@material-ui/core/Hidden";
 
 
 type AcceptedProps = {
@@ -155,7 +155,7 @@ export default class Chart extends React.Component<AcceptedProps, myState> {
               </IconButton>
               <TableCell>Date of Service</TableCell>
               <TableCell>Service Type</TableCell>
-              <TableCell align="center">Hours</TableCell>
+             <Hidden xsDown> <TableCell align="center">Hours</TableCell></Hidden>
               <TableCell align="center">Status</TableCell>
             </TableRow>
           </TableHead>
@@ -209,10 +209,11 @@ export default class Chart extends React.Component<AcceptedProps, myState> {
                     <TableCell align="left">
                       {this.props.serviceRequests[index]?.typeOfService}{" "}
                     </TableCell>
-                    <TableCell align="center">
+                    <Hidden xsDown>       <TableCell align="center">
                       {this.props.serviceRequests[index]?.hours}{" "}
-                    </TableCell>
-                    <TableCell align="center"> {this.props.serviceRequests[index]?.status} </TableCell>
+                    </TableCell></Hidden>
+              
+                    <TableCell align="center" > {this.props.serviceRequests[index]?.status} </TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell
@@ -225,11 +226,7 @@ export default class Chart extends React.Component<AcceptedProps, myState> {
                           })
                         }
                       }
-                      // onClick={() =>
-                      //   this.setState({
-                      //     itemId: this.props.serviceRequests[index].id,
-                      //   })
-                      // }
+                  
                     >
                       <Collapse
                         in={
@@ -242,6 +239,7 @@ export default class Chart extends React.Component<AcceptedProps, myState> {
                         <Box style={{ padding: "5px" }} margin={1}>
                           <Box className="editIcon">
                             <h5 style={{ marginRight: "auto" }}>Details</h5>
+                            
                             <Link to="/editservice">
                               <EditIcon style={{ marginRight: "10px" }} />
                             </Link>
@@ -253,7 +251,10 @@ export default class Chart extends React.Component<AcceptedProps, myState> {
                           </Box>
 
                           <p style={{ padding: "15px" }}>
-                            {this.props.serviceRequests[index]?.description}
+                          <Hidden smUp>      
+                      Hours: {this.props.serviceRequests[index]?.hours} <br></br> Description: 
+                   </Hidden>
+                           {this.props.serviceRequests[index]?.description}
                           </p>
                         </Box>
                       </Collapse>
