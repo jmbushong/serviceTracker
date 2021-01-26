@@ -31,8 +31,8 @@ import Tab from "@material-ui/core/Tab";
 import PhoneIcon from "@material-ui/icons/Phone";
 import clipboard from "../../Assets/undraw_No_data_re_kwbl.svg"
 import API_URL from "../../environment";
+import StudentLeaderboard from "../AdminView/StudentLeaderboard"
 
-import PersonPinIcon from "@material-ui/icons/PersonPin";
 
 const percentage = 66;
 
@@ -55,6 +55,7 @@ type myState = {
   viewManageHours: any;
   viewSearch: any;
   setViewManageHours: (e: any) => void;
+  setViewSearch: (e: any) => void;
   setViewEventSchedule: (e: any) => void;
   setViewStudentAccount: (e: any) => void;
 };
@@ -67,6 +68,9 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
       viewSearch: false,
       viewEventSchedule: false,
       viewStudentAccount: false,
+      setViewSearch: (entry) => {
+        this.setState({ viewSearch: entry });
+      },
       setViewManageHours: (entry) => {
         this.setState({ viewManageHours: entry });
       },
@@ -143,12 +147,20 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
               aria-label="icon tabs example"
             >
            
-              <Tab icon={      <FontAwesomeIcon
+              <Tab 
+                 onClick={() => {
+                  this.setState({ viewStudentAccount: false });
+                  this.setState({ viewEventSchedule: false });
+                  this.setState({ viewManageHours: false});
+                  this.setState({ viewSearch: true });
+                }}
+              icon={      <FontAwesomeIcon
                        style={{ color: "white", fontSize: "20px" }}
                       icon={faSearch}
                     />} aria-label="phone" />
               <Tab
                     onClick={() => {
+                      this.setState({ viewSearch:false });
                       this.setState({ viewStudentAccount: false });
                       this.setState({ viewEventSchedule: false });
                       this.setState({ viewManageHours: true });
@@ -164,6 +176,7 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
               />
               <Tab
                    onClick={() => {
+                    this.setState({ viewSearch:false });
                     this.setState({ viewManageHours: false });
                     this.setState({ viewStudentAccount: false });
                     this.setState({ viewEventSchedule: true });
@@ -180,6 +193,7 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
               />
                  <Tab
                       onClick={() => {
+                        this.setState({ viewSearch:false });
                         this.setState({ viewManageHours: false });
                         this.setState({ viewEventSchedule: false });
                         this.setState({ viewStudentAccount: true });
@@ -211,6 +225,7 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
                 <Hidden smDown>
                   <Typography
                            onClick={() => {
+                            this.setState({ viewSearch:false });
                             this.setState({ viewStudentAccount: false });
                             this.setState({ viewEventSchedule: false });
                             this.setState({ viewManageHours: false});
@@ -233,6 +248,12 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
 
                 <Box className="admindash_card">
                   <h3
+                           onClick={() => {
+                            this.setState({ viewSearch:true });
+                            this.setState({ viewStudentAccount: false });
+                            this.setState({ viewEventSchedule: false });
+                            this.setState({ viewManageHours: true });
+                          }}
                     className="marginBottom"
                     style={{ cursor: "pointer", color: "white" }}
                   >
@@ -249,6 +270,7 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
                   className="marginBottom"
                   style={{ cursor: "pointer", color: "white" }}
                   onClick={() => {
+                    this.setState({ viewSearch:false });
                     this.setState({ viewStudentAccount: false });
                     this.setState({ viewEventSchedule: false });
                     this.setState({ viewManageHours: true });
@@ -263,6 +285,7 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
                   className="marginBottom"
                   style={{ cursor: "pointer", color: "white" }}
                   onClick={() => {
+                    this.setState({ viewSearch:false });
                     this.setState({ viewStudentAccount: false });
                     this.setState({ viewManageHours: false });
                     this.setState({ viewEventSchedule: true });
@@ -280,6 +303,7 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
                   className="marginBottom"
                   style={{ cursor: "pointer", color: "white" }}
                   onClick={() => {
+                    this.setState({ viewSearch:false });
                     this.setState({ viewManageHours: false });
                     this.setState({ viewEventSchedule: false });
                     this.setState({ viewStudentAccount: true });
@@ -315,7 +339,19 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
                 ></ManageAccounts>{" "}
               </Grid>{" "}
             </>
-          ) : this.state.viewEventSchedule ? (
+          ) : this.state.viewSearch ? (
+            <>         <Hidden xsDown>
+            <Grid item xs={1} sm={1} md={1} lg={1}>
+              {" "}
+            </Grid>
+          </Hidden>
+          <Grid item xs={12} sm={9} md={8} lg={8}>
+            <StudentLeaderboard
+           
+            ></StudentLeaderboard>
+          </Grid> </>
+
+          ):  this.state.viewEventSchedule ? (
             <>
               <Hidden xsDown>
                 <Grid item xs={1} sm={1} md={1} lg={1}>
@@ -335,11 +371,7 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
             </>
           ) : this.state.viewManageHours ? (
             <>
-              {/* <Hidden mdDown>
-                <Grid item xs={1} sm={1} md={1} lg={1}>
-                  {" "}
-                </Grid>
-              </Hidden> */}
+          
               <Grid item xs={12} sm={10} md={10} lg={9}>
                 <ManageHoursTable
                   teacherAccount={this.props.teacherAccount}
