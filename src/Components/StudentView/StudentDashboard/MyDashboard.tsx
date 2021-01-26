@@ -15,6 +15,11 @@ import Grid from "@material-ui/core/Grid";
 import ViewEvents from "../ViewEvents";
 import { GridDataContainer } from "@material-ui/data-grid";
 import API_URL from "../../../environment";
+import Chip from '@material-ui/core/Chip';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Hidden from "@material-ui/core/Hidden";
 
 
 let percentage = 56;
@@ -39,7 +44,11 @@ type AcceptedProps = {
 };
 
 let arr: any = [0];
+let arr2: any = [0];
+let arr3: any = [0];
 let sum: number = 0;
+let sum2: number = 0;
+let sum3: number = 0;
 const add = (a: number, b: number) => a + b;
 
 class MyDashboard extends React.Component<AcceptedProps, {}> {
@@ -59,6 +68,50 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
     }
   };
 
+  percentageUnderReview = () => {
+    {
+      this.arr3Length();
+    }
+    {
+      this.props.serviceRequests.length > 0
+        ? this.props.serviceRequests?.map((service: any, index: any) =>
+            arr3.push(
+              this.props.serviceRequests[index].status === "Pending"
+                ? this.props.serviceRequests[index].hours
+                : 0
+            )
+          )
+        : console.log("did not work");
+    }
+    {
+      this.props.serviceRequests.length > 0
+        ? (sum3 = arr3.reduce(add))
+        : (sum3 = 0);
+    }
+  };
+
+  percentageDenied = () => {
+    {
+      this.arr2Length();
+    }
+    {
+      this.props.serviceRequests.length > 0
+        ? this.props.serviceRequests?.map((service: any, index: any) =>
+            arr2.push(
+              this.props.serviceRequests[index].status === "Denied"
+                ? this.props.serviceRequests[index].hours
+                : 0
+            )
+          )
+        : console.log("did not work");
+    }
+    {
+      this.props.serviceRequests.length > 0
+        ? (sum2 = arr2.reduce(add))
+        : (sum2 = 0);
+    }
+  };
+
   percentage = () => {
     {
       this.arrLength();
@@ -66,7 +119,11 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
     {
       this.props.serviceRequests.length > 0
         ? this.props.serviceRequests?.map((service: any, index: any) =>
-            arr.push(this.props.serviceRequests[index].hours)
+            arr.push(
+              this.props.serviceRequests[index].status === "Approved"
+                ? this.props.serviceRequests[index].hours
+                : 0
+            )
           )
         : console.log("did not work");
     }
@@ -107,6 +164,15 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
     arr.length = 0;
   };
 
+  arr2Length = () => {
+    arr2.length = 0;
+  };
+
+  arr3Length = () => {
+    arr3.length = 0;
+  };
+
+
   render() {
     return (
       <React.Fragment>
@@ -116,55 +182,70 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
           clearToken={this.props.clearToken}
           sessionToken={this.props.sessionToken}
         />
-        <Grid container className="studentContainer" component="main" >
-        <Grid item xs={12} sm={12} md={12} lg={12} >   
-        <Typography
-            className="signupTitle marginStudentDash"
-            component="h2"
-            variant="h5"
-            
-          >
-            Student Dashboard
-          </Typography> 
-       
-          
-          
-  
-             </Grid>
-          
-             {/* <Grid item xs={false} sm={false} md={1} lg={1}>   </Grid> */}
-
-        
-             <Grid item xs={12} sm={3} md={3} lg={3}>  
-            
-             <div className="blueDiv" >
- 
-             <Box className="progressCircle">
-            <CircularProgressbar
-              styles={{ path: { stroke: "#06d6a0" }, text: { fill: "black" } }}
-              value={(sum / 30) * 100}
-              text={`${sum}/30`}
-            />
-               <Grid container component="main" >
-              
-              
-               </Grid>
-   
-          </Box>
-   
-         
-          </div>
-          
-       
+        <Grid container className="studentContainer" component="main">
+          <Grid item xs={12} sm={12} md={12} lg={12}>
+            <Typography
+              className="signupTitle marginStudentDash"
+              component="h2"
+              variant="h5"
+            >
+              Student Dashboard
+            </Typography>
           </Grid>
-         
-        
-       
-          <Grid style={{backgroundColor:"#fafafa"}} item xs={12} sm={6} md={6} lg={7}> 
- 
-          <Box className="studentDash">
+
+          {/* <Grid item xs={false} sm={false} md={1} lg={1}>   </Grid> */}
+
+          <Grid item xs={12} sm={3} md={3} lg={3}>
+            <div className="blueDiv">
+              <Box className="progressCircle">
+                <CircularProgressbar
+                  styles={{
+                    path: { stroke: "#06d6a0" },
+                    text: { fill: "black" },
+                  }}
+                  value={(sum / 30) * 100}
+                  text={`${sum}/30` }
+                
+                />
+                <Grid container component="main">
+                
+                  
+                  </Grid>
+                  <Hidden xsDown>  <Card style={{marginTop:"20px", backgroundColor: "#fafafa"}}>
+      <CardContent>
+    
+    
+        <Typography color="textSecondary" variant="body2" component="p">
+         Current Totals
+          <br/><br/>
+         {sum}  Approved 
+          <br/>
+         {sum2}  Denied 
+          <br/>
           
-{/*          
+          {sum3}  Pending 
+          <br/>
+         
+        </Typography>
+      </CardContent>
+  
+    </Card></Hidden>
+                
+             
+              </Box>
+            </div>
+          </Grid>
+
+          <Grid
+            style={{ backgroundColor: "#fafafa" }}
+            item
+            xs={12}
+            sm={6}
+            md={6}
+            lg={7}
+          >
+            <Box className="studentDash">
+              {/*          
           <Box
             className="studentChart"
             style={{ background: "white", padding: "0px" }}
@@ -197,29 +278,28 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
               </ButtonGroup>
             </Box>
           </Box> */}
-          <Box className="studentChart">
-          <ViewEvents setBackArrowToggle={this.props.setBackArrowToggle}
-               setIsAdminFalse={this.props.setIsAdminFalse}
-               isAdmin={this.props.isAdmin}
-                backArrowToggle={this.props.backArrowToggle}
-                // arrowHandler={this.arrowHandler}
-                clearToken={this.props.clearToken}
-                sessionToken={this.props.sessionToken}/>
-            <Chart
-              serviceRequests={this.props.serviceRequests}
-              setServiceRequests={this.props.setServiceRequests}
-              sessionToken={this.props.sessionToken}
-              setIndexNumber={this.props.setIndexNumber}
-              indexNumber={this.props.indexNumber}
-              specificEntry={this.props.specificEntry}
-              setSpecificEntry={this.props.setSpecificEntry}
-            />
-            
-          </Box>
-        </Box>
-           </Grid>
-          
-       
+              <Box className="studentChart">
+                <ViewEvents
+                  setBackArrowToggle={this.props.setBackArrowToggle}
+                  setIsAdminFalse={this.props.setIsAdminFalse}
+                  isAdmin={this.props.isAdmin}
+                  backArrowToggle={this.props.backArrowToggle}
+                  // arrowHandler={this.arrowHandler}
+                  clearToken={this.props.clearToken}
+                  sessionToken={this.props.sessionToken}
+                />
+                <Chart
+                  serviceRequests={this.props.serviceRequests}
+                  setServiceRequests={this.props.setServiceRequests}
+                  sessionToken={this.props.sessionToken}
+                  setIndexNumber={this.props.setIndexNumber}
+                  indexNumber={this.props.indexNumber}
+                  specificEntry={this.props.specificEntry}
+                  setSpecificEntry={this.props.setSpecificEntry}
+                />
+              </Box>
+            </Box>
+          </Grid>
         </Grid>
         {/* <Box className="studentDash">
           <Typography
@@ -280,6 +360,10 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
         {this.checkForToken()}
         {this.percentage()}
         {this.arrLength()}
+        {this.percentageDenied()}
+        {this.percentageUnderReview()}
+        {this.arr2Length()}
+        {this.arr3Length()}
       </React.Fragment>
     );
   }

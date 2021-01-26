@@ -81,7 +81,7 @@ class App extends React.Component<{}, myState> {
       typeOfService: "",
       description: "",
       hours:0,
-      status: "Awaiting Approval",
+      status: "Pending",
       studentUserId: "",
       backArrowToggle: false,
       sessionToken: "",

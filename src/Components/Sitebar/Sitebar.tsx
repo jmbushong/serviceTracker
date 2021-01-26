@@ -115,8 +115,12 @@ class Sitebar extends React.Component<AcceptedProps, myState> {
                 </IconButton>
               </Link>
             ) : (
-              <div></div>
+              <IconButton className="signupTitle" style={{fontSize: "20px"}}
+           
+             
+           >ServiceTracker</IconButton>
             )}
+
           
             <div>
               <IconButton onClick={this.handleMenu}>

@@ -83,7 +83,7 @@ export default class ManageHoursTable extends React.Component<
       method: "PUT",
       body: JSON.stringify({
         service: {
-          status: "approved",
+          status: "Approved",
         },
       }),
       headers: new Headers({
@@ -109,7 +109,7 @@ export default class ManageHoursTable extends React.Component<
       method: "PUT",
       body: JSON.stringify({
         service: {
-          status: "denied",
+          status: "Denied",
         },
       }),
       headers: new Headers({
@@ -134,7 +134,7 @@ export default class ManageHoursTable extends React.Component<
       method: "PUT",
       body: JSON.stringify({
         service: {
-          status: "Awaiting Approval",
+          status: "Pending",
         },
       }),
       headers: new Headers({
@@ -145,9 +145,9 @@ export default class ManageHoursTable extends React.Component<
       if (response.status === 200) {
         console.log("Service status update submission was successful");
 
-        currentStatus === "approved"
-          ? this.fetchServiceRequests("approved")
-          : this.fetchServiceRequests("denied");
+        currentStatus === "Approved"
+          ? this.fetchServiceRequests("Approved")
+          : this.fetchServiceRequests("Denied");
       } else {
         console.log("Service status update submission failed");
       }
@@ -228,7 +228,7 @@ export default class ManageHoursTable extends React.Component<
                     this.setState({ statusView: e.target.value });
                   }}
                 >
-                  <MenuItem value={"awaiting"}>Awaiting Approval</MenuItem>
+                  <MenuItem value={"awaiting"}>Pending</MenuItem>
                   <MenuItem value={"approved"}>Approved</MenuItem>
                   <MenuItem value={"denied"}>Denied</MenuItem>
                 </Select>
@@ -303,6 +303,7 @@ export default class ManageHoursTable extends React.Component<
                             backgroundColor: "#06d6a0",
                             marginTop: "5px",
                             color: "white",
+                            marginLeft: "10px",
                             marginRight: "20px",
                             width: "90px",
                             height: "40px",
@@ -323,6 +324,7 @@ export default class ManageHoursTable extends React.Component<
                             backgroundColor: "#ef476f",
                             height: "40px",
                             color: "white",
+                            marginLeft: "5px",
                             marginRight: "20px",
                             marginTop: "5px",
                             width: "90px",

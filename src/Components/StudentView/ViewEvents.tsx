@@ -134,26 +134,18 @@ class ViewEvents extends React.Component  <AcceptedProps, myState> {
                   </AccordionSummary>
               <AccordionDetails style={{ padding: "0px 30px"}}>
                   
+                
                   <Typography>
-                    <p style={{ fontSize: "12px"}}>Date:</p>
-                  </Typography>
-                  <Typography>
-                      <p style={{ fontSize: "12px",  marginLeft:"100px"  }}>Location: </p>
+                      <p style={{ fontSize: "12px", marginRight:"100px"   }}>Location: {this.state.eventInfo[index].location} </p>
+                      <p style={{ fontSize: "12px" }}>Hours: {this.state.eventInfo[index].hours} </p>
                     </Typography>
                     <Typography>
-                      <p style={{ fontSize: "12px",  marginLeft:"100px"  }}>Hours: </p>
+                      
                     </Typography>
                 </AccordionDetails>
                 <AccordionDetails>
-                  <Typography>
-                    <p style={{  fontSize: "12px", marginLeft:"15px" }}> {this.state.eventInfo[index].date}</p>
-                  </Typography>
-                  <Typography>
-                      <p style={{ fontSize: "12px" , marginLeft:"68px"  }}>{this.state.eventInfo[index].location}</p>
-                    </Typography>
-                    <Typography>
-                      <p style={{ fontSize: "12px" , marginLeft:"110px"  }}>{this.state.eventInfo[index].hours}</p>
-                    </Typography>
+     
+    
                   
                   
                 </AccordionDetails>
