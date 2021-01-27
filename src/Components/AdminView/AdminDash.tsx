@@ -126,6 +126,7 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
     return (
       <div>
         <AdminSitebar
+        setViewSearch={this.state.setViewSearch}
           setViewManageHours={this.state.setViewManageHours}
           setViewStudentAccount={this.state.setViewStudentAccount}
           setViewEventSchedule={this.state.setViewEventSchedule}
@@ -147,7 +148,7 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
               aria-label="icon tabs example"
             >
            
-              <Tab 
+              <Tab style={{display:"none"}}
                  onClick={() => {
                   this.setState({ viewStudentAccount: false });
                   this.setState({ viewEventSchedule: false });
@@ -247,7 +248,7 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
       
 
                 <Box className="admindash_card">
-                  <h3
+                  <h3 
                            onClick={() => {
                             this.setState({ viewSearch:true });
                             this.setState({ viewStudentAccount: false });
@@ -255,7 +256,7 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
                             this.setState({ viewManageHours: true });
                           }}
                     className="marginBottom"
-                    style={{ cursor: "pointer", color: "white" }}
+                    style={{ cursor: "pointer", color: "white", display:"none" }}
                   >
                     {" "}
                     <FontAwesomeIcon
@@ -347,6 +348,7 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
           </Hidden>
           <Grid item xs={12} sm={9} md={8} lg={8}>
             <StudentLeaderboard
+             sessionToken={this.props.sessionToken}
            
             ></StudentLeaderboard>
           </Grid> </>

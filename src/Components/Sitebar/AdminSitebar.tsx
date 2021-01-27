@@ -20,6 +20,7 @@ type AcceptedProps = {
   setViewManageHours:  (e: any) => void;
   setViewStudentAccount:  (e: any) => void;
   setViewEventSchedule:  (e: any) => void;
+  setViewSearch:  (e: any) => void;
 };
 
 type myState = {
@@ -125,6 +126,7 @@ class AdminSitebar extends React.Component<AcceptedProps, myState> {
           <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
             <IconButton className="signupTitle" style={{fontSize: "20px"}}
              onClick={() => {
+              this.props.setViewSearch(false );
               this.props.setViewManageHours(false );
               this.props.setViewEventSchedule(false );
               this.props.setViewStudentAccount(false );
