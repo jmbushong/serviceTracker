@@ -161,7 +161,7 @@ class StudentLeaderboard extends React.Component<AcceptedProps, myState> {
               background: "white",
               color: "white",
               padding: "10px",
-              width: "100%",
+              
             }}
           >
             <Box>
