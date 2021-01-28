@@ -169,23 +169,16 @@ class StudentLeaderboard extends React.Component<AcceptedProps, myState> {
                 className="studentChart"
                 style={{ background: "white", padding: "0px" }}
               >
-                <TextField
+                {/* <TextField
                   style={{ marginLeft: "20px", width: "150px" }}
                   label="Search by Name"
                   margin="normal"
                   variant="outlined"
                 >
                   {" "}
-                </TextField>
+                </TextField> */}
 
-                <TextField
-                  style={{ marginLeft: "20px", width: "150px" }}
-                  label="Search by Hours"
-                  margin="normal"
-                  variant="outlined"
-                >
-                  {" "}
-                </TextField>
+             
               </Box>
             </Box>
           </Box>
