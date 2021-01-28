@@ -148,7 +148,7 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
               aria-label="icon tabs example"
             >
            
-              <Tab style={{display:"none"}}
+              <Tab 
                  onClick={() => {
                   this.setState({ viewStudentAccount: false });
                   this.setState({ viewEventSchedule: false });
@@ -256,7 +256,7 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
                             this.setState({ viewManageHours: true });
                           }}
                     className="marginBottom"
-                    style={{ cursor: "pointer", color: "white", display:"none" }}
+                    style={{ cursor: "pointer", color: "white" }}
                   >
                     {" "}
                     <FontAwesomeIcon
