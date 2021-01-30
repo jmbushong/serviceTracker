@@ -371,7 +371,7 @@ export default class ManageHoursTable extends React.Component<
                               <FontAwesomeIcon
                                     style={{
                                    
-                                      fontSize: "20px",
+                                      fontSize: "15px",
                                     }}
                                     icon={faUndo}
                                   />

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import API_URL from "../../environment";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -28,11 +28,14 @@ type AcceptedProps = {
   setOpen: (e: any) => void;
   open: any;
   user: any;
+  fetchUsers:any;
 };
 
 type myState = {
   update: boolean;
   setUpdate: (e: any) => void;
+  green: boolean;
+  red: boolean;
 };
 
 type studentUser = {
@@ -46,6 +49,8 @@ class StudentProfile extends React.Component<AcceptedProps, myState> {
   constructor(props: AcceptedProps) {
     super(props);
     this.state = {
+      green: false,
+      red: false,
       update: false,
       setUpdate: (e) => {
         this.setState({ update: e });
@@ -53,9 +58,58 @@ class StudentProfile extends React.Component<AcceptedProps, myState> {
     };
   }
 
+ 
+  
+  componentDidMount() {
+    
+    this.props.fetchUsers();
+ 
+  }
+
+
+
   //   handleClickClose = () => {
   //     this.props.setOpen(false);
   //   };
+
+  handleSubmit= (id: any, newStatus: any) => {
+    // id.preventDefault();
+
+    fetch(`${API_URL}/service/status/${id}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        service: {
+          status: newStatus,
+        },
+      }),
+      headers: new Headers({
+        "Content-Type": "application/json",
+        Authorization: this.props.sessionToken,
+      }),
+    }).then((response) => {
+      if (response.status === 200) {
+        console.log("Service status update submission was successful");
+        this.props.fetchUsers()
+        if (this.props.user.status === "Approve") {
+          this.setState({red: false})
+          this.setState({green:true})
+        } else if( this.props.user.status === "Denied"){
+          this.setState({red: true})
+          this.setState({green:false})
+        } else{
+          this.setState({red: true})
+          this.setState({green:false})
+        }
+        
+        
+        
+    
+      } else {
+        console.log("Service status update submission failed");
+      }
+      return response.json();
+    });
+  };
 
   render() {
     return (
@@ -97,18 +151,37 @@ class StudentProfile extends React.Component<AcceptedProps, myState> {
                             </TableCell>
                             <TableCell>
                               <Button>
-                                {user.status === "Approved" ? (
-                                  <FontAwesomeIcon
+                                {user.status === "Approved"  ? (
+                                  <FontAwesomeIcon 
+                                  onClick={() => {
+                                    this.handleSubmit(
+                                     user.id, "Denied"
+                                    );
+
+                                  
+                                  }}
                                     style={{ color: "green", fontSize: "20px" }}
                                     icon={faCheckSquare}
                                   />
-                                ) : user.status === "Denied" ? (
+                                ) : user.status === "Denied"   ? (
                                   <FontAwesomeIcon
+                                  onClick={() => {
+                                    this.handleSubmit(
+                                      user.id, "Approved"
+                                    );
+                                
+
+                                  }}
                                     style={{ color: "red", fontSize: "20px" }}
                                     icon={faTimesCircle}
                                   />
                                 ) : (
                                   <FontAwesomeIcon
+                                  onClick={() => {
+                                    this.handleSubmit(
+                                      user.id, "Approved"
+                                    );
+                                  }}
                                     style={{
                                       color: "orange",
                                       fontSize: "20px",
@@ -119,6 +192,7 @@ class StudentProfile extends React.Component<AcceptedProps, myState> {
                               </Button>
                             </TableCell>
                           </TableRow>
+                          {console.log(user)}
                         </React.Fragment>
                       )
                     )

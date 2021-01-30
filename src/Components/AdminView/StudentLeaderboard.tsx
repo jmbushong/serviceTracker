@@ -12,22 +12,19 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import API_URL from "../../environment";
 import Hidden from "@material-ui/core/Hidden";
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogActions from '@material-ui/core/DialogActions';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
-import Typography from '@material-ui/core/Typography';
-import StudentProfile from '../AdminView/StudentProfile'
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogActions from "@material-ui/core/DialogActions";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
+import Typography from "@material-ui/core/Typography";
+import StudentProfile from "../AdminView/StudentProfile";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-
 type AcceptedProps = {
-
   sessionToken: any;
-
 };
 
 let arr: any = [0];
@@ -35,11 +32,11 @@ let sum: number = 0;
 const add = (a: number, b: number) => a + b;
 
 type myState = {
-  specificUser:any;
-  userId:any;
+  specificUser: any;
+  userId: any;
   user: any;
-  rank:any;
-  userServices:any;
+  rank: any;
+  userServices: any;
   setUserServices: (e: any) => void;
   setUser: (e: any) => void;
   setOpen: (e: any) => void;
@@ -50,14 +47,14 @@ class StudentLeaderboard extends React.Component<AcceptedProps, myState> {
     super(props);
     this.state = {
       specificUser: [],
-      userId:"",
+      userId: "",
       open: false,
       setOpen: (entry) => {
         this.setState({ open: entry });
       },
-      rank:1,
-  user: [],
-  userServices: [],
+      rank: 1,
+      user: [],
+      userServices: [],
       setUser: (e) => {
         this.setState({ user: e });
       },
@@ -70,41 +67,51 @@ class StudentLeaderboard extends React.Component<AcceptedProps, myState> {
     arr.length = 0;
   };
 
-  handleClickOpen = (index:any) => {
+  handleClickOpen = (index: any) => {
     this.state.setOpen(true);
-    this.setState({specificUser: this.state.user[index]})
+    this.setState({ specificUser: this.state.user[index] });
   };
 
-  percentage = (e:any) => {
-    { this.arrLength()}
+  percentage = (e: any) => {
     {
-      console.log(e?.services)
-      e.services?.length > 0 ? e?.services.map((service:any, index:any) =>
- 
-      arr.push(e?.services[index].status === "Approved" 
-      ? e?.services[index].hours: 0)): console.log("did not work")
-   
+      this.arrLength();
     }
-    {e?.services.length > 0 ?
-       (sum =arr.reduce(add)): 
-       (sum=0)}
-    {console.log(sum)} 
-    {this.handleTotalHours(e.id)}
+    {
+      console.log(e?.services);
+      e.services?.length > 0
+        ? e?.services.map((service: any, index: any) =>
+            arr.push(
+              e?.services[index].status === "Approved"
+                ? e?.services[index].hours
+                : 0
+            )
+          )
+        : console.log("did not work");
+    }
+    {
+      e?.services.length > 0 ? (sum = arr.reduce(add)) : (sum = 0);
+    }
+    {
+      console.log(sum);
+    }
+    {
+      this.handleTotalHours(e.id);
+    }
     // {
-      // this.state.user[e].services.length > 0
-      //   ? this.state.user.services?.map((service: any, index: any) =>
-      //       arr.push(
-      //         this.state.user[index].status === "Approved"
-      //           ? this.state.user.service[index].hours
-      //           : 0
-      //       )
-      //     )
-      //   : console.log("did not work");
+    // this.state.user[e].services.length > 0
+    //   ? this.state.user.services?.map((service: any, index: any) =>
+    //       arr.push(
+    //         this.state.user[index].status === "Approved"
+    //           ? this.state.user.service[index].hours
+    //           : 0
+    //       )
+    //     )
+    //   : console.log("did not work");
     // }
     // {
-      // this.props.serviceRequests.length > 0
-      //   ? (sum = arr.reduce(add))
-      //   : (sum = 0);
+    // this.props.serviceRequests.length > 0
+    //   ? (sum = arr.reduce(add))
+    //   : (sum = 0);
     // }
   };
 
@@ -125,8 +132,6 @@ class StudentLeaderboard extends React.Component<AcceptedProps, myState> {
     }).then((response) => {
       if (response.status === 200) {
         console.log("Service status update submission was successful");
-       
-
       } else {
         console.log("Service status update submission failed");
       }
@@ -145,21 +150,16 @@ class StudentLeaderboard extends React.Component<AcceptedProps, myState> {
       .then((res) => res.json())
       .then((json) => {
         console.log(json);
-  
 
-           
         this.state.setUser(json); //taking information from the server and setting it to our state
-        
+
         console.log(this.state.user);
-   
       });
   };
 
-
   componentDidMount() {
-    
     this.fetchUsers();
-    this.arrLength()
+    this.arrLength();
     console.log(this.state.user);
   }
 
@@ -171,21 +171,15 @@ class StudentLeaderboard extends React.Component<AcceptedProps, myState> {
           className="adminTitle marginClassTotals"
           component="h2"
           variant="h5"
-
         >
           Class Totals
         </Typography>
-        <TableContainer
-       
-          style={{ marginTop: "5px" }}
-          component={Paper}
-        >
+        <TableContainer style={{ marginTop: "5px" }} component={Paper}>
           <Box
             style={{
               background: "white",
               color: "white",
               padding: "10px",
-              
             }}
           >
             <Box>
@@ -194,15 +188,13 @@ class StudentLeaderboard extends React.Component<AcceptedProps, myState> {
                 style={{ background: "white", padding: "0px" }}
               >
                 {/* <TextField
-                  style={{ marginLeft: "20px", width: "150px" }}
+                  style={{ marginLeft: "20px", width: "200px" }}
                   label="Search by Name"
                   margin="normal"
                   variant="outlined"
                 >
                   {" "}
                 </TextField> */}
-
-             
               </Box>
             </Box>
           </Box>
@@ -221,57 +213,70 @@ class StudentLeaderboard extends React.Component<AcceptedProps, myState> {
               </TableRow>
             </TableHead>
             <TableBody>
-              
-            {this.state.user.length > 0 ? (
-             
-              this.state.user.map((user: any, index: any) => (
-                
-             
+              {this.state.user.length > 0 ? (
+                this.state.user.map((user: any, index: any) => (
+                  <React.Fragment key={index}>
+                    <TableRow style={{ height: "45px", marginRight: "3px" }}>
+                      <TableCell align="center">{index + 1} </TableCell>
 
-              <React.Fragment key={index}>
-                <TableRow   style={{ height: "45px", marginRight: "3px" }}>
-                  <TableCell align="center">{index + 1} </TableCell>
+                      <TableCell align="left">
+                        {user.firstName} {user.lastName}{" "}
+                        {this.handleTotalHours(user.id)} {console.log(user)}
+                      </TableCell>
 
-                  <TableCell  align="left">{user.firstName} {" "}
-                  {user.lastName}  {this.handleTotalHours(user.id)} {console.log(user)}
-                  </TableCell>
+                      <TableCell align="center">
+                        {" "}
+                        {this.percentage(user)} {user.totalHours}{" "}
+                      </TableCell>
+                      <TableCell align="center">
+                        {" "}
+                        <Button
+                          variant="contained"
+                          onClick={() => {
+                            this.handleClickOpen(index);
+                          }}
+                        >
+                          {" "}
+                          <FontAwesomeIcon
+                            style={{
+                              fontSize: "20px",
+                            }}
+                            icon={faListAlt}
+                          />{" "}
+                        </Button>{" "}
+                      </TableCell>
 
-                  <TableCell align="center"> {this.percentage(user)} {user.totalHours} </TableCell>
-                  <TableCell align="center">  <Button variant="contained" onClick={() => {
-                         this.handleClickOpen(index)}}  >   <FontAwesomeIcon
-                                    style={{
-                                
-                                      fontSize: "20px",
-                                    }}
-                                    icon={faListAlt}
-                                  /> </Button>   </TableCell>
-
-                  {/* <Hidden xsDown>
+                      {/* <Hidden xsDown>
                     {" "}
                     <TableCell  >
                       
                       
                    </TableCell>{this.handleTotalHours(user.id)} 
                   </Hidden> */}
-                      {this.state.open ? <StudentProfile specificUser={this.state.specificUser} open={this.state.open} setOpen={this.state.setOpen} user={this.state.user} sessionToken={this.props.sessionToken}/> : <div></div>}
-             
-  
+                      {this.state.open ? (
+                        <StudentProfile
+                          fetchUsers={this.fetchUsers}
+                          specificUser={this.state.specificUser}
+                          open={this.state.open}
+                          setOpen={this.state.setOpen}
+                          user={this.state.user}
+                          sessionToken={this.props.sessionToken}
+                        />
+                      ) : (
+                        <div></div>
+                      )}
+                    </TableRow>
 
-                </TableRow>
-       
-               
-              </React.Fragment>  
-              ))
-            ) : (
-              <div></div>
-            )}
-
-             
+                    {console.log(user)}
+                  </React.Fragment>
+                ))
+              ) : (
+                <div></div>
+              )}
             </TableBody>
           </Table>
-          { this.arrLength()}
+          {this.arrLength()}
           {console.log(sum)}
-          
         </TableContainer>
       </>
     );
