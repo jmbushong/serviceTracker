@@ -100,7 +100,7 @@ class StudentLeaderboard extends React.Component<AcceptedProps, myState> {
     }
   };
 
-  handleTotalHours = (id: any) => {
+  handleTotalHours = (id: any, user?:any) => {
     // id.preventDefault();
 
     fetch(`${API_URL}/user/totalHours/${id}`, {
@@ -117,6 +117,9 @@ class StudentLeaderboard extends React.Component<AcceptedProps, myState> {
     }).then((response) => {
       if (response.status === 200) {
         console.log("Service status update submission was successful");
+     
+
+        
       } else {
         console.log("Service status update submission failed");
       }
@@ -208,13 +211,13 @@ console.log(json)
                       <TableCell align="left">
                         {user.firstName} {user.lastName}{" "}
                         {this.handleTotalHours(user.id)} 
-                        {this.runTotalHours(user.id)}
+                        
                         {/* {console.log(user)} */}
                       </TableCell>
 
                       <TableCell align="center">
                         {" "}
-                        {this.percentage(user)} {`total: ${user.totalHours}`}{" "}
+                        {this.percentage(user)} {user.totalHours}{" "}
                      
                       </TableCell>
                       <TableCell align="center">

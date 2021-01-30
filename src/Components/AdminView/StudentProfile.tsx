@@ -55,12 +55,11 @@ class StudentProfile extends React.Component<AcceptedProps, myState> {
 
   componentDidMount() {
     this.props.fetchUsers();
- this.props.runTotalHours()
+
   }
 
   handleClickClose = () => {
     this.props.fetchUsers();
-    this.props.runTotalHours()
     this.props.setOpen(false);
     
    
@@ -83,6 +82,7 @@ class StudentProfile extends React.Component<AcceptedProps, myState> {
       const json = await response.json();
       // console.log(json);
       this.props.fetchUsers();
+     
       // console.log(this.props.specificUser);
       // this.handleClickClose();
 
