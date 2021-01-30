@@ -219,6 +219,7 @@ class UpdateServiceHours extends React.Component <AcceptedProps, myState>{
                   <form noValidate>
                     <TextField
                       id="date"
+                      style={{width: "200px"}}
                       label="Date of Service"
                       type="date"
                       InputLabelProps={{
