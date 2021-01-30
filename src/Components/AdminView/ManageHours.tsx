@@ -18,7 +18,11 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Typography from "@material-ui/core/Typography";
 import API_URL from "../../environment";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheckSquare } from "@fortawesome/free-solid-svg-icons";
+import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
+import { faUndo } from "@fortawesome/free-solid-svg-icons";
 type AcceptedProps = {
   sessionToken?: any;
   backArrowToggle: any;
@@ -247,7 +251,7 @@ export default class ManageHoursTable extends React.Component<
               <TableCell align="left"> </TableCell>
               <TableCell align="left">Description</TableCell>
 
-              <TableCell align="center">Status</TableCell>
+              <TableCell align="center">Update Status</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -309,7 +313,13 @@ export default class ManageHoursTable extends React.Component<
                             );
                           }}
                         >
-                          Approve
+                          <FontAwesomeIcon
+                                    style={{
+                                   
+                                      fontSize: "20px",
+                                    }}
+                                    icon={faCheckSquare}
+                                  />
                         </Button>
 
                         <Button
@@ -328,7 +338,13 @@ export default class ManageHoursTable extends React.Component<
                             );
                           }}
                         >
-                          Deny
+                           <FontAwesomeIcon
+                                    style={{
+                                   
+                                      fontSize: "20px",
+                                    }}
+                                    icon={faTimesCircle}
+                                  />
                         </Button>
                       </TableCell>
                     ) : (
@@ -352,7 +368,13 @@ export default class ManageHoursTable extends React.Component<
                           }}
                           //add a second parameter & use that parameter as ternary in handlesubmit3
                         >
-                          Undo
+                              <FontAwesomeIcon
+                                    style={{
+                                   
+                                      fontSize: "20px",
+                                    }}
+                                    icon={faUndo}
+                                  />
                         </Button>
                       </TableCell>
                     )}

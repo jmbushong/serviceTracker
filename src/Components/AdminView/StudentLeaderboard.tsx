@@ -1,17 +1,28 @@
 import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Box from "@material-ui/core/Box";
-
+import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
+import { faListAlt } from "@fortawesome/free-solid-svg-icons";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import API_URL from "../../environment";
 import Hidden from "@material-ui/core/Hidden";
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogActions from '@material-ui/core/DialogActions';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import Typography from '@material-ui/core/Typography';
+import StudentProfile from '../AdminView/StudentProfile'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 type AcceptedProps = {
 
@@ -24,18 +35,26 @@ let sum: number = 0;
 const add = (a: number, b: number) => a + b;
 
 type myState = {
+  specificUser:any;
   userId:any;
   user: any;
   rank:any;
   userServices:any;
   setUserServices: (e: any) => void;
   setUser: (e: any) => void;
+  setOpen: (e: any) => void;
+  open: any;
 };
 class StudentLeaderboard extends React.Component<AcceptedProps, myState> {
   constructor(props: AcceptedProps) {
     super(props);
     this.state = {
+      specificUser: [],
       userId:"",
+      open: false,
+      setOpen: (entry) => {
+        this.setState({ open: entry });
+      },
       rank:1,
   user: [],
   userServices: [],
@@ -49,6 +68,11 @@ class StudentLeaderboard extends React.Component<AcceptedProps, myState> {
   }
   arrLength = () => {
     arr.length = 0;
+  };
+
+  handleClickOpen = (index:any) => {
+    this.state.setOpen(true);
+    this.setState({specificUser: this.state.user[index]})
   };
 
   percentage = (e:any) => {
@@ -188,10 +212,11 @@ class StudentLeaderboard extends React.Component<AcceptedProps, myState> {
                 <TableCell align="center">Rank</TableCell>
 
                 <TableCell>Name</TableCell>
-                <TableCell>Hours</TableCell>
+                <TableCell align="center">Total Hours</TableCell>
+                <TableCell align="center">Service Details</TableCell>
                 <Hidden xsDown>
                   {" "}
-                  <TableCell>See More</TableCell>
+                  <TableCell></TableCell>
                 </Hidden>
               </TableRow>
             </TableHead>
@@ -204,18 +229,34 @@ class StudentLeaderboard extends React.Component<AcceptedProps, myState> {
              
 
               <React.Fragment key={index}>
-                <TableRow style={{ height: "45px", marginRight: "3px" }}>
+                <TableRow   style={{ height: "45px", marginRight: "3px" }}>
                   <TableCell align="center">{index + 1} </TableCell>
 
-                  <TableCell align="left">{user.firstName} {" "}
-                  {user.lastName} {this.handleTotalHours(user.id)} {console.log(user)}
+                  <TableCell  align="left">{user.firstName} {" "}
+                  {user.lastName}  {this.handleTotalHours(user.id)} {console.log(user)}
                   </TableCell>
 
-                  <TableCell align="left"> {this.percentage(user)} {user.totalHours} </TableCell>
-                  <Hidden xsDown>
+                  <TableCell align="center"> {this.percentage(user)} {user.totalHours} </TableCell>
+                  <TableCell align="center">  <Button variant="contained" onClick={() => {
+                         this.handleClickOpen(index)}}  >   <FontAwesomeIcon
+                                    style={{
+                                
+                                      fontSize: "20px",
+                                    }}
+                                    icon={faListAlt}
+                                  /> </Button>   </TableCell>
+
+                  {/* <Hidden xsDown>
                     {" "}
-                    <TableCell>Click Here</TableCell>{this.handleTotalHours(user.id)} 
-                  </Hidden>
+                    <TableCell  >
+                      
+                      
+                   </TableCell>{this.handleTotalHours(user.id)} 
+                  </Hidden> */}
+                      {this.state.open ? <StudentProfile specificUser={this.state.specificUser} open={this.state.open} setOpen={this.state.setOpen} user={this.state.user} sessionToken={this.props.sessionToken}/> : <div></div>}
+             
+  
+
                 </TableRow>
        
                

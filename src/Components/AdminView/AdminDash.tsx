@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faTrophy } from "@fortawesome/free-solid-svg-icons";
 import { faSearch} from "@fortawesome/free-solid-svg-icons";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
@@ -157,7 +157,7 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
                 }}
               icon={      <FontAwesomeIcon
                        style={{ color: "white", fontSize: "20px" }}
-                      icon={faSearch}
+                      icon={faTrophy}
                     />} aria-label="phone" />
               <Tab
                     onClick={() => {
@@ -261,9 +261,9 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
                     {" "}
                     <FontAwesomeIcon
                       className="admindash_icons"
-                      icon={faSearch}
+                      icon={faTrophy}
                     />
-                    <Hidden smDown>Search</Hidden>
+                    <Hidden smDown>Totals</Hidden>
                   </h3>
                 </Box>
 
