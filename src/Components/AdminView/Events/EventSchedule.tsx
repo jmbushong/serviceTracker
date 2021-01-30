@@ -123,11 +123,9 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
   //When the component loads:
   //1. Admin is set as true. AKA If a user refreshes the page, they will be
   //redirected to admin landing
-  //2. Back Arrow is Present on this page
-  //3. Events are fetched, so the table can be populated
+  //2. Events are fetched, so the table can be populated
   componentDidMount() {
     this.props.setIsAdminTrue(true);
-    // this.props.setBackArrowToggle(true);
     this.fetchEvents();
   }
 
@@ -145,7 +143,7 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
       const json = await response.json();
       console.log(json);
 
-      this.props.setBackArrowToggle(true);
+      
       this.fetchEvents();
     } catch (err) {
       console.log(err);
@@ -216,7 +214,7 @@ class EventSchedule extends React.Component<AcceptedProps, myState> {
           variant="h5"
           style={{ textAlign: "center", height:"50px", paddingLeft:"30px",  color: "black" }}
         >
-          Upcoming Events
+          Upcoming Events 
         </Typography>
             
             <Box >

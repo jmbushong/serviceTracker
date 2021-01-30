@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import TextField from "@material-ui/core/TextField";
 import Box from "@material-ui/core/Box";
-import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
 import { faListAlt } from "@fortawesome/free-solid-svg-icons";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -13,18 +11,13 @@ import Paper from "@material-ui/core/Paper";
 import API_URL from "../../environment";
 import Hidden from "@material-ui/core/Hidden";
 import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogActions from "@material-ui/core/DialogActions";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
+
 import Typography from "@material-ui/core/Typography";
 import StudentProfile from "../AdminView/StudentProfile";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 type AcceptedProps = {
-  sessionToken: any;
+  sessionToken: string;
 };
 
 let arr: any = [0];
@@ -33,6 +26,7 @@ const add = (a: number, b: number) => a + b;
 
 type myState = {
   specificUser: any;
+
   userId: any;
   user: any;
   rank: any;
@@ -62,14 +56,15 @@ class StudentLeaderboard extends React.Component<AcceptedProps, myState> {
         this.setState({ userServices: e });
       },
     };
+    this.fetchUsers= this.fetchUsers.bind(this)
   }
   arrLength = () => {
     arr.length = 0;
   };
 
-  handleClickOpen = (index: any) => {
+  handleClickOpen = (userObj: any) => {
     this.state.setOpen(true);
-    this.setState({ specificUser: this.state.user[index] });
+    this.setState({ specificUser: userObj });
   };
 
   percentage = (e: any) => {
@@ -97,22 +92,6 @@ class StudentLeaderboard extends React.Component<AcceptedProps, myState> {
     {
       this.handleTotalHours(e.id);
     }
-    // {
-    // this.state.user[e].services.length > 0
-    //   ? this.state.user.services?.map((service: any, index: any) =>
-    //       arr.push(
-    //         this.state.user[index].status === "Approved"
-    //           ? this.state.user.service[index].hours
-    //           : 0
-    //       )
-    //     )
-    //   : console.log("did not work");
-    // }
-    // {
-    // this.props.serviceRequests.length > 0
-    //   ? (sum = arr.reduce(add))
-    //   : (sum = 0);
-    // }
   };
 
   handleTotalHours = (id: any) => {
@@ -147,20 +126,21 @@ class StudentLeaderboard extends React.Component<AcceptedProps, myState> {
         Authorization: this.props.sessionToken,
       }),
     })
-      .then((res) => res.json())
-      .then((json) => {
-        console.log(json);
+    .then((res) => res.json())
+    .then((json) => {
+      
+      console.log("fetchUsers Function")
+console.log(json)
+        this.setState({ user: json }); //taking information from the server and setting it to our state
 
-        this.state.setUser(json); //taking information from the server and setting it to our state
-
-        console.log(this.state.user);
+     
       });
   };
 
   componentDidMount() {
     this.fetchUsers();
     this.arrLength();
-    console.log(this.state.user);
+    // console.log(this.state.user);
   }
 
   render() {
@@ -221,7 +201,8 @@ class StudentLeaderboard extends React.Component<AcceptedProps, myState> {
 
                       <TableCell align="left">
                         {user.firstName} {user.lastName}{" "}
-                        {this.handleTotalHours(user.id)} {console.log(user)}
+                        {this.handleTotalHours(user.id)} 
+                        {/* {console.log(user)} */}
                       </TableCell>
 
                       <TableCell align="center">
@@ -233,7 +214,7 @@ class StudentLeaderboard extends React.Component<AcceptedProps, myState> {
                         <Button
                           variant="contained"
                           onClick={() => {
-                            this.handleClickOpen(index);
+                            this.handleClickOpen(user);
                           }}
                         >
                           {" "}
@@ -246,13 +227,6 @@ class StudentLeaderboard extends React.Component<AcceptedProps, myState> {
                         </Button>{" "}
                       </TableCell>
 
-                      {/* <Hidden xsDown>
-                    {" "}
-                    <TableCell  >
-                      
-                      
-                   </TableCell>{this.handleTotalHours(user.id)} 
-                  </Hidden> */}
                       {this.state.open ? (
                         <StudentProfile
                           fetchUsers={this.fetchUsers}
@@ -267,7 +241,7 @@ class StudentLeaderboard extends React.Component<AcceptedProps, myState> {
                       )}
                     </TableRow>
 
-                    {console.log(user)}
+                    {/* {console.log(user)} */}
                   </React.Fragment>
                 ))
               ) : (
@@ -275,8 +249,9 @@ class StudentLeaderboard extends React.Component<AcceptedProps, myState> {
               )}
             </TableBody>
           </Table>
+
           {this.arrLength()}
-          {console.log(sum)}
+          {/* {console.log(sum)} */}
         </TableContainer>
       </>
     );

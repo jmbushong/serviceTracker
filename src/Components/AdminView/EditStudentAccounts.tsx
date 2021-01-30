@@ -13,10 +13,10 @@ import API_URL from "../../environment";
 
 type AcceptedProps = {
   fetchTeacherData: any;
-  firstName: any;
-  lastName: any;
-  email: any;
-  password: any;
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
   
   setFirstName: (e: any) => void;
   setLastName: (e: any) => void;
@@ -26,7 +26,7 @@ type AcceptedProps = {
   sessionToken: any;
   userId: any;
   setOpen: (e: any) => void;
-  open: any;
+  open: boolean;
 };
 
 type myState = {

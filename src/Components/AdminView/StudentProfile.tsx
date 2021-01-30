@@ -3,7 +3,6 @@ import API_URL from "../../environment";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
 import Table from "@material-ui/core/Table";
@@ -17,25 +16,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckSquare } from "@fortawesome/free-solid-svg-icons";
 import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
-
 import Button from "@material-ui/core/Button";
 
-import AddBoxIcon from "@material-ui/icons/AddBox";
+
 
 type AcceptedProps = {
+  // specificUser: studentUser[];
   specificUser: any;
-  sessionToken: any;
+  sessionToken: string;
   setOpen: (e: any) => void;
-  open: any;
+  open: boolean;
   user: any;
-  fetchUsers:any;
+  fetchUsers: any;
 };
 
 type myState = {
-  update: boolean;
-  setUpdate: (e: any) => void;
-  green: boolean;
-  red: boolean;
+
+  currentStatus: string;
 };
 
 type studentUser = {
@@ -49,67 +46,47 @@ class StudentProfile extends React.Component<AcceptedProps, myState> {
   constructor(props: AcceptedProps) {
     super(props);
     this.state = {
-      green: false,
-      red: false,
-      update: false,
-      setUpdate: (e) => {
-        this.setState({ update: e });
-      },
+      currentStatus: ""
+ 
+   
     };
   }
 
- 
-  
   componentDidMount() {
-    
     this.props.fetchUsers();
- 
   }
 
-
-
-  //   handleClickClose = () => {
-  //     this.props.setOpen(false);
-  //   };
-
-  handleSubmit= (id: any, newStatus: any) => {
-    // id.preventDefault();
-
-    fetch(`${API_URL}/service/status/${id}`, {
-      method: "PUT",
-      body: JSON.stringify({
-        service: {
-          status: newStatus,
-        },
-      }),
-      headers: new Headers({
-        "Content-Type": "application/json",
-        Authorization: this.props.sessionToken,
-      }),
-    }).then((response) => {
-      if (response.status === 200) {
-        console.log("Service status update submission was successful");
-        this.props.fetchUsers()
-        if (this.props.user.status === "Approve") {
-          this.setState({red: false})
-          this.setState({green:true})
-        } else if( this.props.user.status === "Denied"){
-          this.setState({red: true})
-          this.setState({green:false})
-        } else{
-          this.setState({red: true})
-          this.setState({green:false})
-        }
-        
-        
-        
-    
-      } else {
-        console.log("Service status update submission failed");
-      }
-      return response.json();
-    });
+  handleClickClose = () => {
+    this.props.fetchUsers();
+    this.props.setOpen(false);
+   
   };
+
+  handleSubmitAsync = async (id: any, newStatus: any, userStatus?: any) => {
+    try {
+      const response = await fetch(`${API_URL}/service/status/${id}`, {
+        method: "PUT",
+        body: JSON.stringify({
+          service: {
+            status: newStatus,
+          },
+        }),
+        headers: new Headers({
+          "Content-Type": "application/json",
+          Authorization: this.props.sessionToken,
+        }),
+      });
+      const json = await response.json();
+      // console.log(json);
+      this.props.fetchUsers();
+      // console.log(this.props.specificUser);
+      // this.handleClickClose();
+
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
 
   render() {
     return (
@@ -143,56 +120,78 @@ class StudentProfile extends React.Component<AcceptedProps, myState> {
                       (user: any, index: any) => (
                         <React.Fragment>
                           <TableRow>
-                            <TableCell style={{ width: "200px", fontSize:"11px" }}>
-                            {user.hours} hour(s) on {user.date} <br></br>  
+                            <TableCell
+                              style={{ width: "200px", fontSize: "11px" }}
+                            >
+                              {user.hours} hour(s) on {user.date} <br></br>
                             </TableCell>
                             <TableCell style={{ width: "200px" }}>
                               {user.description}
                             </TableCell>
                             <TableCell>
                               <Button>
-                                {user.status === "Approved"  ? (
-                                  <FontAwesomeIcon 
-                                  onClick={() => {
-                                    this.handleSubmit(
-                                     user.id, "Denied"
-                                    );
+                                {
+                                  user.status === "Approved" ? (
+                                    <FontAwesomeIcon
+                                      onClick={() => {
+                                       user.status= "Denied"
 
+                                        this.handleSubmitAsync(
+                                          user.id,
+                                          "Denied",
+                                          user.status
+                                        );
+                                      }}
+                                      style={{
+                                        color: "#06d6a0",
+                                        fontSize: "20px",
+                                      }}
+                                      icon={faCheckSquare}
+                                    />
+                                  ) : user.status === "Denied" ? (
+                                    <FontAwesomeIcon
+                                      onClick={() => {
+                                        user.status= "Approved"
+                                        this.handleSubmitAsync(
+                                          user.id,
+                                          "Approved",
+                                          user.status
+                                        );
+                                        this.setState({
+                                          currentStatus: "Approved",
+                                        });
+                                      }}
+                                      style={{ color: "#ef476f", fontSize: "20px" }}
+                                      icon={faTimesCircle}
+                                    />
+                                  ) : (
+                                    <FontAwesomeIcon
+                                      onClick={() => {
+                                        user.status= "Approved"
+                                        this.handleSubmitAsync(
+                                          user.id,
+                                          "Approved",
+                                          user.status
+                                        );
+                                        this.setState({
+                                          currentStatus: "Approved",
+                                        });
+                                      }}
+                                      style={{
+                                        color: "#ffd166",
+                                   
+                                        fontSize: "20px",
+                                      }}
+                                      icon={faQuestionCircle}
+                                    />
                                   
-                                  }}
-                                    style={{ color: "green", fontSize: "20px" }}
-                                    icon={faCheckSquare}
-                                  />
-                                ) : user.status === "Denied"   ? (
-                                  <FontAwesomeIcon
-                                  onClick={() => {
-                                    this.handleSubmit(
-                                      user.id, "Approved"
-                                    );
-                                
+                                ) }
 
-                                  }}
-                                    style={{ color: "red", fontSize: "20px" }}
-                                    icon={faTimesCircle}
-                                  />
-                                ) : (
-                                  <FontAwesomeIcon
-                                  onClick={() => {
-                                    this.handleSubmit(
-                                      user.id, "Approved"
-                                    );
-                                  }}
-                                    style={{
-                                      color: "orange",
-                                      fontSize: "20px",
-                                    }}
-                                    icon={faQuestionCircle}
-                                  />
-                                )}
+                          
                               </Button>
                             </TableCell>
                           </TableRow>
-                          {console.log(user)}
+                          {/* {console.log(user)} */}
                         </React.Fragment>
                       )
                     )
@@ -206,15 +205,15 @@ class StudentProfile extends React.Component<AcceptedProps, myState> {
           <DialogActions>
             <Button
               onClick={() => {
+                this.props.fetchUsers();
                 this.props.setOpen(false);
-                console.log(this.props.open);
+                // console.log(this.props.open);
               }}
             >
               CLOSE
             </Button>
           </DialogActions>
         </form>
-        {console.log(this.props.specificUser)}
       </Dialog>
     );
   }

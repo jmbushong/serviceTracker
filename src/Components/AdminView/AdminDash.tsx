@@ -7,28 +7,17 @@ import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 import { faAddressBook } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Box from "@material-ui/core/Box";
-import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
-
 import AdminSitebar from "../Sitebar/AdminSitebar";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Hidden from "@material-ui/core/Hidden";
 import ManageAccounts from "./ManageAccounts";
-import Button from "@material-ui/core/Button";
 import EventSchedule from "./Events/EventSchedule";
-
 import ManageHoursTable from "./ManageHours";
-import BottomNavigation from "@material-ui/core/BottomNavigation";
-import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import FolderIcon from "@material-ui/icons/Folder";
-import RestoreIcon from "@material-ui/icons/Restore";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
 import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import PhoneIcon from "@material-ui/icons/Phone";
 import clipboard from "../../Assets/undraw_No_data_re_kwbl.svg"
 import API_URL from "../../environment";
 import StudentLeaderboard from "../AdminView/StudentLeaderboard"
@@ -50,10 +39,10 @@ type AcceptedProps = {
 type myState = {
   classId: any;
   setClassId: (e: any) => void;
-  viewStudentAccount: any;
-  viewEventSchedule: any;
-  viewManageHours: any;
-  viewSearch: any;
+  viewStudentAccount: boolean;
+  viewEventSchedule: boolean;
+  viewManageHours: boolean;
+  viewSearch: boolean;
   setViewManageHours: (e: any) => void;
   setViewSearch: (e: any) => void;
   setViewEventSchedule: (e: any) => void;
@@ -131,7 +120,6 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
           setViewStudentAccount={this.state.setViewStudentAccount}
           setViewEventSchedule={this.state.setViewEventSchedule}
           backArrowToggle={this.props.backArrowToggle}
-          //  arrowHandler={this.props.arrowHandler}
           clearToken={this.props.clearToken}
           sessionToken={this.props.sessionToken}
 

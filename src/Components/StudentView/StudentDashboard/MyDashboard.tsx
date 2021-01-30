@@ -5,22 +5,18 @@ import "react-circular-progressbar/dist/styles.css";
 import Box from "@material-ui/core/Box";
 import Sitebar from "../../Sitebar/Sitebar";
 import Chart from "../../StudentView/StudentDashboard/StudentViewDashboard/Chart";
-import Button from "@material-ui/core/Button";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
-import AddBoxIcon from "@material-ui/icons/AddBox";
-import EventNoteIcon from "@material-ui/icons/EventNote";
 import Typography from "@material-ui/core/Typography";
-import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import ViewEvents from "../ViewEvents";
-import { GridDataContainer } from "@material-ui/data-grid";
 import API_URL from "../../../environment";
-import Chip from '@material-ui/core/Chip';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Hidden from "@material-ui/core/Hidden";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheckSquare } from "@fortawesome/free-solid-svg-icons";
+import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
+import { faUndo } from "@fortawesome/free-solid-svg-icons";
 
 let percentage = 56;
 
@@ -245,39 +241,7 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
             lg={7}
           >
             <Box className="studentDash">
-              {/*          
-          <Box
-            className="studentChart"
-            style={{ background: "white", padding: "0px" }}
-          >
-           
-            
-            <Box className="toRight">
-              
-              
-              {" "}
-              <ButtonGroup
-                style={{ background: "white" }}
-                className="toRight"
-                disableElevation
-                variant="contained"
-                aria-label="text primary button group"
-              >
-                
-                <Link to="/addservice">
-                  <Button style={{ color: "#ef476f" }}>
-                    <AddBoxIcon />
-                  </Button>
-                </Link>
-                <Link to="/events">
-                  {" "}
-                  <Button style={{ color: "#ef476f", marginRight: "0px" }}>
-                    <EventNoteIcon />
-                  </Button>
-                </Link>
-              </ButtonGroup>
-            </Box>
-          </Box> */}
+          
               <Box className="studentChart">
                 <ViewEvents
                   setBackArrowToggle={this.props.setBackArrowToggle}
@@ -301,62 +265,7 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
             </Box>
           </Grid>
         </Grid>
-        {/* <Box className="studentDash">
-          <Typography
-            className="signupTitle"
-            style={{ marginTop: "30px" }}
-            component="h1"
-            variant="h4"
-          >
-            My Progress
-          </Typography>
-
-          <Box className="progressCircle">
-            <CircularProgressbar
-              styles={{ path: { stroke: "#06d6a0" }, text: { fill: "black" } }}
-              value={(sum / 30) * 100}
-              text={`${sum}/30`}
-            />
-          </Box>
-          <Box
-            className="studentChart"
-            style={{ background: "#ffd166", padding: "0px" }}
-          >
-            <Box className="toRight">
-              {" "}
-              <ButtonGroup
-                style={{ background: "#ffd166" }}
-                className="toRight"
-                disableElevation
-                variant="contained"
-                aria-label="text primary button group"
-              >
-                <Link to="/addservice">
-                  <Button style={{ background: "#ffd166" }}>
-                    <AddBoxIcon />
-                  </Button>
-                </Link>
-                <Link to="/events">
-                  {" "}
-                  <Button style={{ background: "#ffd166", marginRight: "0px" }}>
-                    <EventNoteIcon />
-                  </Button>
-                </Link>
-              </ButtonGroup>
-            </Box>
-          </Box>
-          <Box className="studentChart">
-            <Chart
-              serviceRequests={this.props.serviceRequests}
-              setServiceRequests={this.props.setServiceRequests}
-              sessionToken={this.props.sessionToken}
-              setIndexNumber={this.props.setIndexNumber}
-              indexNumber={this.props.indexNumber}
-              specificEntry={this.props.specificEntry}
-              setSpecificEntry={this.props.setSpecificEntry}
-            />
-          </Box>
-        </Box> */}
+  
         {this.checkForToken()}
         {this.percentage()}
         {this.arrLength()}

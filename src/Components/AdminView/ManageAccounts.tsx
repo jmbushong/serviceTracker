@@ -28,10 +28,10 @@ type AcceptedProps = {
 };
 
 type MyState = {
-  firstName: any;
-  lastName: any;
-  email: any;
-  password: any;
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
   setFirstName: (e: any) => void;
   setLastName: (e: any) => void;
   setEmail: (e: any) => void;
@@ -41,7 +41,7 @@ type MyState = {
   userId: any;
   setUserId: (e: any) => void;
   setOpen: (e: any) => void;
-  open: any;
+  open: boolean;
   oneStudent: any;
   setOneStudent: (e: any) => void;
 };

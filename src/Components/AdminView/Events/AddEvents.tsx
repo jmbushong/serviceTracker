@@ -30,14 +30,12 @@ fetchEvents:any;
 
 type myState = {
   date: any;
-  title: any;
-  description: any;
-  hours: any;
-  location: any;
+  title: string;
+  description: string;
+  hours: number;
+  location: string;
   eventUpdate:boolean;
   setEventUpdate:(e:any)=> void;
-  
-
   setDate: (e: any) => void;
   setTitle: (e: any) => void;
   setDescription: (e: any) => void;

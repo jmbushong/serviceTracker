@@ -23,6 +23,11 @@ import ButtonGroup from "@material-ui/core/ButtonGroup";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import API_URL from "../../../../environment";
 import Hidden from "@material-ui/core/Hidden";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheckSquare } from "@fortawesome/free-solid-svg-icons";
+import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
+import { faUndo } from "@fortawesome/free-solid-svg-icons";
 
 
 type AcceptedProps = {
@@ -213,7 +218,41 @@ export default class Chart extends React.Component<AcceptedProps, myState> {
                       {this.props.serviceRequests[index]?.hours}{" "}
                     </TableCell></Hidden>
               
-                    <TableCell align="center" > {this.props.serviceRequests[index]?.status} </TableCell>
+                    <TableCell align="center" > {this.props.serviceRequests[index]?.status === "Denied" ?
+                       
+                         <FontAwesomeIcon
+                                  style={{
+                                    backgroundColor: "white",
+                                    fontSize: "20px",
+                                    color: "#ef476f"
+                                  }}
+                                  icon={faTimesCircle}
+                                />
+                   
+                 : this.props.serviceRequests[index]?.status === "Approved" ?
+              
+                   <FontAwesomeIcon
+                             style={{
+                               color: "#06d6a0",
+                               fontSize: "20px",
+                             }}
+                             icon={faCheckSquare}
+                           />
+          
+                :   <FontAwesomeIcon
+                style={{
+                  color: "#ffd166",
+                  fontSize: "20px",
+                }}
+                icon={faQuestionCircle}
+              />
+
+                
+                
+                }
+                 
+                 
+                  </TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell

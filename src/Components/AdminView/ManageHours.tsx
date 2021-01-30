@@ -193,12 +193,7 @@ export default class ManageHoursTable extends React.Component<
         style={{  height: "100vh"}}
         // component={Paper}
       >
-        {/* <AdminSitebar
-          backArrowToggle={this.props.backArrowToggle}
-          // arrowHandler={this.props.arrowHandler}
-          clearToken={this.props.clearToken}
-          sessionToken={this.props.sessionToken}
-        /> */}
+
 
         <Box
           style={{
