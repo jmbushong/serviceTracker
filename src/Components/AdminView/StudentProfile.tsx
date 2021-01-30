@@ -29,6 +29,7 @@ type AcceptedProps = {
   user: any;
   fetchUsers: any;
   runTotalHours:any;
+  handleTotalHours:any;
 };
 
 type myState = {
@@ -82,6 +83,7 @@ class StudentProfile extends React.Component<AcceptedProps, myState> {
       const json = await response.json();
       // console.log(json);
       this.props.fetchUsers();
+      this.props.handleTotalHours(id);
      
       // console.log(this.props.specificUser);
       // this.handleClickClose();

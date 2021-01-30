@@ -240,6 +240,7 @@ console.log(json)
 
                       {this.state.open ? (
                         <StudentProfile
+                        handleTotalHours={this.handleTotalHours}
                         runTotalHours={this.runTotalHours}
                           fetchUsers={this.fetchUsers}
                           specificUser={this.state.specificUser}
