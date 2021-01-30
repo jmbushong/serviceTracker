@@ -65,7 +65,13 @@ class StudentLeaderboard extends React.Component<AcceptedProps, myState> {
   handleClickOpen = (userObj: any) => {
     this.state.setOpen(true);
     this.setState({ specificUser: userObj });
+    this.handleTotalHours(userObj)
+   
   };
+
+  runTotalHours =(userObj:any) =>{
+    this.handleTotalHours(userObj)
+  }
 
   percentage = (e: any) => {
     {
@@ -202,12 +208,14 @@ console.log(json)
                       <TableCell align="left">
                         {user.firstName} {user.lastName}{" "}
                         {this.handleTotalHours(user.id)} 
+                        {this.runTotalHours(user.id)}
                         {/* {console.log(user)} */}
                       </TableCell>
 
                       <TableCell align="center">
                         {" "}
-                        {this.percentage(user)} {user.totalHours}{" "}
+                        {this.percentage(user)} {`total: ${user.totalHours}`}{" "}
+                     
                       </TableCell>
                       <TableCell align="center">
                         {" "}
@@ -229,6 +237,7 @@ console.log(json)
 
                       {this.state.open ? (
                         <StudentProfile
+                        runTotalHours={this.runTotalHours}
                           fetchUsers={this.fetchUsers}
                           specificUser={this.state.specificUser}
                           open={this.state.open}
@@ -240,7 +249,7 @@ console.log(json)
                         <div></div>
                       )}
                     </TableRow>
-
+                    
                     {/* {console.log(user)} */}
                   </React.Fragment>
                 ))
@@ -249,9 +258,9 @@ console.log(json)
               )}
             </TableBody>
           </Table>
-
+          {console.log(`sum: ${sum}`)}
           {this.arrLength()}
-          {/* {console.log(sum)} */}
+          {console.log(`sum: ${sum}`)}
         </TableContainer>
       </>
     );

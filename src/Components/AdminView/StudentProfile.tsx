@@ -28,6 +28,7 @@ type AcceptedProps = {
   open: boolean;
   user: any;
   fetchUsers: any;
+  runTotalHours:any;
 };
 
 type myState = {
@@ -54,11 +55,14 @@ class StudentProfile extends React.Component<AcceptedProps, myState> {
 
   componentDidMount() {
     this.props.fetchUsers();
+ this.props.runTotalHours()
   }
 
   handleClickClose = () => {
     this.props.fetchUsers();
+    this.props.runTotalHours()
     this.props.setOpen(false);
+    
    
   };
 
