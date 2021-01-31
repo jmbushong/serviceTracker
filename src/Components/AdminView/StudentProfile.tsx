@@ -31,6 +31,7 @@ type AcceptedProps = {
   // runTotalHours:any;
   handleTotalHours:any;
   arrLength:any;
+  percentage:any;
 };
 
 type myState = {
@@ -57,6 +58,7 @@ class StudentProfile extends React.Component<AcceptedProps, myState> {
 
   componentDidMount() {
     this.props.fetchUsers();
+    this.props.percentage(this.props.specificUser)
 
   }
 

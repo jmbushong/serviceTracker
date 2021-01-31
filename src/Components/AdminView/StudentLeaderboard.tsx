@@ -66,7 +66,7 @@ class StudentLeaderboard extends React.Component<AcceptedProps, myState> {
   handleClickOpen = (userObj: any) => {
     this.state.setOpen(true);
     this.setState({ specificUser: userObj });
-    this.handleTotalHours(userObj)
+    // this.handleTotalHours(userObj)
    
   };
 
@@ -75,6 +75,7 @@ class StudentLeaderboard extends React.Component<AcceptedProps, myState> {
   // }
 
   percentage = (e: any) => {
+    {console.log(e)}
     {
       this.arrLength();
     }
@@ -212,7 +213,7 @@ console.log(json)
 
                       <TableCell align="left">
                         {user.firstName} {user.lastName}{" "}
-                        {this.handleTotalHours(user.id)} 
+                        {/* {this.handleTotalHours(user.id)}  */}
                         
                         {/* {console.log(user)} */}
                       </TableCell>
@@ -244,6 +245,7 @@ console.log(json)
                         <StudentProfile
                       
                         arrLength={this.arrLength}
+                        percentage={this.percentage}
                         handleTotalHours={this.handleTotalHours}
                         // runTotalHours={this.runTotalHours}
                           fetchUsers={this.fetchUsers}
@@ -267,6 +269,7 @@ console.log(json)
             </TableBody>
           </Table>
           {console.log(`sum: ${sum}`)}
+        
           {this.arrLength()}
           {console.log(`sum: ${sum}`)}
         </TableContainer>
