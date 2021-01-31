@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faListAlt } from "@fortawesome/free-solid-svg-icons";
 
-import API_URL from "../../../environment";
+
 import StudentProfile from './StudentProfile'
 
 import { StudentUser, Service } from './types'
@@ -31,7 +31,6 @@ export default class StudentEntry extends Component<StudentEntryProps, StudentEn
       open: false
     }
     this.toggleOpen = this.toggleOpen.bind(this)
-    this.handleTotalHours = this.handleTotalHours.bind(this)
   }
 
   toggleOpen () {
@@ -39,40 +38,11 @@ export default class StudentEntry extends Component<StudentEntryProps, StudentEn
     this.setState({ open: !this.state.open });
   }
 
-
-  calcTotalHours () {
+  computeTotalHours () {
     return this.props.user.services
-             .filter((s: Service) => s.status === 'Approved')
-             .reduce((a: number, s: Service) => a + s.hours, 0)
+      .map((s: Service) => s.status === 'Approved' ? s.hours : 0)
+      .reduce((a: number, h: number) => a + h, 0)
   }
-
-  handleTotalHours () {
-    // id.preventDefault();
-
-    fetch(`${API_URL}/user/totalHours/${this.props.user.id}`, {
-      method: "PUT",
-      body: JSON.stringify({
-        studentUser: {
-          totalHours: this.calcTotalHours(),
-        },
-      }),
-      headers: new Headers({
-        "Content-Type": "application/json",
-        Authorization: this.props.sessionToken,
-      }),
-    }).then((response) => {
-      if (response.status === 200) {
-        console.log("Service status update submission was successful");
-     
-
-        
-      } else {
-        console.log("Service status update submission failed");
-      }
-      // return response.json();
-    });
-  };
-
 
   render() {
     return (
@@ -82,14 +52,11 @@ export default class StudentEntry extends Component<StudentEntryProps, StudentEn
 
           <TableCell align="left">
             {this.props.user.firstName} {this.props.user.lastName}{" "}
-            {this.handleTotalHours()}
-
-            {/* {console.log(user)} */}
           </TableCell>
 
           <TableCell align="center">
             {" "}
-            {/* {this.percentage(this.props.user)} */} {this.props.user.totalHours}{" "}
+            {/* {this.percentage(this.props.user)} */} {this.computeTotalHours()}{" "}
 
           </TableCell>
           <TableCell align="center">
@@ -108,15 +75,11 @@ export default class StudentEntry extends Component<StudentEntryProps, StudentEn
           {
             this.state.open
             ? <StudentProfile
-                //arrLength={this.arrLength}
-                handleTotalHours={this.handleTotalHours}
-                //runTotalHours={this.runTotalHours}
-                fetchUsers={this.props.fetchUsers}
-                // specificUser={this.state.specificUser}
                 open={this.state.open}
                 toggleOpen={this.toggleOpen}
                 user={this.props.user}
                 sessionToken={this.props.sessionToken}
+                fetchUsers={this.props.fetchUsers}
               />
             : null
           }

@@ -14,9 +14,10 @@ import TableRow from "@material-ui/core/TableRow";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 
+import API_URL from "../../../environment";
 import ServiceEntry from "./ServiceEntry";
 
-import { StudentUser } from './types'
+import { StudentUser, Service } from './types'
 
 type StudentProfileProps = {
   sessionToken: string;
@@ -24,29 +25,11 @@ type StudentProfileProps = {
   open: boolean;
   user: StudentUser;
   fetchUsers: () => void;
-  handleTotalHours: () => void;
 };
 
-// type StudentProfileState = {
-
-//   currentStatus: string;
-// };
 
 
-class StudentProfile extends React.Component<StudentProfileProps> {
-  constructor(props: StudentProfileProps) {
-    super(props);
-    this.state = {
-      currentStatus: ""
-    };
-  }
-
-  componentDidMount() {
-    // this.props.fetchUsers();
-
-  }
-
-
+class StudentProfile extends React.Component<StudentProfileProps, {}> {
 
   render() {
     return (
@@ -76,10 +59,13 @@ class StudentProfile extends React.Component<StudentProfileProps> {
                 </TableHead>
                 <TableBody>
                   {
-                    this.props.user.services.length > 0
-                      ? this.props.user.services.sort((a, b) => (new Date(b.date)).getTime() - (new Date(a.date)).getTime()).map((service: any, index: any) =>
-                          <ServiceEntry service={service} sessionToken={this.props.sessionToken} />)
-                      : null
+                    this.props.user.services
+                        .sort((a, b) => (new Date(b.date)).getTime() - (new Date(a.date)).getTime())
+                        .map((service: Service, index: number) =>
+                          <ServiceEntry
+                            key={index}
+                            service={service} 
+                            sessionToken={this.props.sessionToken} />)
                   }
                 </TableBody>
               </Table>
@@ -88,9 +74,7 @@ class StudentProfile extends React.Component<StudentProfileProps> {
           <DialogActions>
             <Button
               onClick={() => {
-                // this.props.fetchUsers();
                 this.props.toggleOpen();
-                // console.log(this.props.open);
               }}
             >
               CLOSE

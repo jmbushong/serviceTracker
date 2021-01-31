@@ -8,19 +8,13 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-
 import Hidden from "@material-ui/core/Hidden";
-// import Button from "@material-ui/core/Button";
-
 import Typography from "@material-ui/core/Typography";
-// import StudentProfile from "./StudentProfile";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import StudentEntry from "./StudentEntry";
 import API_URL from "../../../environment";
 
-import { StudentUser, StudentUsers } from './types'
-
-
+import { StudentUser, StudentUsers, Service } from './types'
 
 
 type SLBProps = {
@@ -29,91 +23,44 @@ type SLBProps = {
 
 
 type SLBState = {
-  // specificUser: any;
-
-  // userId: any;
   users: StudentUsers;
-  rank: any;
-  // userServices: any;
-  // setUserServices: (e: any) => void;
-  // setUser: (e: any) => void;
-  // open: any;
 };
 
 class StudentLeaderboard extends Component<SLBProps, SLBState> {
   constructor(props: SLBProps) {
     super(props);
     this.state = {
-
-      rank: 1,
       users: [],
-      // userServices: [],
-      // setUser: (e) => {
-      //   this.setState({ users: e });
-      // },
-      // setUserServices: (e) => {
-      //   this.setState({ userServices: e });
-      // }
     };
 
     this.fetchUsers = this.fetchUsers.bind(this)
-
   }
 
   componentDidMount() {
     this.fetchUsers();
-    // this.arrLength();
   }
 
 
-
-
-
-
-
-
-
-  // runTotalHours =(userObj:any) =>{
-  //   this.handleTotalHours(userObj)
-  // }
-
-  // percentage = (e: any) => {
-
-  //   e.services?.length > 0
-  //     ? e?.services.map((service: any, index: any) =>
-  //         arr.push(
-  //           e?.services[index].status === "Approved"
-  //             ? e?.services[index].hours
-  //             : 0
-  //         )
-  //       )
-  //     : console.log("did not work");
-
-
-  //   e?.services.length > 0 ? (sum = arr.reduce(add)) : (sum = 0);
-
-  //   this.handleTotalHours(e.id);
-
-  // };
-
-
-  fetchUsers() {
-    fetch(`${API_URL}/user/allbyhours`, {
+  async fetchUsers() {
+    const result = await fetch(`${API_URL}/user/all`, {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",
         Authorization: this.props.sessionToken,
       }),
     })
-      .then((res) => res.json())
-      .then((json: StudentUsers) => {
 
-        this.setState({ users: json.sort((a, b) => b.totalHours - a.totalHours) }); //taking information from the server and setting it to our state
-
-
-      });
+    const json = await result.json()
+    
+    this.setState({ users: json.sort(this.sortStudents) });
   };
 
+  sortStudents (a: StudentUser, b: StudentUser) {
+    const calcTotal = (x: StudentUser) => x.services
+      .map((s: Service) => s.status === 'Approved' ? s.hours : 0)
+      .reduce((a, h) => a + h, 0)
+    return calcTotal(b) - calcTotal(a)
+  }
 
 
   render() {
@@ -138,17 +85,7 @@ class StudentLeaderboard extends Component<SLBProps, SLBState> {
             <Box>
               <Box
                 className="studentChart"
-                style={{ background: "white", padding: "0px" }}
-              >
-                {/* <TextField
-                  style={{ marginLeft: "20px", width: "200px" }}
-                  label="Search by Name"
-                  margin="normal"
-                  variant="outlined"
-                >
-                  {" "}
-                </TextField> */}
-              </Box>
+                style={{ background: "white", padding: "0px" }} />
             </Box>
           </Box>
           <Table aria-label="collapsible table">

@@ -11,10 +11,12 @@ import Button from "@material-ui/core/Button";
 import API_URL from '../../../environment'
 import { Service } from './types'
 
+
+type Statuses = 'Approved' | 'Denied' | 'Pending'
+
 interface ServiceEntryProps {
   service: Service;
   sessionToken: string;
-  // fetchUsers: () => void;
 }
 
 
@@ -25,11 +27,19 @@ export default class ServiceEntry extends React.Component<ServiceEntryProps, Ser
     this.state = this.props.service
   }
 
+  toggleServiceStatus () {
+    if (['Denied', 'Pending'].includes(this.state.status)) {
+      this.setState({ status: 'Approved'})
+      this.handleSubmit('Approved')
+    } else {
+      this.setState({ status: 'Denied'})
+      this.handleSubmit('Denied')
+    }
+  }
 
-  async handleSubmit (newStatus: string) {
-    console.log('handling service status submit')
+  handleSubmit (newStatus: string) {
     try {
-      const response = await fetch(`${API_URL}/service/status/${this.props.service.id}`, {
+      fetch(`${API_URL}/service/status/${this.state.id}`, {
         method: "PUT",
         body: JSON.stringify({
           service: {
@@ -41,16 +51,28 @@ export default class ServiceEntry extends React.Component<ServiceEntryProps, Ser
           Authorization: this.props.sessionToken,
         }),
       });
-      const json = await response.json();
-      
-      // this.props.fetchUsers();
-      // this.props.handleTotalHours();
 
     } catch (err) {
       console.log(err);
     }
   };
 
+  getStyle () {
+    return {
+      Approved: {
+        icon: faCheckSquare,
+        color: '#06d6a0'
+      },
+      Denied: {
+        icon: faTimesCircle,
+        color: '#ef476f'
+      },
+      Pending: {
+        icon: faQuestionCircle,
+        color: '#ffd166'
+      }
+    }[this.state.status as Statuses]
+  }
 
   render() {
     return (
@@ -59,51 +81,23 @@ export default class ServiceEntry extends React.Component<ServiceEntryProps, Ser
           <TableCell
             style={{ width: "200px", fontSize: "11px" }}
           >
-            {this.props.service.hours} hour(s) on {this.props.service.date} <br></br>
+            {this.state.hours} hour(s) on {this.state.date} <br></br>
           </TableCell>
           <TableCell style={{ width: "200px" }}>
-            {this.props.service.description}
+            {this.state.description}
           </TableCell>
           <TableCell>
             <Button>
-              {
-                this.state.status === "Approved" ? (
-                  <FontAwesomeIcon
-                    onClick={() => {
-                      this.setState({status: "Denied"})
-                      this.handleSubmit("Denied")
-                    }}
-                    style={{
-                      color: "#06d6a0",
-                      fontSize: "20px",
-                    }}
-                    icon={faCheckSquare}
-                  />
-                ) : this.state.status === "Denied" ? (
-                  <FontAwesomeIcon
-                    onClick={() => {
-                      this.setState({status: 'Approved'})
-                      this.handleSubmit("Approved")
-                    }}
-                    style={{ color: "#ef476f", fontSize: "20px" }}
-                    icon={faTimesCircle}
-                  />
-                ) : (
-                      <FontAwesomeIcon
-                        onClick={() => {
-                          this.setState({status: "Approved"})
-                          this.handleSubmit("Approved")
-                        }}
-                        style={{
-                          color: "#ffd166",
 
-                          fontSize: "20px",
-                        }}
-                        icon={faQuestionCircle}
-                      />
-
-                    )}
-
+              <FontAwesomeIcon
+                onClick={() => {
+                  this.toggleServiceStatus()
+                }}
+                style={{
+                  color: this.getStyle().color,
+                  fontSize: '20px'
+                }}
+                icon={this.getStyle().icon} />
 
             </Button>
           </TableCell>
