@@ -20,7 +20,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import clipboard from "../../Assets/undraw_No_data_re_kwbl.svg"
 import API_URL from "../../environment";
-import StudentLeaderboard from "../AdminView/StudentLeaderboard"
+import StudentLeaderboard from "./StudentLeaderboard/StudentLeaderboard"
 
 
 const percentage = 66;
