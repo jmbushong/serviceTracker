@@ -26,7 +26,7 @@ const add = (a: number, b: number) => a + b;
 
 type myState = {
   specificUser: any;
-
+  totalHours:any;
   userId: any;
   user: any;
   rank: any;
@@ -40,6 +40,7 @@ class StudentLeaderboard extends React.Component<AcceptedProps, myState> {
   constructor(props: AcceptedProps) {
     super(props);
     this.state = {
+      totalHours:0,
       specificUser: [],
       userId: "",
       open: false,
@@ -69,9 +70,9 @@ class StudentLeaderboard extends React.Component<AcceptedProps, myState> {
    
   };
 
-  runTotalHours =(userObj:any) =>{
-    this.handleTotalHours(userObj)
-  }
+  // runTotalHours =(userObj:any) =>{
+  //   this.handleTotalHours(userObj)
+  // }
 
   percentage = (e: any) => {
     {
@@ -94,6 +95,7 @@ class StudentLeaderboard extends React.Component<AcceptedProps, myState> {
     }
     {
       console.log(sum);
+     
     }
     {
       this.handleTotalHours(e.id);
@@ -240,9 +242,10 @@ console.log(json)
 
                       {this.state.open ? (
                         <StudentProfile
+                      
                         arrLength={this.arrLength}
                         handleTotalHours={this.handleTotalHours}
-                        runTotalHours={this.runTotalHours}
+                        // runTotalHours={this.runTotalHours}
                           fetchUsers={this.fetchUsers}
                           specificUser={this.state.specificUser}
                           open={this.state.open}
