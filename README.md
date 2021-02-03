@@ -33,7 +33,7 @@ Below is a preview of the student dashboard. From this view, students are able t
 
 ### Admin View
 Below is a preview of the admin dashboard. From this view, administrators are able to:
-1. Search for Service Entries By Student
+1. View Class Totals & Individual Student Service Logs
 2. Manage Service Hours (sorted by status)
 3. Manage Upcoming Events (View, Add, Edit, & Delete)
 4. Manage Studenst Accounts (View, Edit, & Delete)
