@@ -21,7 +21,30 @@ body{
   margin-left: 10px;
   width: 80px;
   height: 40px;
+  margin-bottom: 5px !important;
+  margin-top: 5px !important;
  
+}
+
+.redButton{
+  background-color: #ef476f !important;
+  height: 40px;
+  color: white !important;
+}
+
+.yellowButton{
+  background-color: #ffd166 !important;
+  margin-right: 20px;
+  margin-left: 10px;
+  width: 80px;
+  height: 40px;
+}
+
+.greenButton{
+  background-color: #06d6a0 !important;
+  margin-top: 5px;
+  color: white !important;
+  margin-bottom: 5px
 }
 
 .marginClassTotals{
@@ -89,6 +112,7 @@ height: 80vh;
 .manageHoursMarginTop{
   margin-top:10px;
   margin-left:10px;
+  height: 100vh;
 }
 .manageAccountMarginTop{
   margin-top:0px;
@@ -196,6 +220,7 @@ a:active {
     margin-left: 0px;
     width: 80px;
     height: 40px;
+ 
   }
 
   .tableWidth{
@@ -267,6 +292,7 @@ a:active {
   .manageHoursMarginTop{
     margin-top:80px;
     margin-left: 25px;
+    height: 100vh;
   }
   .responsiveMarginTopAdmin{
     margin-top:100px;

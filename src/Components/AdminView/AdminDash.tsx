@@ -352,7 +352,6 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
                 <EventSchedule
                   setIsAdminTrue={this.props.setIsAdminTrue}
                   backArrowToggle={this.props.backArrowToggle}
-                  // arrowHandler={this.arrowHandler}
                   clearToken={this.props.clearToken}
                   sessionToken={this.props.sessionToken}
                   setBackArrowToggle={this.props.setBackArrowToggle}
@@ -364,12 +363,11 @@ class AdminDash extends React.Component<AcceptedProps, myState> {
           
               <Grid item xs={12} sm={10} md={10} lg={9}>
                 <ManageHoursTable
-                  teacherAccount={this.props.teacherAccount}
+               
                   setIsAdminTrue={this.props.setIsAdminTrue}
-                  backArrowToggle={this.props.backArrowToggle}
-                  clearToken={this.props.clearToken}
+                  // clearToken={this.props.clearToken}
                   sessionToken={this.props.sessionToken}
-                  setBackArrowToggle={this.props.setBackArrowToggle}
+             
                 ></ManageHoursTable>{" "}
               </Grid>{" "}
             </>

@@ -413,12 +413,9 @@ class App extends React.Component<{}, myState> {
             <Route exact path="/managehours">
               <ManageHoursTable
                setIsAdminTrue={this.state.setIsAdminTrue}
-                teacherAccount={this.state.teacherAccount}
-                backArrowToggle={this.state.backArrowToggle}
-  
-                clearToken={this.clearToken}
+              
                 sessionToken={this.state.sessionToken}
-                setBackArrowToggle={this.state.setBackArrowToggle}
+              
                 classCode={this.state.classCode}
               />
             </Route>

@@ -1,5 +1,9 @@
 import React from "react";
 
+//DYNAMIC URL (LOCAL HOST VS HEROKU )
+import API_URL from "../../environment";
+
+//Material UI
 import Box from "@material-ui/core/Box";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -7,49 +11,41 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
-import AdminSitebar from "../Sitebar/AdminSitebar";
 import Button from "@material-ui/core/Button";
-import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Typography from "@material-ui/core/Typography";
-import API_URL from "../../environment";
+
+//FONT AWESOME ICONS
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckSquare } from "@fortawesome/free-solid-svg-icons";
 import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
-import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
 import { faUndo } from "@fortawesome/free-solid-svg-icons";
+
+// PROP TYPES
 type AcceptedProps = {
+  classCode?: number;
   sessionToken?: any;
-  backArrowToggle: any;
-  classCode?: any;
-  teacherAccount: any;
-  // arrowHandler: any;
-  clearToken: any;
-  setBackArrowToggle: (e: any) => void;
   setIsAdminTrue: (e: any) => void;
 };
 
+// STATE TYPES
 type myState = {
+  status?: string;
+  open: boolean;
   statusView: any;
-  status?: any;
-  open: any;
-  itemId: any;
   serviceRequests: any;
   setServiceRequests: (e: any) => void;
   setOpen: (e: any) => void;
-  update: boolean;
-  setUpdate: (e: any) => void;
+
 };
 
 export default class ManageHoursTable extends React.Component<
   AcceptedProps,
   myState
 > {
+  //Sets inital values of all state variables
   constructor(props: AcceptedProps) {
     super(props);
     this.state = {
@@ -59,15 +55,6 @@ export default class ManageHoursTable extends React.Component<
       setServiceRequests: (e) => {
         this.setState({ serviceRequests: e });
       },
-      update: false,
-      setUpdate: (e) => {
-        this.setState({ update: e });
-      },
-      // setStatusView: (e) => {
-      //   this.setState({ statusView: e });
-      // },
-
-      itemId: 100,
       open: false,
       setOpen: (e) => {
         this.setState({ open: e });
@@ -75,14 +62,16 @@ export default class ManageHoursTable extends React.Component<
     };
   }
 
+  //This LifeCycle Method run when the component first loads
+  //Fetches data & ensures that we stay on Admin View if page refreshes
   componentDidMount() {
     this.fetchServiceRequests("Pending");
-    // this.props.setBackArrowToggle(true);
     this.props.setIsAdminTrue(true);
   }
-  handleSubmit = (id: any) => {
-    // id.preventDefault();
 
+  //When the GREEN button is clicked, the status of the service entry changes to APPROVED
+  //This request then triggers another fetch to update the DOM to only show results with PENDING status
+  handleSubmit = (id: number) => {
     fetch(`${API_URL}/service/status/${id}`, {
       method: "PUT",
       body: JSON.stringify({
@@ -97,7 +86,6 @@ export default class ManageHoursTable extends React.Component<
     }).then((response) => {
       if (response.status === 200) {
         console.log("Service status update submission was successful");
-        this.state.setUpdate(true);
         this.fetchServiceRequests("Pending");
       } else {
         console.log("Service status update submission failed");
@@ -106,9 +94,9 @@ export default class ManageHoursTable extends React.Component<
     });
   };
 
-  handleSubmit2 = (id: any) => {
-    // id.preventDefault();
-
+  //When the RED button is pressent the service entry status changes to DENIED
+  //This request then triggers another fetch to update the DOM to only show results with PENDING status
+  handleSubmit2 = (id: number) => {
     fetch(`${API_URL}/service/status/${id}`, {
       method: "PUT",
       body: JSON.stringify({
@@ -131,9 +119,11 @@ export default class ManageHoursTable extends React.Component<
     });
   };
 
-  handleSubmit3 = (id: any, currentStatus: any) => {
-    // id.preventDefault();
 
+  //When the YELLOW button is clicked, the service entry status changes to PENDING
+  // Afterwards a fetch request runs--- Conditional rendering based on CURRENT status of entry
+
+  handleSubmit3 = (id: number, currentStatus: string) => {
     fetch(`${API_URL}/service/status/${id}`, {
       method: "PUT",
       body: JSON.stringify({
@@ -159,11 +149,11 @@ export default class ManageHoursTable extends React.Component<
     });
   };
 
+  //This GET request is linked to the dropdown menu where users select by current status (APPROVED, DENIED, PENDING)
+  //The default view is PENDING, but if a different item is chosen on dropdown list the fetch url changes to show that status
+  //This fetch collects the data that will be shown on the DOM
   fetchServiceRequests = (e: any) => {
-    // let url= `http://localhost:4000/service/nostatus`
-    // let url2= `http://localhost:4000/service/${e}`
     let url: any;
-
     if (e !== undefined) {
       url = `${API_URL}/service/${e}`;
     } else {
@@ -179,22 +169,15 @@ export default class ManageHoursTable extends React.Component<
     })
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
         this.state.setServiceRequests(json);
-        console.log(this.state.serviceRequests);
       });
   };
 
   render() {
     return (
       <TableContainer
-        // style={{ paddingLeft: "15px", paddingRight: "15px" }}
         className="manageHoursMarginTop"
-        style={{  height: "100vh"}}
-        // component={Paper}
       >
-
-
         <Box
           style={{
             color: "black",
@@ -203,26 +186,28 @@ export default class ManageHoursTable extends React.Component<
           }}
         >
           <Box style={{ marginTop: "0px" }}>
-      
             <Typography
-          className="adminTitle"
-          component="h2"
-          variant="h5"
-          style={{ textAlign: "center", marginBottom:"5px",  color: "black" }}
-        >Manage Hours
-        </Typography>
+              className="adminTitle"
+              component="h2"
+              variant="h5"
+              style={{
+                textAlign: "center",
+                marginBottom: "5px",
+                color: "black",
+              }}
+            >
+              Manage Hours
+            </Typography>
             <Box
               className="studentChart"
               style={{ paddingTop: "10px", textAlign: "center" }}
             >
               <FormControl style={{ width: "200px" }}>
-                {/* <InputLabel id="demo-simple-select-label">Status</InputLabel> */}
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   defaultValue={"Pending"}
                   onChange={(e) => {
-                    console.log(e.target.value);
                     this.fetchServiceRequests(e.target.value);
                     this.setState({ statusView: e.target.value });
                   }}
@@ -241,7 +226,6 @@ export default class ManageHoursTable extends React.Component<
             <TableRow>
               <TableCell />
 
-              {/* <TableCell>Name</TableCell> */}
               <TableCell></TableCell>
               <TableCell align="left"> </TableCell>
               <TableCell align="left">Description</TableCell>
@@ -264,13 +248,16 @@ export default class ManageHoursTable extends React.Component<
                       align="left"
                       style={{ marginLeft: "50px" }}
                     ></TableCell>
-               
+
                     <TableCell></TableCell>
 
-                    <TableCell align="left" style={{ fontSize: "11px", width:"100px" }}>
+                    <TableCell
+                      align="left"
+                      style={{ fontSize: "11px", width: "100px" }}
+                    >
                       {this.state.serviceRequests[index]?.hours}
-                      {" hour(s) "} <br></br> {"on "}{this.state.serviceRequests[index]?.date}{" "}
-                      <br></br>
+                      {" hour(s) "} <br></br> {"on "}
+                      {this.state.serviceRequests[index]?.date} <br></br>
                       <br></br>
                     </TableCell>
                     <TableCell style={{ fontSize: "12px" }}>
@@ -291,15 +278,7 @@ export default class ManageHoursTable extends React.Component<
                     {this.state.statusView === "Pending" ? (
                       <TableCell align="center" className="tableWidth">
                         <Button
-                        className="buttonMargin"
-                          style={{
-                            backgroundColor: "#06d6a0",
-                            marginTop: "5px",
-                            color: "white",
-                            marginBottom: "5px"
-                         
-                        
-                          }}
+                          className="buttonMargin greenButton"
                           variant="contained"
                           onClick={() => {
                             this.setState({ status: "Approved" });
@@ -309,22 +288,15 @@ export default class ManageHoursTable extends React.Component<
                           }}
                         >
                           <FontAwesomeIcon
-                                    style={{
-                                   
-                                      fontSize: "20px",
-                                    }}
-                                    icon={faCheckSquare}
-                                  />
+                            style={{
+                              fontSize: "20px",
+                            }}
+                            icon={faCheckSquare}
+                          />
                         </Button>
 
                         <Button
-                         className="buttonMargin"
-                          style={{
-                            backgroundColor: "#ef476f",
-                            height: "40px",
-                            color: "white",
-                        
-                          }}
+                          className="buttonMargin redButton"
                           variant="contained"
                           onClick={() => {
                             this.setState({ status: "Denied" });
@@ -333,43 +305,33 @@ export default class ManageHoursTable extends React.Component<
                             );
                           }}
                         >
-                           <FontAwesomeIcon
-                                    style={{
-                                   
-                                      fontSize: "20px",
-                                    }}
-                                    icon={faTimesCircle}
-                                  />
+                          <FontAwesomeIcon
+                            style={{
+                              fontSize: "20px",
+                            }}
+                            icon={faTimesCircle}
+                          />
                         </Button>
                       </TableCell>
                     ) : (
                       <TableCell align="center">
                         <Button
-                          style={{
-                            backgroundColor: "#ffd166",
-
-                            marginRight: "20px",
-                            marginLeft: "10px",
-                            width: "80px",
-                            height: "40px",
-                          }}
+                        className="yellowButton"
+                      
                           variant="contained"
                           onClick={() => {
-                            // this.setState({ status: "awaiting approval" });
                             this.handleSubmit3(
                               this.state.serviceRequests[index]?.id,
                               this.state.statusView
                             );
                           }}
-                          //add a second parameter & use that parameter as ternary in handlesubmit3
                         >
-                              <FontAwesomeIcon
-                                    style={{
-                                   
-                                      fontSize: "15px",
-                                    }}
-                                    icon={faUndo}
-                                  />
+                          <FontAwesomeIcon
+                            style={{
+                              fontSize: "15px",
+                            }}
+                            icon={faUndo}
+                          />
                         </Button>
                       </TableCell>
                     )}
@@ -382,11 +344,7 @@ export default class ManageHoursTable extends React.Component<
             )}
           </TableBody>
         </Table>
-        {console.log(this.state.status)}
-
-        {console.log(this.state.statusView)}
       </TableContainer>
     );
   }
 }
-
