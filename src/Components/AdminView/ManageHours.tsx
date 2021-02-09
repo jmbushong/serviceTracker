@@ -38,7 +38,6 @@ type myState = {
   serviceRequests: any;
   setServiceRequests: (e: any) => void;
   setOpen: (e: any) => void;
-
 };
 
 export default class ManageHoursTable extends React.Component<
@@ -119,7 +118,6 @@ export default class ManageHoursTable extends React.Component<
     });
   };
 
-
   //When the YELLOW button is clicked, the service entry status changes to PENDING
   // Afterwards a fetch request runs--- Conditional rendering based on CURRENT status of entry
 
@@ -175,9 +173,7 @@ export default class ManageHoursTable extends React.Component<
 
   render() {
     return (
-      <TableContainer
-        className="manageHoursMarginTop"
-      >
+      <TableContainer className="manageHoursMarginTop">
         <Box
           style={{
             color: "black",
@@ -316,8 +312,7 @@ export default class ManageHoursTable extends React.Component<
                     ) : (
                       <TableCell align="center">
                         <Button
-                        className="yellowButton"
-                      
+                          className="yellowButton"
                           variant="contained"
                           onClick={() => {
                             this.handleSubmit3(
