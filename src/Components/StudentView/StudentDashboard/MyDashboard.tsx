@@ -9,16 +9,11 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import ViewEvents from "../ViewEvents";
 import API_URL from "../../../environment";
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
 import Hidden from "@material-ui/core/Hidden";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheckSquare } from "@fortawesome/free-solid-svg-icons";
-import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
-import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
-import { faUndo } from "@fortawesome/free-solid-svg-icons";
 
-let percentage = 56;
+//This is the dashboard viewed by students
 
 type AcceptedProps = {
   indexNumber: any;
@@ -168,7 +163,6 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
     arr3.length = 0;
   };
 
-
   render() {
     return (
       <React.Fragment>
@@ -200,34 +194,33 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
                     text: { fill: "black" },
                   }}
                   value={(sum / 30) * 100}
-                  text={`${sum}/30` }
-                
+                  text={`${sum}/30`}
                 />
-                <Grid container component="main">
-                
-                  
-                  </Grid>
-                  <Hidden xsDown>  <Card style={{marginTop:"20px", backgroundColor: "#fafafa"}}>
-      <CardContent>
-    
-    
-        <Typography color="textSecondary" variant="body2" component="p">
-         Current Totals
-          <br/><br/>
-         {sum}  Approved 
-          <br/>
-         {sum2}  Denied 
-          <br/>
-          
-          {sum3}  Pending 
-          <br/>
-         
-        </Typography>
-      </CardContent>
-  
-    </Card></Hidden>
-                
-             
+                <Grid container component="main"></Grid>
+                <Hidden xsDown>
+                  {" "}
+                  <Card
+                    style={{ marginTop: "20px", backgroundColor: "#fafafa" }}
+                  >
+                    <CardContent>
+                      <Typography
+                        color="textSecondary"
+                        variant="body2"
+                        component="p"
+                      >
+                        Current Totals
+                        <br />
+                        <br />
+                        {sum} Approved
+                        <br />
+                        {sum2} Denied
+                        <br />
+                        {sum3} Pending
+                        <br />
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Hidden>
               </Box>
             </div>
           </Grid>
@@ -241,7 +234,6 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
             lg={7}
           >
             <Box className="studentDash">
-          
               <Box className="studentChart">
                 <ViewEvents
                   setBackArrowToggle={this.props.setBackArrowToggle}
@@ -265,7 +257,7 @@ class MyDashboard extends React.Component<AcceptedProps, {}> {
             </Box>
           </Grid>
         </Grid>
-  
+
         {this.checkForToken()}
         {this.percentage()}
         {this.arrLength()}

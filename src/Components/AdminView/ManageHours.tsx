@@ -85,6 +85,7 @@ export default class ManageHoursTable extends React.Component<
     }).then((response) => {
       if (response.status === 200) {
         console.log("Service status update submission was successful");
+
         this.fetchServiceRequests("Pending");
       } else {
         console.log("Service status update submission failed");
@@ -93,7 +94,7 @@ export default class ManageHoursTable extends React.Component<
     });
   };
 
-  //When the RED button is pressent the service entry status changes to DENIED
+  //When the RED button is clicked the service entry status changes to DENIED
   //This request then triggers another fetch to update the DOM to only show results with PENDING status
   handleSubmit2 = (id: number) => {
     fetch(`${API_URL}/service/status/${id}`, {
