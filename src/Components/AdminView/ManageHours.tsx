@@ -32,7 +32,6 @@ type AcceptedProps = {
 
 // STATE TYPES
 type myState = {
-  status?: string;
   open: boolean;
   statusView: any;
   serviceRequests: any;
@@ -49,7 +48,6 @@ export default class ManageHoursTable extends React.Component<
     super(props);
     this.state = {
       statusView: "Pending",
-      status: "Pending",
       serviceRequests: [],
       setServiceRequests: (e) => {
         this.setState({ serviceRequests: e });
@@ -278,7 +276,6 @@ export default class ManageHoursTable extends React.Component<
                           className="buttonMargin greenButton"
                           variant="contained"
                           onClick={() => {
-                            this.setState({ status: "Approved" });
                             this.handleSubmit(
                               this.state.serviceRequests[index]?.id
                             );
@@ -296,7 +293,6 @@ export default class ManageHoursTable extends React.Component<
                           className="buttonMargin redButton"
                           variant="contained"
                           onClick={() => {
-                            this.setState({ status: "Denied" });
                             this.handleSubmit2(
                               this.state.serviceRequests[index]?.id
                             );
